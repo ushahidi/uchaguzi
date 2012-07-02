@@ -414,7 +414,6 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->locale_array = Kohana::config('locale.all_languages');
 
 		// Create Categories
-		$this->template->content->categories = Category_Model::get_categories(0, FALSE, FALSE);
 		$this->template->content->new_categories_form = $this->_new_categories_form_arr();
 
 		// Time formatting
@@ -1856,12 +1855,11 @@ class Reports_Controller extends Tools_Controller {
 		$search_form->date_to = $date_to;
 		
 		// Categories
-		$search_form->categories = Category_Model::get_categories(0, FALSE, FALSE);
 		if (! isset($_GET['c']) OR ! is_array($_GET['c']))
 		{
 			$_GET['c'] = isset($_GET['c']) ? array($_GET['c']) : array();
 		}
-		$search_form->selected_categories = $_GET['c'];
+		$search_form->categories = $_GET['c'];
 		
 		// Media
 		if (! isset($_GET['m']) OR ! is_array($_GET['m']))
