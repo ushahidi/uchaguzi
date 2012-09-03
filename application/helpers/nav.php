@@ -88,6 +88,42 @@ class nav_Core {
 		// Action::nav_admin_reports - Add items to the admin reports navigation tabs
 		Event::run('ushahidi_action.nav_main_top', $this_page);
 	}
+
+
+	/*
+	 * Generate header tabs
+	 * @param string $this_page
+	 * @param array $dontshow
+	 * @return string $menu
+	*/
+
 	
+	public function header_tabs()
+	{
+		$menu = "";
+		
+		// Main
+			$menu .= "<li><a href=\"".url::site()."main\" ";
+			//$menu .= ($this_page == 'home') ? " class=\"active\"" : "";
+		 	$menu .= ">".Kohana::lang('ui_main.home')."</a></li>";
+
+		// Citizen Reports
+			$menu .= "<li><a href=\"".url::site()."reports\" ";
+			//$menu .= ($this_page == 'reports') ? " class=\"active\"" : "";
+		 	$menu .= ">".Kohana::lang('uchaguzi.citizen_reports')."</a></li>";
+		
+		//IEBC
+			$menu .= "<li><a href=\"".url::site()."timeline\" ";
+			//$menu .= ($this_page == 'timeline') ? " class=\"active\"" : "";
+		 	$menu .= ">".Kohana::lang('uchaguzi.iebc')."</a></li>";
+
+		//ELOG
+			$menu .= "<li><a href=\"".url::site()."analysis\" ";
+			//$menu .= ($this_page == 'analysis') ? " class=\"active\"" : "";
+		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
+	
+		echo $menu;
+
+	}
 	
 }

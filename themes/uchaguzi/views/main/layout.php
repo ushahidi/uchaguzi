@@ -1,29 +1,46 @@
 <!-- main body -->
-<div id="main" class="clearingfix">
-	<div id="mainmiddle" class="floatbox withright">
+    <div class="centercontent">
+    
+       <div id="contentwrapper" class="contentwrapper">
+      
+                    
+                    <div class="two_third dashboard_left">
+                    
+					<?php echo $div_map;?>                         
+					<div id="slider">
+						<?php echo $div_timeline;?>
+					</div>
 
-	<?php if ($site_message != ''): ?>
-		<div class="green-box">
-			<h3><?php echo $site_message; ?></h3>
-		</div>
-	<?php endif; ?>
-
-		<!-- right column -->
-		<div id="right" class="clearingfix">
-
-			<!-- category filters -->
-			<div class="cat-filters clearingfix">
-				<strong>
-					<?php echo Kohana::lang('ui_main.category_filter');?>
-					<span>
-						[<a href="javascript:toggleLayer('category_switch_link', 'category_switch')" id="category_switch_link">
-							<?php echo Kohana::lang('ui_main.hide'); ?>
-						</a>]
-					</span>
-				</strong>
-			</div>
-
-			<ul id="category_switch" class="category-filters">
+<!----------------LATEST NEWS----------------->
+                                 <br clear="all" />     
+           <div class="widgetbox">
+                        	<div class="title"><h3>Latest News</h3></div>
+                            <div class="widgetcontent">
+                                <div id="scroll1" class="mousescroll">
+                                        <ul class="entrylist">
+                                              <li>
+											  Main Stream News
+                                              </li>
+										</ul>                        
+                                </div>
+                            </div> <!--widgetcontent-->
+                        </div><!-- widgetbox -->
+                       	  <div class="widgetcontent">
+                        	  
+                      	  </div><!--widgetcontent-->
+                        
+                    </div><!--two_third dashboard_left -->
+                    
+                    <div class="one_third last dashboard_right">
+<!----------------FILTER REPORTS----------------->
+                      <div class="widgetbox">
+                        <div class="title">
+                          <h3>Filter reports</h3></div>
+                            <div class="widgetcontent">
+                                <div id="accordion" class="accordion">
+                                    <h3><a href="#">By Categories</a></h3>
+                                    <div>
+                                        <ul class="categorylist">
 				<?php
 				$color_css = 'class="swatch" style="background-color:#'.$default_map_all.'"';
 				$all_cat_image = '';
@@ -103,178 +120,61 @@
 						echo '</div></li>';
 					}
 				?>
-			</ul>
-			<!-- / category filters -->
+                        </ul>
+                        </div>
+                        <h3><a href="#">By Counties</a></h3>
+                        <div>
+						<div class="chatsearch">
+                        	<input type="text" name="" value="Search" />
+                        </div>
+                                  <ul class="categorylist">
+                        	<li class="online new"><a href="#"><span>Baringo</span></a><span class="reportcount">36K</span></li>
+                            <li><a href="#"><span>Bomet</span></a></li>
+                            <li class="online"><a href="#"><span>Bungoma</span></a></li>
+                            <li class="online"><a href="#"><span>Busia</span></a></li>
+                            <li class="online new"><a href="#"><span>Elgoeyo Marakwet</span></a><span class="reportcount">187K</span></li>
+                            <li><a href="#"><span>Embu</span></a></li>
+                            <li><a href="#"><span>Garissa</span></a></li>
+                        </ul>
+                                    </div>
+                                    
+                                </div>     
+                          </div> <!--widgetcontent-->
+<!----------------FILTER REPORTS ENDS----------------->
+                      <br clear="all" />
+                    
+            
+<!---------------- REPORTS----------------->                            <div class="widgetoptions">
+                                <div class="right"><a href="#">View All Reports</a></div>
+                                <a href="#">Create a Report</a>
+                            </div>
+                           <div class="widgetcontent">
+                                <ul class="recent_list">
+                                    <li class="user new">
+                                        <div class="msg">Narok Residents Being Used by Politicians.
+                                        </div>
+                                    </li>
+                                    <li class="call new">
+                                        <div class="msg">Resource mis-management in Emali, Makueni County</div>
+                                    </li>
+                                    <li class="twitter new">
+                                        <div class="msg">
+                                            <a href="#">No Water Rongai</a><a href="#"></a>.
+                                        </div>
+                                    </li>
+                                    <li class="call new">
+                                        <div class="msg">
+                                            <a href="#">Fix Roads in Kariobangi, Nairobi</a>.
+                                        </div>
+                                    </li>
+                                    <li class="user">
+                                        <div class="msg">
+                                            <a href="#">Empower the disabled.</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="msgmore"><a href="#">View All Reports</a></div>
+                            </div><!--widgetcontent-->
+                        </div><!--widgetbox-->
+<!---------------- REPORTS ENDS-------------->
 
-			<?php if ($layers): ?>
-				<!-- Layers (KML/KMZ) -->
-				<div class="cat-filters clearingfix" style="margin-top:20px;">
-					<strong><?php echo Kohana::lang('ui_main.layers_filter');?> 
-						<span>
-							[<a href="javascript:toggleLayer('kml_switch_link', 'kml_switch')" id="kml_switch_link">
-								<?php echo Kohana::lang('ui_main.hide'); ?>
-							</a>]
-						</span>
-					</strong>
-				</div>
-				<ul id="kml_switch" class="category-filters">
-				<?php
-					foreach ($layers as $layer => $layer_info)
-					{
-						$layer_name = $layer_info[0];
-						$layer_color = $layer_info[1];
-						$layer_url = $layer_info[2];
-						$layer_file = $layer_info[3];
-
-						$layer_link = ( ! $layer_url)
-						    ? url::base().Kohana::config('upload.relative_directory').'/'.$layer_file
-						    : $layer_url;
-						
-						echo '<li>'
-						    . '<a href="#" id="layer_'. $layer .'">'
-						    . '<div class="swatch" style="background-color:#'.$layer_color.'"></div>'
-						    . '<div class="layer-name">'.$layer_name.'</div>'
-						    . '</a>'
-						    . '</li>';
-					}
-				?>
-				</ul>
-				<!-- /Layers -->
-			<?php endif; ?>
-
-			<br />
-
-			<!-- additional content -->
-			<?php if (Kohana::config('settings.allow_reports')): ?>
-				<div class="additional-content">
-					<h5><?php echo Kohana::lang('ui_main.how_to_report'); ?></h5>
-
-					<div>
-
-						<!-- Phone -->
-						<?php if ( ! empty($phone_array)): ?>
-						<div style="margin-bottom:10px;">
-							<?php echo Kohana::lang('ui_main.report_option_1'); ?>
-							<?php foreach ($phone_array as $phone): ?>
-								<strong><?php echo $phone; ?></strong>
-								<?php if ($phone != end($phone_array)): ?>
-									 <br/>
-								<?php endif; ?>
-							<?php endforeach; ?>
-						</div>
-						<?php endif; ?>
-						
-						<!-- External Apps -->
-						<?php if (count($external_apps) > 0): ?>
-						<div style="margin-bottom:10px;">
-							<strong><?php echo Kohana::lang('ui_main.report_option_external_apps'); ?>:</strong><br/>
-							<?php foreach ($external_apps as $app): ?>
-								<a href="<?php echo $app->url; ?>"><?php echo $app->name; ?></a><br/>
-							<?php endforeach; ?>
-						</div>
-						<?php endif; ?>
-
-						<!-- Email -->
-						<?php if ( ! empty($report_email)): ?>
-						<div style="margin-bottom:10px;">
-							<strong><?php echo Kohana::lang('ui_main.report_option_2'); ?>:</strong><br/>
-							<a href="mailto:<?php echo $report_email?>"><?php echo $report_email?></a>
-						</div>
-						<?php endif; ?>
-
-						<!-- Twitter -->
-						<?php if ( ! empty($twitter_hashtag_array)): ?>
-						<div style="margin-bottom:10px;">
-							<strong><?php echo Kohana::lang('ui_main.report_option_3'); ?>:</strong><br/>
-							<?php foreach ($twitter_hashtag_array as $twitter_hashtag): ?>
-								<span>#<?php echo $twitter_hashtag; ?></span>
-								<?php if ($twitter_hashtag != end($twitter_hashtag_array)): ?>
-									<br />
-								<?php endif; ?>
-							<?php endforeach; ?>
-						</div>
-						<?php endif; ?>
-
-						<!-- Web Form -->
-						<div style="margin-bottom:10px;">
-							<a href="<?php echo url::site().'reports/submit/'; ?>">
-								<?php echo Kohana::lang('ui_main.report_option_4'); ?>
-							</a>
-						</div>
-
-					</div>
-
-				</div>
-			<?php endif; ?>
-
-			<!-- / additional content -->
-			
-			<!-- Checkins -->
-			<?php if (Kohana::config('settings.checkins')): ?>
-			<br/>
-			<div class="additional-content">
-				<h5><?php echo Kohana::lang('ui_admin.checkins'); ?></h5>
-				<div id="cilist"></div>
-			</div>
-			<?php endif; ?>
-			<!-- /Checkins -->
-			
-			<?php
-			// Action::main_sidebar - Add Items to the Entry Page Sidebar
-			Event::run('ushahidi_action.main_sidebar');
-			?>
-	
-		</div>
-		<!-- / right column -->
-	
-		<!-- content column -->
-		<div id="content" class="clearingfix">
-			<div class="floatbox">
-
-				<!-- filters -->
-				<div class="filters clearingfix">
-					<div style="float:left; width: 100%">
-						<strong><?php echo Kohana::lang('ui_main.filters'); ?></strong>
-						<ul>
-							<li><a id="media_0" class="active" href="#"><span><?php echo Kohana::lang('ui_main.reports'); ?></span></a></li>
-							<li><a id="media_4" href="#"><span><?php echo Kohana::lang('ui_main.news'); ?></span></a></li>
-							<li><a id="media_1" href="#"><span><?php echo Kohana::lang('ui_main.pictures'); ?></span></a></li>
-							<li><a id="media_2" href="#"><span><?php echo Kohana::lang('ui_main.video'); ?></span></a></li>
-							<li><a id="media_0" href="#"><span><?php echo Kohana::lang('ui_main.all'); ?></span></a></li>
-						</ul>
-					</div>
-
-
-					<?php
-					// Action::main_filters - Add items to the main_filters
-					Event::run('ushahidi_action.map_main_filters');
-					?>
-				</div>
-				<!-- / filters -->
-
-				<?php								
-				// Map and Timeline Blocks
-				echo $div_map;
-				echo $div_timeline;
-				?>
-			</div>
-		</div>
-		<!-- / content column -->
-
-	</div>
-</div>
-<!-- / main body -->
-
-<!-- content -->
-<div class="content-container">
-
-	<!-- content blocks -->
-	<div class="content-blocks clearingfix">
-		<ul class="content-column">
-			<?php blocks::render(); ?>
-		</ul>
-	</div>
-	<!-- /content blocks -->
-
-</div>
-<!-- content -->

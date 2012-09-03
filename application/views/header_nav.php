@@ -1,27 +1,22 @@
-<header>
-	<hgroup>
-		<ul id="header_nav_left">
+<div class="right">
+    <div class="notification">
+        <a class="count" href="ajax/notifications.html"><span>10</span></a>
+    </div>
+	<div class="userinfo">
+		<?php if($loggedin_user != FALSE){ ?>
+			<a href="<?php echo url::site().$loggedin_role;?>"><img src="<?php echo members::gravatar($loggedin_user->email,20); ?>" width="20" />
+			<span class="header_nav_label"><?php echo $loggedin_user->username; ?></span> 
+			</a>
 
-			<li><span class="bignext">&raquo;</span><a href="<?php echo url::site();?>"><?php echo $site_name; ?></a></li>
-			<?php
-			// Action::header_nav - Add items to header nav area
-			Event::run('ushahidi_action.header_nav');
-			?>
-
-		</ul>
-	</hgroup>
-
-	<?php Event::run('ushahidi_action.header_nav_bar'); ?>
-
-	<nav>
-		<ul id="header_nav_right">
-			<li class="header_nav_user header_nav_has_dropdown">
-			<?php if($loggedin_user != FALSE){ ?>
-
-				<a href="<?php echo url::site().$loggedin_role;?>"><span class="header_nav_label"><?php echo $loggedin_user->username; ?></span> <img src="<?php echo members::gravatar($loggedin_user->email,20); ?>" width="20" /></a>
-
-				<ul class="header_nav_dropdown" style="display:none;">
-				<?php if($loggedin_role != ""){ ?>
+     </div><!--userinfo-->
+            
+    <div class="userinfodrop">
+        <div class="avatar">
+            <a href="#"><img src="images/thumbs/avatarbig.png" alt="" /></a>
+        </div><!--avatar-->
+        <div class="userdata">
+            <h4><?php echo $loggedin_user->username; ?></h4>
+			<?php if($loggedin_role != ""){ ?>
 					<li><a href="<?php echo url::site().$loggedin_role;?>/profile"><?php echo Kohana::lang('ui_main.manage_your_account'); ?></a></li>
 
 					<li><a href="<?php echo url::site().$loggedin_role;?>"><?php echo Kohana::lang('ui_main.your_dashboard'); ?></a></li>
@@ -33,7 +28,6 @@
 				</ul>
 
 			<?php } else { ?>
-
 				<a href="<?php echo url::site('login');?>" style="float:right;padding-top:8px;"><span class="header_nav_label"><strong><?php echo Kohana::lang('ui_main.login'); ?></strong></span></a>
 
 				<ul class="header_nav_dropdown" style="display:none;">
@@ -71,7 +65,9 @@
 				</ul>
 
 			<?php } ?>
-			</li>
-		</ul>
-	</nav>
-</header>
+
+
+        </div><!--userdata-->
+    </div><!--userinfodrop-->
+</div><!--right-->
+

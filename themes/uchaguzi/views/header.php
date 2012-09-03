@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
 	<title><?php echo html::specialchars($page_title.$site_name); ?></title>
 	<?php if (!Kohana::config('settings.enable_timeline')) { ?>
@@ -37,66 +38,49 @@
   }
 ?>
 
-<body id="page" class="<?php echo $body_class; ?>">
+<body id="page" class="withvernav">
 
-	<?php echo $header_nav; ?>
-
-	<!-- wrapper -->
-	<div class="rapidxwpr floatholder">
-
-		<!-- header -->
-		<div id="header">
-
-			<!-- searchbox -->
-			<div id="searchbox">
-
-				<!-- languages -->
-				<?php echo $languages;?>
-				<!-- / languages -->
-
-				<!-- searchform -->
+<div class="bodywrapper">
+    <div class="topheader">
+        <div class="left">
+            <h1 class="logo">
+				<a href="<?php echo url::site();?>"><?php echo $site_name; ?></a>
+			</h1>
+            <span class="slogan"><?php echo $site_tagline; ?></span>
+<!--search-->
+            <div class="search">
+  				<!-- searchform -->
 				<?php echo $search; ?>
 				<!-- / searchform -->
+            </div>
+<!--search-->
+            
+            <br clear="all" />
+            
+        </div><!--left-->
+        
 
-			</div>
-			<!-- / searchbox -->
+	<?php echo $header_nav; ?>
+    </div><!--topheader-->
+    
+    
+    <div class="header">
+    	<ul class="headermenu">
+			<?php nav::header_tabs($this_page); ?>        
+		</ul>
+        
+        <div class="headerwidget">
+        	
+        </div><!--headerwidget-->
+        
+        
+    </div><!--header-->
+    
+    <div class="vernav2 iconmenu">
+    	<ul>
+			<?php nav::main_tabs($this_page); ?>        
+		</ul>
+        <a class="togglemenu"></a>
+        <br /><br />
+    </div><!--leftmenu-->
 
-			<!-- logo -->
-			<?php if ($banner == NULL): ?>
-			<div id="logo">
-				<h1><a href="<?php echo url::site();?>"><?php echo $site_name; ?></a></h1>
-				<span><?php echo $site_tagline; ?></span>
-			</div>
-			<?php else: ?>
-			<a href="<?php echo url::site();?>"><img src="<?php echo $banner; ?>" alt="<?php echo $site_name; ?>" /></a>
-			<?php endif; ?>
-			<!-- / logo -->
-
-			<!-- submit incident -->
-			<?php echo $submit_btn; ?>
-			<!-- / submit incident -->
-
-		</div>
-		<!-- / header -->
-        <!-- / header item for plugins -->
-        <?php
-            // Action::header_item - Additional items to be added by plugins
-	        Event::run('ushahidi_action.header_item');
-        ?>
-
-		<!-- main body -->
-		<div id="middle">
-			<div class="background layoutleft">
-
-				<!-- mainmenu -->
-				<div id="mainmenu" class="clearingfix">
-					<ul>
-						<?php nav::main_tabs($this_page); ?>
-					</ul>
-
-					<?php if ($allow_feed == 1) { ?>
-					<div style="float:right;"><a href="<?php echo url::site(); ?>feed/"><img src="<?php echo url::file_loc('img'); ?>media/img/icon-feed.png" style="vertical-align: middle;" border="0"></a></div>
-					<?php } ?>
-
-				</div>
-				<!-- / mainmenu -->
