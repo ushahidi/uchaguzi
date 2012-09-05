@@ -2,6 +2,7 @@
 .htaccess
 *~
 *.DS_Store
+installer/
 application/logs/*
 application/cache/*
 media/uploads/*
