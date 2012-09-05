@@ -403,6 +403,7 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 	text-transform: uppercase; font-weight: bold; border-top: 1px solid #ddd; }
 .userlistwidget .more:hover { text-decoration: none; background: #e7e7e7; }
 
+
 /***** 3. COLUMN STYLE *****/
 /***************************/
 
@@ -631,6 +632,42 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 	display: block; text-align: center; color: #069; background: #eee; border: 1px solid #ddd; padding: 5px 0; margin-top: 5px; 
 	font-size: 10px; font-weight: bold; text-transform: uppercase; }
 .msgmore a:hover { text-decoration: none; background: #bbb; color: #333; }
+
+/***** 24. PAGINATION STYLE *****/
+/********************************/
+
+
+.pagination { list-style: none; overflow: hidden; }
+.pagination li { display: inline-block; float: left; margin-right: 5px; }
+.pagination li.first, .pagination li.previous, .pagination li.next, .pagination li.last { font-size: 18px; }
+.pagination li a { display: block; font-weight: bold; border: 1px solid #ccc; padding: 5px 10px; color: #333; line-height: 21px; vertical-align: top; }
+.pagination li a { background: #f7f7f7; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; }
+.pagination li a:hover { cursor: pointer; text-decoration: none; background: #eee; }
+.pagination li a.current { background: #FB9337; color: #fff; border: 1px solid #F0882C; }
+.pagination li.first a:active, .pagination li.previous a:active, .pagination li.next a:active, .pagination li.last a:active {
+	background: #333; color: #fff; border 1px solid #272727;
+}
+.pagination li a.disable { color: #ccc; }
+.pagination li a.disable:hover { background: #f7f7f7; cursor: default; }
+.pagination li a.disable:active { background: #f7f7f7; border: 1px solid #ccc; color: #ccc; }
+
+.pagination2 li a { padding: 4px 12px 6px 12px; -moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px; }
+
+/***** 26. BREADCRUMBS STYLE *****/
+/*********************************/
+
+
+.breadcrumbs { 
+	display: block; list-style: none; border: 1px solid #ccc; background: url(../images/titlebg.png) repeat-x top left; 
+	-moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;
+}
+.breadcrumbs li { display: inline-block; background: url(../images/separator.png) no-repeat right center; margin-right: 5px; font-size: 11px; }
+.breadcrumbs li:last-child { background: none; color: #333; }
+.breadcrumbs li a { display: block; padding: 5px 20px 5px 5px; }
+.breadcrumbs li:first-child a { padding-left: 10px; }
+
+.breadcrumbs2 { background: none; }
+
 
 
 h1{

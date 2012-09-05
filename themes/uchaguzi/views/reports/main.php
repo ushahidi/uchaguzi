@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="centercontent">
 	<div class="content-bg">
 		<!-- start reports block -->
 		<div class="big-block">
@@ -53,9 +53,9 @@
 
 			<div style="overflow:auto;">
 				<!-- reports-box -->
-				<div id="reports-box">
+				
 					<?php echo $report_listing_view; ?>
-				</div>
+			
 				<!-- end #reports-box -->
 				
 				<div id="filters-box">

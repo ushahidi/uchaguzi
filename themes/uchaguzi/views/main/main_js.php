@@ -382,6 +382,8 @@ $(window).resize(function () {
 	smartColumns();
 });
 
+// Initialize accordion for Main Filters
+$( "#accordion" ).accordion({autoHeight: false});
 
 <?php if (Kohana::config('settings.checkins')): ?>
 // EK <emmanuel(at)ushahidi.com

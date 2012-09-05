@@ -12,34 +12,56 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
-		<!-- Top reportbox section-->
-		<div class="rb_nav-controls r-5">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>
-						<ul class="link-toggle report-list-toggle lt-icons-and-text">
-							<li class="active"><a href="#rb_list-view" class="list"><?php echo Kohana::lang('ui_main.list'); ?></a></li>
-							<li><a href="#rb_map-view" class="map"><?php echo Kohana::lang('ui_main.map'); ?></a></li>
-						</ul>
-					</td>
-					<td><?php echo $pagination; ?></td>
-					<td><?php echo $stats_breadcrumb; ?></td>
-					<td class="last">
-						<ul class="link-toggle lt-icons-only">
-							<?php //@todo Toggle the status of these links depending on the current page ?>
-							<li><a href="#" class="prev" id="page_<?php echo $previous_page; ?>"><?php echo Kohana::lang('ui_main.previous'); ?></a></li>
-							<li><a href="#" class="next" id="page_<?php echo $next_page; ?>"><?php echo Kohana::lang('ui_main.next'); ?></a></li>
-						</ul>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<!-- /Top reportbox section-->
-		
-		<!-- Report listing -->
-		<div class="r_cat_tooltip"><a href="#" class="r-3"></a></div>
-		<div class="rb_list-and-map-box">
-			<div id="rb_list-view">
+    <div>
+    
+       <div id="contentwrapper" class="contentwrapper">
+      
+                    
+        <div class="three_third dashboard_left">
+                    
+                        
+                    
+<!---------------REPORTS----------------->
+                
+            <div class="two_third widgetbox">
+                <div class="title">
+                	<h3> reports</h3></div>
+          			<div class="widgetoptions">
+            			<div class="right"> 
+            			<ul class="pagination">
+                        	<li class="previous"><a href="#" class="prev" id="page_<?php echo $previous_page; ?>"><?php echo Kohana::lang('ui_main.previous'); ?></a></li>
+                    		<li><?php echo $pagination; ?> </li>
+							<li><?php //echo $stats_breadcrumb; ?></li>
+							<li class="next"><a href="#" class="next"
+							id="page_<?php echo $next_page; ?>"><?php echo
+							Kohana::lang('ui_main.next'); ?></a></li>
+                       
+                    	</ul>
+                   
+                    </div>
+                    
+                    <?php //foreach ($services as $id => $name): ?>
+						<?php
+						/*
+							$item_class = "";
+								if ($id == 1) $item_class = "ic-sms";
+								if ($id == 2) $item_class = "ic-email";
+								if ($id == 3) $item_class = "ic-twitter";
+						*/
+						?>
+							<a href="#" id="filter_link_mode_<?php //echo ($id + 1); ?>">
+								<span class="item-icon <?php //echo $item_class; ?>">&nbsp;</span>
+							</a>
+					<?php //endforeach; ?>
+					
+                                <a class="current" href=""><img src="themes/uchaguzi/images/icons/list.png" width="16" height="16" /></a>
+                                <a href=""><img src="themes/uchaguzi/icons/globe.png" width="16" height="16" alt="globe" /></a>
+                                <a href=""><img src="themes/uchaguzi/images/icons/mails.png" width="16" height="16" alt="mail" /></a>
+                                <a href=""><img src="themes/uchaguzi/images/icons/phone.png" width="16" height="16" alt="phone" /></a>
+                                <a href=""><img src="themes/uchaguzi/images/icons/twitter.png" width="16" height="16" alt="phone" /></a>
+                                  <a href=""><img src="themes/uchaguzi/images/icons/web.png" width="16" height="16" alt="web" /></a>
+          		</div>
+            <div class="widgetcontent userlistwidget nopadding">
 			<?php
 				foreach ($incidents as $incident)
 				{
@@ -85,91 +107,34 @@
 						}
 					}
 				?>
-				<div id="<?php echo $incident_id ?>" class="rb_report <?php echo $incident_verified_class; ?>">
-					<div class="r_media">
-						<p class="r_photo" style="text-align:center;"> <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>">
+
+							 <ul>
+                                    <li>
+                                        <div class="avatar"><p class="r_photo" style="text-align:center;"> <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>">
 							<img src="<?php echo $incident_thumb; ?>" style="max-width:89px;max-height:59px;" /> </a>
 						</p>
 
 						<!-- Only show this if the report has a video -->
 						<p class="r_video" style="display:none;"><a href="#"><?php echo Kohana::lang('ui_main.video'); ?></a></p>
 
-						<!-- Category Selector -->
-						<div class="r_categories">
-							<h4><?php echo Kohana::lang('ui_main.categories'); ?></h4>
-							<?php foreach ($incident->category as $category): ?>
-								
-								<?php // Don't show hidden categories ?>
-								<?php if($category->category_visible == 0) continue; ?>
-						
-								<?php if ($category->category_image_thumb): ?>
-									<?php $category_image = url::base().Kohana::config('upload.relative_directory')."/".$category->category_image_thumb; ?>
-									<a class="r_category" href="<?php echo url::site(); ?>reports/?c=<?php echo $category->id; ?>">
-										<span class="r_cat-box"><img src="<?php echo $category_image; ?>" height="16" width="16" /></span> 
-										<span class="r_cat-desc"><?php echo Category_Lang_Model::category_title($category->id); ?></span>
-									</a>
-								<?php else:	?>
-									<a class="r_category" href="<?php echo url::site(); ?>reports/?c=<?php echo $category->id; ?>">
-										<span class="r_cat-box" style="background-color:#<?php echo $category->category_color;?>;"></span> 
-										<span class="r_cat-desc"><?php echo Category_Lang_Model::category_title($category->id); ?></span>
-									</a>
-								<?php endif; ?>
-							<?php endforeach; ?>
-						</div>
-						<?php
-						// Action::report_extra_media - Add items to the report list in the media section
-						Event::run('ushahidi_action.report_extra_media', $incident_id);
-						?>
-					</div>
-
-					<div class="r_details">
-						<h3><a class="r_title" href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>">
-								<?php echo html::specialchars($incident_title); ?>
-							</a>
-							<a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>#discussion" class="r_comments">
-								<?php echo $comment_count; ?></a> 
-								<?php echo $incident_verified; ?>
-							</h3>
-						<p class="r_date r-3 bottom-cap"><?php echo $incident_date; ?></p>
-						<div class="r_description"> <?php echo $incident_description; ?>  
+									</div>
+                                        <div class="info">
+                                            <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>"><?php echo html::specialchars($incident_title); ?>
+</a> 
+<div class="reportdetails" id="reportdetails"><?php echo $incident_verified_class; ?></div><br />
+                                            <?php echo $incident_description; ?>  
 						  <a class="btn-show btn-more" href="#<?php echo $incident_id ?>"><?php echo Kohana::lang('ui_main.more_information'); ?> &raquo;</a> 
 						  <a class="btn-show btn-less" href="#<?php echo $incident_id ?>">&laquo; <?php echo Kohana::lang('ui_main.less_information'); ?></a> 
-						</div>
-						<p class="r_location"><a href="<?php echo url::site(); ?>reports/?l=<?php echo $location_id; ?>"><?php echo html::specialchars($location_name); ?></a></p>
-						<?php
-						// Action::report_extra_details - Add items to the report list details section
-						Event::run('ushahidi_action.report_extra_details', $incident_id);
-						?>
-					</div>
-				</div>
-			<?php } ?>
-			</div>
-			<div id="rb_map-view" style="display:none; width: 590px; height: 384px; border:1px solid #CCCCCC; margin: 3px auto;">
-			</div>
-		</div>
-		<!-- /Report listing -->
-		
-		<!-- Bottom paginator -->
-		<div class="rb_nav-controls r-5">
-			<table border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td>
-						<ul class="link-toggle report-list-toggle lt-icons-and-text">
-							<li class="active"><a href="#rb_list-view" class="list"><?php echo Kohana::lang('ui_main.list'); ?></a></li>
-							<li><a href="#rb_map-view" class="map"><?php echo Kohana::lang('ui_main.map'); ?></a></li>
-						</ul>
-					</td>
-					<td><?php echo $pagination; ?></td>
-					<td><?php echo $stats_breadcrumb; ?></td>
-					<td class="last">
-						<ul class="link-toggle lt-icons-only">
-							<?php //@todo Toggle the status of these links depending on the current page ?>
-							<li><a href="#" class="prev" id="page_<?php echo $previous_page; ?>"><?php echo Kohana::lang('ui_main.previous'); ?></a></li>
-							<li><a href="#" class="next" id="page_<?php echo $next_page; ?>"><?php echo Kohana::lang('ui_main.next'); ?></a></li>
-						</ul>
-					</td>
-				</tr>
-			</table>
-		</div>
-		<!-- /Bottom paginator -->
-	        
+                                      <i><?php echo $incident_date; ?></i>
+                                      <div class="reportdetails" id="reportdetails"><img src="images/icons/phone.png" width="16" height="16" alt="phone" /></div>
+                                      </div><!--info-->
+                                    </li>
+                                </ul>
+                                <a href="" class="more">View More REPORTS</a>
+                                
+                            </div>
+                            <!--widgetcontent-->
+                      </div><!--widgetbox-->
+                      <?php } ?>
+<!----------------REPORT ENDS----------------->
+        

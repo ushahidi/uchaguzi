@@ -121,6 +121,8 @@ class Main_Controller extends Template_Controller {
 			$this->template->footer->site_copyright_statement = $site_copyright_statement;
 		}
 
+
+
 		// Display news feeds?
 		$this->template->header->allow_feed = Kohana::config('settings.allow_feed');
 
@@ -265,6 +267,12 @@ class Main_Controller extends Template_Controller {
 			$layers = $config_layers;
 		}
 		$this->template->content->layers = $layers;
+
+		// County tree view
+		$this->template->content->county_tree_view = county::get_county_tree_view();
+
+		// Category tree view
+		$this->template->content->category_tree_view = category::get_category_tree_view();
 
 		// Get Default Color
 		$this->template->content->default_map_all = Kohana::config('settings.default_map_all');
