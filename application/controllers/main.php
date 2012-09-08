@@ -155,6 +155,8 @@ class Main_Controller extends Template_Controller {
 	  return $categories;
 	}
 
+
+
 	/**
 	 * Get Trusted Category Count
 	 */
@@ -164,6 +166,16 @@ class Main_Controller extends Template_Controller {
 						->join("incident_category","incident.id","incident_category.incident_id")
 						->where("category_id",$id);
 		return $trusted;
+	}
+
+	//Get all Counties
+	public function get_counties()
+	{
+		$counties = ORM::factory('county')
+			->orderby('id')
+			->find_all();
+
+		return $counties;
 	}
 
     public function index()
@@ -200,6 +212,7 @@ class Main_Controller extends Template_Controller {
 
 		// Get locale
 		$l = Kohana::config('locale.language.0');
+
 
         // Get all active top level categories
 		$parent_categories = array();
@@ -249,6 +262,11 @@ class Main_Controller extends Template_Controller {
 			);
 		}
 		$this->template->content->categories = $parent_categories;
+
+
+		//counties
+		$this->template->content->counties = self::get_counties();
+
 
 		// Get all active Layers (KMZ/KML)
 		$layers = array();
@@ -464,9 +482,61 @@ class Main_Controller extends Template_Controller {
 
 		$this->themes->js->blocks_per_row = Kohana::config('settings.blocks_per_row');
 
+		// Set the latitude and longitude
+		$this->themes->js->latitude = Kohana::config('settings.default_lat');
+		$this->themes->js->longitude = Kohana::config('settings.default_lon');
+		$this->themes->js->default_map = Kohana::config('settings.default_map');
+		$this->themes->js->default_zoom = Kohana::config('settings.default_zoom');
+
+
 		// Build Header and Footer Blocks
 		$this->template->header->header_block = $this->themes->header_block();
 		$this->template->footer->footer_block = $this->themes->footer_block();
 	}
+
+	/**
+	 * Gets the county data for the specified county
+	 */
+	public function get_county_data()
+	{
+		$this->template = "";
+		$this->auto_render = FALSE;
+		$json_output = "";
+
+		if ($_POST)
+		{
+			// Get the county id
+			$county_id = $_POST['county_id'];
+
+			// Get the layer file
+			$county = new County_Model($county_id);
+			$layer_file = $county->county_layer_file;
+			if ( ! empty($layer_file))
+			{
+				// Set the URL for the layer file
+				$layer_file = url::base().Kohana::config('upload.relative_directory').'/'.$layer_file;
+			}
+
+			// Build output JSON
+			$json_output  = json_encode(array(
+				'success' => TRUE,
+				'data' => array(),
+				'layer_name' => $county->county_name,
+				'layer_url' => $layer_file,
+				'layer_color' => '#ccc'
+			));
+		}
+		else
+		{
+			$json_output = json_encode(array(
+				'success' => FALSE
+			));
+		}
+
+		// Flush the
+		header("Content-type: application/json; charset=utf-8");
+		print $json_output;
+	}
+
 
 } // End Main
