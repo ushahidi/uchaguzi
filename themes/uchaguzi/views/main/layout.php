@@ -37,33 +37,108 @@
                             <div class="widgetcontent">
                                 <div id="accordion" class="accordion">
                                    <h3><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
-                                	<ul class="categorylist">
-                        				<li><?php
-										$all_cat_image = '&nbsp';
-										$all_cat_image = '';
-										if($default_map_all_icon != NULL) {
-										$all_cat_image = html::image(array('src'=>$default_map_all_icon));
-										}
-										?>
-										<span class="item-swatch" style="background-color: #<?php echo Kohana::config('settings.default_map_all'); ?>"><?php echo $all_cat_image ?></span>
-										<span class="item-title"><?php echo Kohana::lang('ui_main.all_categories'); ?></span>
-										</a>
-										</li>
-										<?php echo $category_tree_view; ?>
-									</ul>
-                        			<h3><a href="#">By Counties</a></h3>
-									<div class="chatsearch">
-                        				<input type="text" name="" value="Search" />
-                        			</div>
-                            		<ul class="categorylist">
-                        				<li>
-									
-										</li>
-										<?php echo $county_tree_view; ?>
-                        			</ul>
+                                	<ul id="category_switch" class="categorylist">
+				<?php
+				$color_css = 'class="swatch" style="background-color:#'.$default_map_all.'"';
+				$all_cat_image = '';
+				if ($default_map_all_icon != NULL)
+				{
+					$all_cat_image = html::image(array(
+						'src'=>$default_map_all_icon,
+						'style'=>'float:left;padding-right:5px;'
+					));
+					$color_css = '';
+				}
+				?>
+				<li>
+					<a class="active" id="cat_0" href="#">
+						<span <?php echo $color_css; ?>><?php echo $all_cat_image; ?></span>
+						<span class="category-title"><?php echo Kohana::lang('ui_main.all_categories');?></span>
+					</a>
+				</li>
+				<?php
+					foreach ($categories as $category => $category_info)
+					{
+						$category_title = $category_info[0];
+						$category_color = $category_info[1];
+						$category_image = ($category_info[2] != NULL)
+						    ? url::convert_uploaded_to_abs($category_info[2])
+						    : NULL;
+
+						$color_css = 'class="swatch" style="background-color:#'.$category_color.'"';
+						if ($category_info[2] != NULL)
+						{
+							$category_image = html::image(array(
+								'src'=>$category_image,
+								'style'=>'float:left;padding-right:5px;'
+								));
+							$color_css = '';
+						}
+
+						echo '<li>'
+						    . '<a href="#" id="cat_'. $category .'">'
+						    . '<span '.$color_css.'>'.$category_image.'</span>'
+						    . '<span class="category-title">'.$category_title.'</span>'
+						    . '</a>';
+
+						// Get Children
+						echo '<div class="hide" id="child_'. $category .'">';
+						if (sizeof($category_info[3]) != 0)
+						{
+							echo '<ul>';
+							foreach ($category_info[3] as $child => $child_info)
+							{
+								$child_title = $child_info[0];
+								$child_color = $child_info[1];
+								$child_image = ($child_info[2] != NULL)
+								    ? url::convert_uploaded_to_abs($child_info[2])
+								    : NULL;
+								
+								$color_css = 'class="swatch" style="background-color:#'.$child_color.'"';
+								if ($child_info[2] != NULL)
+								{
+									$child_image = html::image(array(
+										'src' => $child_image,
+										'style' => 'float:left;padding-right:5px;'
+									));
+
+									$color_css = '';
+								}
+
+								echo '<li style="padding-left:20px;">'
+								    . '<a href="#" id="cat_'. $child .'">'
+								    . '<span '.$color_css.'>'.$child_image.'</span>'
+								    . '<span class="category-title">'.$child_title.'</span>'
+								    . '</a>'
+								    . '</li>';
+							}		
+								echo '</ul>';
+						}
+						echo '</div></li>';
+					}
+				?>
+			</ul>
+			<!-- / category filter -->
+
+            <h3><a href="#"><?php echo Kohana::lang('uchaguzi.county')?></a></h3>
+            <ul id="county_switch" class="categorylist">
+				<?php
+					foreach ($counties as $county)
+					{
+						$county_name = $county->county_name;
+
+						echo '<li>'
+						    . '<a href="#" id=cat_'. $county .'>'
+						    . '<span class="county_name">'.$county_name.'</span>'
+						    . '</a>';
+
+						echo '</li>';
+					}
+				?>
+            </ul>
                                     
-                     			</div>     
-                			</div> <!--widgetcontent-->
+        </div>     
+    </div> <!--widgetcontent-->
 <!----------------FILTER REPORTS ENDS----------------->
                       <br clear="all" />
                     

@@ -707,6 +707,17 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 
 .breadcrumbs2 { background: none; }
 
+/***** 15. RIGHT PANEL STYLES *****/
+/**********************************/
+
+
+.rightpanel { width: 250px; position: absolute; top: 85px; right: 10px; }
+.rightpanelinner { }
+
+.widgetbox { margin-top: 20px; }
+.widgetbox .title { padding: 0 20px 5px 0; margin: 20px 0; display: inline-block; border-bottom: 2px solid #FB9337; }
+.widgetbox:first-child .title { margin-top: 0; }
+.widgetbox .title h4 { font-size: 16px; font-weight: normal; text-transform: uppercase; }
 
 
 h1{

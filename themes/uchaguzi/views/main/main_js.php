@@ -33,6 +33,7 @@ var endTime = <?php echo $active_endDate ?>;
 var map = null;
 
 
+
 /**
  * Toggle Layer Switchers
  */
@@ -375,15 +376,139 @@ jQuery(function() {
 	}
 	<?php endif; ?>
 
+
+
+    // Initialize accordion for Main Filters
+    $( "#accordion" ).accordion({autoHeight: false});
+
+
+	// County Switch Action
+	$("ul#county_switch li > a").click(function(e) {
+		
+		var countyId = this.id.substring(4);
+		var catSet = 'cat_' + this.id.substring(4);
+		fetchBoundaryData({county_id : countyId}, true);
+	});
+
 });
+
+// Fetches county via JSON
+	var tempLayers = [];
+	function fetchBoundaryData(data)
+	{
+	   	
+		// Remove all layers in tempLayers from the map and the array itself
+		for (var i =0; i < tempLayers.length; i++)
+		{
+			map.removeLayer(tempLayers[i]);
+			tempLayers.pop();
+		}
+	
+		// Fetch the new items
+		$.post(
+			'<?php echo url::site().'main/get_county_data'?>',
+			data,
+			function(response)
+			{
+				if (response.success)
+				{
+					if (response.layer_url != null && response.layer_url != "") {
+						// Get the vector layer to use
+						countyLayer = getVectorLayer(response.layer_name, response.layer_color);
+						
+						// TODO: Work on this issue of having to load the data twice
+						$.get(response.layer_url, function(data){
+							// Deserialize the JSON string
+							vectors = new OpenLayers.Format.GeoJSON().read(data);
+							drawCountyLayer(vectors, countyLayer)
+						});
+					}
+				}
+			},
+			'json'
+		);
+	}
+
+
+	/**
+	 * Draws the county overlay from a GeoJSON vector input
+	 */
+	function drawCountyLayer(vectorData, layerObject)
+	{
+		// Get the the geometry
+		layerFeature = vectors[0];
+		
+		// Transform the geometry and render it on the map
+		layerFeature.geometry.transform(proj_4326, proj_900913);
+		countyLayer.addFeatures(layerFeature);
+		map.addLayer(layerObject);
+		map.addControl(new OpenLayers.Control.SelectFeature(layerObject, {hover: true} ));
+		// Add the layer with the geometry to the list of temporary layers
+		tempLayers.push(countyLayer);
+		
+		// Get the center point
+		centroid = layerFeature.geometry.getCentroid();
+		
+		$("#longitude").attr("value", centroid.x);
+		$("#latitude").attr("value", centroid.y);
+		// The layer has already undergone transformation, therefore no need to
+		// transform the LonLat object
+		lonlat = new OpenLayers.LonLat(centroid.x, centroid.y);
+		m = new OpenLayers.Marker(lonlat);
+		
+		markers.clearMarkers();
+		markers.addMarker(m);
+		
+		// Move the map to the centre of the geometry rendered on the map
+		map.setCenter(lonlat, <?php echo ($default_zoom > 10)? $default_zoom :
+		10; ?>); refreshFeatures();
+	}
+
+	/**
+	 * Creates and returns an OpenLayers.Layer.Vector object including sytling (for the layer)
+	 */
+	var proj_4326 = new OpenLayers.Projection('EPSG:4326');
+	var proj_900913 = new OpenLayers.Projection('EPSG:900913');
+
+	function getVectorLayer(layerName, layerColor)
+	{
+		//Stlying for the GeoJSON layer
+		context = {
+			getColor: function(feature) {
+				var f = feature;
+				f.attributes.color = "#"+layerColor;
+				feature = f;
+
+				return feature.attributes["color"];
+			}
+		};
+
+		template = {
+			fillOpacity: 0.35,
+			strokeColor: "#888888",
+			strokeWidth: 2,
+			fillColor: "${getColor}"
+		};
+		
+		// Layer style
+		layerStyle = new OpenLayers.StyleMap( { 'default': new OpenLayers.Style(template, {context: context}) });
+		vLayer = new OpenLayers.Layer.Vector(layerName, {projection: proj_4326, styleMap: layerStyle});
+	
+		return vLayer;
+	}
+
+
+
 
 $(window).resize(function () { 
 	//Each time the viewport is adjusted/resized, execute the function
 	smartColumns();
 });
 
-// Initialize accordion for Main Filters
-$( "#accordion" ).accordion({autoHeight: false});
+
+
+
+
 
 <?php if (Kohana::config('settings.checkins')): ?>
 // EK <emmanuel(at)ushahidi.com

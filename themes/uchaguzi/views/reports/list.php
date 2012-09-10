@@ -18,10 +18,6 @@
       
                     
         <div class="three_third dashboard_left">
-                    
-                        
-                    
-<!---------------REPORTS----------------->
                 
             <div class="two_third widgetbox">
                 <div class="title">
@@ -32,9 +28,7 @@
                         	<li class="previous"><a href="#" class="prev" id="page_<?php echo $previous_page; ?>"><?php echo Kohana::lang('ui_main.previous'); ?></a></li>
                     		<li><?php echo $pagination; ?> </li>
 							<li><?php //echo $stats_breadcrumb; ?></li>
-							<li class="next"><a href="#" class="next"
-							id="page_<?php echo $next_page; ?>"><?php echo
-							Kohana::lang('ui_main.next'); ?></a></li>
+							<li class="next"><a href="#" class="next" id="page_<?php echo $next_page; ?>"><?php echo Kohana::lang('ui_main.next'); ?></a></li>
                        
                     	</ul>
                    
@@ -108,33 +102,30 @@
 					}
 				?>
 
-							 <ul>
-                                    <li>
-                                        <div class="avatar"><p class="r_photo" style="text-align:center;"> <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>">
+				 <ul>
+                    <li>
+                         <div class="avatar"><p class="r_photo" style="text-align:center;"> <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>">
 							<img src="<?php echo $incident_thumb; ?>" style="max-width:89px;max-height:59px;" /> </a>
-						</p>
 
 						<!-- Only show this if the report has a video -->
 						<p class="r_video" style="display:none;"><a href="#"><?php echo Kohana::lang('ui_main.video'); ?></a></p>
 
-									</div>
-                                        <div class="info">
-                                            <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>"><?php echo html::specialchars($incident_title); ?>
-</a> 
-<div class="reportdetails" id="reportdetails"><?php echo $incident_verified_class; ?></div><br />
-                                            <?php echo $incident_description; ?>  
-						  <a class="btn-show btn-more" href="#<?php echo $incident_id ?>"><?php echo Kohana::lang('ui_main.more_information'); ?> &raquo;</a> 
-						  <a class="btn-show btn-less" href="#<?php echo $incident_id ?>">&laquo; <?php echo Kohana::lang('ui_main.less_information'); ?></a> 
-                                      <i><?php echo $incident_date; ?></i>
-                                      <div class="reportdetails" id="reportdetails"><img src="images/icons/phone.png" width="16" height="16" alt="phone" /></div>
-                                      </div><!--info-->
-                                    </li>
-                                </ul>
-                                <a href="" class="more">View More REPORTS</a>
+						</div>
+                         <div class="info">
+                            <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>"><?php echo html::specialchars($incident_title); ?></a> 
+							<div class="reportdetails" id="reportdetails"><?php echo $incident_verified_class; ?></div><br />
+                            <?php echo $incident_description; ?>  
+							<a class="btn-show btn-more" href="#<?php echo $incident_id ?>"><?php echo Kohana::lang('ui_main.more_information'); ?> &raquo;</a> 
+							<a class="btn-show btn-less" href="#<?php echo $incident_id ?>">&laquo; <?php echo Kohana::lang('ui_main.less_information'); ?></a> 
+							<?php echo $incident_date; ?>
+                             <div class="reportdetails" id="reportdetails"><img src="images/icons/phone.png" width="16" height="16" alt="phone" /></div>
+                        </div><!--info-->
+                     </li>
+                </ul>
+                <a href="" class="more">View More REPORTS</a>
                                 
-                            </div>
-                            <!--widgetcontent-->
-                      </div><!--widgetbox-->
-                      <?php } ?>
-<!----------------REPORT ENDS----------------->
+            </div>
+            <!--widgetcontent-->
+        </div><!--widgetbox-->
+    <?php } ?>
         

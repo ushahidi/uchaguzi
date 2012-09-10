@@ -57,7 +57,7 @@ class county_Core {
 		{
 			
 			$tree_html .= "<li>"
-							. "<a><span class=\"item-title\">".strip_tags($county['county_name'])."</span>"
+							. "<a href='#' id='county_id'><span class=\"item-title\">".strip_tags($county['county_name'])."</span>"
 							. "</a></li>";
 	
 		}
