@@ -387,7 +387,12 @@ jQuery(function() {
 		
 		var countyId = this.id.substring(4);
 		var catSet = 'cat_' + this.id.substring(4);
-		fetchBoundaryData({county_id : countyId}, true);
+		map.addLayer(Ushahidi.GEOJSON, {
+			name: "County",
+		    url: "main/get_county_data?county_id="+countyId
+		});
+		//fetchBoundaryData({county_id : countyId}, true);
+		return false;
 	});
 
 });
@@ -415,8 +420,6 @@ jQuery(function() {
 					if (response.layer_url != null && response.layer_url != "") {
 						// Get the vector layer to use
 						countyLayer = getVectorLayer(response.layer_name, response.layer_color);
-						
-						// TODO: Work on this issue of having to load the data twice
 						$.get(response.layer_url, function(data){
 							// Deserialize the JSON string
 							vectors = new OpenLayers.Format.GeoJSON().read(data);

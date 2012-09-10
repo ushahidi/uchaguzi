@@ -55,7 +55,7 @@
 				<!-- reports-box -->
 				
 					<?php echo $report_listing_view; ?>
-			</div>
+			
 				<!-- end #reports-box -->
 				
 				<div id="filters-box">

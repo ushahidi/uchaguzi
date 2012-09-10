@@ -57,6 +57,18 @@
 		DEFAULT: "default",
 
 		/**
+		 * Default width for any external graphics to be
+		 * used for styling the markers
+		 */
+		graphicWidth: 21,
+
+		/**
+		 * Default height for any external graphics to be
+		 * used for styling the markers
+		 */
+		graphicHeight: 25,
+
+		/**
 		 * APIProperty: baseURL
 		 * Base URL for the application
 		 */
@@ -71,6 +83,8 @@
 	 	 	var style = new OpenLayers.Style({
 	 	 		'externalGraphic': "${icon}",
 	 	 		'graphicTitle': "${cluster_count}",
+	 	 		graphicHeight: Ushahidi.graphicHeight,
+	 	 		graphicWidth: Ushahidi.graphicWidth,
 				pointRadius: "${radius}",
 				fillColor: "${color}",
 				fillOpacity: "${opacity}",
@@ -126,7 +140,7 @@
 						}
 					},
 					radius: function(feature) {
-						if (typeof(feature.attributes.radius) != 'undefined' && 
+						if (feature.attributes.radius != undefined && 
 							feature.attributes.radius != '') {
 							return feature.attributes.radius;
 						} else {
@@ -166,7 +180,7 @@
 						}
 					},
 					strokeWidth: function(feature) {
-						if ( typeof(feature.attributes.strokewidth) != 'undefined' && 
+						if (feature.attributes.strokewidth !== undefined && 
 							feature.attributes.strokewidth != '')
 						{
 							return feature.attributes.strokewidth;
@@ -208,7 +222,7 @@
 						return "#" + feature.attributes.color;
 					},
 					strokeColor: function(feature) {
-						if ( typeof(feature.attributes.strokecolor) != 'undefined' && 
+						if (feature.attributes.strokecolor !== undefined && 
 							feature.attributes.strokecolor != '')
 						{
 							return "#"+feature.attributes.strokecolor;
@@ -240,7 +254,7 @@
 					},
 					opacity: function(feature) {
 						feature_icon = feature.attributes.icon;
-						if (typeof(feature.attributes.opacity) != 'undefined' && 
+						if (feature.attributes.opacity !== undefined && 
 							feature.attributes.opacity != '')
 						{
 							return feature.attributes.opacity
@@ -255,7 +269,7 @@
 						}
 					},
 					strokeOpacity: function(feature) {
-						if(typeof(feature.attributes.strokeopacity) != 'undefined' && 
+						if (feature.attributes.strokeopacity !== undefined && 
 							feature.attributes.strokeopacity != '')
 						{
 							return feature.attributes.strokeopacity;
@@ -338,6 +352,12 @@
 	 	// Tracks the current marker position
 	 	this._currentMarkerPosition = {};
 
+	 	// Enables/disables feature selection on hover
+	 	this._selectOnHover = false;
+
+	 	// Internal registry for all popups
+	 	this._popupRegistry = {};
+
 	 	// Check for the mapDiv
 	 	if (div == undefined) {
 	 		throw "The element or id of an element that will contain the map must be specified";
@@ -362,7 +382,7 @@
 		// Map options
 		var mapOptions = {
 			units: "dd",
-			numZoomLevels: 18,
+			numZoomLevels: 19,
 			theme: false,
 			controls: [],
 			projection: Ushahidi.proj_900913,
@@ -578,8 +598,19 @@
 				params.push(_key + '=' + this._reportFilters[_key]);
 			}
 
+			if (fetchURL.indexOf("?") !== -1) {
+				var index = fetchURL.indexOf("?");
+				var args = fetchURL.substr(index+1, fetchURL.length).split("&");
+				fetchURL = fetchURL.substring(0, index);
+
+				for (var i=0; i<args.length; i++) {
+					params.push(args[i]);
+				}
+			}
+
 			// Update the fetch URL witht parameters
 			fetchURL += (params.length > 0) ? '?' + params.join('&') : '';
+
 			// Get the styling to use
 			var styleMap = null;
 			if (options.styleMap !== undefined) {
@@ -631,14 +662,16 @@
 		setTimeout(function(){ context._olMap.addLayer(layer); }, 1500);
 
 		// Select Feature control
-		this._selectControl = new OpenLayers.Control.SelectFeature(layer);
-		this._olMap.addControl(this._selectControl);
-		this._selectControl.activate();
-		layer.events.on({
-			"featureselected": this.onFeatureSelect,
-			"featureunselected": this.onFeatureUnselect,
+		this._selectControl = new OpenLayers.Control.SelectFeature(layer,{
+			hover: this._selectOnHover,
+			beforeSelect: this.closePopups,
+			onSelect: this.onFeatureSelect,
+			onUnselect: this.onFeatureUnselect,
 			scope: this
 		});
+
+		this._olMap.addControl(this._selectControl);
+		this._selectControl.activate();
 
 		this._isLoaded = 1;
 
@@ -735,65 +768,92 @@
 	 * selected. When executed, it displays a popup with the content/information
 	 * about the selected feature
 	 */
-	Ushahidi.Map.prototype.onFeatureSelect = function(event) {
-		this._selectedFeature = event.feature;
+	Ushahidi.Map.prototype.onFeatureSelect = function(feature) {
+		this._selectedFeature = feature;
 
-		zoom_point = event.feature.geometry.getBounds().getCenterLonLat();
+		zoom_point = feature.geometry.getBounds().getCenterLonLat();
 		lon = zoom_point.lon;
 		lat = zoom_point.lat;
 
 		// Image to display within the popup
-		var image = "";
-		if (event.feature.attributes.thumb !== undefined && event.feature.attributes.thumb != '') {
-			image = "<div class=\"infowindow_image\"><a href='"+event.feature.attributes.link+"'>";
-			image += "<img src=\""+event.feature.attributes.thumb+"\" height=\"59\" width=\"89\" /></a></div>";
-		} else if (event.feature.attributes.image !== undefined && event.feature.attributes.image != '') {
-			image = "<div class=\"infowindow_image\">";
-			image += "<a href=\""+event.feature.attributes.link+"\" title=\""+event.feature.attributes.name+"\">";
-			image += "<img src=\""+event.feature.attributes.image+"\" />";
-			image += "</a>";
-			image += "</div>";
+		var imageEl = null;
+		if (feature.attributes.thumb !== undefined && feature.attributes.thumb != '') {
+			imageEl = this.createDOMElement('div', {class: 'infowindow_image'});
+
+			var anchor = this.createDOMElement('a', {href: feature.attributes.link});
+			var thumb = this.createDOMElement('img', {src: feature.attributes.thumb});
+
+			anchor.appendChild(thumb);
+			imageEl.appendChild(anchor);
+		} else if (feature.attributes.image !== undefined && feature.attributes.image != '') {
+			imageEl = this.createDOMElement('div', {class: 'infowindow_image'});
+
+			var anchor = this.createDOMElement('a', {
+				href: feature.attributes.link,
+				title: feature.attributes.name
+			});
+			var thumb = this.createDOMElement('img', {src: feature.attributes.image});
+
+			anchor.appendChild(thumb);
+			imageEl.appendChild(anchor);
 		}
 
-		var content = "<div class=\"infowindow\">" + image +
-		    "<div class=\"infowindow_content\">"+
-		    "<div class=\"infowindow_list\">"+event.feature.attributes.name+"</div>\n" +
-		    "<div class=\"infowindow_meta\">";
-
-		if (typeof(event.feature.attributes.link) != 'undefined' &&
-		    event.feature.attributes.link != '') {
-
-		    content += "<a href='"+event.feature.attributes.link+"'>" +
-			    "More Information</a><br/>";
+		var infoWindow = this.createDOMElement('div', {class: 'infowindow'});
+		if (imageEl !== null) {
+			infoWindow.appendChild(imageEl);
 		}
 
-		content += "<a id=\"zoomIn\">";
-		content += "Zoom In</a>";
-		content += "&nbsp;&nbsp;|&nbsp;&nbsp;";
-		content += "<a id=\"zoomOut\">";
-		content += "Zoom Out</a></div>";
-		content += "</div><div style=\"clear:both;\"></div></div>";		
+		var infoWindowContent = this.createDOMElement('div', {class: 'infowindow_content'});		
+		infoWindowContent.appendChild(this.createDOMElement('div', {class: 'infowindow_list'}, feature.attributes.name));
 
-		if (content.search("<script") != -1) {
-			content = "Content contained Javascript! Escaped content " +
-			    "below.<br />" + content.replace(/</g, "&lt;");
+		var infoWindowMeta = this.createDOMElement('div', {class: 'infowindow_meta'});
+
+		if (feature.attributes.link !== undefined && feature.attributes.link != '') {
+			var anchor = this.createDOMElement('a', {href: feature.attributes.link}, "More Information");
+
+			infoWindowMeta.appendChild(anchor);
+			infoWindowMeta.appendChild(this.createDOMElement('br'));
 		}
-		  
-		// Destroy existing popups before opening a new one
-		if (event.feature.popup != null) {
-			map.removePopup(event.feature.popup);
+
+		// Create the anchors for zoom in/out links
+		var zoomInAnchor = this.createDOMElement('a', {id: 'zoomIn'}, "Zoom In");
+		infoWindowMeta.appendChild(zoomInAnchor);
+		infoWindowMeta.innerHTML += '&nbsp;&nbsp;|&nbsp;&nbsp;';
+
+		var zoomOutAnchor = this.createDOMElement('a', {id: 'zoomOut'}, "Zoom Out");
+		infoWindowMeta.appendChild(zoomOutAnchor);
+
+		infoWindowContent.appendChild(infoWindowMeta);
+
+		infoWindow.appendChild(infoWindowContent);
+		infoWindow.appendChild(this.createDOMElement('div', {style: 'clear: both;'}));
+
+		// Wrap the info window in a div so that we can access it's full HTML
+		// We perform a deep clone so that we access the node and all its descendants
+		var wrap = this.createDOMElement('div');
+		wrap.appendChild(infoWindow.cloneNode(true));
+
+		// Check of JavaScript content in the popup HTML
+		if (wrap.innerHTML.search("<script") !== -1) {
+			wrap.innerHTML = "Content contained Javascript! Escaped content " +
+			    "below.<br />" + wrap.innerHTML.replace(/</g, "&lt;");
 		}
 
 		// Create the popup
 		var popup = new OpenLayers.Popup.FramedCloud("chicken", 
-			event.feature.geometry.getBounds().getCenterLonLat(),
+			feature.geometry.getBounds().getCenterLonLat(),
 			new OpenLayers.Size(100,100),
-			content,
+			wrap.innerHTML,
 			null, true, this.onPopupClose);
 
-		event.feature.popup = popup;
+		// Create a popup property in the selected feature
+		this._selectedFeature.popup = popup;
+
 		this._olMap.addPopup(popup);
 		popup.show();
+
+		// Register the popup
+		this.registerPopup(popup);
 
 		// Register zoom in/out events
 		$("#zoomIn", popup.contentDiv).click(
@@ -806,15 +866,36 @@
 	}
 
 	/**
+	 * APIMethod: createDOMElement
+	 *
+	 * Helper function for creating DOM nodes, setting properties
+	 * and appending text nodes
+	 */
+	Ushahidi.Map.prototype.createDOMElement = function(tagName, options, text) {
+		var element = document.createElement(tagName);
+		if (options !== undefined) {			
+			for (k in options) {
+				element.setAttribute(k, options[k]);
+			}
+		}
+
+		if (text !== undefined && text.length > 0) {
+			element.appendChild(document.createTextNode(text));
+		}
+
+		return element;
+	}
+
+	/**
 	 * APIMethod: onFeatureUnselect
 	 * Callback to be executed when a feature is unselected - when a click
 	 * is registered outside the feature's viewport
 	 */
-	Ushahidi.Map.prototype.onFeatureUnselect = function(e) {
-		if (e.feature.popup != null) {
-			this._olMap.removePopup(e.feature.popup);
-			e.feature.popup.destroy();
-			e.feature.popup = null;
+	Ushahidi.Map.prototype.onFeatureUnselect = function(feature) {
+		if (feature.popup != null) {
+			this._olMap.removePopup(feature.popup);
+			feature.popup.destroy();
+			feature.popup = null;
 		}
 	}
 
@@ -836,6 +917,23 @@
 		if (this._selectedFeature !== undefined && this._selectedFeature != null) {
 			this._selectControl.unselect(this._selectedFeature);
 			this._selectedFeature = null;
+		}
+
+		for (var popupId in this._popupRegistry) {
+			var popup = this._popupRegistry[popupId];
+			this._olMap.removePopup(popup);
+
+			// Remove the popup from the DOM
+			$(popup.contentDiv).fadeOut();
+
+			try {
+				popup.destroy();
+			} catch (e) {
+				// Catch and suppress the error
+			}
+
+			// Delete the popup from the registry
+			delete this._popupRegistry[popupId];
 		}
 	}
 
@@ -1094,6 +1192,16 @@
 			// The assumption here is that this method is only called
 			// when we're using the default layer
 			this.addLayer(Ushahidi.DEFAULT);
+		}
+	}
+
+	/**
+	 * APIMethod: registerPopup
+	 * Registers a popup
+	 */
+	Ushahidi.Map.prototype.registerPopup = function(popup) {
+		if (this._popupRegistry[popup.id] == undefined) {
+			this._popupRegistry[popup.id] = popup;
 		}
 	}
 

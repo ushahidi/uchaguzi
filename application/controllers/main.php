@@ -503,10 +503,10 @@ class Main_Controller extends Template_Controller {
 		$this->auto_render = FALSE;
 		$json_output = "";
 
-		if ($_POST)
+		if ($_GET)
 		{
 			// Get the county id
-			$county_id = $_POST['county_id'];
+			$county_id = $_GET['county_id'];
 
 			// Get the layer file
 			$county = new County_Model($county_id);
@@ -518,13 +518,7 @@ class Main_Controller extends Template_Controller {
 			}
 
 			// Build output JSON
-			$json_output  = json_encode(array(
-				'success' => TRUE,
-				'data' => array(),
-				'layer_name' => $county->county_name,
-				'layer_url' => $layer_file,
-				'layer_color' => '#ccc'
-			));
+			echo file_get_contents($layer_file);
 		}
 		else
 		{
