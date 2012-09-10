@@ -424,6 +424,45 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 .two_fifth,.three_fifth,.four_fifth,.one_sixth,.five_sixth{ position:relative; margin-right:3%; float:left; }
 
 
+/***** 8. PAGE HEADER STYLES *****/
+/*********************************/
+
+
+.pageheader { padding-top: 20px; background: url(../images/default/noise.white.png); position: relative; }
+.pageheader .pagetitle { 
+	margin: 0 10px; color: #485b79; font-weight: normal; font-size: 28px; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; 
+}
+.pageheader .pagedesc { color: #666; margin: 0 10px; }
+.notab { border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+
+
+/***** 9. HORIZONTAL NAVIGATION STYLES *****/
+/*******************************************/
+
+
+.hornav { list-style: none; margin-top: 15px; border-bottom: 1px solid #ccc; padding: 0 10px; height: 41px; }
+.hornav li { display: inline-block; float: left; margin-right: 5px; }
+.hornav li a { 
+	display: block; padding: 10px 20px; background: #ccc; color: #fff; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; 
+	text-transform: uppercase; font-size: 14px; -moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0; border-radius: 2px 2px 0 0;
+	border: 1px solid #ccc; border-bottom: 0; 
+}
+.hornav li a:hover { background: #bbb; border-color: #aaa; }
+.hornav li.current a { background: #fff; color: #FB9337; }
+.hornav li.current a:hover { border-color: #ccc; }
+
+.editornav { list-style: none; margin-top: 15px; border-bottom: 1px solid #ccc; padding: 0 20px; height: 41px; }
+.editornav li { display: inline-block; }
+.editornav li a { 
+	display: block; padding: 10px 20px; background: #ccc; color: #fff; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; 
+	text-transform: uppercase; font-size: 14px; -moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0; border-radius: 2px 2px 0 0;
+	border: 1px solid #ccc; border-bottom: 0; cursor: pointer;
+}
+.editornav li a:hover { background: #bbb; border-color: #aaa; }
+.editornav li.current a { background: #fff; color: #FB9337; }
+.editornav li.current a:hover { border-color: #ccc; }
+
+
 /***** 29. CUSTOMER SUPPORT STYLES *****/
 /***************************************/
 

@@ -74,6 +74,14 @@ class nav_Core {
 			}
 		}
 		
+		// Info
+		if( ! in_array('info',$dontshow))
+		{
+				$menu .= "<li><a href=\"".url::site()."info\" ";
+				$menu .= ($this_page == 'info') ? " class=\"active\"" : "";
+			 	$menu .= ">".Kohana::lang('uchaguzi.info')."</a></li>";	
+		}
+		
 		// Custom Pages
 		$pages = ORM::factory('page')->where('page_active', '1')->find_all();
 		foreach ($pages as $page)
@@ -125,5 +133,6 @@ class nav_Core {
 		echo $menu;
 
 	}
+	
 	
 }
