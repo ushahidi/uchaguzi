@@ -6,7 +6,7 @@
 
 * { margin: 0; padding: 0; }
 body {
-	background-image:url(../img/bkg_login.gif);
+	background-color: #F0F0F0;
 }
 body, td {
 	font: 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif;
@@ -14,22 +14,26 @@ body, td {
 
 
 h1 { margin-bottom:18px; }
-h2 { margin-bottom:15px; }
+h2 {
+	margin-bottom: 15px;
+	color: #FFF;
+}
 
 h3 { margin-bottom:8px; } 
 	h3 a { font-size:10px; font-weight:normal; }
 a:link,
 a:visited {
-	color:#003399;
+	color: #FF4800;
+	text-decoration: none;
 }
 a:visited {
-	color:#0066CC;
+	color:#F1f1f1;
 }
 a:hover,
 a:focus,
 a:active {
 	text-decoration:none;
-	color:#003399;
+	color:#FF4800;
 }
 
 
@@ -54,11 +58,21 @@ dl {}
 }
 
 #ushahidi_site_name {
-	border:3px solid #999;
-	text-align:center;
-	padding:20px;
-	background-color: #ddd;
-	margin-bottom:20px;
+	border: 3px solid #fff;
+	text-align: center;
+	background: none repeat scroll 0 0 #222222;
+	border: 3px solid #FFFFFF;
+	border-radius: 0 0 2px 2px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+	margin-bottom: 20px;
+	color: #FFF;
+	margin-top: 7%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 15px;
+	padding-right: 5px;
+	padding-bottom: 15px;
+	padding-left: 5px;
 }
 
 #ushahidi_site_name h1 {
@@ -77,8 +91,9 @@ dl {}
 	background-color: #ddd;
 }
 #ushahidi_loginbox td{
-	padding:5px;
-	vertical-align:top;
+	padding: 7px;
+	vertical-align: top;
+	color: #f1f1f1;
 }
 #password_reset_change_form {
 	border:3px solid #999;
@@ -95,25 +110,41 @@ dl {}
 	width:750px;
 }
 #openid_login {
-	border:3px solid #999;
+	border:3px solid #fff;
 	text-align:left;
 	padding: 20px;
-	background-color: #ddd;
+	background: none repeat scroll 0 0 #222222;
+	border-radius: 0 0 2px 2px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
 	float:left;
 	width:340px;
 }
 #create_account {
-	border:3px solid #999;
-	text-align:left;
+	background: none repeat scroll 0 0 #222222;
+	border: 3px solid #FFFFFF;
+	border-radius: 0 0 2px 2px;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+	float: left;
 	padding: 20px;
-	background-color: #ddd;
-	float:right;
-	width:300px;
+	text-align: left;
+	float: right;
+	width: 300px;
+	color: #FFF;
 }
 .login_text{
-	padding:3px 7px 3px 7px;
-	border:1px #ccc solid;
-	width:180px;
+	-moz-transition: all 0.1s ease-in-out 0s;
+    background-clip: padding-box;
+    background-image: -moz-linear-gradient(center bottom , #FFFFFF 0%, #F2F2F2 100%);
+    border: 1px solid rgba(0, 0, 0, 0.49);
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 2px 0 #D9D9D9 inset;
+    color: #444444;
+    font-size: 14px;
+    height: 40px;
+    margin-top: 7px;
+    outline: medium none;
+    padding-left: 20px;
+    width: 90%;
 }
 
 /* Installer Container	 */
@@ -273,7 +304,6 @@ html[xmlns] .clearfix {
 	display:none;
 	margin-bottom:15px;
 	padding:10px;
-	background-color:#eee;
 }
 
 .hidden{
