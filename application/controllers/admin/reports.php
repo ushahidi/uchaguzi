@@ -875,7 +875,7 @@ class Reports_Controller extends Tools_Controller {
 			$post->add_rules('data_active.*','required','numeric','between[0,1]');
 			$post->add_rules('data_verified.*','required','numeric','between[0,1]');
 			//$post->add_rules('data_include.*','numeric','between[1,5]');
-			$post->add_rules('data_include.*','numeric','between[1,6]');
+			$post->add_rules('data_include.*','numeric','between[1,7]');
 			$post->add_rules('from_date','date_mmddyyyy');
 			$post->add_rules('to_date','date_mmddyyyy');
 
@@ -1020,6 +1020,10 @@ class Reports_Controller extends Tools_Controller {
 						}
 
 					}
+					if($item == 7)
+					{
+						echo ",FIRST NAME,LAST NAME,EMAIL";
+					}
 
 				}
 
@@ -1088,6 +1092,20 @@ class Reports_Controller extends Tools_Controller {
 									{
 										echo',"'.$this->_csv_text("").'"';
 									}
+								}
+							break;
+							
+							case 7:
+								$incident_orm = ORM::factory('incident', $incident->id);
+								$incident_person = $incident_orm->incident_person;
+								if($incident_person->loaded)
+								{
+									echo',"'.$this->_csv_text($incident_person->person_first).'"'.',"'.$this->_csv_text($incident_person->person_last).'"'.
+									',"'.$this->_csv_text($incident_person->person_email).'"';
+								}
+								else
+								{
+									echo',"'.$this->_csv_text("").'"'.',"'.$this->_csv_text("").'"'.',"'.$this->_csv_text("").'"';
 								}
 							break;
 						}
