@@ -550,13 +550,18 @@ ul.tabset li a:hover{
 	color:#636363;
 	background:#f5f5f5;
 }
+ul.tabset li.right {
+	float: right;
+}
 /*-- tabs --*/
 .tab {
    background:#eee;
 }
 
 .tab ul {
-   padding: 0 0.5em;
+	padding: 0 0.5em;
+	float:left;
+	clear:left;
 }
 
 .tab ul li {
@@ -2311,3 +2316,23 @@ div.dp-popup td.disabled {
 	height: 30px;
 	display: inline-block;
 }
+/* Reports sort/order fields */
+.sort_by {
+	float: right;
+	margin: 0;
+	padding: 9px 10px 0;
+}
+.sort {
+	width: 18px;
+	height: 9px;
+	display: block;
+	float: right;
+	margin: 4px 0 0 6px;
+}
+	.sort-ASC {
+		background: url(../../img/admin/drag.gif) 0 0 no-repeat;
+	}
+	.sort-DESC {
+		background: url(../../img/admin/drag.gif) 0 -8px no-repeat;
+	}
+
