@@ -61,6 +61,17 @@
 					<li><?php echo Kohana::lang('ui_main.upload_reports_detail_4b');?></li>
 				</ul>
 				
+				<h3><strong><?php echo Kohana::lang('ui_main.upload_reports_detail_4c')?></strong></h3>
+				<ul>
+					<li><?php echo Kohana::lang('ui_main.upload_reports_detail_4d')?></li>
+					<li><?php echo Kohana::lang('ui_main.upload_reports_custom_forms')?>
+						<ol>
+							<li><?php echo Kohana::lang('ui_main.upload_reports_detail_4e')?></li>
+							<li><?php echo Kohana::lang('ui_main.upload_reports_detail_4f')?></li>
+							<li><?php echo Kohana::lang('ui_main.upload_reports_detail_4g')?></li>
+						<ol>
+					</li>
+				</ul>
 				<h3><?php echo Kohana::lang('ui_main.upload_reports_detail_5');?></h3>
 				<span class="sample">
 					<?php echo Kohana::lang('ui_main.upload_reports_detail_6');?><br />
