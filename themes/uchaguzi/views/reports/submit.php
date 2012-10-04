@@ -1,41 +1,41 @@
-<div class="centercontent">
-    
-        <div class="pageheader notab">
-        <?php if ($site_submit_report_message != ''): ?>
+<div id="content" class="centercontent">
+
+		<div class="pageheader notab">
+		<?php if ($site_submit_report_message != ''): ?>
 			<div class="green-box" style="margin: 25px 25px 0px 25px">
 				<h3><?php echo $site_submit_report_message; ?></h3>
 			</div>
 		<?php endif; ?>
-    
-        </div><!--pageheader-->
-        
-        <div id="contentwrapper" class="contentwrapper withrightpanel">
- <!--------- FORM BEGINS ------->            
-        		<div id="basicform" class="subcontent">
-                              
-                   <?php print form::open(NULL, array('enctype' => 'multipart/form-data', 'id' => 'reportForm', 'name' => 'reportForm', 'class' => 'gen_forms')); ?>
+		</div>
+
+		<!-- start report form block -->
+
+	<div id="contentwrapper" class="contentwrapper withrightpanel">
+		<div id="basicform" class="subcontent">
+		<?php print form::open(NULL, array('enctype' => 'multipart/form-data', 'id' => 'reportForm', 'name' => 'reportForm', 'class' => 'gen_forms')); ?>
 		<input type="hidden" name="latitude" id="latitude" value="<?php echo $form['latitude']; ?>">
 		<input type="hidden" name="longitude" id="longitude" value="<?php echo $form['longitude']; ?>">
 		<input type="hidden" name="country_name" id="country_name" value="<?php echo $form['country_name']; ?>" />
-		<input type="hidden" name="incident_zoom" id="incident_zoom" value="<?php echo $form['incident_zoom']; ?>" />          
-					<h1><?php echo Kohana::lang('ui_main.reports_submit_new'); ?></h1>
-					<?php if ($form_error): ?>
-					<!-- red-box -->
-					<div class="red-box">
-						<h3>Error!</h3>
-						<ul>
-						<?php
-							foreach ($errors as $error_item => $error_description)
-							{
-								print (!$error_description) ? '' : "<li>" . $error_description . "</li>";
-							}
-						?>
-						</ul>
-					</div>
-					<?php endif; ?>
-					<div class="row">
-						<input type="hidden" name="form_id" id="form_id" value="<?php echo $id?>">
-					</div>
+		<input type="hidden" name="incident_zoom" id="incident_zoom" value="<?php echo $form['incident_zoom']; ?>" />
+		<div class="big-block">
+			<h1><?php echo Kohana::lang('ui_main.reports_submit_new'); ?></h1>
+			<?php if ($form_error): ?>
+			<!-- red-box -->
+			<div class="red-box">
+				<h3>Error!</h3>
+				<ul>
+					<?php
+						foreach ($errors as $error_item => $error_description)
+						{
+							print (!$error_description) ? '' : "<li>" . $error_description . "</li>";
+						}
+					?>
+				</ul>
+			</div>
+			<?php endif; ?>
+			<div class="row">
+				<input type="hidden" name="form_id" id="form_id" value="<?php echo $id?>">
+			</div>
 			<div class="report_left">
 				<div class="report_row">
 					<?php if(count($forms) > 1): ?>
@@ -49,14 +49,13 @@
 						</h4>
 					</div>
 					<?php endif; ?>
-
-                        	<h4><?php echo Kohana::lang('ui_main.reports_title'); ?> <span class="required">*</span> </h4>
-                            <span class="field"><?php print form::input('incident_title', $form['incident_title'], ' class="text long"'); ?></span>
-                         				<div class="report_row">
+					<h4><?php echo Kohana::lang('ui_main.reports_title'); ?> <span class="required">*</span> </h4>
+					<?php print form::input('incident_title', $form['incident_title'], ' class="text long"'); ?>
+				</div>
+				<div class="report_row">
 					<h4><?php echo Kohana::lang('ui_main.reports_description'); ?> <span class="required">*</span> </h4>
 					<?php print form::textarea('incident_description', $form['incident_description'], ' rows="10" class="textarea long" ') ?>
 				</div>
-                        
 				<div class="report_row" id="datetime_default">
 					<h4>
 						<a href="#" id="date_toggle" class="show-more"><?php echo Kohana::lang('ui_main.modify_date'); ?></a>
@@ -108,8 +107,6 @@
 					</div>
 					<div style="clear:both; display:block;" id="incident_date_time"></div>
 				</div>
-         	
-
 				<div class="report_row">
 					<h4><?php echo Kohana::lang('ui_main.reports_categories'); ?> <span class="required">*</span></h4>
 					<div class="report_category" id="categories">
@@ -128,6 +125,7 @@
 				// Action::report_form - Runs right after the report categories
 				Event::run('ushahidi_action.report_form');
 				?>
+
 				<?php echo $custom_forms ?>
 
 				<div class="report_optional">
@@ -150,25 +148,13 @@
 					?>
 				</div>
 			</div>
-
-<!----------LOCATION HERE--->                           
+		</div>
 				<?php if (count($cities) > 1): ?>
 				<div class="report_row">
 					<h4><?php echo Kohana::lang('ui_main.reports_find_location'); ?></h4>
 					<?php print form::dropdown('select_city',$cities,'', ' class="select" '); ?>
 				</div>
 				<?php endif; ?>
-
-				<div class="report_row">
-					<h4>
-						<?php echo Kohana::lang('ui_main.reports_location_name'); ?> 
-						<span class="required">*</span><br />
-						<span class="example"><?php echo Kohana::lang('ui_main.detailed_location_example'); ?></span>
-					</h4>
-					<?php print form::input('location_name', $form['location_name'], ' class="text long"'); ?>
-				</div>
-<!----------LOCATION HERE END--->                            
-<!----INSERT NEWS SOURCE LINK FIELD HERE--->                         
 				<!-- News Fields -->
 				<div id="divNews" class="report_row">
 					<h4><?php echo Kohana::lang('ui_main.reports_news'); ?></h4>
@@ -202,8 +188,6 @@
 
 					<?php print form::input(array('name'=>'news_id', 'type'=>'hidden', 'id'=>'news_id'), $i); ?>
 				</div>
-<!----INSERT NEWS SOURCE LINK ENDS---> 
-<!----INSERT VIDEO SOURCE LINK FIELD HERE---> 
 				<!-- Video Fields -->
 				<div id="divVideo" class="report_row">
 					<h4><?php print Kohana::lang('ui_main.external_video_link'); ?></h4>
@@ -273,31 +257,11 @@
 
 					<?php print form::input(array('name'=>'photo_id','type'=>'hidden','id'=>'photo_id'), $i); ?>
 				</div>
-<!----INSERT NEWS SOURCE LINK ENDS--->                        
      
-                        
                         <br clear="all" /><br />
-                        
+
 				<div class="report_row">
-					<input name="submit" type="submit" value="<?php echo Kohana::lang('ui_main.reports_btn_submit'); ?>" class="btn_submit" /> 
-				</div>
-                        
-		<?php print form::close(); ?>
-                        
-  <!--------- FORM ENDS ------->        
-        </div><!--contentwrapper-->
-        
-   <!--------- RIGHT COLUMN ------->                         
-        <div class="rightpanel">
-        	<div class="rightpanelinner">
-                <div class="widgetbox uncollapsible">
-                 
-                 <br clear="all" /><br />
-                 
-                	<div class="title"><h4>Preview</h4></div>
- <!--------- INSERT PREVIEW MAP HERE------->                   
-                    <div class="widgetcontent nopadding">
-                    	<div id="divMap" class="report_map">
+					<div id="divMap" class="report_map">
 						<div id="geometryLabelerHolder" class="olControlNoSelect">
 							<div id="geometryLabeler">
 								<div id="geometryLabelComment">
@@ -332,14 +296,41 @@
 							<div id="geometryLabelerClose"></div>
 						</div>
 					</div>
+					<div class="report-find-location">
+					    <div id="panel" class="olControlEditingToolbar"></div>
+						<div class="btns" style="float:left;">
+							<ul style="padding:4px;">
+								<li><a href="#" class="btn_del_last"><?php echo utf8::strtoupper(Kohana::lang('ui_main.delete_last'));?></a></li>
+								<li><a href="#" class="btn_del_sel"><?php echo utf8::strtoupper(Kohana::lang('ui_main.delete_selected'));?></a></li>
+								<li><a href="#" class="btn_clear"><?php echo utf8::strtoupper(Kohana::lang('ui_main.clear_map'));?></a></li>
+							</ul>
+						</div>
+						<div style="clear:both;"></div>
+						<?php print form::input('location_find', '', ' title="'.Kohana::lang('ui_main.location_example').'" class="findtext"'); ?>
+						<div style="float:left;margin:9px 0 0 5px;">
+							<input type="button" name="button" id="button" value="<?php echo Kohana::lang('ui_main.find_location'); ?>" class="btn_find" />
+						</div>
+						<div id="find_loading" class="report-find-loading"></div>
+						<div style="clear:both;" id="find_text"><?php echo Kohana::lang('ui_main.pinpoint_location'); ?>.</div>
+					</div>
+				</div>
+				<?php Event::run('ushahidi_action.report_form_location', $id); ?>
+				<div class="report_row">
+					<h4>
+						<?php echo Kohana::lang('ui_main.reports_location_name'); ?> 
+						<span class="required">*</span><br />
+						<span class="example"><?php echo Kohana::lang('ui_main.detailed_location_example'); ?></span>
+					</h4>
+					<?php print form::input('location_name', $form['location_name'], ' class="text long"'); ?>
+				</div>
 
-                    </div><!--widgetcontent-->
- <!--------- PREVIEW MAP ENDS HERE------->                      
-                    
-                </div><!--widgetbox-->
-            </div><!--rightpanelinner-->
-        </div>
-     <!--------- RIGHT COLUMN ENDS ------->    
-        
-	</div><!-- centercontent -->
-
+									
+				<div class="report_row">
+					<input name="submit" type="submit" value="<?php echo Kohana::lang('ui_main.reports_btn_submit'); ?>" class="btn_submit" /> 
+				</div>
+			</div>
+		</div>
+		<?php print form::close(); ?>
+		<!-- end report form block -->
+	</div>
+</div>

@@ -4,40 +4,35 @@
        <div id="contentwrapper" class="contentwrapper">
       
                     
-                   	<div class="two_third dashboard_left">
+		<div class="two_third dashboard_left">
                     
-					<?php echo $div_map;?>                         
-					<div id="slider">
-						<?php echo $div_timeline;?>
-					</div>
+			<?php echo $div_map;?>                         
+			<div id="slider">
+				<?php echo $div_timeline;?>
+			</div>
 
-<!----------------LATEST NEWS----------------->
-                                 <br clear="all" />     
+			<br clear="all" />     
+
            <div class="widgetbox">
-                        	<!--<div class="title"><h3>Latest News</h3></div>-->
-                            <div class="widgetcontent">
-                                <div id="scroll1" class="mousescroll">
-										<?php
-											blocks::render(); 
-										?>
-                                </div>
-                            </div> <!--widgetcontent-->
-                        </div><!-- widgetbox -->
-                       	  <div class="widgetcontent">
+				<?php
+					blocks::render_news(); 
+				?>
+			</div><!-- widgetbox -->
+             <div class="widgetcontent">
                         	  
-                      	  </div><!--widgetcontent-->
+            </div><!--widgetcontent-->
                         
-                    </div><!--two_third dashboard_left -->
+        </div><!--two_third dashboard_left -->
                     
-                    <div class="one_third last dashboard_right">
-<!----------------FILTER REPORTS----------------->
-                      <div class="widgetbox">
-                        <div class="title">
-                          <h3>Filter reports</h3></div>
-                            <div class="widgetcontent">
-                                <div id="accordion" class="accordion">
-                                   <h3><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
-                                	<ul id="category_switch" class="categorylist">
+        <div class="one_third last dashboard_right">
+		<div class="widgetbox">
+            <div class="title">
+			<h3>Filter reports</h3></div>
+				<div class="widgetcontent">
+                    <div id="accordion" class="accordion">
+                    <h3><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
+
+					<ul id="category_switch" class="categorylist">
 				<?php
 				$color_css = 'class="swatch" style="background-color:#'.$default_map_all.'"';
 				$all_cat_image = '';
@@ -139,41 +134,15 @@
                                     
         </div>     
     </div> <!--widgetcontent-->
-<!----------------FILTER REPORTS ENDS----------------->
-                      <br clear="all" />
+        
+		<br clear="all" />
                     
-            <!---------------- REPORTS----------------->  
-          <div class="widgetoptions">
-                                <div class="right"><a href="#">View All Reports</a></div>
-                                <a href="#">Create a Report</a>
-                            </div>
-                           <div class="widgetcontent">
-                                <ul class="recent_list">
-                                    <li class="user new">
-                                        <div class="msg">Narok Residents Being Used by Politicians.
-                                        </div>
-                                    </li>
-                                    <li class="call new">
-                                        <div class="msg">Resource mis-management in Emali, Makueni County</div>
-                                    </li>
-                                    <li class="twitter new">
-                                        <div class="msg">
-                                            <a href="#">No Water Rongai</a><a href="#"></a>.
-                                        </div>
-                                    </li>
-                                    <li class="call new">
-                                        <div class="msg">
-                                            <a href="#">Fix Roads in Kariobangi, Nairobi</a>.
-                                        </div>
-                                    </li>
-                                    <li class="user">
-                                        <div class="msg">
-                                            <a href="#">Empower the disabled.</a>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="msgmore"><a href="#">View All Reports</a></div>
-                            </div><!--widgetcontent-->
-                        </div><!--widgetbox-->
-<!---------------- REPORTS ENDS-------------->
+    <div class="widgetoptions">
+		<div class="right"><a href="<?php echo url::site() . 'reports/' ?>"><?php echo Kohana::lang('uchaguzi.view_all_reports'); ?></a></div>
+			<a href="<?php echo url::site() . 'reports/submit' ?>"><?php echo Kohana::lang('ui_admin.create_report'); ?></a>
+    </div>
+	<div class="widgetcontent">
+		<?php blocks::render_reports(); ?>
+	</div>
+</div><!--widgetbox-->
 

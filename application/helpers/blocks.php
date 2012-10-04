@@ -82,22 +82,39 @@ class blocks_Core {
 	}
 	
 	/**
-	 * Render all the active blocks
+	 * @TODO find a better way to render different blocks
+	 * Render news block
 	 *
 	 * @return string block html
 	 */	
-	public static function render()
+	public static function render_news()
 	{
 		// Get Active Blocks
 		$active_blocks = Settings_Model::get_setting('blocks');
 		$active_blocks = array_filter(explode("|", $active_blocks));
-		foreach ($active_blocks as $block)
-		{
-			$block = new $block();
-			$block->block();
-		}
+		$news_block = $active_blocks[0];
+		$block = new $news_block();
+		$block->block();
+		
 	}
 	
+	/**
+	 * @TODO find a better way to render different blocks
+	 * Render reports block
+	 *
+	 * @return string block html
+	 */	
+	public static function render_reports()
+	{
+		// Get Active Blocks
+		$active_blocks = Settings_Model::get_setting('blocks');
+		$active_blocks = array_filter(explode("|", $active_blocks));
+		$reports_block = $active_blocks[1];
+		$block = new $reports_block();
+		$block->block();
+		
+	}
+
 	/**
 	 * Sort Active and Non-Active Blocks
 	 * 

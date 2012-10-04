@@ -1,14 +1,9 @@
 <?php blocks::open("news");?>
-<?php blocks::title(Kohana::lang('ui_main.official_news'));?>
-<table class="table-list">
-	<thead>
-		<tr>
-			<th scope="col"><?php echo Kohana::lang('ui_main.title'); ?></th>
-			<th scope="col"><?php echo Kohana::lang('ui_main.source'); ?></th>
-			<th scope="col"><?php echo Kohana::lang('ui_main.date'); ?></th>
-		</tr>
-	</thead>
-	<tbody>
+<!--<div class="title"><?php //blocks::title(Kohana::lang('ui_main.official_news'));?></div>-->
+<div class="title">Latest News</div>
+<div class="widgetcontent">
+	<div id="scroll1" class="mousescroll">
+		<ul class="entrylist">
 		<?php
 		if ($feeds->count() != 0)
 		{
@@ -20,23 +15,26 @@
 					$feed_date = date('M j Y', strtotime($feed->item_date));
 					$feed_source = text::limit_chars($feed->feed->feed_name, 15, "...");
 			?>
-			<tr>
-				<td><a href="<?php echo $feed_link; ?>" target="_blank"><?php echo $feed_title ?></a></td>
-				<td><?php echo $feed_source; ?></td>
-				<td><?php echo $feed_date; ?></td>
-			</tr>
+			<li>
+				<div class="entry_wrap">
+					<div class="entry_img"></div>
+					<div class="entry_content">
+						<a href="<?php echo $feed_link; ?>" target="_blank"><?php echo $feed_title ?></a>
+						<small><?php echo Kohana::lang('ui_main.source'); ?>:: <a href=""><strong><?php echo $feed_source; ?></strong></a> - <?php echo $feed_date; ?></small>
+					</div>
+				</div>
+			</li>
 			<?php
 			}
 		}
 		else
 		{
 			?>
-			<tr><td colspan="3"></td></tr>
 			<?php
 		}
 		?>
-	</tbody>
-</table>
-<a class="more" href="<?php echo url::site() . 'feeds' ?>"><?php echo Kohana::lang('ui_main.view_more'); ?></a>
+		</ul>
+	</div>
+</div>
 <div style="clear:both;"></div>
 <?php blocks::close();?>
