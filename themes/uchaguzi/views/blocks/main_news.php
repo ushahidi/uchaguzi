@@ -1,4 +1,4 @@
-<?php blocks::open("news");?>
+<?php //blocks::open("news");?>
 <!--<div class="title"><?php //blocks::title(Kohana::lang('ui_main.official_news'));?></div>-->
 <div class="title">Latest News</div>
 <div class="widgetcontent">
@@ -37,4 +37,4 @@
 	</div>
 </div>
 <div style="clear:both;"></div>
-<?php blocks::close();?>
+<?php //blocks::close();?>

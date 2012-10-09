@@ -40,6 +40,15 @@ class nav_Core {
 			$menu .= ($this_page == 'reports') ? " class=\"active\"" : "";
 		 	$menu .= ">".Kohana::lang('ui_main.reports')."</a></li>";
 		 }
+
+		// Timeline
+		if( ! in_array('timeline',$dontshow))
+		{
+			$menu .= "<li><a href=\"".url::site()."timeline\" ";
+			$menu .= ($this_page == 'timeline') ? " class=\"active\"" : "";
+		 	$menu .= ">".Kohana::lang('uchaguzi.timeline')."</a></li>";
+		 }
+
 		
 		// Reports Submit
 		if( ! in_array('reports_submit',$dontshow))
