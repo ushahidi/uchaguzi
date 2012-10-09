@@ -22,7 +22,7 @@ $lang = array(
 'recent_reports' => 'Recent Reports',
 'popular_reports' => 'Popular Reports',
 'amplified_reports' => 'Amplified Reports',
-'flagged_reports' => 'Flagged Reports'
-'timeline' => 'Timeline',
+'flagged_reports' => 'Flagged Reports',
+'timeline' => 'Timeline'
 );
 ?>
