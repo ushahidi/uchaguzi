@@ -81,6 +81,14 @@ class nav_Core {
 				$menu .= ($this_page == 'info') ? " class=\"active\"" : "";
 			 	$menu .= ">".Kohana::lang('uchaguzi.info')."</a></li>";	
 		}
+
+		// Media
+		if( ! in_array('gallery',$dontshow))
+		{
+				$menu .= "<li><a href=\"".url::site()."gallery\" ";
+				$menu .= ($this_page == 'gallery') ? " class=\"active\"" : "";
+			 	$menu .= ">".Kohana::lang('uchaguzi.gallery')."</a></li>";	
+		}
 		
 		// Custom Pages
 		$pages = ORM::factory('page')->where('page_active', '1')->find_all();

@@ -352,6 +352,103 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 .contenttitle2 { margin: 20px 0; border-bottom: 2px solid #FB9337; padding-bottom: 5px; padding-right: 20px; display: inline-block; }
 .contenttitle2 h3 { font-size: 16px; font-weight: normal; text-transform: uppercase; }
 
+/***** 14. FILE MANAGER STYLES *****/
+/***********************************/
+
+
+.filemgr { position: relative; min-height: 400px; }
+.filemgr .filemgr_right { position: absolute; width: 250px; top: 62px; right: 0; }
+.filemgr .filemgr_rightinner { margin: 20px 0; padding: 0 20px; border-left: 1px dashed #ddd; }
+
+.filemgr_head { 
+	padding: 15px 20px; background: #fcfcfc; border-bottom: 1px solid #ddd; -moz-box-shadow: inset 0 1px 0 #fff; 
+	-webkit-box-shadow: inset 0 1px 0 #fff; box-shadow: inset 0 1px 0 #fff;
+}
+ 
+.filemgr_menu { list-style: none; position: relative; }
+.filemgr_menu li { display: inline-block; float: left; }
+.filemgr_menu li.right { float: right; }
+.filemgr_menu li a { 
+	padding: 4px 10px 5px 10px; border: 1px solid #ccc; display: block; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+	border-radius: 2px; background: #fcfcfc; font-weight: bold; -moz-box-shadow: inset 0 1px 0 #fff; -webkit-box-shadow: inset 0 1px 0 #fff;
+	box-shadow: inset 0 1px 0 #fff; background-color: #fff;
+}
+.filemgr_menu li a:hover { background-color: #eee; border-color: #bbb; cursor: pointer; }
+.filemgr_menu li a.prev, .filemgr_menu li a.next { display: block; padding: 15px; border: 1px solid #ccc; cursor: pointer; background-color: #fff; }
+.filemgr_menu li a.prev:hover, .filemgr_menu li a.next:hover { background-color: #eee; border-color: #bbb; }
+.filemgr_menu li a.prev { 
+	border-right: 0; background: #fff url(../images/arrow.png) no-repeat 10px 8px; -moz-border-radius: 2px 0 0 2px;
+	-webkit-border-radius: 2px 0 0 2px; border-radius: 2px 0 0 2px;
+}
+.filemgr_menu li a.prev_disabled { background-position: 10px -46px; cursor: default; }
+.filemgr_menu li a.prev_disabled:hover { border-color: #ccc; background-color: #fff; }
+.filemgr_menu li a.next { 
+	background: #fff url(../images/arrow.png) no-repeat -39px 8px; -moz-border-radius: 0 2px 2px 0; -webkit-border-radius: 0 2px 2px 0; 
+	border-radius: 0 2px 2px 0;
+}
+.filemgr_menu li a.next_disabled { background-position: -39px -46px; cursor: default; }
+.filemgr_menu li a.next_disabled:hover { border-color: #ccc; background-color: #fff; }
+
+.filemgr_menu li a.selectall { 
+	background-image: url(../images/selectall.png); background-position: 7px 7px; background-repeat: no-repeat; padding-left: 27px; 
+}
+.filemgr_menu li a.preview { 
+	background-image: url(../images/preview.png); background-position: 7px 8px; background-repeat: no-repeat; padding-left: 30px; 
+}
+.filemgr_menu li a.preview_disabled { opacity: 0.5; }
+.filemgr_menu li a.preview_disabled:hover { background-color: #fff; cursor: default; }
+
+.filemgr_menu li a.newfolder { 
+	padding: 15px; background-image: url(../images/addfolder.png); background-position: 7px 8px; background-repeat: no-repeat;
+}
+.filemgr_menu li a.trash { 
+	padding: 15px; background-image: url(../images/trash.png); background-position: 7px 7px; background-repeat: no-repeat;
+}
+.filemgr_menu li a.trash_disabled { opacity: 0.5; }
+.filemgr_menu li a.trash_disabled:hover { background-color: #fff; cursor: default; }
+
+.filemgr_menu form input.filekeyword { padding: 7px 7px 8px 7px; width: 200px; background: #fff; color: #999; font-style: italic; }
+.filemgr_menu form input.filekeyword:focus { color: #666; font-style: normal; }
+
+.filemgr_content { padding: 20px; margin-right: 250px; }
+
+.filemgr_category { padding: 10px 0; margin: 0 20px; border-bottom: 1px dashed #ddd; margin-right: 270px; }
+.filemgr_category ul { list-style: none; }
+.filemgr_category ul li { display: inline-block; margin-right: 5px; }
+.filemgr_category ul li.right { float: right; }
+.filemgr_category ul li a { display: block; padding: 5px 10px; font-weight: bold; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
+.filemgr_category ul li a:hover { 
+	background: #fcfcfc; -moz-box-shadow: inset 1px 1px 1px #ddd; -webkit-box-shadow: inset 1px 1px 1px #ddd; 
+	box-shadow: inset 1px 1px 1px #ddd;
+}
+.filemgr_category ul li.current a { 
+	background: #eee; -moz-box-shadow: inset 1px 1px 1px #ccc; -webkit-box-shadow: inset 1px 1px 1px #ccc; 
+	box-shadow: inset 1px 1px 1px #ccc; 
+}
+.filemgr_category ul li .pagenuminfo { display: inline-block; margin-top: 5px; }
+
+.filemgr_menu li a.newfilebutton { 
+	display: block; padding: 4px 10px 5px 10px; text-align: center; border: 1px solid #F0882C; background: #FB9337; color: #fff;
+	font-weight: bold; font-size: 12px; -moz-box-shadow: inset 0 1px 0 rgba(250,250,250,0.3);
+	-webkit-box-shadow: inset 0 1px 0 rgba(250,250,250,0.3); box-shadow: inset 0 1px 0 rgba(250,250,250,0.3);
+}
+.filemgr_menu li a.newfilebutton:hover { background: #485B79; border: 1px solid #3f526f; }
+
+.menuright { list-style: none; }
+.menuright li { display: block; margin-bottom: 1px; }
+.menuright li a { display: block; padding: 8px 10px; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; font-weight: bold; }
+.menuright li a:hover { background: #eee; }
+.menuright li.current a { background: #999; color: #fff; }
+
+.listfile { list-style: none; }
+.listfile li { display: inline-block; margin: 5px 10px 5px 0; }
+.listfile li a { display: block; border: 1px solid #eee; padding: 10px; }
+.listfile li a:hover { cursor: pointer; border-color: #ddd; }
+.listfile li a span.filename { display: block; margin-top: 5px; font-size: 11px; text-align: center; }
+.listfile li.selected a { border-color: #fb9337; background: #fff4eb; }
+
+
+.filemgr_menu li a.newfilebutton { background-color: #ff4800; border-color: #de4204; }
 
 /***** 16. WIDGET BOX STYLES *****/
 /*********************************/
