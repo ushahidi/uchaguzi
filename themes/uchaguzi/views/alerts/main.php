@@ -1,4 +1,4 @@
-<div id="content">
+<div id="content" class="centercontent">
 	<div class="content-bg">
 		<!-- start block -->
 		<div class="big-block">
