@@ -104,8 +104,7 @@
 
 				 <ul>
                     <li>
-                         <div class="avatar"><p class="r_photo" style="text-align:center;"> <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>">
-							<img src="<?php echo $incident_thumb; ?>" style="max-width:89px;max-height:59px;" /> </a>
+                         <div class="avatar"><p class="r_photo" style="text-align:center;"> <a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>"><img src="<?php echo $incident_thumb; ?>" style="max-width:89px;max-height:59px;" /> </a>
 
 						<!-- Only show this if the report has a video -->
 						<p class="r_video" style="display:none;"><a href="#"><?php echo Kohana::lang('ui_main.video'); ?></a></p>
@@ -121,11 +120,12 @@
                              <div class="reportdetails" id="reportdetails"><img src="images/icons/phone.png" width="16" height="16" alt="phone" /></div>
                         </div><!--info-->
                      </li>
+			<?php } ?>
                 </ul>
+
                 <a href="" class="more">View More REPORTS</a>
                                 
             </div>
             <!--widgetcontent-->
         </div><!--widgetbox-->
-    <?php } ?>
         

@@ -493,7 +493,7 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 .userlistwidget ul { list-style: none; }
 .userlistwidget ul li { font-size: 11px; line-height: 18px; border-bottom: 1px dashed #ddd; padding: 10px; }
 .userlistwidget ul li:last-child { border-bottom: 0; }
-.userlistwidget ul li .avatar { float: left; margin-right: 10px; padding: 2px; border: 1px solid #eee; }
+.userlistwidget ul li .avatar { float: left; margin-right: 10px; padding: 0px; border: 1px solid #eee; }
 .userlistwidget ul li a { font-weight:  bold; }
 .userlistwidget .more { 
 	display: block; text-align: center; background: #eee; color: #069; padding: 5px 0; font-size: 10px; 
@@ -818,6 +818,7 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 
 
 /* TIMELINE */
+/***********/
 time,.time{
 	font-size: 10px;
 	color:#999;
