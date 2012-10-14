@@ -260,7 +260,7 @@
      
                         <br clear="all" /><br />
 
-				<div class="report_row">
+				<div class="rightpanel">
 					<div id="divMap" class="report_map">
 						<div id="geometryLabelerHolder" class="olControlNoSelect">
 							<div id="geometryLabeler">

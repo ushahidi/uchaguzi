@@ -83,4 +83,7 @@ class Feeds_Controller extends Main_Controller {
 		$this->template->footer->footer_block = $this->themes->footer_block();
 
 	}
+
+
+
 }

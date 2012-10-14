@@ -114,4 +114,5 @@ class Feed_Controller extends Controller {
 		$view->items = $feed_items;
 		$view->render(TRUE);
 	}
+
 }

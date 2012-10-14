@@ -10,4 +10,5 @@ class Feed_Item_Model extends ORM
 	
 	// Database table name
 	protected $table_name = 'feed_item';
+
 }
