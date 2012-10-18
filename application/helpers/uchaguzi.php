@@ -16,20 +16,24 @@ class uchaguzi_Core {
 	 * @return string $menu
      */
 	
-	public function info_tabs($page_id)
+	public function info_tabs($this_page = FALSE)
 	{
+		$pages = ORM::factory('page')->where('page_active','1')->find_all();
 		$menu = "";
 		
-		// Electoral Process
-			$menu .= "<li class='current'><a href=\"".url::site()."info/index/1\" ";
-			//$menu .= ($this_page == 'electoral_process') ? " class=\"current\"" : "";
-		 	$menu .= ">".Kohana::lang('uchaguzi.electoral_process')."</a></li>";
+		foreach ($pages as $page)
+		{
+			$page_id = $page->id;
+			$page_title = $page->page_title;
+			$page_tab = $page->page_tab;
+			
+			//Page details
+			$menu .= "<li><a href=\"".url::site()."info/index/".$page_id."\" ";
+			$menu .= ($this_page == $page_title) ? " class=\"active\"" : "";
+		 	$menu .= ">".$page_tab."</a></li>";
 
-		// Voting Process
-			$menu .= "<li><a href=\"".url::site()."info/index/2\" ";
-			//$menu .= ($this_page == 'voting_process') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('uchaguzi.voting_process')."</a></li>";
-	
+		}
+
 		echo $menu;
 
 	}

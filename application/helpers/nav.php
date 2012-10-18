@@ -99,15 +99,6 @@ class nav_Core {
 			 	$menu .= ">".Kohana::lang('uchaguzi.gallery')."</a></li>";	
 		}
 		
-		// Custom Pages
-		$pages = ORM::factory('page')->where('page_active', '1')->find_all();
-		foreach ($pages as $page)
-		{
-			$menu .= "<li><a href=\"".url::site()."page/index/".$page->id."\" ";
-			$menu .= ($this_page == 'page_'.$page->id) ? " class=\"active\"" : "";
-		 	$menu .= ">".$page->page_tab."</a></li>";
-		}
-
 		echo $menu;
 		
 		// Action::nav_admin_reports - Add items to the admin reports navigation tabs

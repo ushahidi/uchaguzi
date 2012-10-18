@@ -14,14 +14,11 @@
 				$feed_link = $feed->item_link;
 				$feed_date = date('M j Y', strtotime($feed->item_date));
 				$feed_source = text::limit_chars($feed->feed->feed_name, 15, "...");
-				$pattern = "/<img[^>]+\>/i";
-				$text = html_entity_decode($feed_link, ENT_QUOTES, 'UTF-8');
-				$feed_image = preg_match($pattern,$text, $matches);
 					
 			?>
 			<li>
 				<div class="entry_wrap">
-					<div class="entry_img"><img src="' . <?php echo $feed_image;?> . '" /></div>
+					<div class="entry_img"></div>
 					<div class="entry_content">
 						<a href="<?php echo $feed_link; ?>" target="_blank"><?php echo $feed_title ?></a>
 						<small><?php echo Kohana::lang('ui_main.source'); ?>:: <a href=""><strong><?php echo $feed_source; ?></strong></a> - <?php echo $feed_date; ?></small>

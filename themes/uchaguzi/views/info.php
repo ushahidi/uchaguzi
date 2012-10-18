@@ -5,7 +5,7 @@
     
         <div class="pageheader">
             <ul class="hornav">
-                <strong><?php uchaguzi::info_tabs($page_id); ?></strong>
+                <strong><?php uchaguzi::info_tabs(); ?></strong>
             </ul>
         </div><!--pageheader-->
         
@@ -15,7 +15,7 @@
                 <div id="profile" class="subcontent">
                    
                     <div class="contenttitle2">
-                        <h3><strong><?php echo Kohana::lang('uchaguzi.header_title'); ?></strong></h3>
+                        <h3><strong><?php echo $page_title; ?></strong></h3>
                     </div><!--contenttitle-->
                     
                     <div class="profile_about">
