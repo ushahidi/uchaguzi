@@ -114,7 +114,7 @@ class nav_Core {
 	*/
 
 	
-	public function header_tabs()
+	public function header_tabs($this_page)
 	{
 		$menu = "";
 		
@@ -138,6 +138,11 @@ class nav_Core {
 			//$menu .= ($this_page == 'analysis') ? " class=\"active\"" : "";
 		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
 	
+		//TOOLS
+			$menu .= "<li><a href=\"".url::site()."tools\" ";
+			$menu .= ($this_page == 'tools') ? " class=\"active\"" : "";
+		 	$menu .= ">".Kohana::lang('uchaguzi.tools')."</a></li>";
+
 		echo $menu;
 
 	}
