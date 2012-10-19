@@ -27,7 +27,7 @@
 			?>
 			
 		<li>
-			<span class="item-icon <?php echo $item_class; ?>">&nbsp;</span>
+			<span class="<?php echo $item_class; ?>">&nbsp;</span>
 			<a href="<?php echo url::site() . 'reports/view/' . $incident_id; ?>"> <?php echo html::specialchars($incident_title) ?></a>
 		</li>
 	<?php

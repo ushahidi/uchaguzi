@@ -1,7 +1,7 @@
 <div class="centercontent">
     
         <div class="pageheader">
-		<h1 class="pagetitle">TOOLS</h1>
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
             <ul class="hornav">
 			<?php foreach ($main_tabs as $page => $tab_name): ?>
 			<li>
@@ -19,7 +19,44 @@
 					<p>This can be an awesome announcement tool that we can use
 					for the platform. Or you can just use it to let others know
 						how awesome Jepchumba, Linda and Sharon are. </p>
-				 <div> 
+				 </div> <!--notification announcement-->
+				 
+				 <div class="two_third dashboard_left">
+					<ul class="shortcuts">
+						<li><a href="" class="reports"><span><?php echo $reports_total .' '.Kohana::lang('ui_main.reports');?></span></a></li>
+						<li><a href="" class="messages"><span><?php echo $message_count .' '.Kohana::lang('ui_main.messages');?></span></a></li>
+						<li><a href="" class="published"><span><?php echo $reports_unapproved .' '.Kohana::lang('ui_main.not_approved');?></span></a></li>
+						<li><a href="" class="verified"><span><?php echo $reports_verified .' '.Kohana::lang('ui_main.verified');?></span></a></li>
+					</ul>
+					<br clear="all" /><!--contenttitle--><!--overviewhead-->
+					
+					<br clear="all" /><!-- widgetbox --> 
+									 
+				 </div> <!--two third dashboard--> 
+
+				 <div class="one_third last dashboard_right">
+					<div class="contenttitle2 nomargintop">
+						<h3>UCHAGUZI TASKS</h3>
+					</div><!--contenttitle-->
+					<ul class="toplist">
+						<li>
+							<div>
+								<span class="three_fourth">
+									<span class="left">
+										<span class="title"><a
+										href=""><?php echo Kohana::lang('ui_main.unverified');?></a></span>
+										<span class="desc"><?php echo Kohana::lang('ui_main.reports') .' '.Kohana::lang('ui_main.awaiting_verification');?></span>
+									</span><!--left-->
+								</span><!--three_fourth-->
+								<span class="one_fourth last">
+									<span class="right">
+										<span class="h3"><?php echo $reports_unverified;?></span>
+									</span><!--right-->
+								</span><!--one_fourth-->
+								<br clear="all" />
+							</div>
+						</li>
+					</ul>
             </div>            
         </div><!--contentwrapper-->
  </div><!-- centercontent -->
