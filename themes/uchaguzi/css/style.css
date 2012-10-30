@@ -1,5 +1,6 @@
 /* Handcoded by RapidxHTML - htp://www.rapidxhtml.com */
 
+
 @import url('../fonts/roboto.css');
 
 /* reset */
@@ -510,7 +511,7 @@ body.withvernav { background: #fff url(../images/line.ccc.png) repeat-y 230px 0;
 .one_half{ width:48.5%; }
 .one_third{ width:28.16%; }
 .two_third{ width:65.83%; }
-.one_fourth{ width:22.5%; }
+.one_fourth{ width:19.5%; }
 .three_fourth{ width:74.5%; }
 .one_fifth{ width:17.3%; }
 .two_fifth{ width:38.1%; }
@@ -991,6 +992,85 @@ shortcuts ul a.stats {
 .overviewtable tr td, .overviewtable tr th { text-align: right !important; }
 .overviewtable tbody tr td { font-size: 24px; color: #111; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; }
 
+/***** 20. STANDARD FORM STYLES *****/
+/************************************/
+
+
+form input[type=text] { 
+	padding: 8px 5px; border: 1px solid #ccc; width: 85%; -moz-border-radius: 2px; -webkit-border-radius: 2px; 
+	border-radius: 2px; background: #fcfcfc; vertical-align: middle; -moz-box-shadow: inset 0 1px 3px #ddd; 
+	-webkit-box-shadow: inset 0 1px 3px #ddd; box-shadow: inset 0 1px 3px #ddd; color: #666;
+}
+form input:focus { 
+	background: #fff; -moz-box-shadow: inset 1px 1px 2px #eee; -webkit-box-shadow: inset 1px 1px 2px #eee; box-shadow: inset 1px 1px 2px #eee;
+}
+form textarea { 
+	padding: 6px 5px; border: 1px solid #ccc; width: 85%; -moz-border-radius: 2px; -webkit-border-radius: 2px; 
+	border-radius: 2px; -moz-box-shadow: inset 0 1px 3px #ddd; -webkit-box-shadow: inset 0 1px 3px #ddd;
+	box-shadow: inset 0 1px 3px #ddd; background: #fcfcfc; color: #666; 
+}
+form input[type=radio], .stdform input[type=checkbox] { width: auto; margin: 0; vertical-align: middle; }
+form input[type=submit] { 
+	width: auto; margin: 0; font-weight: bold; color: #eee; background: #FB9337; border: 1px solid #F0882C; padding: 7px 10px; 
+	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; cursor: pointer; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+form input[type=submit]:hover { background: #485B79; border: 1px solid #3f526f; }
+form input[type=reset] {
+	width: auto; margin: 0; font-weight: bold; color: #666; border: 1px solid #ccc; background: #eee; padding: 7px 10px;	
+	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; margin-left: 5px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
+	border-radius: 2px;
+}
+form input[type=reset]:hover { background: #ddd; cursor: pointer; color: #333; }
+form select { 
+	border: 1px solid #ccc; padding: 5px 2px; min-width: 40%; background: #fcfcfc; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; 
+	-moz-box-shadow: inset 1px 1px 2px #ddd; -webkit-box-shadow: inset 1px 1px 2px #ddd; box-shadow: inset 1px 1px 2px #ddd; color: #666;
+}
+form textarea:focus, form select:focus { 
+	background: #fff; -moz-box-shadow: inset 1px 1px 2px #eee; -webkit-box-shadow: inset 1px 1px 2px #eee; box-shadow: inset 1px 1px 2px #eee; 
+}
+
+form button { border: 1px solid #f0882c; background: #fb9337; color: #fff; cursor: pointer; padding: 7px 10px; font-weight: bold; }
+form button.submit:hover { background: #485B79; border: 1px solid #3f526f; color: #fff; }
+form button:active { 
+	-moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3); 
+	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+form input.smallinput, form textarea.smallinput { width: 40%; }
+form input.mediuminput, form textarea.mediuminput { width: 60%; }
+form input.longinput, form textarea.longinput { width: 85%; }
+form input.error { border: 1px solid #f00; }
+form textarea.error { border: 1px solid #f00; }
+form textarea.error { border: 1px solid #f00; }
+form select.error { border: 1px solid #f00; }
+form label.error { float: none; color: #f00; font-size: 11px; display: block; text-align: left; font-weight: bold; }
+
+.stdform p, .stdform div.par { margin: 20px 0; }
+.stdform div.par { overflow: hidden; }
+.stdform span.field, .stdform div.field { margin-left: 220px; display: block; position: relative; }
+.stdform .formwrapper { display: block; padding-top: 5px; margin-left: 220px; line-height: 25px; }
+.stdform label { float: left; width: 200px; text-align: right; padding: 5px 20px 0 0; }
+
+.stdform button.cancel { background: #eee; color: #666; border: 1px solid #ddd; }
+.stdform button.cancel:hover { background: #ddd; border: 1px solid #ccc; }
+.stdform button.cancel:active { 
+	-moz-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7); -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7); 
+	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+.stdform small.desc { font-size: 11px; color: #999; font-style: italic; display: block; margin: 5px 0 0 220px; }
+.stdform .stdformbutton { margin-left: 220px; }
+
+/*** ANOTHER FORM STYLE ***/
+.stdform2 p, .stdform2 div.par { border: 1px solid #ddd; background: #fcfcfc; margin: 0; border-top: 0; }
+.stdform2 div.terms { border: 0; background: none; }
+.stdform2 p:first-child, .stdform2 div.par:first-child { border-top: 1px solid #ddd; }
+.stdform div.par { overflow: hidden; }
+.stdform2 label { display: inline-block; padding: 20px; vertical-align: top; text-align: left; font-weight: bold; }
+.stdform2 label.error { margin-left: 0; padding: 0; }
+.stdform2 label small { font-size: 11px; color: #999; display: block; font-weight: normal; line-height: 16px; }
+.stdform2 span.field, .stdform2 div.field { margin-left: 220px; display: block; background: #fff; padding: 20px; border-left: 1px solid #ddd; }
+.stdform2 .stdformbutton { margin-left: 0; padding: 20px; background: #fff; }
 
 
 

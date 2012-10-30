@@ -128,6 +128,7 @@
 
 				<?php echo $custom_forms ?>
 
+				<!--
 				<div class="report_optional">
 					<h3><?php echo Kohana::lang('ui_main.reports_optional'); ?></h3>
 					<div class="report_row">
@@ -147,6 +148,7 @@
 					Event::run('ushahidi_action.report_form_optional');
 					?>
 				</div>
+				-->
 			</div>
 		</div>
 				<?php if (count($cities) > 1): ?>
@@ -258,7 +260,8 @@
 					<?php print form::input(array('name'=>'photo_id','type'=>'hidden','id'=>'photo_id'), $i); ?>
 				</div>
      
-                        <br clear="all" /><br />
+    </div> 
+	                   <br clear="all" /><br />
 
 				<div class="rightpanel">
 					<div id="divMap" class="report_map">

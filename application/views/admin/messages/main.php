@@ -13,6 +13,7 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
+<div class="centercontent">
 			<div class="bg">
 				<h2>
 					<?php admin::messages_subtabs($service_id); ?>
@@ -245,7 +246,7 @@
 					</div>
 				</div>
 			</div>
-
+</div>
 <?php
 	}
 ?>
