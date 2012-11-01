@@ -14,39 +14,71 @@
  */
 ?>
 <div class="centercontent">
-			<div class="bg">
-				<h2>
-					<?php admin::messages_subtabs($service_id); ?>
-				</h2>
+
+        <div id="contentwrapper" class="contentwrapper">
+		    
+			<div id="inbox" class="subcontent">
+             
+            <div class="msghead">
+               <ul class="buttonlist"></ul>
 
 <?php
 	Event::run('ushahidi_action.admin_messages_custom_layout');
 	// Kill the rest of the page if this event has been utilized by a plugin
 	if( ! Event::has_run('ushahidi_action.admin_messages_custom_layout')){
 ?>
+			<ul class="msghead_menu">
+				<li class="marginleft5"><button class="stdbtn">Inbox</button></li>
+                <li class="marginleft5"><button class="stdbtn">Outbox</button></li>
+                <li class="marginleft5"><button class="stdbtn btn_lime">Verify</button></li>
+                <li class="marginleft5"><button class="stdbtn btn_blue">Publish</button></li>
+                       
+                <li class="marginleft5"><button class="stdbtn btn_yellow">Amplify</button></li>                 
+                <li class="marginleft5"><button class="stdbtn btn_orange">Spam</button></li>
+                <li class="marginleft5"><button class="stdbtn btn_red">Delete</button></li>
+                <li class="marginleft5"><select class="radius3">
+					<option value="">Filter Messages</option>
+                    <option value="">Verified</option>
+                    <option value="">Published</option>
+                    <option value="">Amplified</option>
+                    <option value="">Spammed</option>
+                    </select>
+				</li>	
+                <li class="marginleft5"><select class="radius3">
+					<option value="">Show All Message Types</option>
+                    <option value="">Tweets</option>
+                    <option value="">SMS</option>
+                    <option value="">Web Form</option>
+                    <option value="">Email</option>
+                    </select>
+				</li>	
+                <li class="right"><a class="next"></a></li>
+                <li class="right"><a class="prev prev_disabled"></a></li>
+                <li class="right"><span class="pageinfo">1-10 of 2,139</span></li>
+			 </ul>
+            
+				<span class="clearall"></span>
+            </div><!--msghead-->
 
-				<!-- tabs -->
-				<div class="tabs">
-					<!-- tabset -->
-					<ul class="tabset">
-						<li><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=1" <?php if ($type == '1') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.inbox');?></a></li>
-						<?php
-						if ($service_id == 1)
-						{
-							?><li><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=2" <?php if ($type == '2') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.outbox');?></a></li><?php
-						}
-						?>
-						<?php if ($type == '1')
-						{ ?>
-							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-							<li><a href="?type=<?php echo $type ?>&level=0" <?php if ($level == '0') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.all');?> (<?php echo $count_all; ?>)</a></li>
-							<li><a href="?type=<?php echo $type ?>&level=4" <?php if ($level == '4') echo "class=\"active2\""; ?>>Trusted (<?php echo $count_trusted; ?>)</a></li>
-							<li><a href="?type=<?php echo $type ?>&level=2" <?php if ($level == '2') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.spam');?> (<?php echo $count_spam; ?>)</a></li>
-						<?php } ?>
-						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-						<li><a href="<?php echo
+						
+				<li><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=1" <?php if ($type == '1') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.inbox');?></a></li>
+				<?php
+				if ($service_id == 1)
+				{
+				?><li><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=2" <?php if ($type == '2') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.outbox');?></a></li><?php
+				}
+				?>
+				<?php if ($type == '1')
+				{ ?>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+				<li><a href="?type=<?php echo $type ?>&level=0" <?php if ($level == '0') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.all');?> (<?php echo $count_all; ?>)</a></li>
+				<li><a href="?type=<?php echo $type ?>&level=4" <?php if ($level == '4') echo "class=\"active2\""; ?>>Trusted (<?php echo $count_trusted; ?>)</a></li>
+				<li><a href="?type=<?php echo $type ?>&level=2" <?php if ($level == '2') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.spam');?> (<?php echo $count_spam; ?>)</a></li>
+				<?php } ?>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+				<li><a href="<?php echo
 						url::site()."admin/messages/reporters/index/".$service_id; ?>">Reporters(<?php echo $count_reporters; ?>)</a></li>
-					</ul>
+			</ul>
 					<!-- tab -->
 					<div class="tab">
 						<ul>
