@@ -284,12 +284,14 @@ div.search-form ul li{
 }
 
 div.search-form input.text{
-    padding: 2px 0px 2px 0px;
-    border: #9E9E9E 1px solid;
-    margin: 0;
-    background: #EEEEEE;
-    width: 160px;
-    font-size: 13px;
+    background: none repeat scroll 0 0 #EEEEEE;
+    border: 0 none;
+    border-radius: 3px 0 0 3px;
+    float: left;
+    font: bold 15px 'lucida sans','trebuchet MS','Tahoma';
+    height: 20px;
+    padding: 10px 5px;
+    width: 230px;
 }
 
 div.search-form input.searchbtn{
@@ -411,7 +413,8 @@ a.share{
 
 /* Map */
 div.map {
-    border: #999 1px solid;
+    border: 1px solid #D5D5D5;
+    box-shadow: 0 0 0 1px #FCFCFC inset, 0 1px 1px #D5D5D5;
     width: 573px;
     height: 366px;
     position:relative;
@@ -1154,8 +1157,17 @@ label.error {
     display: block;
 }
 .text {
-    padding:3px 7px;
-    border:1px #ccc solid;
+	background: none repeat scroll 0 0 #FCFCFC;
+	border: 1px solid #CCCCCC;
+	border-radius: 2px 2px 2px 2px;
+	box-shadow: 0 1px 3px #DDDDDD inset;
+	color: #666666;
+	vertical-align: middle;
+	width: 85%;
+	padding-top: 10px;
+	padding-right: 5px;
+	padding-bottom: 10px;
+	padding-left: 5px;
 }
 .textarea {
     padding:7px 7px 3px 7px;
@@ -1176,14 +1188,25 @@ label.error {
     width:100px;
 }
 .btn_submit {
-    margin: 20px 20px 0 0;
-    padding: 8px 10px;
-    color: white;
-    background-color:#368c00;
-    font-size:14px;
-    cursor:pointer;    
-    border: 0;
+ background: -moz-linear-gradient(center top , #96C161 0%, #609C3D 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #68A341;
+    box-shadow: 0 1px 2px 0 #A4CA6C inset;
+	border-radius: 4px;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
 }
+.btn_submit:hover {
+   border-top-color: #739645;
+   background: #739645;
+   color: #f2f2f2;
+   }
+.btn_submi:active {
+   border-top-color: #58b334;
+   background: #58b334;
+   }
 .btn_find {
     margin:0;
     padding: 5px 10px 6px 10px;
@@ -1470,7 +1493,7 @@ a.show-more {
     overflow:hidden;
     margin:50px 0 0;
     padding: 15px;
-    border: 1px solid #c2c2c2;
+    border: 1px solid #ddd;
 }
 
 .feed .holder .box {
@@ -1813,10 +1836,10 @@ div.green-box ul, div.red-box ul{
 /*--Alerts Messages--*/
 .alert_response, .thanks_msg {
     margin:10px 15px 10px 15px;
-    border:2px #ccc solid;
-    background-color:#fff;
     padding: 15px;
     font:14px/17px Arial, Helvetica, sans-serif;
+	color: #70892B;
+	text-shadow: 0 1px rgba(255, 255, 255, 0.2);
 }
 .alert_confirm {
     margin:10px 0 0 0;

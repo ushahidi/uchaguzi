@@ -24,7 +24,7 @@ class Tools_Controller extends Main_Controller {
 	 * Path to the parent view for the pages in the admin console
 	 * @var string
 	 */
-	public $template = 'admin/layout';
+	//public $template = 'admin/layout';
 
 	/**
 	 * Cache instance

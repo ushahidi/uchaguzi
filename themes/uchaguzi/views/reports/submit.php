@@ -259,9 +259,22 @@
 
 					<?php print form::input(array('name'=>'photo_id','type'=>'hidden','id'=>'photo_id'), $i); ?>
 				</div>
+				<div class="report_row">
+					<h4>
+						<?php echo Kohana::lang('ui_main.reports_location_name'); ?> 
+						<span class="required">*</span><br />
+						<span class="example"><?php echo Kohana::lang('ui_main.detailed_location_example'); ?></span>
+					</h4>
+					<?php print form::input('location_name', $form['location_name'], ' class="text long"'); ?>
+				</div>
+
+									
+				<div class="report_row">
+					<input name="submit" type="submit" value="<?php echo Kohana::lang('ui_main.reports_btn_submit'); ?>" class="btn_submit" /> 
+				</div>
+
      
     </div> 
-	                   <br clear="all" /><br />
 
 				<div class="rightpanel">
 					<div id="divMap" class="report_map">
@@ -318,19 +331,6 @@
 					</div>
 				</div>
 				<?php Event::run('ushahidi_action.report_form_location', $id); ?>
-				<div class="report_row">
-					<h4>
-						<?php echo Kohana::lang('ui_main.reports_location_name'); ?> 
-						<span class="required">*</span><br />
-						<span class="example"><?php echo Kohana::lang('ui_main.detailed_location_example'); ?></span>
-					</h4>
-					<?php print form::input('location_name', $form['location_name'], ' class="text long"'); ?>
-				</div>
-
-									
-				<div class="report_row">
-					<input name="submit" type="submit" value="<?php echo Kohana::lang('ui_main.reports_btn_submit'); ?>" class="btn_submit" /> 
-				</div>
 			</div>
 		</div>
 		<?php print form::close(); ?>
