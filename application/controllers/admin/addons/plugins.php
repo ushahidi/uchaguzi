@@ -30,7 +30,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Plugins_Controller extends Admin_Controller {
+class Plugins_Controller extends Tools_Controller {
 	
 	function __construct()
 	{

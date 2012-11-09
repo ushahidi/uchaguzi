@@ -13,6 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
+<div class="centercontent">
 <div class="bg">
 	<h2><?php echo $title; ?> 
 		<a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.hit_summary');?></a> 
@@ -35,4 +36,5 @@
 		?>
 	</div>
 	
+</div>
 </div>

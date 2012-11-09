@@ -13,6 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
+<div class="centercontent">
 			<div class="bg">
 				<h2><?php echo $title; ?> 
 					<a href="<?php echo url::base() . 'admin/addons/plugins' . '" class="active">' . Kohana::lang('ui_main.plugins') . '</a>' ?>
@@ -146,3 +147,4 @@
 					</div>
 				<?php print form::close(); ?>
 			</div>
+</div>
