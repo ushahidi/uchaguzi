@@ -14,6 +14,7 @@ $lang = array(
 'select_item' => 'To select an item, just click the thumbnail.',
 'image' => 'Images',
 'video' => 'Videos',
+'news' => 'News',
 'audio' => 'Audios',
 'document' => 'Documents',
 'showing' => 'Showing',
@@ -24,6 +25,7 @@ $lang = array(
 'amplified_reports' => 'Amplified Reports',
 'flagged_reports' => 'Flagged Reports',
 'timeline' => 'Timeline',
-'tools' => 'Tools'
+'tools' => 'Tools',
+'loading_media' => 'Loading Media'
 );
 ?>

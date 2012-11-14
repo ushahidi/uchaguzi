@@ -390,7 +390,7 @@
 				if (deSelectedFilters.length > 0)
 				{
 					var temp = [];
-					for (var i = 0; i<deSelectedFilters.length; i++)
+					for (var i = 0; i < deSelectedFilters.length; i++)
 					{
 						if (deSelectedFilters[i] != $(this).attr("id"))
 						{
