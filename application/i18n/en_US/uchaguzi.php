@@ -8,7 +8,6 @@ $lang = array(
 'electoral_process' => 'Electoral Process',
 'voting_process' => 'Voting Process',
 'view_all_reports' => 'View All Reports',
-'header_title' => 'Header Title',
 'media' => 'Media',
 'gallery' => 'Gallery',
 'select_item' => 'To select an item, just click the thumbnail.',
@@ -27,5 +26,7 @@ $lang = array(
 'timeline' => 'Timeline',
 'tools' => 'Tools',
 'loading_media' => 'Loading Media'
+'header_title' => 'Header Title', 
+'timeline' => 'Timeline'
 );
 ?>

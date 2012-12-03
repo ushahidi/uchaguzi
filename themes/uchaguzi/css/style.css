@@ -1641,6 +1641,63 @@ a.btn_yellow:hover { opacity: 1; color: #fff; border-color: #ebb205; }
 .dataTables_paginate .paginate_button:hover { background: #ddd; border: 1px solid #ccc; cursor: pointer; color: #333; }
 
 
+/* TIMELINE */
+time,.time{
+	font-size: 10px;
+	color:#999;
+	border-bottom: 1px dashed #DDDDDD;
+	min-width:250px;
+	height:20px;
+	padding-bottom: 5px;
+}
+#timeline{
+	width:600px;
+	list-style-type: none;
+	margin: 0 auto;
+	padding:20px;
+	margin-bottom:10px;
+	background-image: url(../images/timeline.png);
+	background-repeat: repeat-y;
+	background-position: center top;
+}
+
+#timeline li{
+    width:275px; -moz-border-radius:2px; border-radius:2px; webkit-border-radius:2px; border:1px solid #cccccc; padding:5px;background-color:#FFF;
+}
+
+#timeline li:nth-of-type(odd){
+    clear: both;float:right; 
+}
+
+#timeline li:nth-of-type(odd), #timeline li:nth-of-type(even){
+    margin:-10px 0 20px 0;
+}
+#timeline li:nth-of-type(even) .corner{
+	position:absolute;
+	display:block;
+	margin-left:280px;
+	width:20px;
+	height:15px;
+	background-image: url(../images/right.png);
+}
+#timeline li:nth-of-type(odd) .corner{
+	position:absolute;
+	display:block;
+	margin-left:-25px;
+	width:20px;
+	height:15px;
+	background-image: url(../images/left.png);
+}
+#timeline li .avatar img {
+	padding: 7px;
+	float: left;
+}
+#timeline li title a {
+	font-weight: bold;
+}
+
+
+
 h1{
     font-size: 150%;
     color: #111;
