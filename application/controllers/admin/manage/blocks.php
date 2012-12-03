@@ -14,7 +14,7 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 
-class Blocks_Controller extends Admin_Controller
+class Blocks_Controller extends Tools_Controller
 {
 	private $_registered_blocks;
 

@@ -29,7 +29,7 @@ define('FEED_TYPE_VIDEO', 'video');
  */
 define('FEED_TYPE_PHOTO', 'photo');
 
-class Manage_Controller extends Admin_Controller
+class Manage_Controller extends Tools_Controller
 {
 
 	public function __construct()

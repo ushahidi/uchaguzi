@@ -13,7 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Actions_Controller extends Admin_Controller
+class Actions_Controller extends Tools_Controller
 {
 
 	function __construct()

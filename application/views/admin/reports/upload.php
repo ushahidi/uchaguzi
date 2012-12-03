@@ -14,7 +14,7 @@
  */
 ?>
 
-<div class="bg">
+<div class="centercontent">
 	<h2>
 		<?php admin::reports_subtabs("upload"); ?>
 	</h2>

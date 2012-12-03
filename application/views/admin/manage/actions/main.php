@@ -218,7 +218,7 @@ $(document).ready(function() {
 });
 </script>
 
-			<div class="bg">
+			<div class="centercontent">
 				<h2>
 					<?php admin::manage_subtabs("actions"); ?>
 				</h2>

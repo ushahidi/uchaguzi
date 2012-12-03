@@ -13,7 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 
-class Alerts_Controller extends Admin_Controller {
+class Alerts_Controller extends Tools_Controller {
 
 	public function __construct()
 	{

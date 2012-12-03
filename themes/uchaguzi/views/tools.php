@@ -1,16 +1,20 @@
 <div class="centercontent">
-    
-        <div class="pageheader">
-		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
-            <ul class="hornav">
-			<?php foreach ($main_tabs as $page => $tab_name): ?>
-			<li>
-				<a href="<?php echo url::site(); ?>admin/<?php echo $page; ?>" <?php if($this_page==$page) echo 'class="active"' ;?>><?php echo $tab_name; ?></a>
-			</li>
-			<?php endforeach; ?>
-            </ul>
-        </div><!--pageheader-->
-        
+	<div class="pageheader">
+	<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+		<ul class="hornav">
+		<?php foreach ($main_tabs as $page => $tab_name): ?>
+		<li>
+			<a href="<?php echo url::site(); ?>admin/<?php echo $page; ?>" <?php if($this_page==$page) echo 'class="active"' ;?>><?php echo $tab_name; ?></a>
+		</li>
+		<?php endforeach; ?>
+		<?php foreach ($main_right_tabs as $page => $tab_name): ?>
+		<li>
+			<a href="<?php echo url::site(); ?>admin/<?php echo $page; ?>" <?php if($this_page==$page) echo 'class="active"' ;?>><?php echo $tab_name; ?></a>
+		</li>
+		<?php endforeach; ?>
+
+		</ul>
+	</div><!--pageheader-->
         <div id="contentwrapper" class="contentwrapper">	
 			<div id="updates" class="subcontent"> 
                   <div class="notibar announcement">

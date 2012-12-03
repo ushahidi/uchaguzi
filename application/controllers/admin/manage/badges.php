@@ -14,7 +14,7 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Badges_Controller extends Admin_Controller
+class Badges_Controller extends Tools_Controller
 {
 
 	function __construct()

@@ -14,7 +14,7 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Externalapps_Controller extends Admin_Controller {
+class Externalapps_Controller extends Tools_Controller {
 
 	function index()
 	{

@@ -1,5 +1,3 @@
-
- 
   <div class="bodywrapper">    
     <div class="centercontent">
     

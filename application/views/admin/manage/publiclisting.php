@@ -1,4 +1,4 @@
-<div class="bg">
+<div class="centercontent">
 	
 	<h2>
 		<?php admin::manage_subtabs("publiclisting"); ?>

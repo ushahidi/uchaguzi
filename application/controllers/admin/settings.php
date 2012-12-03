@@ -13,7 +13,7 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Settings_Controller extends Admin_Controller {
+class Settings_Controller extends Tools_Controller {
 
 	/**
 	 * @var Cache

@@ -137,6 +137,33 @@ class Main_Controller extends Template_Controller {
 			$this->template->header->header_nav->loggedin_user = Auth::instance()->get_user();
 		}
 		$this->template->header->header_nav->site_name = Kohana::config('settings.site_name');
+
+
+		//Admin stuff 
+		// Javascript Header
+		$this->template->header->map_enabled = FALSE;
+		$this->template->header->datepicker_enabled = FALSE;
+		$this->template->header->flot_enabled = FALSE;
+		$this->template->header->treeview_enabled = FALSE;
+		$this->template->header->protochart_enabled = FALSE;
+		$this->template->header->colorpicker_enabled = FALSE;
+		$this->template->header->editor_enabled = FALSE;
+		$this->template->header->tablerowsort_enabled = FALSE;
+		$this->template->header->json2_enabled = FALSE;
+		$this->template->header->js = '';
+		$this->template->header->form_error = FALSE;
+
+		// Initialize some variables for raphael impact charts
+		$this->template->header->raphael_enabled = FALSE;
+		$this->template->header->impact_json = '';
+
+		// Generate main tab navigation list.
+		$this->template->header->main_tabs = admin::main_tabs();
+
+		// Generate sub navigation list (in default layout, sits on right side).
+		$this->template->header->main_right_tabs = admin::main_right_tabs($this->user);
+		
+		//end of Admin stuff
 	}
 
 	/**

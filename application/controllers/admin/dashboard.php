@@ -13,7 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Dashboard_Controller extends Admin_Controller
+class Dashboard_Controller extends Tools_Controller
 {
 	public function __construct()
 	{
@@ -28,10 +28,12 @@ class Dashboard_Controller extends Admin_Controller
 		{
 			url::redirect('admin/upgrade/database');
 		}
-		
-		$this->template->content = new View('admin/dashboard/main');
+			
+		//$this->template->content = new View('admin/dashboard/main');
+		$this->template->content = new View('tools');
 		$this->template->content->title = Kohana::lang('ui_admin.dashboard');
-		$this->template->this_page = 'dashboard';
+		//$this->template->this_page = 'dashboard';
+		$this->template->content->this_page = '';
 
 		// Retrieve Dashboard Count...
 
@@ -41,6 +43,11 @@ class Dashboard_Controller extends Admin_Controller
 		// Total Unapproved Reports
 		$this->template->content->reports_unapproved = ORM::factory('incident')->where('incident_active', '0')->count_all();
 
+		// Total approved Reports
+		$this->template->content->reports_approved = ORM::factory('incident')->where('incident_active', '1')->count_all();
+
+		// Total verified Reports
+		$this->template->content->reports_verified = ORM::factory('incident')->where('incident_verified', '1')->count_all();
 		// Total Unverified Reports
 		$this->template->content->reports_unverified = ORM::factory('incident')->where('incident_verified', '0')->count_all();
 
@@ -133,6 +140,13 @@ class Dashboard_Controller extends Admin_Controller
 		{
 			$this->template->content->security_info = View::factory('admin/security_info');
 		}
+		
+		//Generate main tab navigation list
+		$this->template->content->main_tabs = admin::main_tabs();
+
+		// Generate sub navigation list (in default layout, sits on right side).
+		$this->template->content->main_right_tabs = admin::main_right_tabs($this->user);
+
 		
 	}
 }

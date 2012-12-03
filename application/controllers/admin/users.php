@@ -13,7 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Users_Controller extends Admin_Controller {
+class Users_Controller extends Tools_Controller {
 
 	private $display_roles = FALSE;
 
