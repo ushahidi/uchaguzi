@@ -25,7 +25,7 @@ $lang = array(
 'flagged_reports' => 'Flagged Reports',
 'timeline' => 'Timeline',
 'tools' => 'Tools',
-'loading_media' => 'Loading Media'
+'loading_media' => 'Loading Media',
 'header_title' => 'Header Title', 
 'timeline' => 'Timeline'
 );
