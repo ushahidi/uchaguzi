@@ -27,88 +27,25 @@
 	
 	$(document).ready(function() {
 		
-		// 	Events for toggling the report filters
-		addToggleReportsFilterEvents();
-		
-		// Attach the "Filter Reports" action
-		attachFilterReportsAction();
-		
-		// When all the filters are reset
+		// When image filter is clicked
 		$("#filter_link_media_1").click(function(){
+
+			var type = $("#fl-media").val();
+
+			alert(type); exit();
 		
 			// Fetch all images
-			attachFilterReportsAction();
+			attachFilterMediaAction();
 		});
 
 
 	});
 	
-
-	function addToggleReportsFilterEvents()
-	{
-		// Checks if a filter exists in the list of deselected items
-		filterExists = function(itemId) {
-			if (deSelectedFilters.length == 0)
-			{
-				return false;
-			}
-			else
-			{
-				for (var i=0; i < deSelectedFilters.length; i++)
-				{
-					if (deSelectedFilters[i] == itemId)
-					{
-						return true;
-					}
-				}
-				return false;
-			}
-		};
-		
-		// toggle highlighting on the filter lists
-		$(".filter-list li a").toggle(
-			function(){
-				$(this).addClass("selected");
-				
-				// Check if the element is in the list of de-selected items and remove it
-				if (deSelectedFilters.length > 0)
-				{
-					var temp = [];
-					for (var i = 0; i < deSelectedFilters.length; i++)
-					{
-						if (deSelectedFilters[i] != $(this).attr("id"))
-						{
-							temp.push(deSelectedFilters[i]);
-						}
-					}
-					
-					deSelectedFilters = temp;
-				}
-			},
-			function(){
-				if ($(this).hasClass("selected"))
-				{
-					elementId = $(this).attr("id");
-					// Add the id of the deselected filter
-					if ( ! filterExists(elementId))
-					{
-						deSelectedFilters.push(elementId);
-					}
-					
-					// Update the parameter value for the deselected filter
-					removeDeselectedReportFilter(elementId);
-					
-				}
-				
-				$(this).removeClass("selected");
-			}
-		);
-	}
 	
 	/**
 	 * Gets the reports using the specified parameters
 	 */
-	function fetchReports()
+	function fetchMedia()
 	{
 		
 		var loadingURL = "<?php echo url::file_loc('img').'media/img/loading_g.gif'; ?>";
@@ -142,10 +79,12 @@
 	}
 	
 	/**
-	 * Adds an event handler for the "Filter reports" button
+	 * Adds an event handler for the "Filter media" button
 	 */
-	function attachFilterReportsAction()
+	function attachFilterMediaAction(media_type)
 	{
+		
+
 		$("#filter_link_media_1").click(function(){
 			
 			// 
@@ -161,9 +100,8 @@
 			{
 				urlParameters["m"] = mediaTypes;
 			}
-			
-			// Fetch the reports
-			fetchReports();
+			// Fetch the media
+			fetchMedia();
 			
 		});
 	}
