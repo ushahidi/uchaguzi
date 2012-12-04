@@ -1,4 +1,6 @@
 default:
-  context:
-    parameters:
-      base_url: http://localhost/uchaguzi/
+    extensions:
+        Behat\MinkExtension\Extension:
+            base_url: http://localhost/uchaguzi
+            goutte: ~
+            selenium2: ~
