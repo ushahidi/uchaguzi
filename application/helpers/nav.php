@@ -114,7 +114,7 @@ class nav_Core {
 	*/
 
 	
-	public function header_tabs($this_page)
+	public function header_tabs($this_page, $user = FALSE)
 	{
 		$menu = "";
 		
@@ -139,9 +139,17 @@ class nav_Core {
 		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
 	
 		//TOOLS
-			$menu .= "<li><a href=\"".url::site()."tools\" ";
-			$menu .= ($this_page == 'tools') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('uchaguzi.tools')."</a></li>";
+			if(!$user)
+			{
+				$menu .= (Auth::instance()->has_permission('tools', $user));
+				$menu .="<li><a href=\"".url::site()."tools\" ";
+				$menu .= ($this_page == 'tools') ? " class=\"active\"" : "";
+				$menu .= ">".Kohana::lang('uchaguzi.tools')."</a></li>";
+			}
+			else
+			{
+				//hide the tools tab
+			}
 
 		echo $menu;
 
