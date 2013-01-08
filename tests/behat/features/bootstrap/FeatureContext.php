@@ -6,6 +6,7 @@ use Behat\Behat\Context\ClosuredContextInterface,
     Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\PyStringNode,
     Behat\Gherkin\Node\TableNode;
+use Behat\MinkExtension\Context\MinkContext;
 
 //
 // Require 3rd-party libraries here:
@@ -17,7 +18,7 @@ use Behat\Gherkin\Node\PyStringNode,
 /**
  * Features context.
  */
-class FeatureContext extends BehatContext
+class FeatureContext extends MinkContext
 {
     /**
      * Initializes context.
@@ -30,15 +31,12 @@ class FeatureContext extends BehatContext
         // Initialize your context here
     }
 
-//
-// Place your definition and hook methods here:
-//
-//    /**
-//     * @Given /^I have done something with "([^"]*)"$/
-//     */
-//    public function iHaveDoneSomethingWith($argument)
-//    {
-//        doSomethingWith($argument);
-//    }
-//
+    /**
+     * @Given /^I follow  "([^"]*)"$/
+     */
+    public function iFollow()
+    {
+        $this->clickLink('Modify Date');
+    }
+
 }

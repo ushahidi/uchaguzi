@@ -1,18 +1,18 @@
                     <div class="filemgr_content">
-						
+                        
                         <small>
-                        	<strong>
-                            	<em><?php echo Kohana::lang('uchaguzi.tips'); ?></em>
+                            <strong>
+                                <em><?php echo Kohana::lang('uchaguzi.tips'); ?></em>
                             </strong>
                         </small>
                         
                         <br /><br />
-                    	
+                        
                         <ul class="listfile" id="media-content">
-                            <?php foreach ($media as $image) { ?>
+                            <?php foreach ($media as $image) { 
 
-                                <?php $media_type = $image->media_type;
-                                      $media_name = $image->media_link;
+                                $media_type = $image->media_type;
+                                $media_name = $image->media_link;
                                 
                                 ?>
 

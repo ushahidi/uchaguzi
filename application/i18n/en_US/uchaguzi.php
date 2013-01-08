@@ -27,6 +27,8 @@ $lang = array(
 'tools' => 'Tools',
 'loading_media' => 'Loading Media',
 'header_title' => 'Header Title', 
-'timeline' => 'Timeline'
+'timeline' => 'Timeline',
+'all'=>'All',
+'browse_files'=>'Browse Files'
 );
 ?>
