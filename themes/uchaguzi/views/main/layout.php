@@ -18,12 +18,10 @@
 					blocks::render_news(); 
 				?>
 			</div><!-- widgetbox -->
-             <div class="widgetcontent">
-                        	  
-            </div><!--widgetcontent-->
                         
         </div><!--two_third dashboard_left -->
                     
+        <!--<div class="one_third last dashboard_right">-->
         <div class="one_third last dashboard_right">
 		<div class="widgetbox">
             <div class="title">
@@ -31,6 +29,8 @@
 				<div class="widgetcontent">
                     <div id="accordion" class="accordion">
                     <h3><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
+
+					<!--<ul id="category_switch" class="categorylist">-->
 
 					<ul id="category_switch" class="categorylist">
 				<?php
