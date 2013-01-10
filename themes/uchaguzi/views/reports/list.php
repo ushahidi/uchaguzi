@@ -20,41 +20,7 @@
         <div class="three_third dashboard_left">
                 
             <div class="two_third widgetbox">
-                <div class="title">
-                	<h3> reports</h3></div>
-          			<div class="widgetoptions">
-            			<div class="right"> 
-            			<ul class="pagination">
-                        	<li class="previous"><a href="#" class="prev" id="page_<?php echo $previous_page; ?>"><?php echo Kohana::lang('ui_main.previous'); ?></a></li>
-                    		<li><?php echo $pagination; ?> </li>
-							<li><?php //echo $stats_breadcrumb; ?></li>
-							<li class="next"><a href="#" class="next" id="page_<?php echo $next_page; ?>"><?php echo Kohana::lang('ui_main.next'); ?></a></li>
-                       
-                    	</ul>
-                   
-                    </div>
-                    
-                    <?php //foreach ($services as $id => $name): ?>
-						<?php
-						/*
-							$item_class = "";
-								if ($id == 1) $item_class = "ic-sms";
-								if ($id == 2) $item_class = "ic-email";
-								if ($id == 3) $item_class = "ic-twitter";
-						*/
-						?>
-							<a href="#" id="filter_link_mode_<?php //echo ($id + 1); ?>">
-								<span class="item-icon <?php //echo $item_class; ?>">&nbsp;</span>
-							</a>
-					<?php //endforeach; ?>
-					
-                                <a class="current" href=""><img src="themes/uchaguzi/images/icons/list.png" width="16" height="16" /></a>
-                                <a href=""><img src="themes/uchaguzi/icons/globe.png" width="16" height="16" alt="globe" /></a>
-                                <a href=""><img src="themes/uchaguzi/images/icons/mails.png" width="16" height="16" alt="mail" /></a>
-                                <a href=""><img src="themes/uchaguzi/images/icons/phone.png" width="16" height="16" alt="phone" /></a>
-                                <a href=""><img src="themes/uchaguzi/images/icons/twitter.png" width="16" height="16" alt="phone" /></a>
-                                  <a href=""><img src="themes/uchaguzi/images/icons/web.png" width="16" height="16" alt="web" /></a>
-          		</div>
+                <div class="title"><h3> reports</h3></div>
             <div class="widgetcontent userlistwidget nopadding">
 			<?php
 				foreach ($incidents as $incident)
