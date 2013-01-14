@@ -1343,7 +1343,7 @@ VALUES
   (4,'site_email',NULL),
   (5,'site_key',NULL),
   (6,'site_language','en_US'),
-  (7,'site_style','default'),
+  (7,'site_style','uchaguzi'),
   (8,'site_timezone',NULL),
   (9,'site_contact_page','1'),
   (10,'site_help_page','1'),
