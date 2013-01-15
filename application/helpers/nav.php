@@ -143,11 +143,10 @@ class nav_Core {
 		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
 	
 		//TOOLS
-			if(!$user)
+			if(Auth::instance()->has_permission('tools', $user))
 			{
-				$menu .= (Auth::instance()->has_permission('tools', $user));
 				$menu .="<li><a href=\"".url::site()."tools\" ";
-				$menu .= ($this_page == 'tools') ? " class=\"active\"" : "";
+				//$menu .= ($this_page == 'tools') ? " class=\"active\"" : "";
 				$menu .= ">".Kohana::lang('uchaguzi.tools')."</a></li>";
 			}
 			else

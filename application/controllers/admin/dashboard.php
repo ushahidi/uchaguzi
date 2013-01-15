@@ -29,10 +29,8 @@ class Dashboard_Controller extends Tools_Controller
 			url::redirect('admin/upgrade/database');
 		}
 			
-		//$this->template->content = new View('admin/dashboard/main');
 		$this->template->content = new View('tools');
 		$this->template->content->title = Kohana::lang('ui_admin.dashboard');
-		//$this->template->this_page = 'dashboard';
 		$this->template->content->this_page = '';
 
 		// Retrieve Dashboard Count...
