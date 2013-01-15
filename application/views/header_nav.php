@@ -1,7 +1,3 @@
-<div class="right">
-    <div class="notification">
-        <a class="count" href="ajax/notifications.html"><span>10</span></a>
-    </div>
 	<div class="userinfo">
 		<?php if($loggedin_user != FALSE){ ?>
 			<a href="<?php echo url::site().$loggedin_role;?>"><img src="<?php echo members::gravatar($loggedin_user->email,20); ?>" width="20" />
@@ -69,5 +65,3 @@
 
         </div><!--userdata-->
     </div><!--userinfodrop-->
-</div><!--right-->
-
