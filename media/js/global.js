@@ -3,6 +3,12 @@ jQuery(document).ready(function( $ ) {
 		$('nav#second-level-menu li a .label').fadeToggle('fast');
 		$('.body-content-area').toggleClass('collapse-second-level-menu');		
 		e.preventDefault();
+	});
+	
+	$('a.toggle-user-summary').live('click', function(e) {
+		$('.user-tools article.user-summary').fadeToggle('fast');
+		$('.user-tools').toggleClass('show-user-summary');
+		e.preventDefault();
 	});	
 
 

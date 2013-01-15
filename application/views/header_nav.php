@@ -1,9 +1,23 @@
 	<div class="userinfo">
 		<?php if($loggedin_user != FALSE){ ?>
-			<a href="<?php echo url::site().$loggedin_role;?>"><img src="<?php echo members::gravatar($loggedin_user->email,20); ?>" width="20" />
+		<a href="<?php echo url::site().$loggedin_role;?>" class="toggle-user-summary">
+			<div class="indicator"><span class="open icon-plus"></span><span class="close icon-minus"></span></div>
+			<img src="<?php echo members::gravatar($loggedin_user->email,20); ?>" width="20" />
 			<span class="header_nav_label"><?php echo $loggedin_user->username; ?></span> 
-			</a>
-
+		</a>
+		<article class="user-summary">
+			<div class="user-links">
+				<h1><?php echo $loggedin_user->username; ?></h1>
+				<p>email address</p>
+				<ul>
+					<li><a href="<?php echo url::site().$loggedin_role;?>">Edit profile</a></li>
+					<li><a href="#">Tools</a></li>
+					<li><a href="#">Help</a></li>
+					<li><a href="#">Sign out</a></li>
+				</ul>
+			</div>		
+			<img src="<?php echo members::gravatar($loggedin_user->email,40); ?>" class="avatar" />
+		</article>	
      </div><!--userinfo-->
             
     <div class="userinfodrop">
