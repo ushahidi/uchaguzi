@@ -119,7 +119,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"]:before {
 */
-.icon-search:before, .icon-pencil:before, .icon-pictures:before, .icon-calendar:before, .icon-graph:before, .icon-lifebuoy:before, .icon-video:before, .icon-info:before, .icon-arrow-down:before, .icon-arrow-right:before, .icon-arrow-left:before, .icon-arrow-right-2:before, .icon-twitter:before, .icon-mail:before, .icon-mobile:before, .icon-plus:before, .icon-minus:before {
+.icon-search:before, .icon-pencil:before, .icon-pictures:before, .icon-calendar:before, .icon-graph:before, .icon-lifebuoy:before, .icon-video:before, .icon-info:before, .icon-arrow-down:before, .icon-arrow-right:before, .icon-arrow-left:before, .icon-arrow-right-2:before, .icon-twitter:before, .icon-mail:before, .icon-mobile:before, .icon-plus:before, .icon-minus:before, .icon-list:before, .icon-location:before, .icon-publish:before, .icon-flag:before, .icon-checkmark-circle:before, .icon-megaphone:before {
 	font-family: 'uchaguzi';
 	speak: none;
 	font-style: normal;
@@ -177,6 +177,36 @@ you can use the generic selector below, but it's slower:
 }
 .icon-minus:before {
 	content: "\e010";
+}
+.icon-list:before {
+	content: "\e011";
+}
+.icon-location:before {
+	content: "\e012";
+}
+.icon-publish:before {
+	content: "\e013";
+}
+.icon-flag:before {
+	content: "\e014";
+}
+.icon-checkmark-circle:before {
+	content: "\e015";
+}
+.icon-megaphone:before {
+	content: "\e016";
+}
+
+h3.sub-category {
+   display: inline-block;
+   color: #444;
+   font-size: 1.2em; 
+   font-weight: normal;
+   font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
+   line-height: 2em;   
+   text-transform: uppercase; 
+   border-bottom: 3px solid rgb(245,72,0);
+   margin-bottom: 1em;   
 }
 
 /* --------------------------- HEADER */
@@ -412,6 +442,10 @@ nav#second-level-menu {
    width: 59.8958333%;
 }
 
+.body-content-area.collapse-second-level-menu #tools-content {
+   width: 95.3125%;
+}
+
 nav#second-level-menu li a {
    display: block;
    color: #444;
@@ -498,6 +532,17 @@ nav#second-level-menu .toggle-second-level-menu a .point-right,
    padding: 1em 0;
 }
 
+#tools-content {
+   float: left;
+   width: 85.4166667%;
+   margin: 0:
+   padding: 1em 0;
+   transition: .3s width ease;
+   -moz-transition: .3s width ease;
+   -webkit-transition: .3s width ease;
+   -o-transition: .3s width ease;
+}
+
 /* --------------------------- VIEW: TABLE */
 
 .view-table {
@@ -560,6 +605,63 @@ article.report .info p.date {
    font-style: italic;
    font-size: 0.9em;
    padding: 0.5em 0;
+}
+
+/* --------------------------- TOOLS */
+
+#tools-content .page-content {
+   border-top: 1px solid #eee;
+}
+
+#tools-content .page-content .shortcuts {
+   float: left;
+   width: 69.2307692%;
+}
+
+#tools-content .page-content .view-summary {
+   float: left;
+   width: 27.5%;
+   margin: 1.25%;
+}
+
+#tools-content article.task {
+   border: 1px solid #eee;
+   margin-bottom: 1em;
+}
+
+#tools-content article.task hgroup {
+   float: left;
+   width: 80%;
+}
+
+#tools-content article.task hgroup h1 {
+   font-weight: normal;
+   font-size: 1.1em;
+	font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
+   text-transform: uppercase;
+   padding: 0.7em 0.5em 0;
+}
+
+#tools-content article.task hgroup h2 {
+   color: #ff4800;
+   font-size: 0.8em;
+   padding: 0.3em 0.7em 0.7em;
+}
+
+#tools-content article.task .total {
+   display: block;
+   float: left;
+   font-weight: normal;
+   font-size: 1.7em;
+	font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
+   text-align: center;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;   
+   width: 20%;
+   border-left: 1px solid #ddd;
+   background: #fcfcfc;
+   padding: 0.7em 0;
 }
 
 /*****  TOP HEADER STYLES *****/
@@ -1151,9 +1253,9 @@ widgetcontent li a:hover {
 /*********************************/
 
 
-.pageheader { padding-top: 20px; background: url(../images/default/noise.white.png); position: relative; }
+.pageheader { background: url(../images/default/noise.white.png); position: relative; }
 .pageheader .pagetitle { 
-	margin: 0 10px; color: #485b79; font-weight: normal; font-size: 28px; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; 
+	padding: 0.5em; color: #444; font-weight: normal; font-size: 2.2em; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; text-transform: uppercase; 
 }
 .pageheader .pagedesc { color: #666; margin: 0 10px; }
 .notab { border-bottom: 1px solid #ddd; padding-bottom: 20px; }
@@ -1163,8 +1265,8 @@ widgetcontent li a:hover {
 /*******************************************/
 
 
-.hornav { list-style: none; margin-top: 15px; border-bottom: 1px solid #ccc; padding: 0 10px; height: 41px; }
-.hornav li { display: inline-block; float: left; margin-right: 5px; }
+.hornav { list-style: none; padding: 0 1em; margin-bottom: -1px;}
+.hornav li { display: inline-block; margin: 0 0.1em; }
 .hornav li a { 
 	display: block; padding: 10px 20px; background: #ccc; color: #fff; font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif; 
 	text-transform: uppercase; font-size: 14px; -moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0; border-radius: 2px 2px 0 0;
@@ -1549,12 +1651,12 @@ time,.time{
 .msgsuccess { border: 1px solid #c1d779; background: #effeb9 url(../images/notifications.png) no-repeat 0 -104px; }
 .msgerror { border: 1px solid #e18b7c; background: #fad5cf url(../images/notifications.png) no-repeat 0 0; }
 .announcement { 
-	background-color: #FCF8E3;
+	background-color: #ffffdf;
     border: 1px solid #FBEED5;
-    border-radius: 4px 4px 4px 4px;
+    border-radius: 2px;
     color: #C09853;
-    margin-bottom: 18px;
-    padding: 12px 35px 12px 44px;
+    margin: 1em;
+    padding: 1em;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 	height: auto;
 }
@@ -1566,55 +1668,45 @@ time,.time{
 
 .shortcuts { list-style: none; }
 .shortcuts li {
+   display: block;
 	float: left;
-	margin-right: 30px;
-	margin-bottom: 20px;
-	width: 120px;
-	height: 120px;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;
+	width: 29.6296296%;
+	text-align: center;
 	background: #eee;
-	padding: 10px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	position: relative;
 	-moz-box-shadow: inset 1px 1px 2px #ccc;
 	-webkit-box-shadow: inset 1px 1px 2px #ccc;
 	box-shadow: inset 1px 1px 2px #ccc;
+   padding: 1.8518519%;
+   margin: 1.8518519%;
 }
 .shortcuts li a { 
-	width: 120px; height: 120px; display: block; background-color: #fff; background-repeat: no-repeat; background-position: center 10px; 
-	border: 1px solid #fff; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px;
-}
-.shortcuts li a:hover { border-color: #FB9337; }
-.shortcuts li a span {
-	text-align: center;
-	display: block;
-	padding-top: 70px;
-	font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
-	text-transform: uppercase;
-	height: 120px;
-	width: 120px;
-	font-size: 14px;
+   display: block;
 	color: #F00;
+	font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
+	text-transform: uppercase;	
+   background-color: #fff; 
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.1);
+	box-shadow: 0 1px 2px rgba(0,0,0,.1);
+   -moz-border-radius: 2px; 
+   -webkit-border-radius: 2px; 
+   border-radius: 2px;
+   padding: 1em;
 }
-.shortcuts li a.stats {
-	font-size: 14px;
-}
-shortcuts ul a.stats {
-	font-size: 14px;
-}
-.shortcuts li a.reports {
-	background-image: url(../images/icons/64/reports.png);
-}
-.shortcuts li a.messages {
-	background-image: url(../images/icons/64/messages.png);
-}
-.shortcuts li a.published { background-image: url(../images/icons/64/published.png); }
-.shortcuts li a.flag { background-image: url(../images/icons/64/flag.png); }
-.shortcuts li a.flagged { background-image: url(../images/icons/64/flagged.png); }
-.shortcuts li a.verified { background-image: url(../images/icons/64/verfied.png); }
-.shortcuts li a.amplified { background-image: url(../images/icons/64/amplified.png); }
 
+.shortcuts li a:hover { border-color: #ddd; }
+.shortcuts li a span {
+   display: block;
+   color: #666;
+   font-size: 40px;
+   padding: 0.5em;
+}
 
 .toplist { list-style: none; }
 .toplist li { 
