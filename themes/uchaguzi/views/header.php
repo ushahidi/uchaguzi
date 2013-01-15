@@ -257,46 +257,35 @@
 <body id="page" class="withvernav">
 
 <div class="bodywrapper">
-    <div class="topheader">
-        <div class="left">
-            <h1 class="logo">
-				<a href="<?php echo url::site();?>"><?php echo $site_name; ?></a>
-			</h1>
-            <span class="slogan"><?php echo $site_tagline; ?></span>
-<!--search-->
-            <div class="search">
-  				<!-- searchform -->
-				<?php echo $search; ?>
-				<!-- / searchform -->
-            </div>
-<!--search-->
-            
-            <br clear="all" />
-            
-        </div><!--left-->
-        
+    <header id="global-header" class="cf">
+		<hgroup class="col_4 cf">
+			<h1 class="logo"><a href="<?php echo url::site();?>"><?php echo $site_name; ?></a></h1>
+			<h2 class="slogan"><?php echo $site_tagline; ?></h2>
+		</hgroup>
 
-	<?php echo $header_nav; ?>
-    </div><!--topheader-->
+		<div class="search col_4">
+			<?php echo $search; ?>
+		</div>        
+
+		<div class="user-tools col_4">
+			<?php echo $header_nav; ?>
+    	</div>
+    </header>
     
-    
-    <div class="header">
-    	<ul class="headermenu">
-			<?php nav::header_tabs($this_page); ?>        
-		</ul>
-        
-        <div class="headerwidget">
-        	
-        </div><!--headerwidget-->
-        
-        
-    </div><!--header-->
-    
-    <div class="vernav2 iconmenu">
+    <nav id="top-level-menu" class="cf">
     	<ul>
-			<?php nav::main_tabs($this_page); ?>        
+    		<?php nav::header_tabs($this_page); ?>
 		</ul>
-        <a class="togglemenu"></a>
-        <br /><br />
-    </div><!--leftmenu-->
-
+        <div class="headerwidget"></div>  
+    </nav>
+    
+    <div class="body-content-area">
+    
+		<nav id="second-level-menu" class="col_2 cf">
+			<ul>
+				<?php nav::main_tabs($this_page); ?>        
+			</ul>
+			<div class="toggle-second-level-menu">
+				<a href="#"><span class="point-left icon-arrow-left"></span><span class="point-right icon-arrow-right-2"></span></a>
+			</div>
+		</nav>

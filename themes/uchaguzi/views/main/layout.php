@@ -1,28 +1,19 @@
 <!-- main body -->
-    <div class="centercontent">
-    
-       <div id="contentwrapper" class="contentwrapper">
-      
-                    
-		<div class="two_third dashboard_left">
-                    
-			<?php echo $div_map;?>                         
-			<div id="slider">
-				<?php echo $div_timeline;?>
-			</div>
+    <div id="primary-content" class="col_6">     
+        <?php echo $div_map;?>                         
 
-			<br clear="all" />     
+		<div id="slider">
+			<?php echo $div_timeline;?>
+		</div>
 
-           <div class="widgetbox">
-				<?php
-					blocks::render_news(); 
-				?>
-			</div><!-- widgetbox -->
-                        
-        </div><!--two_third dashboard_left -->
-                    
-        <!--<div class="one_third last dashboard_right">-->
-        <div class="one_third last dashboard_right">
+	   <div id="latest-news" class="widgetbox">
+			<?php
+				blocks::render_news(); 
+			?>
+		</div><!-- widgetbox -->
+    </div>
+     
+	<div class="col_4">
 		<div class="widgetbox">
             <div class="title">
 			<h3>Filter reports</h3></div>
@@ -134,9 +125,7 @@
                                     
         </div>     
     </div> <!--widgetcontent-->
-        
-		<br clear="all" />
-                    
+                            
     <div class="widgetoptions">
 		<div class="right"><a href="<?php echo url::site() . 'reports/' ?>"><?php echo Kohana::lang('uchaguzi.view_all_reports'); ?></a></div>
 			<a href="<?php echo url::site() . 'reports/submit' ?>"><?php echo Kohana::lang('ui_admin.create_report'); ?></a>

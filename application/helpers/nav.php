@@ -26,19 +26,32 @@ class nav_Core {
 		}
 		
 		// Home
+		/*
 		if( ! in_array('home',$dontshow))
 		{
 			$menu .= "<li><a href=\"".url::site()."main\" ";
 			$menu .= ($this_page == 'home') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('ui_main.home')."</a></li>";
+		 	$menu .= "><i class=\"icon-main\"></i>".Kohana::lang('ui_main.home')."</a></li>";
 		 }
+		 */
+		 
+		// Reports Submit
+		if( ! in_array('reports_submit',$dontshow))
+		{
+			if (Kohana::config('settings.allow_reports'))
+			{
+				$menu .= "<li><a href=\"".url::site()."reports/submit\" ";
+				$menu .= ($this_page == 'reports_submit') ? " class=\"active\"":"";
+			 	$menu .= "><i class=\"icon-pencil\"></i><span class=\"label\">".Kohana::lang('ui_main.submit')."</span></a></li>";
+			}
+		}		 
 
 		// Reports List
 		if( ! in_array('reports',$dontshow))
 		{
 			$menu .= "<li><a href=\"".url::site()."reports\" ";
 			$menu .= ($this_page == 'reports') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('ui_main.reports')."</a></li>";
+		 	$menu .= "><i class=\"icon-pictures\"></i><span class=\"label\">".Kohana::lang('ui_main.reports')."</span></a></li>";
 		 }
 
 		// Timeline
@@ -49,18 +62,7 @@ class nav_Core {
 			$menu .= ($this_page == 'timeline') ? " class=\"active\"" : "";
 		 	$menu .= ">".Kohana::lang('uchaguzi.timeline')."</a></li>";
 		 }
-		*/
 		
-		// Reports Submit
-		if( ! in_array('reports_submit',$dontshow))
-		{
-			if (Kohana::config('settings.allow_reports'))
-			{
-				$menu .= "<li><a href=\"".url::site()."reports/submit\" ";
-				$menu .= ($this_page == 'reports_submit') ? " class=\"active\"":"";
-			 	$menu .= ">".Kohana::lang('ui_main.submit')."</a></li>";
-			}
-		}
 		
 		// Alerts
 		if(! in_array('alerts',$dontshow))
@@ -83,21 +85,22 @@ class nav_Core {
 			 	$menu .= ">".Kohana::lang('ui_main.contact')."</a></li>";	
 			}
 		}
+		*/
+		
+		// Media
+		if( ! in_array('gallery',$dontshow))
+		{
+				$menu .= "<li><a href=\"".url::site()."gallery\" ";
+				$menu .= ($this_page == 'gallery') ? " class=\"active\"" : "";
+			 	$menu .= "><i class=\"icon-video\"></i><span class=\"label\">".Kohana::lang('uchaguzi.gallery')."</span></a></li>";	
+		}		
 		
 		// Info
 		if( ! in_array('info',$dontshow))
 		{
 				$menu .= "<li><a href=\"".url::site()."info\" ";
 				$menu .= ($this_page == 'info') ? " class=\"active\"" : "";
-			 	$menu .= ">".Kohana::lang('uchaguzi.info')."</a></li>";	
-		}
-
-		// Media
-		if( ! in_array('gallery',$dontshow))
-		{
-				$menu .= "<li><a href=\"".url::site()."gallery\" ";
-				$menu .= ($this_page == 'gallery') ? " class=\"active\"" : "";
-			 	$menu .= ">".Kohana::lang('uchaguzi.gallery')."</a></li>";	
+			 	$menu .= "><i class=\"icon-info\"></i><span class=\"label\">".Kohana::lang('uchaguzi.info')."</span></a></li>";	
 		}
 		
 		echo $menu;

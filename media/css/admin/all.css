@@ -1,4 +1,4 @@
-body{
+/*body{
 	margin:0;
 	font:12px/16px "Trebuchet MS",sans-serif;
 	color:#555;
@@ -61,6 +61,7 @@ h4 sup a{
 a { color:#00699b;}
 a:hover{ text-decoration:none;}
 .none-separator { background:none !important;}
+*/
 /*-- header --*/
 #header{
 	width:100%;

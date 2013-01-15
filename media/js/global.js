@@ -1,4 +1,10 @@
 jQuery(document).ready(function( $ ) {
+	$('.toggle-second-level-menu a').live('click', function(e) {
+		$('nav#second-level-menu li a .label').fadeToggle('fast');
+		$('.body-content-area').toggleClass('collapse-second-level-menu');		
+		e.preventDefault();
+	});	
+
 
 	// TOGGLE DROPDOWN
 	$('.header_nav_dropdown .header_nav_cancel').on('click', function(e) {
