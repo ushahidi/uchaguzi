@@ -134,4 +134,3 @@
 		<?php blocks::render_reports(); ?>
 	</div>
 </div><!--widgetbox-->
-
