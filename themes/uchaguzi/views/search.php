@@ -1,4 +1,4 @@
-<div id="content">
+<div id="centercontent">
 	<div class="content-bg">
 		<!-- start search block -->
 		<div class="big-block">

@@ -13,10 +13,11 @@
 		</div><!-- widgetbox -->
     </div>
      
-	<div class="col_4">
+	<div id="filters" class="col_4">
 		<div class="widgetbox">
             <div class="title">
-			<h3>Filter reports</h3></div>
+				<h3>Filter reports</h3>
+			</div>
 				<div class="widgetcontent">
                     <div id="accordion" class="accordion">
                     <h3><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
