@@ -35,6 +35,7 @@ class nav_Core {
 		 }
 		 */
 		 
+
 		// Reports Submit
 		if( ! in_array('reports_submit',$dontshow))
 		{
