@@ -13,10 +13,12 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
-<div class="centercontent">
+<div id="tools-content">
+	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+	</div><!--pageheader-->
 
-	    <div id="contentwrapper" class="contentwrapper">
-             
+	<div class="page-content">              
              <div id="inbox" class="subcontent">
              
 				<div class="msghead">
@@ -26,11 +28,11 @@
 	// Kill the rest of the page if this event has been utilized by a plugin
 	if( ! Event::has_run('ushahidi_action.admin_messages_custom_layout')){
 ?>
-                <ul class="msghead_menu clearfix">
-					<li class="marginleft5"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=1" <?php if ($type == '1') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.inbox');?></a></li>
-                   	<li class="marginleft5"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=2" <?php if ($type == '2') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.outbox');?></a></li>
-                    <li class="marginleft5"><button class="stdbtn btn_orange">Spam</button></li>
-                    <li class="marginleft5"><button class="stdbtn btn_red">Delete</button></li>
+                <ul class="msghead_menu">
+					<li class="button-toolbar"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=1" <?php if ($type == '1') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.inbox');?></a></li>
+                   	<li class="button-toolbar"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=2" <?php if ($type == '2') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.outbox');?></a></li>
+                    <li><button class="stdbtn btn_orange">Spam</button></li>
+                    <li><button class="stdbtn btn_red">Delete</button></li>
                     <li class="marginleft5"><select class="radius3">
                     	<option value="">Show All Message Types</option>
                         <option value="">Tweets</option>

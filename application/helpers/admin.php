@@ -114,13 +114,13 @@ class admin_Core {
 
 		$menu .= ($this_sub_page == "view") ? "<li>".Kohana::lang('ui_main.view_reports')."</li>" : "<a href=\"".url::base()."admin/reports\">".Kohana::lang('ui_main.view_reports')."</a></li>";
 
-		$menu .= ($this_sub_page == "edit") ? Kohana::lang('ui_main.create_report') : "<li><a href=\"".url::base()."admin/reports/edit\">".Kohana::lang('ui_main.create_report')."</a></li>";
+		$menu .= ($this_sub_page == "edit") ? "<li>".Kohana::lang('ui_main.create_report')."</li>" : "<li><a href=\"".url::base()."admin/reports/edit\">".Kohana::lang('ui_main.create_report')."</a></li>";
 
-		$menu .= ($this_sub_page == "comments") ? Kohana::lang('ui_main.comments') : "<li><a href=\"".url::base()."admin/comments\">".Kohana::lang('ui_main.comments')."</a></li>";
+		$menu .= ($this_sub_page == "comments") ? "<li>".Kohana::lang('ui_main.comments')."</li>" : "<li><a href=\"".url::base()."admin/comments\">".Kohana::lang('ui_main.comments')."</a></li>";
 
-		$menu .= ($this_sub_page == "download") ? Kohana::lang('ui_main.download_reports') : "<li><a href=\"".url::base()."admin/reports/download\">".Kohana::lang('ui_main.download_reports')."</a></li>";
+		$menu .= ($this_sub_page == "download") ? "<li>".Kohana::lang('ui_main.download_reports')."</li>" : "<li><a href=\"".url::base()."admin/reports/download\">".Kohana::lang('ui_main.download_reports')."</a></li>";
 
-		$menu .= ($this_sub_page == "upload") ? Kohana::lang('ui_main.upload_reports') : "<li><a href=\"".url::base()."admin/reports/upload\">".Kohana::lang('ui_main.upload_reports')."</a></li>";
+		$menu .= ($this_sub_page == "upload") ? "<li>".Kohana::lang('ui_main.upload_reports')."</li>" : "<li><a href=\"".url::base()."admin/reports/upload\">".Kohana::lang('ui_main.upload_reports')."</a></li>";
 
 		echo $menu;
 
