@@ -35,6 +35,8 @@ a:hover {
     text-decoration: none;
 }
 
+.nodisplay {display: none;}
+
 .cf:before,
 .cf:after {
     content:"";
@@ -232,16 +234,29 @@ header#global-header hgroup h1 a {
    color: #ff4800;
 }
 
+header#global-header hgroup .logo a {
+   display: inline-block;
+   width: 200px;
+}
+
+header#global-header hgroup .logo img {
+   width: 100%;
+}
+
 header#global-header hgroup h2 {
    float: left;
    color: #666;
    font-weight: normal;
    font-style: italic;
    font-size: 1em;
-   padding: 0.8em;
+   padding: 2em 1em 1em;
 }
 
 /* ------ HEADER: Search ------ */
+
+header#global-header .search {
+   padding-top: 0.6em;
+}
 
 header#global-header .search input.text {
    float: left;
@@ -286,6 +301,7 @@ border-bottom-right-radius: 2px;
 
 header#global-header .user-tools {
    text-align: right;
+   padding-top: 0.6em;
 }
 
 header#global-header .user-tools .userinfo {
