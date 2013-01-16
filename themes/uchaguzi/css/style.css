@@ -197,6 +197,7 @@ you can use the generic selector below, but it's slower:
 	content: "\e016";
 }
 
+h1.sub-category,
 h3.sub-category {
    display: inline-block;
    color: #444;
@@ -609,6 +610,29 @@ article.report .info p.date {
 
 /* --------------------------- TOOLS */
 
+nav#tools-menu .second-level-menu {
+   border-bottom: 1px solid #eee;
+   background-color: #fff;
+   padding: 0.5em 1em;
+}
+
+nav#tools-menu .second-level-menu li {
+   display: inline;
+   color: #ff4800;
+   font-weight: bold;
+}
+
+nav#tools-menu .second-level-menu a {
+   display: inline-block;
+   color: #888;
+   font-weight: normal;
+   padding: 0.5em 1em;
+}
+
+nav#tools-menu .second-level-menu a:hover {
+   color: #444;
+}
+
 #tools-content .page-content {
    border-top: 1px solid #eee;
 }
@@ -974,38 +998,6 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 .vernav .togglemenu_collapsed { width: 35px; margin: 10px auto; border-width: 1px; }
 
 /** End of vernav **/
-/******************************************/
-
-/***** 11. CENTER CONTENT STYLES *****/
-/*************************************/
-
-
-.centercontent { margin-left: 231px; position: relative; }
-.centercontent .pagetitle { margin: 0 20px 10px 20px; }
-.centercontent .pagedesc { margin: 0 20px; }
-.centercontent .hornav { padding: 0 20px; }
-
-.withmenucoll .centercontent { margin-left: 56px; }
-.withmenucoll2 .centercontent { margin-left: 36px; }
-
-
-/***** 12. MAIN CONTENT STYLES *****/
-/***********************************/
-
-
-.contentwrapper { padding: 20px; }
-.contentwrapper p { margin: 20px 0; }
-.withrightpanel {  }
-.subcontent { float:left; }
-
-.contenttitle { 
-	background: #32415A; color: #FB9337; text-transform: uppercase; -moz-border-radius: 2px 2px 0 0; -webkit-border-radius: 2px 2px 0 0;
-	border-radius: 2px 2px 0 0; font-size: 14px; font-weight: normal; 
-}
-.contenttitle h4 { padding: 12px 10px; font-size: 14px; }
-
-.contenttitle2 { margin: 20px 0; border-bottom: 2px solid #FB9337; padding-bottom: 5px; padding-right: 20px; display: inline-block; }
-.contenttitle2 h3 { font-size: 16px; font-weight: normal; text-transform: uppercase; }
 
 /***** 14. FILE MANAGER STYLES *****/
 /***********************************/
@@ -1013,7 +1005,7 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 
 .filemgr { position: relative; min-height: 400px; }
 .filemgr .filemgr_right { position: absolute; width: 250px; top: 62px; right: 0; }
-.filemgr .filemgr_rightinner { margin: 20px 0; padding: 0 20px; border-left: 1px dashed #ddd; }
+.filemgr_rightinner { margin: 1em 0; }
 
 .filemgr_head { 
 	padding: 15px 20px; background: #fcfcfc; border-bottom: 1px solid #ddd; -moz-box-shadow: inset 0 1px 0 #fff; 
@@ -1065,19 +1057,20 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 .filemgr_menu form input.filekeyword { padding: 7px 7px 8px 7px; width: 200px; background: #fff; color: #999; font-style: italic; }
 .filemgr_menu form input.filekeyword:focus { color: #666; font-style: normal; }
 
-.filemgr_content { padding: 20px; margin-right: 250px; }
+.filemgr_category { 
+   text-align: center;
+}
+.filemgr_category ul li { display: inline; }
+.filemgr_category ul li a {
+   display: inline-block; 
+   padding: 0.5em 1em;
+}
+.filemgr_category ul li a:hover {
 
-.filemgr_category { padding: 10px 0; margin: 0 20px; border-bottom: 1px dashed #ddd; margin-right: 270px; }
-.filemgr_category ul { list-style: none; }
-.filemgr_category ul li { display: inline-block; margin-right: 5px; }
-.filemgr_category ul li.right { float: right; }
-.filemgr_category ul li a { display: block; padding: 5px 10px; font-weight: bold; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px; }
-.filemgr_category ul li a:hover { 
-	background: #fcfcfc; -moz-box-shadow: inset 1px 1px 1px #ddd; -webkit-box-shadow: inset 1px 1px 1px #ddd; 
-	box-shadow: inset 1px 1px 1px #ddd;
 }
 .filemgr_category ul li.current a { 
-	background: #eee; -moz-box-shadow: inset 1px 1px 1px #ccc; -webkit-box-shadow: inset 1px 1px 1px #ccc; 
+   color: #ff4800;
+	font-weight: bold; background: #eee; -moz-box-shadow: inset 1px 1px 1px #ccc; -webkit-box-shadow: inset 1px 1px 1px #ccc; 
 	box-shadow: inset 1px 1px 1px #ccc; 
 }
 .filemgr_category ul li .pagenuminfo { display: inline-block; margin-top: 5px; }
@@ -1228,7 +1221,6 @@ widgetcontent li a:hover {
 	text-decoration: none;
 } 
 .userlistwidget .more:hover { text-decoration: none; background: #e7e7e7; }
-.info{padding-top: 10px;}
 /***** 3. COLUMN STYLE *****/
 /***************************/
 
@@ -1758,34 +1750,16 @@ form textarea {
 }
 form input[type=radio], .stdform input[type=checkbox] { width: auto; margin: 0; vertical-align: middle; }
 form input[type=submit] { 
-	font-family: Arial, Helvetica, sans-serif;
+   font-weight: bold;
+	font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 	font-size: 14px;
-	color: #3f5e00;
-	padding: 10px 15px;
-	background: -moz-linear-gradient(
-		top,
-		#c3e35b 0%,
-		#8eb853);
-	background: -webkit-gradient(
-		linear, left top, left bottom, 
-		from(#c3e35b),
-		to(#8eb853));
-	-moz-border-radius: 4px;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
-	border: 1px solid #81ab2e;
-	-moz-box-shadow:
-		0px 1px 4px rgba(000,000,000,0.4),
-		inset 0px 1px 0px rgba(255,255,255,0.5);
-	-webkit-box-shadow:
-		0px 1px 4px rgba(000,000,000,0.4),
-		inset 0px 1px 0px rgba(255,255,255,0.5);
-	box-shadow:
-		0px 1px 4px rgba(000,000,000,0.4),
-		inset 0px 1px 0px rgba(255,255,255,0.5);
-	text-shadow:
-		0px 1px 0px rgba(255,255,255,0.3),
-		0px 1px 0px rgba(255,255,255,0.3);
+	color: #fff;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	border: 1px solid #de4204;
+   background-color: #ff4800;
+   padding: 0.5em 1em;
 }
 
 form input[type=submit]:hover {
@@ -3091,15 +3065,6 @@ div.incident-notation ul li{
     border-bottom:2px solid #C0C2B8;
 }
 
-
-.more{
-    float: right;
-    margin: 20px 20px 10px 10px;
-    color: #004276;
-    font-weight: bold;
-    text-decoration: underline;
-}
-
 .swatch {
     float:left;
     height:16px;
@@ -3302,15 +3267,6 @@ label.error {
 .short{
     width:100px;
 }
-.btn_submit {
-    margin: 20px 20px 0 0;
-    padding: 8px 10px;
-    color: white;
-    background-color:#368c00;
-    font-size:14px;
-    cursor:pointer;    
-    border: 0;
-}
 .btn_find {
    background: #FFF;
     border: 1px solid #CCCCCC;
@@ -3323,7 +3279,6 @@ label.error {
 
 .hide { display:none; }
 
-.report_left{ float:left; width:450px; margin:20px 0 0; padding:0 0 10px; }
 .report_left table { width: 100%; }
 .report_left table tr th { text-align: left; }
 
@@ -3349,8 +3304,8 @@ td.w-03 { border-bottom:1px dotted #E8E4DB; text-transform:capitalize; }
 
 .report_bottom { clear:both; }
 
-.report_row { margin:0 0 15px 0; clear:both; }
-.report_row h4 { margin:0 0 5px 0; padding:0; font-size:120%; font-weight:bold; }
+.report_row { margin: 1em 0; }
+.report_row h4 { margin-bottom: 0.5em; font-weight:bold; font-size: 1em; }
 .report_row h4 .example{ font-weight: normal; font-size: 10px; line-height: 12px; color: #a1a1a1; }
 .report_row .date-box{ float:left; margin-right:10px; }
 .report_row .date-box img{ padding:0 5px 0 5px; }
@@ -3438,16 +3393,11 @@ a.rem { background:url(../images/icon-minus.gif) no-repeat;}
 .report_map{
 	overflow: hidden;
 	width: 100%;
-	border: 2px solid #ccc;
 	height: 350px;
 }
 .report-find-location {
-    margin-right:1px;
-    padding:10px 9px 9px 9px;
+    padding: 1em;
     background-color:#eee;
-    border:1px solid #ccc;
-    border-width:0 1px 1px 1px;
-    font-size:90%;
     color:#666;
 }
 .report-find-location input.findtext {
@@ -3475,19 +3425,6 @@ a.show-more {
     margin-right:23px;
 }
 
-/*---big-block---*/
-.big-block {
-    overflow:hidden;
-    padding:16px 25px 10px;
-}
-/* Min-Height */
-.big-block{
-    min-height:400px;
-}
-/* Min-Height for IE */
-* html .big-block {
-    height:400px
-}
 /* View Reports / Help */
 .report_rowtitle, .org_rowtitle{
     margin: 0px 0 5px 0;
@@ -3682,16 +3619,14 @@ ul.pager li.first {
 }
 ul.pager li a{
     text-decoration:none;
-    color:#555;
+    color:#fff;
+    background-color: #fff;
     padding:0 5px;
-
 }
 ul.pager li a:hover { background: #fefefe; color: #999;}
-ul.pager li a.active { background: none repeat scroll 0 0 #616161;
-    border: medium none;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5) inset, 0 1px 0 rgba(255, 255, 255, 0.8);
-    color: #F0F0F0;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);}
+ul.pager li a.active { 
+    color: #444;
+}
 
 /*-- Feedback --*/
 .feedback_forms{
