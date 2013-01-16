@@ -237,6 +237,7 @@ header#global-header hgroup h1 a {
 header#global-header hgroup .logo a {
    display: inline-block;
    width: 200px;
+   margin-top: -0.2em;
 }
 
 header#global-header hgroup .logo img {
@@ -249,13 +250,13 @@ header#global-header hgroup h2 {
    font-weight: normal;
    font-style: italic;
    font-size: 1em;
-   padding: 2em 1em 1em;
+   padding: 1.4em 1em 1em;
 }
 
 /* ------ HEADER: Search ------ */
 
 header#global-header .search {
-   padding-top: 0.6em;
+   padding-top: 0.4em;
 }
 
 header#global-header .search input.text {
@@ -301,7 +302,7 @@ border-bottom-right-radius: 2px;
 
 header#global-header .user-tools {
    text-align: right;
-   padding-top: 0.6em;
+   padding-top: 0.4em;
 }
 
 header#global-header .user-tools .userinfo {
