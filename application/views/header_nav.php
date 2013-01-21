@@ -8,12 +8,12 @@
 		<article class="user-summary">
 			<div class="user-links">
 				<h1><?php echo $loggedin_user->username; ?></h1>
-				<p>email address</p>
+				<p><?php echo $loggedin_user->email; ?></p>
 				<ul>
-					<li><a href="<?php echo url::site().$loggedin_role;?>">Edit profile</a></li>
-					<li><a href="#">Tools</a></li>
-					<li><a href="#">Help</a></li>
-					<li><a href="#">Sign out</a></li>
+					<li><a href="<?php echo url::site().$loggedin_role;?>/profile"><?php echo Kohana::lang('ui_main.manage_your_account'); ?></a></li>
+					<li><a href="<?php echo url::site().$loggedin_role;?>"><?php echo Kohana::lang('uchaguzi.tools'); ?></a></li>
+					<li><a href="http://wiki.ushahidi.com/">Help</a></li>
+					<li><a href="<?php echo url::site();?>logout"><em><?php echo Kohana::lang('ui_admin.logout');?></em></a></li>
 				</ul>
 			</div>		
 			<img src="<?php echo members::gravatar($loggedin_user->email,40); ?>" class="avatar" />

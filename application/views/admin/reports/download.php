@@ -13,10 +13,17 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
-<div class="centercontent">
-	<h2>
-		<?php admin::reports_subtabs("download"); ?>
-	</h2>
+<div id="tools-content">
+	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::reports_subtabs("download"); ?>
+			</ul>
+		</nav>
+	</div><!--pageheader-->
+	
+
 	<!-- report-form -->
 	<div class="report-form">
 		<?php
@@ -41,7 +48,8 @@
 		<!-- column -->
 		<div class="download_container">
 			<p><?php echo Kohana::lang('ui_main.reports_download_csv');?>.</p>
-			<span style="font-weight: bold; color: #00699b; display: block; padding-bottom: 5px;"><?php echo Kohana::lang('ui_main.choose_data_points');?>:</span>
+
+			<h4><?php echo Kohana::lang('ui_main.choose_data_points');?>:</h4>
 			<?php print form::open(NULL, array('id' => 'reportForm', 'name' => 'reportForm')); ?>
 			<table class="data_points">
 				<tr>
@@ -73,7 +81,7 @@
 				<!-- Including custom fields in the download process -->
 				<tr>
 					<td colspan="2"> 
-						<div  style="font-weight: bold; color:#00699b; display: block;padding-bottom: 5px;"><?php echo Kohana::lang('ui_main.additional_data');?><div>
+						<h5><?php echo Kohana::lang('ui_main.additional_data');?><h5>
 					</td>
 				</tr>
 
@@ -97,7 +105,7 @@
 					</td>
 				</tr>
 			</table>
-			<input id="save_only" type="image" src="<?php print url::file_loc('img'); ?>media/img/admin/btn-download.gif" class="save-rep-btn" />
+			<input id="save_only" type="submit" value="Download" class="btn_submit" />
 			<?php print form::close(); ?>
 		</div>
 	</div>

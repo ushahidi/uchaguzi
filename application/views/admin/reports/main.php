@@ -13,29 +13,36 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 ?>
-<div class="centercontent">
-			<div class="bg">
-				<h2>
-					<?php admin::reports_subtabs("view"); ?>
-				</h2>
-				<!-- tabs -->
-				<div class="tabs">
-					<!-- tabset -->
-					<ul class="tabset">
-						<li>
-							<a href="?status=0" <?php if ($status != 'a' AND $status !='v' AND $status != 'o') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.show_all');?></a>
-						</li>
-						<li><a href="?status=a" <?php if ($status == 'a') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.awaiting_approval');?></a></li>
-						<li><a href="?status=v" <?php if ($status == 'v') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.awaiting_verification');?></a></li>
-						<li>
-							<a href="?status=o" <?php if ($status == 'o') echo "class=\"active\""; ?>>
-								<?php echo Kohana::lang('ui_main.uncategorized_reports'); ?>
-							</a>
-						</li>
-					</ul>
+<div id="tools-content">
+	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::reports_subtabs("view"); ?>
+			</ul>
+		</nav>
+	</div><!--pageheader-->
+	
+	<div class="page-content"> 
+		<div class="table-tabs">
+		<!-- tabs -->
+		<div class="tabs">
+			<!-- tabset -->
+			<ul class="tabset">
+				<li>
+					<a href="?status=0" <?php if ($status != 'a' AND $status !='v' AND $status != 'o') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.show_all');?></a>
+				</li>
+				<li><a href="?status=a" <?php if ($status == 'a') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.awaiting_approval');?></a></li>
+				<li><a href="?status=v" <?php if ($status == 'v') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.awaiting_verification');?></a></li>
+				<li>
+					<a href="?status=o" <?php if ($status == 'o') echo "class=\"active\""; ?>>
+						<?php echo Kohana::lang('ui_main.uncategorized_reports'); ?>
+					</a>
+				</li>
+			</ul>
 					<!-- tab -->
-					<div class="tab">
-						<ul>
+					<div class="tab cf">
+						<ul class="toolbar">
 							<?php if (Auth::instance()->has_permission('reports_approve')): ?>
 							<li><a href="#" onclick="reportAction('a','<?php echo utf8::strtoupper(Kohana::lang('ui_main.approve')); ?>', '');">
 								<?php echo Kohana::lang('ui_main.approve');?></a>
@@ -328,4 +335,5 @@
 					</div>
 				</div>
 			</div>
+		</div>
 </div>
