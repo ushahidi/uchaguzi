@@ -31,8 +31,8 @@
 		$("#filter_link_media_1").click(function(){
 
 			var type = $("#fl-media").val();
-
-			alert(type); exit();
+			var mediaType = parseFloat(this.id.replace('filter_link_media_', '')) || 0;
+			console.log("Type "+mediaType);
 		
 			// Fetch all images
 			attachFilterMediaAction();

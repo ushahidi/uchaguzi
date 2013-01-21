@@ -21,36 +21,62 @@ class Gallery_Controller extends Main_Controller {
      */
     public static $params = array();
 
-    /**
-     * Whether an admin console user is logged in
-     * @var bool
-     */
+    public function __construct() {
+        parent::__construct();
+        // Cacheable Controller
+        $this->is_cachable = TRUE;
+
+        $this->template->this_page = 'media';
+        $this->themes->js = new View('media/media_js');
+
+        $this->template->header->page_title .= Kohana::lang('uchaguzi.media').Kohana::config('settings.title_delimiter');
+        // Store any exisitng URL parameters
+        $this->themes->js->url_params = json_encode($_GET);
+        
+        $this->template->header->header_block = $this->themes->header_block();
+        $this->template->footer->footer_block = $this->themes->footer_block();
+    }
 
     /**
      * Displays media.
      */
     public function index()
     {
-        // Cacheable Controller
-        $this->is_cachable = TRUE;
-
-        $this->template->header->this_page = 'media';
         $this->template->content = new View('media/main');
-        $this->themes->js = new View('media/media_js');
-
-        $this->template->header->page_title .= Kohana::lang('uchaguzi.media').Kohana::config('settings.title_delimiter');
-
         // Get the media listing view
         $media_listing_view = $this->_get_media_listing_view();
-
+        
         // Set the view
         $this->template->content->media_listing_view = $media_listing_view;
 
-        // Store any exisitng URL parameters
-        $this->themes->js->url_params = json_encode($_GET);
         
-        $this->template->header->header_block = $this->themes->header_block();
-        $this->template->footer->footer_block = $this->themes->footer_block();
+    }
+
+    /**
+     * Display all images submitted to a report
+     */
+    public function images() {
+        $this->template->header->this_page = 'images';
+        $this->template->content = new View('media/images');
+
+        // Get the media listing view
+        $this->template->content->media_listing_view =  $this->_get_media_listing_view();
+    }
+
+    /**
+     * Display all videos submitted to a report
+     */
+    public function videos() {
+
+    }
+
+    public function fetch_media()
+    {
+        $this->template = "";
+        $this->auto_render = FALSE;
+        
+        $media_listing_view = $this->_get_media_listing_view();
+        print $media_listing_view;
     }
 
     /**
@@ -62,23 +88,15 @@ class Gallery_Controller extends Main_Controller {
         $media_listing = new View('media/list');
 
 
-        //fetch media
+        // Fetch media
         $media = ORM::factory('media')->find_all();
 
+        print_r($media);
         // Set the view content
         $media_listing->media = $media;
 
         // Return
         return $media_listing;
 
-    }
-
-    public function fetch_media()
-    {
-        $this->template = "";
-        $this->auto_render = FALSE;
-        
-        $media_listing_view = $this->_get_media_listing_view();
-        print $media_listing_view;
     }
 }
