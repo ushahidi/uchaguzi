@@ -81,14 +81,9 @@
 	 * Adds an event handler for filtering media by type
 	 */
 	function attachFilterMediaAction(mediaType)
-	{
-		if (mediaType > 0)
-		{
-			urlParameters["t"] = mediaType;
-		} else  {
-			urlParameters["t"] = null;
-		}
-		
+	{		
+		urlParameters["t"] = mediaType;
+
 		// Fetch the media
 		fetchMedia();
 	}
