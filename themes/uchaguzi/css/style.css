@@ -115,13 +115,17 @@ a:hover {
 	-webkit-font-smoothing: antialiased;
 }
 
+i[class*="icon-"] {
+   margin-right: 0.25em;
+}
+
 /* Use the following CSS code if you want to have a class per icon */
 /*
 Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"]:before {
 */
-.icon-search:before, .icon-pencil:before, .icon-pictures:before, .icon-calendar:before, .icon-graph:before, .icon-lifebuoy:before, .icon-video:before, .icon-info:before, .icon-arrow-down:before, .icon-arrow-right:before, .icon-arrow-left:before, .icon-arrow-right-2:before, .icon-twitter:before, .icon-mail:before, .icon-mobile:before, .icon-plus:before, .icon-minus:before, .icon-list:before, .icon-location:before, .icon-publish:before, .icon-flag:before, .icon-checkmark-circle:before, .icon-megaphone:before {
+.icon-search:before, .icon-pencil:before, .icon-pictures:before, .icon-calendar:before, .icon-graph:before, .icon-lifebuoy:before, .icon-video:before, .icon-info:before, .icon-arrow-down:before, .icon-arrow-right:before, .icon-arrow-left:before, .icon-arrow-right-2:before, .icon-twitter:before, .icon-mail:before, .icon-mobile:before, .icon-plus:before, .icon-minus:before, .icon-list:before, .icon-location:before, .icon-publish:before, .icon-flag:before, .icon-checkmark-circle:before, .icon-apple:before, .icon-android:before {
 	font-family: 'uchaguzi';
 	speak: none;
 	font-style: normal;
@@ -195,8 +199,11 @@ you can use the generic selector below, but it's slower:
 .icon-checkmark-circle:before {
 	content: "\e015";
 }
-.icon-megaphone:before {
+.icon-apple:before {
 	content: "\e016";
+}
+.icon-android:before {
+	content: "\e017";
 }
 
 h1.sub-category,
@@ -474,6 +481,11 @@ nav#second-level-menu li a {
    padding: 1.3em 1em;
 }
 
+nav#second-level-menu li.submit a {
+   color: #fff;
+   background-color: rgb(245,72,0);
+}
+
 .collapse-second-level-menu nav#second-level-menu li a {
    text-align: center;
 }
@@ -482,10 +494,19 @@ nav#second-level-menu li a:hover {
    background-color: #fcfcfc;
 }
 
+nav#second-level-menu li.submit a:hover {
+   opacity: 0.7;
+   background-color: rgb(245,72,0);
+}
+
 nav#second-level-menu li a [class*="icon-"] {
    color: #ccc;
    font-size: 1.3em;
    margin-right: 0.5em;
+}
+
+nav#second-level-menu li.submit a [class*="icon-"] {
+   color: #fff;
 }
 
 .collapse-second-level-menu nav#second-level-menu li a [class*="icon-"] {
@@ -494,6 +515,10 @@ nav#second-level-menu li a [class*="icon-"] {
 
 nav#second-level-menu li a:hover [class*="icon-"] {
    color: #888;
+}
+
+nav#second-level-menu li.submit a:hover [class*="icon-"] {
+   color: #fff;
 }
 
 nav#second-level-menu .toggle-second-level-menu { 
@@ -623,6 +648,120 @@ article.report .info p.date {
    font-style: italic;
    font-size: 0.9em;
    padding: 0.5em 0;
+}
+
+/* --------------------------- REPORTS-SUMMARY */
+
+#reports-summary {
+   margin: 3em 0;
+}
+
+#reports-summary .reports-latest {
+   float: left;
+   width: 30%;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   background-color: #f5f5f5;
+   padding: 1em;   
+}
+
+#reports-summary .reports-highlights {
+   float: left;
+   width: 70%;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;
+   padding: 1em 0 1em 1em;   
+}
+
+article.third-party-report img.thumb {
+   width: 100%;
+   margin-bottom: 1em;
+}
+
+article.highlight {
+   border-bottom: 1px dotted #dddddd;
+   padding-bottom: 1em;
+   margin-bottom: 1em;
+}
+
+article.highlight:last-child {
+   border-bottom: none;
+}
+
+article.highlight img.highlight-thumb {
+   float: left;
+   width: 20%;
+}
+
+article.highlight .highlight-summary {
+   float: left;
+   width: 80%;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;
+   padding-left: 1em;   
+}
+
+article.highlight .highlight-summary h1,
+article.third-party-report h1 {
+   font-weight: normal;
+   font-size: 1.4em;
+   font-family: 'RobotoBoldCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
+   padding-bottom: 0.2em;
+}
+
+article.highlight .highlight-summary h1 {
+   font-size: 1.2em;
+}
+
+article.highlight .highlight-summary h1 a,
+article.third-party-report h1 a {
+   color: rgb(245,72,0);
+}
+
+article.highlight .highlight-summary h1 a:hover,
+article.third-party-report h1 a:hover {
+   opacity: 0.7;
+}
+
+article.highlight .highlight-summary .metadata,
+article.third-party-report .metadata {
+   font-size: 0.9em;
+}
+
+/* --------------------------- HOW-TO */
+
+.how-to {
+   padding: 1em 0;
+}
+
+.how-to li {
+   color: #888;
+   font-size: 0.9em;
+   margin-bottom: 1em;
+}
+
+.how-to li i {
+   display: block;
+   float: left;
+   width: 30px;
+   color: #cccccc;
+   font-size: 2em;
+   text-align: center;
+   margin-right: 0.5em;
+   margin-bottom: 1em;
+}
+
+.how-to li strong {
+   display: block;
+   color: #444;
+   font-size: 1.2em;
+   padding-bottom: 0.3em;
 }
 
 /* --------------------------- TOOLS */
