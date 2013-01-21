@@ -75,23 +75,34 @@ class Gallery_Controller extends Main_Controller {
         $this->template = "";
         $this->auto_render = FALSE;
         
-        $media_listing_view = $this->_get_media_listing_view();
+        if (isset($_GET['t']) AND !empty($_GET['t']) AND intval($_GET['t']) > 0)
+        {
+            $media_listing_view = $this->_get_media_listing_view(intval($_GET['t']));
+        } else {
+            $media_listing_view = $this->_get_media_listing_view();
+        }
         print $media_listing_view;
     }
 
     /**
      * Helper method to load the media listing view
      */
-    private function _get_media_listing_view()
+    private function _get_media_listing_view($media_type =NULL)
     {
         // Load the media listing view
         $media_listing = new View('media/list');
 
+        // Load media by type
+        if ($media_type != NULL)
+        {
+            $media = ORM::factory('media')->where(array('media_type' => $media_type))->find_all();
+        }
+        else 
+        { 
+            // Fetch media
+            $media = ORM::factory('media')->find_all();
+        }
 
-        // Fetch media
-        $media = ORM::factory('media')->find_all();
-
-        print_r($media);
         // Set the view content
         $media_listing->media = $media;
 
