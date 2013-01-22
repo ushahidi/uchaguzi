@@ -1,11 +1,19 @@
-<div class="centercontent">
+<div id="tools-content">
+   	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::manage_subtabs("publiclisting"); ?>
+			</ul>
+		</nav>
+	</div>
 	
-	<h2>
-		<?php admin::manage_subtabs("publiclisting"); ?>
-	</h2>
-	
-	<iframe src ="https://tracker.ushahidi.com/list/manage.php?id=<?php echo $encoded_stat_id; ?>&key=<?php echo $encoded_stat_key; ?>" width="100%" height="700" border="0" style="border:0px;">
-	<p>Error: Your browser does not support iframes.</p>
-	</iframe>
-	
+	<div class="page-content cf">
+		<div class="table-tabs">
+			<iframe src ="https://tracker.ushahidi.com/list/manage.php?id=<?php echo $encoded_stat_id; ?>&key=<?php echo $encoded_stat_key; ?>" width="100%" height="700" border="0" style="border:0px;">
+			<p>Error: Your browser does not support iframes.</p>
+			</iframe>
+		</div>
+	</div>	
 </div>
