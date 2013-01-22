@@ -13,11 +13,19 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
-		<div class="centercontent">
-			<h2>
-				<?php admin::user_subtabs("roles", $display_roles); ?>
-			</h2>
+<div id="tools-content">
+   	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
 
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::user_subtabs("roles", $display_roles); ?>
+			</ul>
+		</nav>
+	</div>
+
+	<div class="page-content cf">
+		<div class="table-tabs">	
 			<?php if ($form_error): ?>
 				<!-- red-box -->
 				<div class="red-box">
@@ -92,91 +100,93 @@
 					<?php print form::close(); ?>			
 				</div>
 			</div>			
+		</div>	
+		
 			
-			
-			<!-- report-table -->
-			<div class="report-form">
-				<?php print form::open(NULL,array('id' => 'roleListing', 'name' => 'roleListing')); ?>
-					<input type="hidden" name="action" id="role_action_main" value="">
-					<input type="hidden" name="role_id" id="role_id_main" value="">
-					<div class="table-holder">
-						<table class="table">
-							<thead>
-								<tr>
-									<th class="col-1">
-										&nbsp;
-									</th>
-									<th class="col-2">
-										<?php echo Kohana::lang('ui_admin.header_role'); ?>
-									</th>
-									<th class="col-2">
-										&nbsp;
-									</th>
-									<th class="col-4">
-										<?php echo Kohana::lang('ui_admin.header_actions')?>
-									</th>
-								</tr>
-							</thead>
-							<tfoot>
-								<tr class="foot">
-									<td colspan="4">
-										&nbsp;
-									</td>
-								</tr>
-							</tfoot>
-							<tbody>
-								<?php
-								foreach ($roles as $role)
+		<!-- report-table -->
+		<div class="table-tabs">
+			<?php print form::open(NULL,array('id' => 'roleListing', 'name' => 'roleListing')); ?>
+				<input type="hidden" name="action" id="role_action_main" value="">
+				<input type="hidden" name="role_id" id="role_id_main" value="">
+				<div class="table-holder">
+					<table class="table">
+						<thead>
+							<tr>
+								<th class="col-1">
+									&nbsp;
+								</th>
+								<th class="col-2">
+									<?php echo Kohana::lang('ui_admin.header_role'); ?>
+								</th>
+								<th class="col-2">
+									&nbsp;
+								</th>
+								<th class="col-4">
+									<?php echo Kohana::lang('ui_admin.header_actions')?>
+								</th>
+							</tr>
+						</thead>
+						<tfoot>
+							<tr class="foot">
+								<td colspan="4">
+									&nbsp;
+								</td>
+							</tr>
+						</tfoot>
+						<tbody>
+							<?php
+							foreach ($roles as $role)
+							{
+								$role_id = $role->id;
+								$name = $role->name;
+								$description = $role->description;
+								$access_level = $role->access_level;
+								$role_permissions = array();
+								foreach($role->permissions as $perm)
 								{
-									$role_id = $role->id;
-									$name = $role->name;
-									$description = $role->description;
-									$access_level = $role->access_level;
-									$role_permissions = array();
-									foreach($role->permissions as $perm)
-									{
-										$role_permissions[] = $perm->name;
-									}
-									?>
-									<tr>
-										
-										<td class="col-1">
-											&nbsp;
-										</td>
-										<td class="col-2">
-											<div class="post">
-												<h4><?php echo utf8::strtoupper($name); ?></h4>
-												<p><?php echo $description; ?></p>
-											</div>
-										</td>
-										<td class="col-3">&nbsp;</td>
-										<td class="col-4">
-											<?php if($role_id == 1 OR $role_id == 3 OR $role_id == 4) { echo "&nbsp;";
-											
-											} else {?>
-											<ul>
-												<li class="none-separator"><a href="#" 
-													onClick="fillFields(
-													'<?php echo(rawurlencode($role_id)); ?>',
-													'<?php echo(rawurlencode($name)); ?>',
-													'<?php echo(rawurlencode($description)); ?>',
-													'<?php echo(rawurlencode($access_level)); ?>',
-													[<?php echo("'".implode("','",$role_permissions)."'");?>])">
-													<?php echo Kohana::lang('ui_admin.edit_action');?>
-													</a></li>
-	<li><a href="javascript:rolesAction('d','DELETE','<?php echo(rawurlencode($role_id)); ?>')" class="del">
-													<?php echo Kohana::lang('ui_admin.delete_action');?>
-													</a></li>
-											</ul>
-											<?php } ?>
-										</td>
-									</tr>
-									<?php
+									$role_permissions[] = $perm->name;
 								}
 								?>
-							</tbody>
-						</table>
-					</div>
-				<?php print form::close(); ?>
-			</div>
+								<tr>
+									
+									<td class="col-1">
+										&nbsp;
+									</td>
+									<td class="col-2">
+										<div class="post">
+											<h4><?php echo utf8::strtoupper($name); ?></h4>
+											<p><?php echo $description; ?></p>
+										</div>
+									</td>
+									<td class="col-3">&nbsp;</td>
+									<td class="col-4">
+										<?php if($role_id == 1 OR $role_id == 3 OR $role_id == 4) { echo "&nbsp;";
+										
+										} else {?>
+										<ul>
+											<li class="none-separator"><a href="#" 
+												onClick="fillFields(
+												'<?php echo(rawurlencode($role_id)); ?>',
+												'<?php echo(rawurlencode($name)); ?>',
+												'<?php echo(rawurlencode($description)); ?>',
+												'<?php echo(rawurlencode($access_level)); ?>',
+												[<?php echo("'".implode("','",$role_permissions)."'");?>])">
+												<?php echo Kohana::lang('ui_admin.edit_action');?>
+												</a></li>
+<li><a href="javascript:rolesAction('d','DELETE','<?php echo(rawurlencode($role_id)); ?>')" class="del">
+												<?php echo Kohana::lang('ui_admin.delete_action');?>
+												</a></li>
+										</ul>
+										<?php } ?>
+									</td>
+								</tr>
+								<?php
+							}
+							?>
+						</tbody>
+					</table>
+				</div>
+			<?php print form::close(); ?>
 		</div>
+	</div>
+</div>

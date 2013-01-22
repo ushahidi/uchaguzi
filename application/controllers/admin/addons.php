@@ -31,5 +31,6 @@ class Addons_Controller extends Tools_Controller {
     public function index()
     {
         url::redirect(url::base().'admin/addons/plugins/');
+        $this->template->content->this_page = 'addons';
     }
 }

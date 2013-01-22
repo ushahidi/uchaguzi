@@ -31,10 +31,10 @@
 	}
 
 	// Load jQuery
-	echo html::script(url::file_loc('js').'media/js/jquery', TRUE);
+	echo $header_block;
+	
 	echo html::script(url::file_loc('js').'media/js/jquery.form', TRUE);
 	echo html::script(url::file_loc('js').'media/js/jquery.validate.min', TRUE);
-	echo html::script(url::file_loc('js').'media/js/jquery.ui.min', TRUE);
 	echo html::script(url::file_loc('js').'media/js/selectToUISlider.jQuery', TRUE);
 	echo html::script(url::file_loc('js').'media/js/jquery.hovertip-1.0', TRUE);
 	echo html::script(url::file_loc('js').'media/js/jquery.base64', TRUE);
@@ -102,7 +102,6 @@
 
 	<?php
 	echo html::stylesheet(url::file_loc('css').'media/css/jquery.hovertip-1.0', '', TRUE);
-
 	echo "<script type=\"text/javascript\">
 		$(function() {
 			if($('.tooltip[title]') != null)
@@ -151,6 +150,7 @@
 	// Load ColorPicker
 	if ($colorpicker_enabled)
 	{
+
 		echo html::stylesheet(url::file_loc('css').'media/css/colorpicker', '', TRUE);
 		echo html::script(url::file_loc('js').'media/js/colorpicker', TRUE);
 	}
@@ -183,10 +183,6 @@
 
 	//Turn on jwysiwyg
 	echo html::stylesheet(url::file_loc('css').'media/js/jwysiwyg/jwysiwyg/jquery.wysiwyg.css');
-
-	// Header Nav
-	echo html::script(url::file_loc('js').'media/js/global', TRUE);
-	echo html::stylesheet(url::file_loc('css').'media/css/global','',TRUE);
 
 	// Render CSS and Javascript Files from Plugins
 	echo plugin::render('stylesheet');
@@ -225,8 +221,6 @@
 
 
 	<!--/Admin css/js -->
-
-	<?php echo $header_block; ?>
 	<?php
 	// Action::header_scripts - Additional Inline Scripts from Plugins
 	Event::run('ushahidi_action.header_scripts');
@@ -259,7 +253,7 @@
 <div class="bodywrapper">
     <header id="global-header" class="cf">
 		<hgroup class="col_4 cf">
-			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="/themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
+			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="<?php echo url::site();?>themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
 			<h2 class="slogan"><?php echo $site_tagline; ?></h2>
 		</hgroup>
 

@@ -219,7 +219,7 @@
 									$i = 1;
 									print "<div class=\"row link-row\">";
 									print form::input($this_field . '[]', '', ' class="text long"');
-									print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\">add</a>";
+									print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\"><span class=\"nodisplay\">add</span></a>";
 									print "</div>";
 								}
 								else
@@ -235,10 +235,10 @@
 											print "class=\"row link-row\" id=\"$i\">\n";
 										}
 										print form::input($this_field . '[]', $value, ' class="text long"');
-										print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\">add</a>";
+										print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\"><span class=\"nodisplay\">add</span></a>";
 										if ($i != 0)
 										{
-											print "<a href=\"#\" class=\"rem\"  onClick='removeFormField(\"#" . $this_field . "_" . $i . "\"); return false;'>remove</a>";
+											print "<a href=\"#\" class=\"rem\"  onClick='removeFormField(\"#" . $this_field . "_" . $i . "\"); return false;'><span class=\"nodisplay\">remove</span></a>";
 										}
 										print "</div>\n";
 										$i++;
@@ -265,7 +265,7 @@
 									$i = 1;
 									print "<div class=\"row link-row\">";
 									print form::input($this_field . '[]', '', ' class="text long"');
-									print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\">add</a>";
+									print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\"><span class=\"nodisplay\">add</span></a>";
 									print "</div>";
 								}
 								else
@@ -281,10 +281,10 @@
 											print "class=\"row link-row\" id=\"$i\">\n";
 										}
 										print form::input($this_field . '[]', $value, ' class="text long"');
-										print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\">add</a>";
+										print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\"><span class=\"nodisplay\">add</span></a>";
 										if ($i != 0)
 										{
-											print "<a href=\"#\" class=\"rem\"  onClick='removeFormField(\"#" . $this_field . "_" . $i . "\"); return false;'>remove</a>";
+											print "<a href=\"#\" class=\"rem\"  onClick='removeFormField(\"#" . $this_field . "_" . $i . "\"); return false;'><span class=\"nodisplay\">remove</span></a>";
 										}
 										print "</div>\n";
 										$i++;
@@ -335,7 +335,7 @@
 									$i = 1;
 									print "<div class=\"row link-row\">";
 									print form::upload($this_field . '[]', '', ' class="text long"');
-									print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\">add</a>";
+									print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\"><span class=\"nodisplay\">add</span></a>";
 									print "</div>";
 								}
 								else
@@ -353,10 +353,10 @@
 										}
 										// print "\"<strong>" . $value . "</strong>\"" . "<BR />";
 										print form::upload($this_field . '[]', $value, ' class="text long"');
-										print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\">add</a>";
+										print "<a href=\"#\" class=\"add\" onClick=\"addFormField('$this_div','$this_field','$this_startid','$this_field_type'); return false;\"><span class=\"nodisplay\">add</span></a>";
 										if ($i != 0)
 										{
-											print "<a href=\"#\" class=\"rem\"  onClick='removeFormField(\"#".$this_field."_".$i."\"); return false;'>remove</a>";
+											print "<a href=\"#\" class=\"rem\"  onClick='removeFormField(\"#".$this_field."_".$i."\"); return false;'><span class=\"nodisplay\">remove</span></a>";
 										}
 										print "</div>\n";
 										$i++;

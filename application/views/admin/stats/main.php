@@ -13,16 +13,26 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
-<div class="centercontent">
-<div class="bg">
-	<h2><?php echo $title; ?> 
-		<a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.hit_summary');?></a> 
-		<a href="<?php print url::site() ?>admin/stats/country"><?php echo Kohana::lang('stats.country_breakdown');?></a> 
-		<a href="<?php print url::site() ?>admin/stats/reports"><?php echo Kohana::lang('stats.report_stats');?></a> 
-		<a href="<?php print url::site() ?>admin/stats/impact"><?php echo Kohana::lang('stats.category_impact');?></a>
-	</h2>
+
+<div id="tools-content">
+   	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+
+		<ul class="hornav">
+			<?php echo admin::tools_nav($this_page);?>
+		</ul>
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<li>Visitor summary</li>
+				<li><a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.hit_summary');?></a></li>
+				<li><a href="<?php print url::site() ?>admin/stats/country"><?php echo Kohana::lang('stats.country_breakdown');?></a></li>
+				<li><a href="<?php print url::site() ?>admin/stats/reports"><?php echo Kohana::lang('stats.report_stats');?></a></li>
+				<li><a href="<?php print url::site() ?>admin/stats/impact"><?php echo Kohana::lang('stats.category_impact');?></a></li>
+			</ul>
+		</nav>
+	</div>
 	
-	<div>
+	<div class="page-content">
 		<?php
 			if($stat_id == 0){ // No stat account created
 		?>
@@ -35,6 +45,4 @@
 			}
 		?>
 	</div>
-	
-</div>
 </div>

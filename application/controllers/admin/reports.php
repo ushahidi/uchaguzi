@@ -310,6 +310,7 @@ class Reports_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/reports/edit');
 		$this->template->content->title = Kohana::lang('ui_admin.create_report');
+		$this->template->content->this_page = 'reports';
 
 		// Setup and initialize form field names
 		$form = array(
@@ -790,10 +791,11 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->next_url = $next_url;
 
 		// Javascript Header
-		$this->template->map_enabled = TRUE;
-		$this->template->colorpicker_enabled = TRUE;
-		$this->template->treeview_enabled = TRUE;
-		$this->template->json2_enabled = TRUE;
+		$this->template->header->map_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
+
+		$this->template->header->treeview_enabled = TRUE;
+		$this->template->header->json2_enabled = TRUE;
 
 		$this->template->js = new View('reports/submit_edit_js');
 		$this->template->js->edit_mode = TRUE;
@@ -821,7 +823,7 @@ class Reports_Controller extends Tools_Controller {
 
 		// Pack Javascript
 		$myPacker = new javascriptpacker($this->template->js , 'Normal', false, false);
-		$this->template->js = $myPacker->pack();
+		$this->template->header->js = $myPacker->pack();
 	}
 
 

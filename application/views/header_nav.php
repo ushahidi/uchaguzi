@@ -21,9 +21,6 @@
      </div><!--userinfo-->
             
     <div class="userinfodrop">
-        <div class="avatar">
-            <a href="#"><img src="images/thumbs/avatarbig.png" alt="" /></a>
-        </div><!--avatar-->
         <div class="userdata">
             <h4><?php echo $loggedin_user->username; ?></h4>
 			<?php if($loggedin_role != ""){ ?>

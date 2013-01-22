@@ -16,10 +16,17 @@
 <div id="tools-content">
    	<div class="pageheader">
 		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+
 		<ul class="hornav">
 			<?php echo admin::tools_nav($this_page);?>
 		</ul>
-	</div><!--pageheader-->
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::reports_subtabs("view"); ?>
+			</ul>
+		</nav>
+	</div>
+	
 	<div class="page-content"> 
 		<div class="table-tabs">
 		<!-- tabs -->

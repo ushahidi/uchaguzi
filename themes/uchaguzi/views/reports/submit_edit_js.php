@@ -22,7 +22,6 @@
 		var highlightCtrl;
 		var selectCtrl;
 		var selectedFeatures = [];
-		
 		// jQuery Textbox Hints Plugin
 		// Will move to separate file later or attach to forms plugin
 		jQuery.fn.hint = function (blurClass) {
