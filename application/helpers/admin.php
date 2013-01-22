@@ -112,7 +112,7 @@ class admin_Core {
 	{
 		$menu = "";
 
-		$menu .= ($this_sub_page == "view") ? "<li>".Kohana::lang('ui_main.view_reports')."</li>" : "<a href=\"".url::base()."admin/reports\">".Kohana::lang('ui_main.view_reports')."</a></li>";
+		$menu .= ($this_sub_page == "view") ? "<li>".Kohana::lang('ui_main.view_reports')."</li>" : "<li><a href=\"".url::base()."admin/reports\">".Kohana::lang('ui_main.view_reports')."</a></li>";
 
 		$menu .= ($this_sub_page == "edit") ? "<li>".Kohana::lang('ui_main.create_report')."</li>" : "<li><a href=\"".url::base()."admin/reports/edit\">".Kohana::lang('ui_main.create_report')."</a></li>";
 

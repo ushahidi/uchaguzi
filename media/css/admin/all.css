@@ -671,11 +671,20 @@ table td{
 
 }
 .table .post h4 {
-   color:#444;
-   font-weight: bold;
-   font-size: 1.2em;
+   color :#444;
+   font-weight: normal;
+   font-size: 1.4em;
+   font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
    padding: 0;
 }
+.table .post h4 a {
+   color: #ff4800;
+}
+
+.table .post h4 a:hover {
+   opacity: 0.7;
+}
+
 .table .post p {
    color: #888;
    font-size: 0.95em;
@@ -1690,10 +1699,6 @@ UL.mapNavigation LI A:hover {
 
 UL.mapNavigation LI A:focus {
     outline: 0;
-}
-
-.upload_container {
-    padding : 20px;
 }
 
 /* update info */
