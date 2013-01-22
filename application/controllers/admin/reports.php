@@ -310,6 +310,7 @@ class Reports_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/reports/edit');
 		$this->template->content->title = Kohana::lang('ui_admin.create_report');
+		$this->template->content->this_page = 'reports';
 
 		// Setup and initialize form field names
 		$form = array(
