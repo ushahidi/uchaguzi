@@ -287,6 +287,8 @@ class Reports_Controller extends Tools_Controller {
 		// Status Tab
 		$this->template->content->status = $status;
 
+		$this->template->content->this_page = 'reports';
+
 		// Javascript Header
 		$this->template->js = new View('admin/reports/reports_js');
 	}

@@ -31,7 +31,6 @@ class Dashboard_Controller extends Tools_Controller
 			
 		$this->template->content = new View('tools');
 		$this->template->content->title = Kohana::lang('ui_admin.dashboard');
-		$this->template->content->this_page = '';
 
 		// Retrieve Dashboard Count...
 
@@ -138,13 +137,8 @@ class Dashboard_Controller extends Tools_Controller
 		{
 			$this->template->content->security_info = View::factory('admin/security_info');
 		}
-		
-		//Generate main tab navigation list
-		$this->template->content->main_tabs = admin::main_tabs();
-
-		// Generate sub navigation list (in default layout, sits on right side).
-		$this->template->content->main_right_tabs = admin::main_right_tabs($this->user);
-
+	
+		$this->template->content->this_page = "dashboard";	
 		
 	}
 }
