@@ -43,6 +43,7 @@ class Settings_Controller extends Tools_Controller {
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
 		$this->template->js = new View('admin/settings/site_js');
 
+		$this->template->content->this_page = 'settings';
 		// setup and initialize form field names
 		$form = array(
 			'site_name' => '',

@@ -37,6 +37,7 @@ class Users_Controller extends Tools_Controller {
 		$this->template->content = new View('admin/users/main');
 		$this->template->js = new View('admin/users/users_js');
 
+		$this->template->content->this_page = 'users';
 		// Check, has the form been submitted, if so, setup validation
 		if ($_POST)
 		{

@@ -32,6 +32,7 @@ class Stats_Controller extends Tools_Controller {
 		$this->template->content = new View('admin/stats/hits');
 		$this->template->content->title = Kohana::lang('ui_admin.statistics');
 
+		$this->template->content->this_page = 'stats';
 		// Retrieve Current Settings
 		$stat_id = Settings_Model::get_setting('stat_id');
 
