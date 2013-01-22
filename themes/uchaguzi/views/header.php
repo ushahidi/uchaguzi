@@ -150,7 +150,7 @@
 	// Load ColorPicker
 	if ($colorpicker_enabled)
 	{
-		
+
 		echo html::stylesheet(url::file_loc('css').'media/css/colorpicker', '', TRUE);
 		echo html::script(url::file_loc('js').'media/js/colorpicker', TRUE);
 	}
@@ -257,7 +257,7 @@
 <div class="bodywrapper">
     <header id="global-header" class="cf">
 		<hgroup class="col_4 cf">
-			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="/themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
+			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="<?php echo url::site();?>themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
 			<h2 class="slogan"><?php echo $site_tagline; ?></h2>
 		</hgroup>
 
