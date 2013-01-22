@@ -120,7 +120,9 @@ final class Kohana {
 		error_reporting($ER);
 
 		// Start output buffering
-		ob_start(array(__CLASS__, 'output_buffer'));
+		// Hack to support PHP 5.4 - we're now calling Kohana::output_buffer() manually in Kohana::close_buffers() - rjmackay 20120914
+		
+		ob_start(/*array(__CLASS__, 'output_buffer')*/);
 
 		// Save buffering level
 		self::$buffer_level = ob_get_level();
@@ -664,8 +666,13 @@ final class Kohana {
 			while (ob_get_level() > self::$buffer_level)
 			{
 				// Flush or clean the buffer
+
 				$close();
 			}
+
+			// This will flush the Kohana buffer, which sets self::$output
+			// Hack to support PHP 5.4 - we're now calling Kohana::output_buffer() manually - rjmackay 20120914
+			self::output_buffer(ob_get_contents());
 
 			// This will flush the Kohana buffer, which sets self::$output
 			ob_end_clean();

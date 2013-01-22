@@ -299,4 +299,23 @@ class admin_Core {
 		Kohana::log('alert', 'admin::admin_access() in deprecated and replaced by Auth::admin_access()');
 		return Auth::instance()->admin_access($user);
 	}
+
+	public static function tools_nav($this_page)
+	{
+
+
+		$main_tabs = self::main_tabs();
+
+		// Get logged in user
+		$user= Auth::instance()->get_user();
+		$main_right_tabs = self:: main_right_tabs($user);
+		
+		foreach ($main_tabs as $page => $tab_name):  
+		?>
+		<li><a href="<?php echo url::site(); ?>admin/<?php echo $page; ?>" <?php if($this_page == $page) echo 'class="active"' ;?>><?php echo $tab_name; ?></a></li>
+		<?php endforeach; ?>
+		<?php foreach ($main_right_tabs as $page => $tab_name): ?>
+		<li><a href="<?php echo url::site(); ?>admin/<?php echo $page; ?>" <?php if($this_page == $page) echo 'class="active"' ;?>><?php echo $tab_name; ?></a></li>
+		<?php endforeach;
+	}
 }

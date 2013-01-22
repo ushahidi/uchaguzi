@@ -21,31 +21,15 @@ class Gallery_Controller extends Main_Controller {
      */
     public static $params = array();
 
-    /**
-     * Whether an admin console user is logged in
-     * @var bool
-     */
-
-    /**
-     * Displays media.
-     */
-    public function index()
-    {
+    public function __construct() {
+        parent::__construct();
         // Cacheable Controller
         $this->is_cachable = TRUE;
 
-        $this->template->header->this_page = 'media';
-        $this->template->content = new View('media/main');
+        $this->template->this_page = 'media';
         $this->themes->js = new View('media/media_js');
 
         $this->template->header->page_title .= Kohana::lang('uchaguzi.media').Kohana::config('settings.title_delimiter');
-
-        // Get the media listing view
-        $media_listing_view = $this->_get_media_listing_view();
-
-        // Set the view
-        $this->template->content->media_listing_view = $media_listing_view;
-
         // Store any exisitng URL parameters
         $this->themes->js->url_params = json_encode($_GET);
         
@@ -54,22 +38,35 @@ class Gallery_Controller extends Main_Controller {
     }
 
     /**
-     * Helper method to load the media listing view
+     * Displays media.
      */
-    private function _get_media_listing_view()
+    public function index()
     {
-        // Load the media listing view
-        $media_listing = new View('media/list');
+        $this->template->content = new View('media/main');
+        // Get the media listing view
+        $media_listing_view = $this->_get_media_listing_view();
+        
+        // Set the view
+        $this->template->content->media_listing_view = $media_listing_view;
 
+        
+    }
 
-        //fetch media
-        $media = ORM::factory('media')->find_all();
+    /**
+     * Display all images submitted to a report
+     */
+    public function images() {
+        $this->template->header->this_page = 'images';
+        $this->template->content = new View('media/images');
 
-        // Set the view content
-        $media_listing->media = $media;
+        // Get the media listing view
+        $this->template->content->media_listing_view =  $this->_get_media_listing_view();
+    }
 
-        // Return
-        return $media_listing;
+    /**
+     * Display all videos submitted to a report
+     */
+    public function videos() {
 
     }
 
@@ -78,7 +75,39 @@ class Gallery_Controller extends Main_Controller {
         $this->template = "";
         $this->auto_render = FALSE;
         
-        $media_listing_view = $this->_get_media_listing_view();
+        if (isset($_GET['t']) AND !empty($_GET['t']) AND intval($_GET['t']) > 0)
+        {
+            $media_listing_view = $this->_get_media_listing_view(intval($_GET['t']));
+        } else {
+            $media_listing_view = $this->_get_media_listing_view();
+        }
         print $media_listing_view;
+    }
+
+    /**
+     * Helper method to load the media listing view
+     */
+    private function _get_media_listing_view($media_type =NULL)
+    {
+        // Load the media listing view
+        $media_listing = new View('media/list');
+
+        // Load media by type
+        if ($media_type != NULL)
+        {
+            $media = ORM::factory('media')->where(array('media_type' => $media_type))->find_all();
+        }
+        else 
+        { 
+            // Fetch media
+            $media = ORM::factory('media')->find_all();
+        }
+
+        // Set the view content
+        $media_listing->media = $media;
+
+        // Return
+        return $media_listing;
+
     }
 }

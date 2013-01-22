@@ -28,14 +28,13 @@
 	$(document).ready(function() {
 		
 		// When image filter is clicked
-		$("#filter_link_media_1").click(function(){
+		$('.filemgr li a').click(function() {
 
 			var type = $("#fl-media").val();
-
-			alert(type); exit();
+			var mediaType = parseFloat(this.id.replace('filter_link_media_', '')) || 0;
 		
 			// Fetch all images
-			attachFilterMediaAction();
+			attachFilterMediaAction(mediaType);
 		});
 
 
@@ -79,30 +78,13 @@
 	}
 	
 	/**
-	 * Adds an event handler for the "Filter media" button
+	 * Adds an event handler for filtering media by type
 	 */
-	function attachFilterMediaAction(media_type)
-	{
-		
+	function attachFilterMediaAction(mediaType)
+	{		
+		urlParameters["t"] = mediaType;
 
-		$("#filter_link_media_1").click(function(){
-			
-			// 
-			// Get the media type
-			// 
-			var mediaTypes = [];
-			$.each($(".fl-media li a.selected"), function(i, item){
-				mediaId = item.id.substring("filter_link_media_".length);
-				mediaTypes.push(mediaId);
-			});
-			
-			if (mediaTypes.length > 0)
-			{
-				urlParameters["m"] = mediaTypes;
-			}
-			// Fetch the media
-			fetchMedia();
-			
-		});
+		// Fetch the media
+		fetchMedia();
 	}
 	

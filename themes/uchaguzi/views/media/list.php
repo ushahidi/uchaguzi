@@ -18,7 +18,7 @@
 
                                 <?php if ($media_type==1) { ?>
                                 <li>
-                                <a class="image" href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
+                                <a class="image" rel="lightbox-group1" href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
                                     <span class="img"><img src="<?php echo url::convert_uploaded_to_abs($image->media_thumb); ?>" alt="" /></span>
                                     <span class="filename"><?php echo $media_name; ?></span></a>
                             </li>
