@@ -25,7 +25,8 @@
 				<?php admin::reports_subtabs("view"); ?>
 			</ul>
 		</nav>
-	</div><!--pageheader-->
+	</div>
+	
 	<div class="page-content"> 
 		<div class="table-tabs">
 		<!-- tabs -->

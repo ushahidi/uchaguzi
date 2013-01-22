@@ -165,13 +165,13 @@ class admin_Core {
 	{
 		$menu = "";
 
-		$menu .= ($this_sub_page == "site") ? Kohana::lang('ui_main.site') : "<a href=\"".url::site()."admin/settings/site\">".Kohana::lang('ui_main.site')."</a>";
+		$menu .= ($this_sub_page == "site") ? "<li>".Kohana::lang('ui_main.site')."</li>" : "<li><a href=\"".url::site()."admin/settings/site\">".Kohana::lang('ui_main.site')."</a></li>";
 
-		$menu .= ($this_sub_page == "map") ? Kohana::lang('ui_main.map') : "<a href=\"".url::site()."admin/settings\">".Kohana::lang('ui_main.map')."</a>";
+		$menu .= ($this_sub_page == "map") ? "<li>".Kohana::lang('ui_main.map')."</li>" : "<li><a href=\"".url::site()."admin/settings\">".Kohana::lang('ui_main.map')."</a>";
 
-		$menu .= ($this_sub_page == "sms") ? Kohana::lang('ui_main.sms') : "<a href=\"".url::site()."admin/settings/sms\">".Kohana::lang('ui_main.sms')."</a>";
+		$menu .= ($this_sub_page == "sms") ? "<li>".Kohana::lang('ui_main.sms')."</li>" : "<li><a href=\"".url::site()."admin/settings/sms\">".Kohana::lang('ui_main.sms')."</a>";
 
-		$menu .= ($this_sub_page == "email") ? Kohana::lang('ui_main.email') : "<a href=\"".url::site()."admin/settings/email\">".Kohana::lang('ui_main.email')."</a>";
+		$menu .= ($this_sub_page == "email") ? "<li>".Kohana::lang('ui_main.email')."</li>" : "<li><a href=\"".url::site()."admin/settings/email\">".Kohana::lang('ui_main.email')."</a>";
 
 		// We cannot allow cleanurl settings to be changed if MHI is enabled since it modifies a file in the config folder
 		if (Kohana::config('config.enable_mhi') == FALSE)

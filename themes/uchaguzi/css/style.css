@@ -25,13 +25,13 @@ body {
 }
 
 a {
-    color: #666;
+    color: #0a8f0a;
     text-decoration: none;
 	outline: none;
 }
 
 a:hover {
-    color: #FF4800;
+    color: #0a8f0a;
     text-decoration: none;
 }
 
@@ -215,7 +215,7 @@ h3.sub-category {
    font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
    line-height: 2em;   
    text-transform: uppercase; 
-   border-bottom: 3px solid rgb(245,72,0);
+   border-bottom: 3px solid #0a8f0a;
    margin-bottom: 1em;   
 }
 
@@ -246,6 +246,8 @@ header#global-header hgroup .logo a {
    width: 200px;
    margin-top: -0.2em;
 }
+
+header#global-header hgroup .logo a:hover {opacity: 0.7;}
 
 header#global-header hgroup .logo img {
    width: 100%;
@@ -421,7 +423,7 @@ nav#top-level-menu {
    box-shadow: 0 1px 1px rgba(256,256,256,0.1) inset;
   -moz-box-shadow: 0 1px 1px rgba(256,256,256,0.1) inset;
   -webkit-box-shadow: 0 1px 1px rgba(256,256,256,0.1) inset;
-  border-bottom: 4px solid rgb(245,72,0);
+  border-bottom: 4px solid #0a8f0a;
 background-color: #222222;
 background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(34, 34, 34)), to(rgb(34, 34, 34)));
 background-image: -webkit-linear-gradient(top, rgb(34, 34, 34), rgb(34, 34, 34));
@@ -483,7 +485,7 @@ nav#second-level-menu li a {
 
 nav#second-level-menu li.submit a {
    color: #fff;
-   background-color: rgb(245,72,0);
+   background-color: #369c36;
 }
 
 .collapse-second-level-menu nav#second-level-menu li a {
@@ -495,8 +497,7 @@ nav#second-level-menu li a:hover {
 }
 
 nav#second-level-menu li.submit a:hover {
-   opacity: 0.7;
-   background-color: rgb(245,72,0);
+   background-color: #0a8f0a;
 }
 
 nav#second-level-menu li a [class*="icon-"] {
@@ -651,8 +652,14 @@ article.report .info {
 }
 
 article.report .info h1 {
-   font-size: 1.1em;
-   padding: 0.2em 0 0.5em;
+   font-weight: normal;
+   font-size: 1.6em;
+   font-family: 'RobotoBoldCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
+   padding-bottom: 0.3em;
+}
+
+article.report .info h1 a {
+   color: #0a8f0a;
 }
 
 article.report .info p.date {
@@ -733,7 +740,7 @@ article.highlight .highlight-summary h1 {
 
 article.highlight .highlight-summary h1 a,
 article.third-party-report h1 a {
-   color: rgb(245,72,0);
+   color: #0a8f0a;
 }
 
 article.highlight .highlight-summary h1 a:hover,
@@ -845,7 +852,7 @@ nav#tools-menu .second-level-menu {
 
 nav#tools-menu .second-level-menu li {
    display: inline;
-   color: #ff4800;
+   color: #0a8f0a;
    font-weight: normal;
    font-size: 1em;
    font-family: 'RobotoCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -896,8 +903,12 @@ nav#tools-menu .second-level-menu a:hover {
    padding: 0.7em 0.5em 0;
 }
 
+#tools-content article.task hgroup h1 a {
+   color: #444;
+}
+
 #tools-content article.task hgroup h2 {
-   color: #ff4800;
+   color: #0a8f0a;
    font-size: 0.8em;
    padding: 0.3em 0.7em 0.7em;
 }
@@ -1366,7 +1377,7 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
    font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
    line-height: 2em;   
    text-transform: uppercase; 
-   border-bottom: 3px solid rgb(245,72,0);
+   border-bottom: 3px solid #0a8f0a;
    margin-bottom: 1em;   
 }
 
@@ -1997,7 +2008,7 @@ time,.time{
 }
 .shortcuts li a { 
    display: block;
-	color: #F00;
+	color: #0a8f0a;
 	font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
 	text-transform: uppercase;	
    background-color: #fff; 
@@ -2075,17 +2086,17 @@ form input[type=submit] {
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	border: 1px solid #de4204;
-   background-color: #ff4800;
+	border: 1px solid #0a8f0a;
+   background-color: #369c36;
    padding: 0.5em 1em;
 }
 
 form input[type=submit]:hover {
-   border: 1px solid #444;
-   background-color: #888;
+   border: 1px solid #0a8f0a;
+   background-color: #0a8f0a;
 }
 form input[type=reset] {
-	width: auto; margin: 0; font-weight: bold; color: #666; border: 1px solid #ccc; background: #eee; padding: 7px 10px;	
+	width: auto; margin: 0; font-weight: bold; color: #666; border: 1px solid #ccc; background: #eee; padding: 7px 10px;
 	-moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none; margin-left: 5px; -moz-border-radius: 2px; -webkit-border-radius: 2px;
 	border-radius: 2px;
 }
@@ -4642,7 +4653,7 @@ border-radius: 0px;
 }
 
 .ui-accordion .ui-accordion-header.ui-state-active a {
-   color: #ff4800;
+   color: #0a8f0a;
    background: #fcfcfc;
 }
     
