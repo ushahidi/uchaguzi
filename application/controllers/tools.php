@@ -126,8 +126,11 @@ class Tools_Controller extends Main_Controller {
 			url::redirect('admin/dashboard');
 		}
 
+		
+
 
 	}	
+
 	
 }
 

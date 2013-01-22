@@ -38,10 +38,10 @@ class Reports_Controller extends Main_Controller {
 		// Cacheable Controller
 		$this->is_cachable = TRUE;
 
-		$this->template->header->this_page = 'reports';
 		$this->template->content = new View('reports/main');
 		$this->themes->js = new View('reports/reports_js');
 
+		$this->template->content->this_page = 'reports';
 		$this->template->header->page_title .= Kohana::lang('ui_main.reports').Kohana::config('settings.title_delimiter');
 
 		// Store any exisitng URL parameters
