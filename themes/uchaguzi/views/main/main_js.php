@@ -381,20 +381,6 @@ jQuery(function() {
     // Initialize accordion for Main Filters
     $( "#accordion" ).accordion({autoHeight: false});
 
-
-	// County Switch Action
-	$("ul#county_switch li > a").click(function(e) {
-		
-		var countyId = this.id.substring(4);
-		var catSet = 'cat_' + this.id.substring(4);
-		map.addLayer(Ushahidi.GEOJSON, {
-			name: "County",
-		    url: "main/get_county_data?county_id="+countyId
-		});
-		//fetchBoundaryData({county_id : countyId}, true);
-		return false;
-	});
-
 });
 
 // Fetches county via JSON

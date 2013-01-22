@@ -195,16 +195,6 @@ class Main_Controller extends Template_Controller {
 		return $trusted;
 	}
 
-	//Get all Counties
-	public function get_counties()
-	{
-		$counties = ORM::factory('county')
-			->orderby('id')
-			->find_all();
-
-		return $counties;
-	}
-
     public function index()
     {
         $this->template->header->this_page = 'home';
@@ -291,10 +281,6 @@ class Main_Controller extends Template_Controller {
 		$this->template->content->categories = $parent_categories;
 
 
-		//counties
-		$this->template->content->counties = self::get_counties();
-
-
 		// Get all active Layers (KMZ/KML)
 		$layers = array();
 		$config_layers = Kohana::config('map.layers'); // use config/map layers if set
@@ -312,9 +298,6 @@ class Main_Controller extends Template_Controller {
 			$layers = $config_layers;
 		}
 		$this->template->content->layers = $layers;
-
-		// County tree view
-		$this->template->content->county_tree_view = county::get_county_tree_view();
 
 		// Category tree view
 		$this->template->content->category_tree_view = category::get_category_tree_view();
@@ -520,44 +503,5 @@ class Main_Controller extends Template_Controller {
 		$this->template->header->header_block = $this->themes->header_block();
 		$this->template->footer->footer_block = $this->themes->footer_block();
 	}
-
-	/**
-	 * Gets the county data for the specified county
-	 */
-	public function get_county_data()
-	{
-		$this->template = "";
-		$this->auto_render = FALSE;
-		$json_output = "";
-
-		if ($_GET)
-		{
-			// Get the county id
-			$county_id = $_GET['county_id'];
-
-			// Get the layer file
-			$county = new County_Model($county_id);
-			$layer_file = $county->county_layer_file;
-			if ( ! empty($layer_file))
-			{
-				// Set the URL for the layer file
-				$layer_file = url::base().Kohana::config('upload.relative_directory').'/'.$layer_file;
-			}
-
-			// Build output JSON
-			echo file_get_contents($layer_file);
-		}
-		else
-		{
-			$json_output = json_encode(array(
-				'success' => FALSE
-			));
-		}
-
-		// Flush the
-		header("Content-type: application/json; charset=utf-8");
-		print $json_output;
-	}
-
 
 } // End Main
