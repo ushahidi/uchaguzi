@@ -572,13 +572,6 @@ ul.tabset li a:hover{
    background: #eee;
 }
 
-.tab .tab_form_item{
-	float:left;
-	margin:10px 10px 0 10px;
-}
-.tab .tab_form_item2{
-	margin:10px 10px 0 10px;
-}
 /*-- tabs --*/
 
 .green-box {
