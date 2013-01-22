@@ -791,10 +791,11 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->next_url = $next_url;
 
 		// Javascript Header
-		$this->template->map_enabled = TRUE;
-		$this->template->colorpicker_enabled = TRUE;
-		$this->template->treeview_enabled = TRUE;
-		$this->template->json2_enabled = TRUE;
+		$this->template->header->map_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
+		$this->template->header->datepicker_enabled = TRUE;
+		$this->template->header->treeview_enabled = TRUE;
+		$this->template->header->json2_enabled = TRUE;
 
 		$this->template->js = new View('reports/submit_edit_js');
 		$this->template->js->edit_mode = TRUE;

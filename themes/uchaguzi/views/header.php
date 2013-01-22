@@ -150,6 +150,7 @@
 	// Load ColorPicker
 	if ($colorpicker_enabled)
 	{
+		
 		echo html::stylesheet(url::file_loc('css').'media/css/colorpicker', '', TRUE);
 		echo html::script(url::file_loc('js').'media/js/colorpicker', TRUE);
 	}
