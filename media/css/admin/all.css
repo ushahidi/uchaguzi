@@ -1048,31 +1048,6 @@ ul.treeview li.lastExpandable { width:155px; }
    display: inline-block;
    width: 30%;
 }
-.location-info input.text {
-}
-.town {
-	float:left;
-	padding-bottom:8px;
-}
-.location {
-	float:left;
-	width:310px;
-	padding-bottom:8px;
-}
-.location select{ width:240px;}
-.town h4,
-.location h4{ padding-top:13px;}
-a.add,
-a.rem{
-	margin:3px 0 0 5px;
-	text-indent:-3000px;
-	overflow:hidden;
-	width:13px;
-	height:13px;
-	float:left;
-	background:url(../../img/icon-plus.gif) no-repeat;
-}
-a.rem { background:url(../../img/icon-minus.gif) no-repeat;}
 input.short {
 	width:50px;
 }

@@ -571,6 +571,18 @@ nav#second-level-menu .toggle-second-level-menu a .point-right,
    width: 100%;
 }
 
+#primary-content .toolbar {
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   background-color: #f5f5f5;
+   padding: 0.5em;
+}
+
+#primary-content .toolbar .credibility {
+   float: right;
+}
+
 #filters {
    padding: 1em 0;
 }
@@ -762,6 +774,65 @@ article.third-party-report .metadata {
    color: #444;
    font-size: 1.2em;
    padding-bottom: 0.3em;
+}
+
+/* --------------------------- REPORT: DETAIL */
+
+.r_verified {
+   display: inline-block;
+   color: #fff;
+   font-size: 0.8em;
+   line-height: 1em;
+   text-transform: uppercase;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;   
+   background-color: green;
+   padding: 0.2em 0.6em;
+}
+
+h1.report-title {
+   color: #444;
+   font-weight: normal;
+   font-size: 2.2em;
+   font-family: 'RobotoBoldCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
+   padding: 0.5em 0;
+}
+
+h1.report-title a.edit {
+   color: #888;
+   font-size: 0.7em;
+   font-family: 'RobotoCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+h1.report-title a.edit:hover {
+   color: #444;
+}
+
+ul.report-category-list {
+   padding: ;
+}
+
+ul.report-category-list li {
+   font-size: 0.95em;
+   margin: 0.5em 0;
+}
+
+ul.report-category-list li a {
+   color: #666;
+}
+
+ul.report-category-list li a:hover {
+   color: #222;
+}
+
+ul.report-category-list .r_cat-box {
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
 }
 
 /* --------------------------- TOOLS */
@@ -1793,14 +1864,6 @@ time,.time{
 }
 #timeline li title a {
 	font-weight: bold;
-}
-
-
-
-h1{
-    font-size: 150%;
-    color: #004276;
->>>>>>> Stashed changes
 }
 
 #timeline li:nth-of-type(odd){
@@ -2987,8 +3050,8 @@ div.report-details{
 .report_detail .r_location { background: transparent url(../images/icon_sprite.png) -5px -163px no-repeat; }
 .report_detail .r_date { background: transparent url(../images/icon_sprite.png) -4px -133px no-repeat; }
 
-.report-when-where { color:#908B88; margin-bottom:10px; }
-.report-when-where span { padding:3px 5px 3px 18px;  } 
+.report-when-where { color:#888; font-size: 0.95em;}
+.report-when-where span {   } 
 
 div.report-category-list {
     border-top:1px dotted #C0C2B8;
@@ -3019,8 +3082,7 @@ div.report-media { padding:10px 0; border-bottom:1px dotted #C0C2B8;; }
 #report-video ol li { float:left; display:list-item; list-style-position:inside; margin-right:10px; }
 
 div.report-description-text {
-    padding:10px 0;
-    margin-bottom:18px;
+    padding: 1.5em 0;
 }
 
 div.report-description-text h5 {
@@ -3045,16 +3107,6 @@ div.report-description-text .feature_comment{
     font-size:90%;
 }
 
-div.credibility {
-    margin-top:10px;
-    padding:3px;
-    border-top:1px dotted #C0C2B8;
-}
-
-div.report-title {
-    padding-bottom:0px;
-}
-
 div.report-comments {
     border-bottom:#000000 dotted 1px;
     padding:5px 0px;
@@ -3074,27 +3126,14 @@ div.report-comment-box {
 }
 
 div.comment-block {
-	-moz-box-sizing: border-box;
-	border: 1px solid #D7D7D7;
-	background-attachment: scroll;
-	background-color: #F2F2F2;
-	background-image: none;
-	background-repeat: repeat;
-	background-position: 0 0;
-	padding-top: 5px;
-	padding-right: 0px;
-	padding-bottom: 5px;
-	padding-left: 8px;
+   padding: 1.5em 0;
 }
 
 div.comment-block h5 {
-    padding:0px 0px 5px 0px;
-    margin:0px;
-    font-size:14px;
-    text-transform: capitalize;
+   font-weight: normal;
+   font-size: 1.4em;
+   font-family: 'RobotoBoldCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
 }
-
-div.comment-block form { padding:0 0 0 10px; }
 
 div.report-media-box-tabs { float:right;  }
 div.report-media-box-tabs ul { list-style: none; padding: 0; margin: 0; float:left; }
@@ -3509,14 +3548,6 @@ label.error {
 .select{
     overflow:hidden;
 }
-.long{
-    width:60%;
-}
-.long2{
-    width:80%;
-    float:left;
-    margin-bottom:10px;
-}
 .short{
     width:100px;
 }
@@ -3634,12 +3665,9 @@ span.dots {
     font-weight:bold;
 }
 a.add, a.rem{
-    margin:3px 0 0 5px;
-    text-indent:-3000px;
-    overflow:hidden;
+   display: inline-block;
     width:13px;
     height:13px;
-    float:left;
     background:url(../images/icon-plus.gif) no-repeat;
 }
 a.rem { background:url(../images/icon-minus.gif) no-repeat;}
