@@ -1,13 +1,5 @@
                     <div class="filemgr_content">
                         
-                        <small>
-                            <strong>
-                                <em><?php echo Kohana::lang('uchaguzi.tips'); ?></em>
-                            </strong>
-                        </small>
-                        
-                        <br /><br />
-                        
                         <ul class="listfile" id="media-content">
                             <?php foreach ($media as $image) { 
 

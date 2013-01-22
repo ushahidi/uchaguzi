@@ -28,6 +28,8 @@ class Gallery_Controller extends Main_Controller {
 
         $this->template->this_page = 'media';
         $this->themes->js = new View('media/media_js');
+        $this->themes->photoslider_enabled = TRUE;
+        $this->themes->videoslider_enabled = TRUE;
 
         $this->template->header->page_title .= Kohana::lang('uchaguzi.media').Kohana::config('settings.title_delimiter');
         // Store any exisitng URL parameters
