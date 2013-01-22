@@ -52,6 +52,7 @@ class Manage_Controller extends Tools_Controller
 		$this->template->content = new View('admin/manage/categories/main');
 		$this->template->content->title = Kohana::lang('ui_admin.categories');
 
+		$this->template->content->this_page = 'manage';
 		// Locale (Language) Array
 		$locales = ush_locale::get_i18n();
 

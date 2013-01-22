@@ -40,6 +40,8 @@ class Messages_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/messages/main');
 
+		$this->template->content->this_page = 'messages';
+
 		// Get Title
 		$service = ORM::factory('service', $service_id);
 		$this->template->content->title = $service->service_name;
