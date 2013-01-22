@@ -108,6 +108,11 @@ class Gallery_Controller extends Main_Controller {
         // Set the view content
         $media_listing->media = $media;
 
+        // Create object of the video embed class
+        $video_embed = new VideoEmbed();
+
+        $media_listing->videos_embed = $video_embed;
+
         // Return
         return $media_listing;
 
