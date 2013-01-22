@@ -793,7 +793,7 @@ class Reports_Controller extends Tools_Controller {
 		// Javascript Header
 		$this->template->header->map_enabled = TRUE;
 		$this->template->header->colorpicker_enabled = TRUE;
-		$this->template->header->datepicker_enabled = TRUE;
+
 		$this->template->header->treeview_enabled = TRUE;
 		$this->template->header->json2_enabled = TRUE;
 
@@ -823,7 +823,7 @@ class Reports_Controller extends Tools_Controller {
 
 		// Pack Javascript
 		$myPacker = new javascriptpacker($this->template->js , 'Normal', false, false);
-		$this->template->js = $myPacker->pack();
+		$this->template->header->js = $myPacker->pack();
 	}
 
 
