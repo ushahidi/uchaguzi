@@ -31,7 +31,8 @@
 	}
 
 	// Load jQuery
-	echo html::script(url::file_loc('js').'media/js/jquery', TRUE);
+	echo $header_block;
+	
 	echo html::script(url::file_loc('js').'media/js/jquery.form', TRUE);
 	echo html::script(url::file_loc('js').'media/js/jquery.validate.min', TRUE);
 	echo html::script(url::file_loc('js').'media/js/jquery.ui.min', TRUE);
@@ -102,7 +103,6 @@
 
 	<?php
 	echo html::stylesheet(url::file_loc('css').'media/css/jquery.hovertip-1.0', '', TRUE);
-
 	echo "<script type=\"text/javascript\">
 		$(function() {
 			if($('.tooltip[title]') != null)
@@ -225,8 +225,6 @@
 
 
 	<!--/Admin css/js -->
-
-	<?php echo $header_block; ?>
 	<?php
 	// Action::header_scripts - Additional Inline Scripts from Plugins
 	Event::run('ushahidi_action.header_scripts');
