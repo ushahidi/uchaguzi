@@ -389,27 +389,27 @@ class Reports_Controller extends Main_Controller {
 		$this->template->content->custom_forms->form = $form;
 
 		// Javascript Header
-		$this->themes->map_enabled = TRUE;
-		$this->themes->datepicker_enabled = TRUE;
-		$this->themes->treeview_enabled = TRUE;
-		$this->themes->colorpicker_enabled = TRUE;
+		$this->template->header->map_enabled = TRUE;
+		$this->template->header->datepicker_enabled = TRUE;
+		$this->template->header->treeview_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
 
-		$this->themes->js = new View('reports/submit_edit_js');
-		$this->themes->js->edit_mode = FALSE;
-		$this->themes->js->incident_zoom = FALSE;
-		$this->themes->js->default_map = Kohana::config('settings.default_map');
-		$this->themes->js->default_zoom = Kohana::config('settings.default_zoom');
+		$this->template->header->js = new View('reports/submit_edit_js');
+		$this->template->header->js->edit_mode = FALSE;
+		$this->template->header->js->incident_zoom = FALSE;
+		$this->template->header->js->default_map = Kohana::config('settings.default_map');
+		$this->template->header->js->default_zoom = Kohana::config('settings.default_zoom');
 		if ( ! $form['latitude'] OR ! $form['latitude'])
 		{
-			$this->themes->js->latitude = Kohana::config('settings.default_lat');
-			$this->themes->js->longitude = Kohana::config('settings.default_lon');
+			$this->template->header->js->latitude = Kohana::config('settings.default_lat');
+			$this->template->header->js->longitude = Kohana::config('settings.default_lon');
 		}
 		else
 		{
-			$this->themes->js->latitude = $form['latitude'];
-			$this->themes->js->longitude = $form['longitude'];
+			$this->template->header->js->latitude = $form['latitude'];
+			$this->template->header->js->longitude = $form['longitude'];
 		}
-		$this->themes->js->geometries = $form['geometry'];
+		$this->template->header->js->geometries = $form['geometry'];
 
 
 		// Rebuild Header Block
