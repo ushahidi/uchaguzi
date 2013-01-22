@@ -166,13 +166,13 @@
 				<?php if (empty($form['incident_news'])): ?>
 					<div class="report_row">
 						<?php print form::input('incident_news[]', '', ' class="text long2"'); ?>
-						<a href="#" class="add" onClick="addFormField('divNews','incident_news','news_id','text'); return false;">add</a>
+						<a href="#" class="add" onClick="addFormField('divNews','incident_news','news_id','text'); return false;"><span class="nodisplay">add</span></a>
 					</div>
 				<?php else: ?>
 					<?php foreach ($form['incident_news'] as $value): ?>
 					<div class="report_row" id="<?php echo $i; ?>">
 						<?php echo form::input('incident_news[]', $value, ' class="text long2"'); ?>
-						<a href="#" class="add" onClick="addFormField('divNews','incident_news','news_id','text'); return false;">add</a>
+						<a href="#" class="add" onClick="addFormField('divNews','incident_news','news_id','text'); return false;"><span class="nodisplay">add</span></a>
 
 						<?php if ($i != 0): ?>
 							<?php $css_id = "#incident_news_".$i; ?>
@@ -198,14 +198,14 @@
 				<?php if (empty($form['incident_video'])): ?>
 					<div class="report_row">
 						<?php print form::input('incident_video[]', '', ' class="text long2"'); ?>
-						<a href="#" class="add" onClick="addFormField('divVideo','incident_video','video_id','text'); return false;">add</a>
+						<a href="#" class="add" onClick="addFormField('divVideo','incident_video','video_id','text'); return false;"><span class="nodisplay">add</span></a>
 					</div>
 				<?php else: ?>
 					<?php foreach ($form['incident_video'] as $value): ?>
 						<div class="report_row" id="<?php  echo $i; ?>">
 
 						<?php print form::input('incident_video[]', $value, ' class="text long2"'); ?>
-						<a href="#" class="add" onClick="addFormField('divVideo','incident_video','video_id','text'); return false;">add</a>
+						<a href="#" class="add" onClick="addFormField('divVideo','incident_video','video_id','text'); return false;"><span class="nodisplay">add</span></a>
 
 						<?php if ($i != 0): ?>
 							<?php $css_id = "#incident_video_".$i; ?>
@@ -233,18 +233,18 @@
 				<?php if (empty($form['incident_photo']['name'][0])): ?>
 				<div class="report_row">
 					<?php print form::upload('incident_photo[]', '', ' class="file long2"'); ?>
-					<a href="#" class="add" onClick="addFormField('divPhoto', 'incident_photo','photo_id','file'); return false;">add</a>
+					<a href="#" class="add" onClick="addFormField('divPhoto', 'incident_photo','photo_id','file'); return false;"><span class="nodisplay">add</span></a>
 				</div>
 				<?php else: ?>
 					<?php foreach ($form['incident_photo']['name'] as $value): ?>
 
 						<div class="report_row" id="<?php echo $i; ?>">
 							<?php print form::upload('incident_photo[]', $value, ' class="file long2"'); ?>
-							<a href="#" class="add" onClick="addFormField('divPhoto','incident_photo','photo_id','file'); return false;">add</a>
+							<a href="#" class="add" onClick="addFormField('divPhoto','incident_photo','photo_id','file'); return false;"><span class="nodisplay">add</span></a>
 
 							<?php if ($i != 0): ?>
 								<?php $css_id = "#incident_photo_".$i; ?>
-								<a href="#" class="rem"	onClick="removeFormField('<?php echo $css_id; ?>'); return false;">remove</a>
+								<a href="#" class="rem"	onClick="removeFormField('<?php echo $css_id; ?>'); return false;"><span class="nodisplay">remove</span></a>
 							<?php endif; ?>
 
 						</div>
