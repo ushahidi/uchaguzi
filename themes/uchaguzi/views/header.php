@@ -184,10 +184,6 @@
 	//Turn on jwysiwyg
 	echo html::stylesheet(url::file_loc('css').'media/js/jwysiwyg/jwysiwyg/jquery.wysiwyg.css');
 
-	// Header Nav
-	echo html::script(url::file_loc('js').'media/js/global', TRUE);
-	echo html::stylesheet(url::file_loc('css').'media/css/global','',TRUE);
-
 	// Render CSS and Javascript Files from Plugins
 	echo plugin::render('stylesheet');
 	echo plugin::render('javascript');

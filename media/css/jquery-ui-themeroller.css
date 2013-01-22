@@ -48,8 +48,8 @@
 
 /* Component containers
 ----------------------------------*/
-.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
-.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
+.ui-widget { font-family: Hevetica Neue, Helvetica, Arial,sans-serif; font-size: 1.1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Hevetica Neue, Helvetica, Arial,sans-serif; font-size: 1em; }
 .ui-widget-content {
 	border: 1px solid #dddddd;
 	background: #ffffff url(../img/themeroller/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x;

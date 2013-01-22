@@ -521,7 +521,7 @@ ul.tabset li a {
 }
 
 ul.tabset li a.active{
-	color: #ff4800;
+	color: #0a8f0a;
 	font-weight: bold;
 	background:#eee !important;
 }
@@ -678,7 +678,7 @@ table td{
    padding: 0;
 }
 .table .post h4 a {
-   color: #ff4800;
+   color: #0a8f0a;
 }
 
 .table .post h4 a:hover {
@@ -716,7 +716,7 @@ ul.links li{
 
 ul.info li strong {
 	font-weight:normal;
-	color:#ff4800;
+	color: #0a8f0a;
 }
 ul.links li a{
 	color:#669eb9;
@@ -1118,50 +1118,6 @@ input.long2 {
 	color:#666;
 }
 
-/*-- Extended --*/
-.l-column{
-	padding: 0 0px 0 20px;
-	width: 280px;
-	float:left;
-}
-.r-column{
-	padding: 0 30px 0;
-	width: 558px;
-	float:left;
-	border: 1px solid #dadada;
-}
-p.bold_desc{
-	margin-top: 0px;
-	font-weight: bold;	
-}
-.my-sel-holder {
-	margin-bottom: 10px;
-	overflow:hidden;
-	border:2px solid #d9d9d9;
-	float:left;
-}
-.my-sel-holder select{
-	margin:-2px -1px;
-	float:left;
-}
-.has_border_first{
-	width: 280px;
-	margin: 0px 0 10px;
-	padding: 0px 0 10px;
-	float: left;
-	border-bottom:2px solid #d9d9d9;
-}
-.has_border{
-	width: 280px;
-	margin: 0px 0 10px;
-	padding: 0px 0 10px;
-	float: left;
-	border-bottom:2px solid #d9d9d9;
-}
-.has_border h4{margin-top: 0px; padding-top: 0px;}
-.map_holder_settings{
-	
-}
 .map_holder_reports{
 	width: 100%; 
 	height: 350px; 
@@ -1188,26 +1144,6 @@ span.blue_span{
 span.dark_span{
 	color: #555555;
 }
-div.c_push{
-	width: 235px;
-	margin: 5px 0 5px;
-	padding-left: 45px;
-	display: block;
-	float: left;
-}
-#retrieve_cities{
-	clear:both;
-	background-color:#eee;
-	color:#333;
-	padding:5px;
-	margin:10px 15px 10px 0;
-}
-#retrieve_cities a, #retrieve_cities a:visited{
-	color:#333;
-}
-#cities_loading{
-	
-}
 #city_count{
 	margin:5px 0 0 0;
 	display:none;
@@ -1226,39 +1162,47 @@ div.sms_nav_holder a{
 }
 div.sms_nav_holder a:hover{background-color: #f0f0f0;}
 div.sms_nav_holder a.active{background-color: #eee; color: #6c6c6c; font-weight: bold;}
-div.sms_holder, div.settings_holder{
-	width: 860px;
-	padding: 15px;
-	margin-left: 20px;
-	border: 5px solid #f0f0f0;
-	float: left;
-}
-	* html div.sms_holder{
-		margin-left: 10px;
-	}
-	div.theme_holder{
-		width:243px;
-		margin-right:20px;
-		margin-bottom:20px;
-		border:1px solid #ccc;
+
+	.theme_holder{
 		float:left;
-		padding:10px;
+		width: 33.3333333%;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;
+		padding: 1em;
 	}
-		div.theme_screenshot{
-			width:240px;
-			height:150px;
-			border:1px solid #000;
+		.theme_screenshot img {
+			width:100%;
 			background-color:#ccc;
-			margin-bottom:10px;
+			margin-bottom:1em;
 		}
-		div.theme_select{
+.theme_holder h1 {
+   color: #444;
+   font-weight: normal;
+   font-size: 1.4em;
+   font-family: 'RobotoBoldCondensed', Arial, Helvetica, sans-serif;
+}
+
+.theme_holder p {
+   color: #888;
+   font-size: 0.9em;
+   padding: 0.5em 0;
+}
+
+.theme_holder ul li {
+   font-size: 0.95em;
+   list-style: square;
+   margin: 0.5em 0 0.5em 1.3em;
+}
+
+		.theme_select{
 			margin-top:10px;
 			padding:5px;
 			background-color:#eee;
 			border:1px solid #ccc;
 			font-weight:bold;
 		}
-		div.theme_select:hover{
+		.theme_select:hover{
 			background-color:#FFFFCC;
 		}
 	div.test_settings{
@@ -1768,9 +1712,23 @@ UL.mapNavigation LI A:focus {
 .reports-charts { width:664px; margin-right:36px; }
 
 /* Time Period Selection*/
-#time-period-selector { text-align:right; margin-bottom:18px; }
-	input.dp { width:100px; margin:0 10px; font-weight:bold; font-size:10px; color:#5c5c5c;  }
-	#time-period-selector a { padding:0 5px; }
+#time-period-selector {
+   background-color: #eee;
+   padding: 1em;
+   margin: 1em;
+}
+
+#time-period-selector .range-select {
+   padding-bottom: 1em;
+}
+
+#time-period-selector .range-select a {
+   padding: 0 0.5em;
+}
+
+#time-period-selector .range-input input.dp {
+   width: 30%;
+}
 
 /* Stats Summary */
 .stats-wrapper { border:1px solid #eee; border-top:2px solid #898989; }
@@ -1830,12 +1788,6 @@ UL.mapNavigation LI A:focus {
 /*Hover state for various stats*/
 .table-graph tr:hover,
 .statistic:hover{ background:#FFFFEF; }
-
-.glossary { width:320px; margin:10px 0 0; } 
-	.glossary h4 { font-size:12px; font-weight:bold; line-height:16px; color:#00699B; margin:0 0 3px 0; }
-	.terms { border-top:3px solid #669EB9; border-bottom:3px solid #669EB9; background:#F2F7FA; padding:0px 18px; }
-
-.two-col .tabs { width:auto; }
 
 /* Color box used for legend on reports stats page */
 #little-color-box {
