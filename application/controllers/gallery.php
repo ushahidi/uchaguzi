@@ -75,7 +75,6 @@ class Gallery_Controller extends Main_Controller {
     {
         // Load the media listing view
         $media_listing = new View('media/list');
-        print_r($media_type);
         // Load media by type
         if ($media_type != NULL)
         {
