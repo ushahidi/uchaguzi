@@ -141,11 +141,11 @@ class admin_Core {
 		{
 			if ($service->id == $service_id)
 			{
-				$menu .= $service->service_name;
+				$menu .= "<li class=\"active\"><a>".$service->service_name."</a></li>";
 			}
 			else
 			{
-				$menu .= "<a href=\"" . url::site() . "admin/messages/index/".$service->id."\">".$service->service_name."</a>";
+				$menu .= "<li><a href=\"" . url::site() . "admin/messages/index/".$service->id."\">".$service->service_name."</a></li>";
 			}
 		}
 

@@ -19,6 +19,11 @@
 		<ul class="hornav">
 			<?php echo admin::tools_nav($this_page);?>
 		</ul>
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::messages_subtabs($service_id); ?>
+			</ul>
+		</nav>
 	</div><!--pageheader-->
 
 	<div class="page-content">              
@@ -31,19 +36,12 @@
 	// Kill the rest of the page if this event has been utilized by a plugin
 	if( ! Event::has_run('ushahidi_action.admin_messages_custom_layout')){
 ?>
+
                 <ul class="msghead_menu">
 					<li class="button-toolbar"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=1" <?php if ($type == '1') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.inbox');?></a></li>
-                   	<li class="button-toolbar"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=2" <?php if ($type == '2') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.outbox');?></a></li>
-                    <li><button class="stdbtn btn_orange">Spam</button></li>
-                    <li><button class="stdbtn btn_red">Delete</button></li>
-                    <li class="marginleft5"><select class="radius3">
-                    	<option value="">Show All Message Types</option>
-                        <option value="">Tweets</option>
-                        <option value="">SMS</option>
-                        <option value="">Web Form</option>
-                        <option value="">Email</option>
-						</select>
-					</li>	
+                    <li class="button-toolbar"><a href="<?php echo url::site()."admin/messages/index/".$service_id; ?>?type=2" <?php if ($type == '2') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.outbox');?></a></li>
+                    <li><button class="stdbtn btn_orange"><?php echo Kohana::lang('ui_main.spam');?></button></li>
+                    <li><button class="stdbtn btn_red"><?php echo Kohana::lang('ui_main.delete');?></button></li>
     					<tfoot>
 						<tr class="foot">
 							<td colspan="4">
