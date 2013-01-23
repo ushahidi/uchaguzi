@@ -1,0 +1,3 @@
+[submodule "plugins/iebc"]
+	path = plugins/iebc
+	url = git://github.com/dkobia/iebc.git
