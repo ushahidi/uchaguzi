@@ -18,7 +18,7 @@
 			<li><a href="" class="published"><span class="icon-publish"></span><?php echo $reports_approved .' '.Kohana::lang('ui_main.approved');?></a></li>
 			<li><a href="" class="verified"><span class="icon-checkmark-circle"></span><?php echo $reports_verified .' '.Kohana::lang('ui_main.verified');?></a></li>
 		</ul>
-
+				 
 		<div class="view-summary">
 			<h3 class="sub-category">UCHAGUZI TASKS</h3>
 
