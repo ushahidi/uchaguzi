@@ -57,7 +57,7 @@ class Stats_Controller extends Tools_Controller {
 
 		// Javascript Header
 		$this->template->protochart_enabled = TRUE;
-		$this->template->js = new View('admin/stats/stats_js');
+		$this->template->header->js = new View('admin/stats/stats_js');
 
 		$this->template->content->failure = '';
 
@@ -194,7 +194,7 @@ class Stats_Controller extends Tools_Controller {
         
         // Javascript Header
         $this->template->raphael_enabled = TRUE;
-        $this->template->js = new View('admin/stats/stats_js');
+        $this->template->header->js = new View('admin/stats/stats_js');
         
         $this->template->content->failure = '';
         
@@ -300,7 +300,7 @@ class Stats_Controller extends Tools_Controller {
         
         // Javascript Header
         $this->template->protochart_enabled = TRUE;
-        $this->template->js = new View('admin/stats/stats_js');
+        $this->template->header->js = new View('admin/stats/stats_js');
         
         $this->template->content->failure = '';
         
@@ -373,7 +373,7 @@ class Stats_Controller extends Tools_Controller {
         $this->template->content->title = Kohana::lang('ui_admin.statistics');
         
         // Javascript Header
-        $this->template->js = new View('admin/stats/stats_js');
+        $this->template->header->js = new View('admin/stats/stats_js');
         
         $this->template->content->failure = '';
         

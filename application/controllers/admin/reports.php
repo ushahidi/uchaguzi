@@ -290,7 +290,7 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->this_page = 'reports';
 
 		// Javascript Header
-		$this->template->js = new View('admin/reports/reports_js');
+		$this->template->header->js = new View('admin/reports/reports_js');
 	}
 
 	/**
@@ -797,24 +797,24 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->header->treeview_enabled = TRUE;
 		$this->template->header->json2_enabled = TRUE;
 
-		$this->template->js = new View('reports/submit_edit_js');
-		$this->template->js->edit_mode = TRUE;
-		$this->template->js->default_map = Kohana::config('settings.default_map');
-		$this->template->js->default_zoom = Kohana::config('settings.default_zoom');
+		$this->template->header->js = new View('reports/submit_edit_js');
+		$this->template->header->js->edit_mode = TRUE;
+		$this->template->header->js->default_map = Kohana::config('settings.default_map');
+		$this->template->header->js->default_zoom = Kohana::config('settings.default_zoom');
 
 		if ( ! $form['latitude'] OR !$form['latitude'])
 		{
-			$this->template->js->latitude = Kohana::config('settings.default_lat');
-			$this->template->js->longitude = Kohana::config('settings.default_lon');
+			$this->template->header->js->latitude = Kohana::config('settings.default_lat');
+			$this->template->header->js->longitude = Kohana::config('settings.default_lon');
 		}
 		else
 		{
-			$this->template->js->latitude = $form['latitude'];
-			$this->template->js->longitude = $form['longitude'];
+			$this->template->header->js->latitude = $form['latitude'];
+			$this->template->header->js->longitude = $form['longitude'];
 		}
 
-		$this->template->js->incident_zoom = $form['incident_zoom'];
-		$this->template->js->geometries = $form['geometry'];
+		$this->template->header->js->incident_zoom = $form['incident_zoom'];
+		$this->template->header->js->geometries = $form['geometry'];
 
 		// Inline Javascript
 		$this->template->content->date_picker_js = $this->_date_picker_js();
@@ -822,7 +822,7 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->new_category_toggle_js = $this->_new_category_toggle_js();
 
 		// Pack Javascript
-		$myPacker = new javascriptpacker($this->template->js , 'Normal', false, false);
+		$myPacker = new javascriptpacker($this->template->header->js , 'Normal', false, false);
 		$this->template->header->js = $myPacker->pack();
 	}
 
@@ -1136,8 +1136,8 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->form_error = $form_error;
 
 		// Javascript Header
-		$this->template->js = new View('admin/reports/download_js');
-		$this->template->js->calendar_img = url::base() . "media/img/icon-calendar.gif";
+		$this->template->header->js = new View('admin/reports/download_js');
+		$this->template->header->js->calendar_img = url::base() . "media/img/icon-calendar.gif";
 	}
 
 	public function upload()
@@ -1344,7 +1344,7 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->form_saved = $form_saved;
 
 		// Javascript Header
-		$this->template->js = new View('admin/reports/translate_js');
+		$this->template->header->js = new View('admin/reports/translate_js');
 	}
 
 
