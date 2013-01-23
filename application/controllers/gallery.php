@@ -54,24 +54,6 @@ class Gallery_Controller extends Main_Controller {
         
     }
 
-    /**
-     * Display all images submitted to a report
-     */
-    public function images() {
-        $this->template->header->this_page = 'images';
-        $this->template->content = new View('media/images');
-
-        // Get the media listing view
-        $this->template->content->media_listing_view =  $this->_get_media_listing_view();
-    }
-
-    /**
-     * Display all videos submitted to a report
-     */
-    public function videos() {
-
-    }
-
     public function fetch_media()
     {
         $this->template = "";
@@ -93,7 +75,7 @@ class Gallery_Controller extends Main_Controller {
     {
         // Load the media listing view
         $media_listing = new View('media/list');
-
+        print_r($media_type);
         // Load media by type
         if ($media_type != NULL)
         {

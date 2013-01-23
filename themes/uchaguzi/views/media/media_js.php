@@ -32,7 +32,7 @@
 
 			var type = $("#fl-media").val();
 			var mediaType = parseFloat(this.id.replace('filter_link_media_', '')) || 0;
-		
+			
 			// Fetch all images
 			attachFilterMediaAction(mediaType);
 
@@ -59,7 +59,7 @@
 					"<p style=\"padding: 10px 2px;\"><h3><?php echo Kohana::lang('uchaguzi.loading_media'); ?>...</h3></p>" +
 					"</div>";
 	
-		$("#fl-media").html(statusHtml);
+		$("div.filemgr_content").html(statusHtml);
 		
 		// Check if there are any parameters
 		if ($.isEmptyObject(urlParameters))
@@ -75,7 +75,7 @@
 				
 					// Animation delay
 					setTimeout(function(){
-						$("#fl-media").html(data);
+						$("div.filemgr_content").html(data);
 						
 					}, 400);
 				}
@@ -89,7 +89,6 @@
 	function attachFilterMediaAction(mediaType)
 	{		
 		urlParameters["t"] = mediaType;
-
 		// Fetch the media
 		fetchMedia();
 	}
