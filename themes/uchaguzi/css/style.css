@@ -657,15 +657,24 @@ article.report .info {
    padding: 0 2.0833333%;
 }
 
+article.report .info .report-status {
+   float: right;
+   color: #fff;
+   font-size: 0.8em;
+   text-transform: uppercase;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;   
+   background-color: #0a8f0a;
+   padding: 0.5em 0.8em;
+   margin: 0 0 1em 1em;
+}
+
 article.report .info h1 {
    font-weight: normal;
    font-size: 1.6em;
    font-family: 'RobotoBoldCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
    padding-bottom: 0.3em;
-}
-
-article.report .info h1 a {
-   color: #0a8f0a;
 }
 
 article.report .info p.date {
@@ -858,11 +867,10 @@ nav#tools-menu .second-level-menu {
 
 nav#tools-menu .second-level-menu li {
    display: inline;
-   color: #0a8f0a;
    font-weight: normal;
    font-size: 1em;
    font-family: 'RobotoCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
-   line-height: 1.2em;
+   line-height: 1.5em;
 }
 
 nav#tools-menu .second-level-menu a {
@@ -874,6 +882,11 @@ nav#tools-menu .second-level-menu a {
 
 nav#tools-menu .second-level-menu a:hover {
    color: #444;
+}
+
+nav#tools-menu .second-level-menu li.active a {
+   color: #0a8f0a;
+   font-family: 'RobotoBoldCondensed', Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 #tools-content .page-content {
@@ -1383,6 +1396,8 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
    position: relative;
    float: left;
    width: 25%;
+   height: 200px;
+   overflow: hidden;
    -moz-box-sizing: border-box; 
    -webkit-box-sizing: border-box; 
    box-sizing: border-box;
@@ -2002,10 +2017,6 @@ time,.time{
 }
 #timeline li title a {
 	font-weight: bold;
-}
-#reportdetails{
-	float: right;
-	font-size: 10px;
 }
 
 /***** NOTIFICATION MESSAGES *****/

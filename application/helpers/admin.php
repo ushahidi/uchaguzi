@@ -112,15 +112,15 @@ class admin_Core {
 	{
 		$menu = "";
 
-		$menu .= ($this_sub_page == "view") ? "<li>".Kohana::lang('ui_main.view_reports')."</li>" : "<li><a href=\"".url::base()."admin/reports\">".Kohana::lang('ui_main.view_reports')."</a></li>";
+		$menu .= ($this_sub_page == "view") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.view_reports')."</a></li>" : "<li><a href=\"".url::base()."admin/reports\">".Kohana::lang('ui_main.view_reports')."</a></li>";
 
-		$menu .= ($this_sub_page == "edit") ? "<li>".Kohana::lang('ui_main.create_report')."</li>" : "<li><a href=\"".url::base()."admin/reports/edit\">".Kohana::lang('ui_main.create_report')."</a></li>";
+		$menu .= ($this_sub_page == "edit") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.create_report')."</a></li>" : "<li><a href=\"".url::base()."admin/reports/edit\">".Kohana::lang('ui_main.create_report')."</a></li>";
 
-		$menu .= ($this_sub_page == "comments") ? "<li>".Kohana::lang('ui_main.comments')."</li>" : "<li><a href=\"".url::base()."admin/comments\">".Kohana::lang('ui_main.comments')."</a></li>";
+		$menu .= ($this_sub_page == "comments") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.comments')."</a></li>" : "<li><a href=\"".url::base()."admin/comments\">".Kohana::lang('ui_main.comments')."</a></li>";
 
-		$menu .= ($this_sub_page == "download") ? "<li>".Kohana::lang('ui_main.download_reports')."</li>" : "<li><a href=\"".url::base()."admin/reports/download\">".Kohana::lang('ui_main.download_reports')."</a></li>";
+		$menu .= ($this_sub_page == "download") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.download_reports')."</a></li>" : "<li><a href=\"".url::base()."admin/reports/download\">".Kohana::lang('ui_main.download_reports')."</a></li>";
 
-		$menu .= ($this_sub_page == "upload") ? "<li>".Kohana::lang('ui_main.upload_reports')."</li>" : "<li><a href=\"".url::base()."admin/reports/upload\">".Kohana::lang('ui_main.upload_reports')."</a></li>";
+		$menu .= ($this_sub_page == "upload") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.upload_reports')."</a></li>" : "<li><a href=\"".url::base()."admin/reports/upload\">".Kohana::lang('ui_main.upload_reports')."</a></li>";
 
 		echo $menu;
 
@@ -165,13 +165,13 @@ class admin_Core {
 	{
 		$menu = "";
 
-		$menu .= ($this_sub_page == "site") ? "<li>".Kohana::lang('ui_main.site')."</li>" : "<li><a href=\"".url::site()."admin/settings/site\">".Kohana::lang('ui_main.site')."</a></li>";
+		$menu .= ($this_sub_page == "site") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.site')."</a></li>" : "<li><a href=\"".url::site()."admin/settings/site\">".Kohana::lang('ui_main.site')."</a></li>";
 
-		$menu .= ($this_sub_page == "map") ? "<li>".Kohana::lang('ui_main.map')."</li>" : "<li><a href=\"".url::site()."admin/settings\">".Kohana::lang('ui_main.map')."</a>";
+		$menu .= ($this_sub_page == "map") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.map')."</a></li>" : "<li><a href=\"".url::site()."admin/settings\">".Kohana::lang('ui_main.map')."</a>";
 
-		$menu .= ($this_sub_page == "sms") ? "<li>".Kohana::lang('ui_main.sms')."</li>" : "<li><a href=\"".url::site()."admin/settings/sms\">".Kohana::lang('ui_main.sms')."</a>";
+		$menu .= ($this_sub_page == "sms") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.sms')."</a></li>" : "<li><a href=\"".url::site()."admin/settings/sms\">".Kohana::lang('ui_main.sms')."</a>";
 
-		$menu .= ($this_sub_page == "email") ? "<li>".Kohana::lang('ui_main.email')."</li>" : "<li><a href=\"".url::site()."admin/settings/email\">".Kohana::lang('ui_main.email')."</a>";
+		$menu .= ($this_sub_page == "email") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.email')."</a></li>" : "<li><a href=\"".url::site()."admin/settings/email\">".Kohana::lang('ui_main.email')."</a>";
 
 		// We cannot allow cleanurl settings to be changed if MHI is enabled since it modifies a file in the config folder
 		if (Kohana::config('config.enable_mhi') == FALSE)
@@ -224,27 +224,27 @@ class admin_Core {
 	{
 		$menu = "";
 
-		$menu .= ($this_sub_page == "categories") ? "<li>".Kohana::lang('ui_main.categories')."</li>" : "<li><a href=\"".url::site()."admin/manage\">".Kohana::lang('ui_main.categories')."</a></li>";
+		$menu .= ($this_sub_page == "categories") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.categories')."</a></li>" : "<li><a href=\"".url::site()."admin/manage\">".Kohana::lang('ui_main.categories')."</a></li>";
 
-		$menu .= ($this_sub_page == "blocks") ? "<li>".Kohana::lang('ui_admin.blocks')."</li>" : "<li><a href=\"".url::site()."admin/manage/blocks\">".Kohana::lang('ui_admin.blocks')."</a></li>";
+		$menu .= ($this_sub_page == "blocks") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.blocks')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/blocks\">".Kohana::lang('ui_admin.blocks')."</a></li>";
 
-		$menu .= ($this_sub_page == "forms") ? "<li>".Kohana::lang('ui_main.forms')."</li>" : "<li><a href=\"".url::site()."admin/manage/forms\">".Kohana::lang('ui_main.forms')."</a></li>";
+		$menu .= ($this_sub_page == "forms") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.forms')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/forms\">".Kohana::lang('ui_main.forms')."</a></li>";
 
-		$menu .= ($this_sub_page == "pages") ? "<li>".Kohana::lang('ui_main.pages')."</li>" : "<li><a href=\"".url::site()."admin/manage/pages\">".Kohana::lang('ui_main.pages')."</a></li>";
+		$menu .= ($this_sub_page == "pages") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.pages')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/pages\">".Kohana::lang('ui_main.pages')."</a></li>";
 
-		$menu .= ($this_sub_page == "feeds") ? "<li>".Kohana::lang('ui_main.news_feeds')."</li>" : "<li><a href=\"".url::site()."admin/manage/feeds\">".Kohana::lang('ui_main.news_feeds')."</a></li>";
+		$menu .= ($this_sub_page == "feeds") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.news_feeds')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/feeds\">".Kohana::lang('ui_main.news_feeds')."</a></li>";
 
-		$menu .= ($this_sub_page == "layers") ? "<li>".Kohana::lang('ui_main.layers')."</li>" : "<li><a href=\"".url::site()."admin/manage/layers\">".Kohana::lang('ui_main.layers')."</a></li>";
+		$menu .= ($this_sub_page == "layers") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.layers')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/layers\">".Kohana::lang('ui_main.layers')."</a></li>";
 
-		$menu .= ($this_sub_page == "scheduler") ? "<li>".Kohana::lang('ui_main.scheduler')."</li>" : "<li><a href=\"".url::site()."admin/manage/scheduler\">".Kohana::lang('ui_main.scheduler')."</a></li>";
+		$menu .= ($this_sub_page == "scheduler") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.scheduler')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/scheduler\">".Kohana::lang('ui_main.scheduler')."</a></li>";
 
-		$menu .= ($this_sub_page == "publiclisting") ? "<li>".Kohana::lang('ui_admin.public_listing')."</li>" : "<li><a href=\"".url::site()."admin/manage/publiclisting\">".Kohana::lang('ui_admin.public_listing')."</a></li>";
+		$menu .= ($this_sub_page == "publiclisting") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.public_listing')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/publiclisting\">".Kohana::lang('ui_admin.public_listing')."</a></li>";
 
-		$menu .= ($this_sub_page == "actions") ? "<li>".Kohana::lang('ui_admin.actions')."</li>" : "<li><a href=\"".url::site()."admin/manage/actions\">".Kohana::lang('ui_admin.actions')."</a></li>";
+		$menu .= ($this_sub_page == "actions") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.actions')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/actions\">".Kohana::lang('ui_admin.actions')."</a></li>";
 
-		$menu .= ($this_sub_page == "badges") ? "<li>".Kohana::lang('ui_main.badges')."</li>" : "<li><a href=\"".url::site()."admin/manage/badges\">".Kohana::lang('ui_main.badges')."</a></li>";
+		$menu .= ($this_sub_page == "badges") ? "<li class=\"active\"><a>".Kohana::lang('ui_main.badges')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/badges\">".Kohana::lang('ui_main.badges')."</a></li>";
 
-		$menu .= ($this_sub_page == "alerts") ? "<li>".Kohana::lang('ui_admin.alerts')."</li>" : "<li><a href=\"".url::site()."admin/manage/alerts\">".Kohana::lang('ui_admin.alerts')."</a></li>";
+		$menu .= ($this_sub_page == "alerts") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.alerts')."</a></li>" : "<li><a href=\"".url::site()."admin/manage/alerts\">".Kohana::lang('ui_admin.alerts')."</a></li>";
 
 		echo $menu;
 
@@ -263,14 +263,14 @@ class admin_Core {
 	{
 		$menu = "";
 
-		$menu .= ($this_sub_page == "users") ? "<li>".Kohana::lang('ui_admin.manage_users')."</li>" : "<li><a href=\"".url::site()."admin/users/\">".Kohana::lang('ui_admin.manage_users')."</a></li>";
+		$menu .= ($this_sub_page == "users") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.manage_users')."</a></li>" : "<li><a href=\"".url::site()."admin/users/\">".Kohana::lang('ui_admin.manage_users')."</a></li>";
 
-		$menu .= ($this_sub_page == "users_edit") ? "<li>".Kohana::lang('ui_admin.manage_users_edit')."</li>" : "<li><a href=\"".url::site()."admin/users/edit/\">".Kohana::lang('ui_admin.manage_users_edit')."</a></li>";
+		$menu .= ($this_sub_page == "users_edit") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.manage_users_edit')."</a></li>" : "<li><a href=\"".url::site()."admin/users/edit/\">".Kohana::lang('ui_admin.manage_users_edit')."</a></li>";
 
 		// Only display the link for roles where $display_roles = TRUE
 		if ($display_roles)
 		{
-			$menu .= ($this_sub_page == "roles") ? "<li>".Kohana::lang('ui_admin.manage_roles')."</li>" : "<li><a
+			$menu .= ($this_sub_page == "roles") ? "<li class=\"active\"><a>".Kohana::lang('ui_admin.manage_roles')."</a></li>" : "<li><a
 			href=\"".url::site()."admin/users/roles/\">".Kohana::lang('ui_admin.manage_roles')."</a></li>";
 		}
 

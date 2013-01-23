@@ -634,8 +634,45 @@ table td{
    font-size: 0.95em;
    padding-right: 1em;
 }
-.table .col-4{
+
+.table .actions a {
+   display: block;
+   color: #fff;
+   font-size: 0.9em;
+   text-align: center;
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
+   border: 1px solid #0a8f0a;
+   background-color: #369c36;
+   padding: 0.5em 0.8em;
+   margin-bottom: 0.5em;
 }
+
+.table .actions a:hover {
+   background-color: #0a8f0a;
+}
+
+.table .actions a.del {
+   border: 1px solid #a31314;
+   background-color: #f57f7f;
+}
+
+.table .actions a.del:hover {
+   background-color: #a31314;
+}
+
+.table .actions a.status_yes {
+   color: #999;
+   border: 1px solid #dedede;
+   background-color: #eee;
+}
+
+.table .actions a.status_yes:hover {
+   background-color: #dedede;
+}
+
+
 .table .col{
 	border-left:2px solid #bbb;
 	padding:12px 0 10px 10px;
@@ -1079,18 +1116,6 @@ input.long2 {
 .report-form .report_thumbs img {
 	border:1px #ccc solid;
 	padding:3px;
-}
-.status_yes{
-	color:#009900;
-	font-weight:bold;
-	font-size:13px;
-	text-decoration:none;
-}
-.status_no{
-	color:#990000;
-	font-weight:bold;
-	font-size:13px;
-	text-decoration:none;
 }
 .comment_incident{
 	background-color:#eee;
@@ -1691,14 +1716,25 @@ UL.mapNavigation LI A:focus {
 	.tc-right { }
 	
 /* Chart Holders */
-.chart-holder { height:300px; }
+.chart-holder { }
+.chart-holder img {
+   width: 70%;
+   margin: 0 auto;
+}
 .reports-charts { width:664px; margin-right:36px; }
 
 /* Time Period Selection*/
 #time-period-selector {
+   -webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+   border-radius: 2px;
    background-color: #eee;
    padding: 1em;
    margin: 1em;
+}
+
+#time-period-selector h3 {
+   padding-bottom: 1em;
 }
 
 #time-period-selector .range-select {

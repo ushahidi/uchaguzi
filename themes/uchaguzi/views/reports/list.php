@@ -74,11 +74,8 @@
 				<span class="r_video" style="display:none;"><a href="#"><?php echo Kohana::lang('ui_main.video'); ?></a></span>
 			</div>
 			<div class="info">
+				<span class="report-status"><?php echo $incident_verified_class; ?></span>
 				<h1><a href="<?php echo url::site(); ?>reports/view/<?php echo $incident_id; ?>"><?php echo html::specialchars($incident_title); ?></a></h1>
-				
-				<div class="reportdetails" id="reportdetails">
-					<?php echo $incident_verified_class; ?>
-				</div>
 				
 				<div class="reportdescription">
 					<?php echo $incident_description; ?>  
@@ -88,8 +85,6 @@
 				<a class="btn-show btn-less" href="#<?php echo $incident_id ?>">&laquo; <?php echo Kohana::lang('ui_main.less_information'); ?></a> 
 				
 				<p class="date"><?php echo $incident_date; ?></p>
-				
-				<div class="reportdetails" id="reportdetails"><img src="images/icons/phone.png" width="16" height="16" alt="phone" /></div>
 			</div>
 		</article>
 	<?php } ?>

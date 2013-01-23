@@ -20,7 +20,7 @@
 			<ul class="second-level-menu">
 				<li><a href="<?php print url::site() ?>admin/stats/">Visitor summary</a></li>				
 				<li><a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.hit_summary');?></a></li>				
-				<li><?php echo Kohana::lang('stats.country_breakdown');?></li>
+				<li class="active"><a><?php echo Kohana::lang('stats.country_breakdown');?></a></li>
 				<li><a href="<?php print url::site() ?>admin/stats/reports"><?php echo Kohana::lang('stats.report_stats');?></a></li>
 				<li><a href="<?php print url::site() ?>admin/stats/impact"><?php echo Kohana::lang('stats.category_impact');?></a></li>
 			</ul>
@@ -30,8 +30,8 @@
 	<div class="page-content">		
 		<div id="time-period-selector">
 			<?php echo form::open('admin/stats/country/', array('method' => 'get', 'style' => "display: inline;")); ?>
+			<h3><?php echo Kohana::lang('stats.choose_date_range');?></h3>
 			<div class="range-select">
-				<strong><?php echo Kohana::lang('stats.choose_date_range');?></strong>
 				<a href="<?php print url::site() ?>admin/stats/country/?range=30"><?php echo Kohana::lang('stats.time_range_1');?></a> 
 				<a href="<?php print url::site() ?>admin/stats/country/?range=90"><?php echo Kohana::lang('stats.time_range_2');?></a> 
 				<a href="<?php print url::site() ?>admin/stats/country/?range=180"><?php echo Kohana::lang('stats.time_range_3');?></a>  
