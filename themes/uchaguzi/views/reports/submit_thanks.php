@@ -1,25 +1,21 @@
-<div id="content">
-	<div class="content-bg">
-		<!-- start block -->
-		<div class="big-block">
-			<h1><?php echo Kohana::lang('ui_main.reports_submit_new');?></h1>
-			<!-- green-box -->
-			<div class="green-box">
-				<h3><?php echo Kohana::lang('ui_main.reports_submitted');?></h3>
+<div id="primary-content" class="col_6">
+	<!-- green-box -->
+	<div class="green-box">
+		<h2><?php echo Kohana::lang('ui_main.reports_submitted');?></h2>
 
-				<div class="thanks_msg"><a href="<?php echo
-					url::site().'reports' ?>"><?php echo Kohana::lang('ui_main.reports_return');?></a><br /><br /><br />
-					<?php echo Kohana::lang('ui_main.feedback_reports');?><br /><br />
-					<?php 
-					print form::open('http://feedback.ushahidi.com/fillsurvey.php?sid=2', array('target'=>'_blank'));
-					print form::hidden('alert_code', $_SERVER['SERVER_NAME']);
-					print "&nbsp;&nbsp;";
-					print form::submit('button', Kohana::lang('ui_main.feedback'), ' class=btn_gray ');
-					print form::close();
-					?>
-				</div>
-			</div>
+		<div class="thanks_msg">
+			<p><a href="<?php echo
+			url::site().'reports' ?>"><?php echo Kohana::lang('ui_main.reports_return');?></a></p>	
 		</div>
-		<!-- end block -->
 	</div>
+</div>
+
+<div id="filters" class="col_4">
+	<h3><?php echo Kohana::lang('ui_main.feedback_reports');?></h3>
+	<?php 
+	print form::open('http://feedback.ushahidi.com/fillsurvey.php?sid=2', array('target'=>'_blank'));
+	print form::hidden('alert_code', $_SERVER['SERVER_NAME']);
+	print form::submit('button', Kohana::lang('ui_main.feedback'), ' class=btn_gray ');
+	print form::close();
+	?>
 </div>

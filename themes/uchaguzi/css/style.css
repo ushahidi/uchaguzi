@@ -125,7 +125,7 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"]:before {
 */
-.icon-search:before, .icon-pencil:before, .icon-pictures:before, .icon-calendar:before, .icon-graph:before, .icon-lifebuoy:before, .icon-video:before, .icon-info:before, .icon-arrow-down:before, .icon-arrow-right:before, .icon-arrow-left:before, .icon-arrow-right-2:before, .icon-twitter:before, .icon-mail:before, .icon-mobile:before, .icon-plus:before, .icon-minus:before, .icon-list:before, .icon-location:before, .icon-publish:before, .icon-flag:before, .icon-checkmark-circle:before, .icon-apple:before, .icon-android:before {
+.icon-search:before, .icon-pencil:before, .icon-pictures:before, .icon-calendar:before, .icon-graph:before, .icon-lifebuoy:before, .icon-video:before, .icon-info:before, .icon-arrow-down:before, .icon-arrow-right:before, .icon-arrow-left:before, .icon-arrow-right-2:before, .icon-twitter:before, .icon-mail:before, .icon-mobile:before, .icon-plus:before, .icon-minus:before, .icon-list:before, .icon-location:before, .icon-publish:before, .icon-flag:before, .icon-checkmark-circle:before, .icon-apple:before, .icon-android:before, .icon-camera:before, .icon-newspaper:before {
 	font-family: 'uchaguzi';
 	speak: none;
 	font-style: normal;
@@ -204,6 +204,12 @@ you can use the generic selector below, but it's slower:
 }
 .icon-android:before {
 	content: "\e017";
+}
+.icon-camera:before {
+	content: "\e018";
+}
+.icon-newspaper:before {
+	content: "\e019";
 }
 
 h1.sub-category,
@@ -412,7 +418,7 @@ header#global-header .user-tools article.user-summary .user-links li a {
 
 header#global-header .user-tools article.user-summary .user-links li a:hover {
    color: #fff;
-   background-color: rgb(245,72,0);
+   background-color: #369c36;
 }
 
 /* --------------------------- TOP-LEVEL NAVIGATION */
@@ -1270,11 +1276,6 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 /***** 14. FILE MANAGER STYLES *****/
 /***********************************/
 
-
-.filemgr { position: relative; min-height: 400px; }
-.filemgr .filemgr_right { position: absolute; width: 250px; top: 62px; right: 0; }
-.filemgr_rightinner { margin: 1em 0; }
-
 .filemgr_head { 
 	padding: 15px 20px; background: #fcfcfc; border-bottom: 1px solid #ddd; -moz-box-shadow: inset 0 1px 0 #fff; 
 	-webkit-box-shadow: inset 0 1px 0 #fff; box-shadow: inset 0 1px 0 #fff;
@@ -1333,6 +1334,14 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
    display: inline-block; 
    padding: 0.5em 1em;
 }
+.filemgr_category ul li.active a {
+   color: #fff;
+   font-weight: bold;
+   -moz-border-radius: 2px; 
+   -webkit-border-radius: 2px; 
+   border-radius: 2px;   
+   background-color: #0a8f0a;
+}
 .filemgr_category ul li a:hover {
 
 }
@@ -1365,6 +1374,61 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 
 
 .filemgr_menu li a.newfilebutton { background-color: #ff4800; border-color: #de4204; }
+
+.filemgr_content {
+   padding: 1em 0;
+}
+
+.filemgr_content article.media {
+   position: relative;
+   float: left;
+   width: 25%;
+   -moz-box-sizing: border-box; 
+   -webkit-box-sizing: border-box; 
+   box-sizing: border-box;
+   text-align: center;
+   padding: 1em;
+}
+
+.filemgr_content article.media:hover {
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+   background-color: #eee;
+}
+
+.filemgr_content article.media .icon {
+   position: absolute;
+   top: 1.3em;
+   right: 1.3em;
+   color: #fff;
+   font-size: 1.4em;
+   text-shadow: 0 1px 0 rgba(0,0,0,.3);
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+    border: 1px solid #fff;   
+   background-color: rgba(256,256,256,.5);
+   padding: 0.25em;
+}
+
+.filemgr_content article.media img {
+   width: 100%;
+}
+
+.filemgr_content article.media .filename {
+   display: block;
+   width: 100%;
+   overflow: hidden;
+   font-size: 0.85em;
+   padding: 0.5em 0;
+}
+
+.filemgr_content article.media.video object,
+.filemgr_content article.media.video embed {
+   width: 100%;
+   height: 100px;
+}
 
 /***** 16. WIDGET BOX STYLES *****/
 /*********************************/
@@ -4187,25 +4251,17 @@ ul.pager li a.active {
     margin: 30px;
 }
 
-/*--error/success--*/
-div.green-box, div.red-box {
-	clear: both;
-	overflow: hidden;
-	margin-top: 10px;
-	margin-right: 0;
-	margin-bottom: 25px;
-	padding-top: 9px;
-	padding-right: 0;
-	padding-bottom: 8px;
-}
-
-div.green-box { background-color: #C8E185;
-    background-image: -moz-linear-gradient(#D0E98E, #C1DA7F);
+div.green-box { 
     border: 1px solid #ACCC5D;
     color: #70892B;
-    text-shadow: 0 1px rgba(255, 255, 255, 0.3); border-radius: 5px 5px 5px 5px;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.3); 
+   text-align: center;
+    border-radius: 5px 5px 5px 5px;
     box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.5) inset;
-	margin-left: 230px; }
+   background-color: #C8E185;
+    background-image: -moz-linear-gradient(#D0E98E, #C1DA7F);
+   padding: 1em;
+}
 
 div.green-box h1{
 	color: #70892B;
@@ -4264,11 +4320,7 @@ div.green-box ul, div.red-box ul{
 
 /*--Alerts Messages--*/
 .alert_response, .thanks_msg {
-    margin:10px 15px 10px 15px;
-    padding: 15px;
-    font:14px/17px Arial, Helvetica, sans-serif;
-	color: #70892B;
-	text-shadow: 0 1px rgba(255, 255, 255, 0.2);
+   padding: 1em;
 }
 .alert_confirm {
     margin:10px 0 0 0;

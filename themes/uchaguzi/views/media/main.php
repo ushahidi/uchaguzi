@@ -8,21 +8,13 @@
 			</ul>
 		</div><!--filemgr_category-->
 		
-		<div id="fl-media" class="filemgr_content">
-			
-			<?php echo $media_listing_view; ?>
-			
-		</div><!--filemgr_content-->
+		<?php echo $media_listing_view; ?>			
 	</div>
 </div>
 
-<div class="col_4">            
-	<div class="filemgr_rightinner">
-		<div class="contenttitle2" style="margin-top: 0">
-			<h3 class="sub-category"><?php echo Kohana::lang('uchaguzi.browse_files'); ?></h3>
-		</div><!--contenttitle-->
-		<ul class="menuright">
-			<?php uchaguzi::gallery_reports_menu(); ?>
-		</ul>
-	</div><!-- filemgr_rightinner -->
+<div id="filters" class="col_4">            
+	<h3 class="sub-category"><?php echo Kohana::lang('uchaguzi.browse_files'); ?></h3>
+	<ul class="menuright">
+		<?php uchaguzi::gallery_reports_menu(); ?>
+	</ul>
 </div>

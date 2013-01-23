@@ -35,8 +35,14 @@
 		
 			// Fetch all images
 			attachFilterMediaAction(mediaType);
-		});
 
+			$('.filemgr li').removeClass('active');
+			$(this).parent().addClass('active');
+			
+		});
+		
+		// REMOVE EMBED'S FIXED WIDTH/HEIGHT
+		$('article.video').find('object, embed').removeAttr('width').removeAttr('height');
 
 	});
 	

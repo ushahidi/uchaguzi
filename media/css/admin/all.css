@@ -574,15 +574,6 @@ ul.tabset li a:hover{
 
 /*-- tabs --*/
 
-.green-box {
-	margin:15px 21px 0 22px;
-	padding:9px 0 8px;
-	background:#d8f1d8;
-	border:2px solid #a7d1a7;
-	width:893px;
-	clear:both;
-	overflow:hidden;
-}
 .red-box {
 	margin:15px 21px 0 22px;
 	padding:9px 0 8px;
@@ -593,7 +584,6 @@ ul.tabset li a:hover{
 	overflow:hidden;
 }
 .green-box h3, .red-box h3{
-	padding:0 0 0 15px; 
 	font-size:14px;
 	color:#555;
 }

@@ -53,7 +53,7 @@
 			
 			<div class="widgetcontent">
 				<div id="accordion" class="accordion">
-					<h3><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
+					<h3 class=""><a href="#"><?php echo Kohana::lang('ui_main.category')?></a></h3>
 
 					<!--<ul id="category_switch" class="categorylist">-->
 
@@ -139,10 +139,22 @@
 						?>
 					</ul>
 
-					<?php
-					// Action::main_sidebar - Add Items to the Entry Page Sidebar
-					Event::run('ushahidi_action.main_sidebar');
-					?>
+					<h3><a href="#"><?php echo Kohana::lang('uchaguzi.county')?></a></h3>
+					<ul id="county_switch" class="categorylist">
+						<!--?php
+							foreach ($counties as $county)
+							{
+								$county_name = $county->county_name;
+
+								echo '<li>'
+									. '<a href="#" id=cat_'. $county .'>'
+									. '<span class="county_name">'.$county_name.'</span>'
+									. '</a>';
+
+								echo '</li>';
+							}
+						?-->
+					</ul>
 				</div>								
 			</div>     
 		</div>
