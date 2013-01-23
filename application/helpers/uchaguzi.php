@@ -90,4 +90,25 @@ class uchaguzi_Core {
 
 		echo $menu;
 	}
+
+	/**
+	 * Get news URL page title for the 
+	 * gallery display
+	 *
+	 * @return string
+	 */
+	public static function page_title($url) {
+
+		// Only process valid URL
+		if ( valid::url($url)) 
+		{ 
+			// get content of the URL and supress warnings
+			$file = @file_get_contents($url);
+		
+			if (preg_match("/<title>(.+)<\/title>/i",$file,$result))
+			{
+				return $result[1];
+			}
+		}
+	}
 }

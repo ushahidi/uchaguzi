@@ -29,7 +29,7 @@
 			<a rel="lightbox-group1" href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
 				<span class="icon-newspaper icon"></span>
 				<img src="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>" alt="" />
-				<span class="filename"><?php echo $media_name; ?></span></a>
+				<span class="filename"><?php echo uchaguzi::page_title($image->media_link); ?></span></a>
 		</article>
 	<?php } ?> <!--end else if-->
 	
