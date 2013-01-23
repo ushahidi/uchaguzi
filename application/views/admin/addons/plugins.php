@@ -19,7 +19,7 @@
 
 		<nav id="tools-menu">
 			<ul class="second-level-menu">
-				<li><?php echo Kohana::lang('ui_main.plugins'); ?></li>
+				<li class="active"><a><?php echo Kohana::lang('ui_main.plugins'); ?></a></li>
 				<li><a href="<?php echo url::base() . 'admin/addons/themes' . '">' . Kohana::lang('ui_main.themes') . '</a>' ?></li>
 			</ul>
 		</nav>
@@ -131,19 +131,17 @@
 										</ul>
 									</td>
 									<td class="col-3"><?php echo $plugin_meta["plugin_version"]; ?></td>
-									<td class="col-4">
-										<ul>
-											<li class="none-separator"><?php
-											if ($plugin_active)
-											{
-												?><a href="#" class="status_no" onclick="pluginAction('i','DEACTIVATE', '<?php echo $plugin_id; ?>');"><?php echo Kohana::lang('ui_main.deactivate');?></a><?php
-											}
-											else
-											{
-												?><a href="#" class="status_yes" onclick="pluginAction('a','ACTIVATE', '<?php echo $plugin_id; ?>');"><?php echo Kohana::lang('ui_main.activate');?></a><?php
-											}
-											?></li>
-										</ul>
+									<td class="col-4 actions">
+										<?php
+										if ($plugin_active)
+										{
+											?><a href="#" class="status_yes" onclick="pluginAction('i','DEACTIVATE', '<?php echo $plugin_id; ?>');"><i class="icon-checkmark-circle"></i>Activated</a><?php
+										}
+										else
+										{
+											?><a href="#" class="status_no" onclick="pluginAction('a','ACTIVATE', '<?php echo $plugin_id; ?>');"><?php echo Kohana::lang('ui_main.activate');?></a><?php
+										}
+										?>
 									</td>
 								</tr>
 								<?php

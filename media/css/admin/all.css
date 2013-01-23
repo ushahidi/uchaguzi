@@ -1716,7 +1716,7 @@ UL.mapNavigation LI A:focus {
 	.tc-right { }
 	
 /* Chart Holders */
-.chart-holder { }
+.chart-holder {text-align: center;}
 .chart-holder img {
    width: 70%;
    margin: 0 auto;
