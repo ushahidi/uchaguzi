@@ -157,6 +157,8 @@ class nav_Core {
 
 		echo $menu;
 
+		// Action::nav_main_top - Add items to main nav bar
+		Event::run('ushahidi_action.nav_main_top', $this_page);
 	}
 	
 	
