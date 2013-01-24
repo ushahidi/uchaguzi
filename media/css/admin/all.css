@@ -1658,9 +1658,9 @@ UL.mapNavigation LI A:focus {
     line-height: 29px;
     font-size: 12px;
     background : #FFFEEB;
-    border-bottom-width: 1px;
+    border-bottom-width: 0px;
     border-bottom-style: solid;
-    border-top-width: 1px;
+    border-top-width: 0px;
     border-top-style: solid;
     padding: 5px;
 }
