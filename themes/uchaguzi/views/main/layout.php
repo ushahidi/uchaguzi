@@ -6,16 +6,18 @@
 		</div>
 		
 		<div id="reports-summary" class="cf">
-			<div class="reports-latest">
-				<h3 class="sub-category">Latest news</h3>			
+			<?php blocks::render(); ?>
 
+			<!-- <div class="reports-latest">
+				<h3 class="sub-category">Latest news</h3>			
 				<article class="third-party-report">
 					<img src="/media/img/report-thumb-default.jpg" class="thumb" />
 					<h1><a href="#">Flank hamburger capicola, pork loin short ribs sirloin bacon</a></h1>
 					<p class="metadata">By John Doe, <span class="date">Jan. 21, 2013</span></p>
 				</article>
-			</div>
-			<div class="reports-highlights">
+			</div> -->
+
+			<!-- <div class="reports-highlights">
 				<h3 class="sub-category">Highlights</h3>
 			
 				<article class="highlight cf">
@@ -40,10 +42,10 @@
 						<h1><a href="#">Flank hamburger capicola, pork loin short ribs sirloin bacon</a></h1>
 						<p class="metadata">By John Doe, <span class="date">Jan. 21, 2013</span></p>
 					</div>
-				</article>					
-			</div>		
+				</article>
+			</div> -->
 		</div>
-    </div>
+	</div>
      
 	<div id="filters" class="col_4">
 		<div class="widgetbox">
