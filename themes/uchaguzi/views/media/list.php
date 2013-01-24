@@ -28,8 +28,8 @@
 		<article class="media news">
 			<a rel="lightbox-group1" href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
 				<span class="icon-newspaper icon"></span>
-				<img src="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>" alt="" />
-				<span class="filename"><?php echo strlen($image->media_title) > 0 ? $image->media_title: $image->media_link; ?></span></a>
+				<h1><?php echo uchaguzi::page_title($image->media_link); ?></h1>
+			</a>
 		</article>
 	<?php } ?> <!--end else if-->
 	

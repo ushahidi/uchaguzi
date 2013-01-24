@@ -1422,13 +1422,20 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 	-webkit-border-radius: 2px;
 	-moz-border-radius: 2px;
 	border-radius: 2px;
-    border: 1px solid #fff;   
+    border: 1px solid rgba(256,256,256,.7);   
    background-color: rgba(256,256,256,.5);
    padding: 0.25em;
 }
 
 .filemgr_content article.media img {
    width: 100%;
+}
+
+.filemgr_content article.media h1 {
+   font-size: 1.3em;
+   text-align: left;
+   border-top: 3px solid #dedede;
+   padding-top: 1.3em;
 }
 
 .filemgr_content article.media .filename {
