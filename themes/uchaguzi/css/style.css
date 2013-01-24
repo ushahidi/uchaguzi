@@ -841,7 +841,7 @@ ul.report-category-list li {
 }
 
 ul.report-category-list li a {
-   color: #666;
+   color: #7B9276;
 }
 
 ul.report-category-list li a:hover {
@@ -3207,7 +3207,8 @@ div.report-media { padding:10px 0; border-bottom:1px dotted #C0C2B8;; }
 #report-video ol li { float:left; display:list-item; list-style-position:inside; margin-right:10px; }
 
 div.report-description-text {
-    padding: 1.5em 0;
+	padding: 1.46em 0;
+	color: #7A7A7A;
 }
 
 div.report-description-text h5 {
