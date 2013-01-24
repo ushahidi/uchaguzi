@@ -443,6 +443,7 @@ class reports_Core {
 					$news->incident_id = $incident->id;
 					$news->media_type = 4;		// News
 					$news->media_link = $item;
+					$news->media_title = uchaguzi::page_title($item); // get page title
 					$news->media_date = date("Y-m-d H:i:s",time());
 					$news->save();
 				}

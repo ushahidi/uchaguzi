@@ -189,7 +189,7 @@ class Scheduler_Controller extends Tools_Controller
 		$this->template->content->errors = $errors;
 
         // Javascript Header
-		$this->template->js = new View('admin/manage/scheduler/scheduler_js');
+		$this->template->header->js = new View('admin/manage/scheduler/scheduler_js');
 	}
 
 

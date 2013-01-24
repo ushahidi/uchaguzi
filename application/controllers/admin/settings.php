@@ -41,7 +41,7 @@ class Settings_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/settings/site');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
-		$this->template->js = new View('admin/settings/site_js');
+		$this->template->header->js = new View('admin/settings/site_js');
 
 		$this->template->content->this_page = 'settings';
 		// setup and initialize form field names
@@ -593,12 +593,12 @@ class Settings_Controller extends Tools_Controller {
 		// Javascript Header
 		$this->template->map_enabled = TRUE;
 		$this->template->colorpicker_enabled = TRUE;
-		$this->template->js = new View('admin/settings/settings_js');
-		$this->template->js->default_map = $form['default_map'];
-		$this->template->js->default_zoom = $form['default_zoom'];
-		$this->template->js->default_lat = $form['default_lat'];
-		$this->template->js->default_lon = $form['default_lon'];
-		$this->template->js->all_maps_json = $this->_generate_settings_map_js();
+		$this->template->header->js = new View('admin/settings/settings_js');
+		$this->template->header->js->default_map = $form['default_map'];
+		$this->template->header->js->default_zoom = $form['default_zoom'];
+		$this->template->header->js->default_lat = $form['default_lat'];
+		$this->template->header->js->default_lon = $form['default_lon'];
+		$this->template->header->js->all_maps_json = $this->_generate_settings_map_js();
 	}
 
 
@@ -788,7 +788,7 @@ class Settings_Controller extends Tools_Controller {
 		$this->template->content->email_ssl_array = array('1'=>Kohana::lang('ui_admin.yes'),'0'=>Kohana::lang('ui_admin.no'));
 
 		// Javascript Header
-		$this->template->js = new View('admin/settings/email_js');
+		$this->template->header->js = new View('admin/settings/email_js');
 	}
 
 		/**

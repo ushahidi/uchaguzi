@@ -37,15 +37,15 @@ class Actions_Controller extends Tools_Controller
 		$this->template->map_enabled = TRUE;
 		$this->template->treeview_enabled = TRUE;
 
-		$this->template->js = new View('admin/manage/actions/actions_js');
-		$this->template->js->default_map = Kohana::config('settings.default_map');
-		$this->template->js->default_zoom = Kohana::config('settings.default_zoom');
-		$this->template->js->latitude = Kohana::config('settings.default_lat');
-		$this->template->js->longitude = Kohana::config('settings.default_lon');
+		$this->template->header->js = new View('admin/manage/actions/actions_js');
+		$this->template->header->js->default_map = Kohana::config('settings.default_map');
+		$this->template->header->js->default_zoom = Kohana::config('settings.default_zoom');
+		$this->template->header->js->latitude = Kohana::config('settings.default_lat');
+		$this->template->header->js->longitude = Kohana::config('settings.default_lon');
 
 		// TODO: Figure out what to do with this
-		$this->template->js->incident_zoom = array();
-		$this->template->js->geometries = array();
+		$this->template->header->js->incident_zoom = array();
+		$this->template->header->js->geometries = array();
 
 		$trigger_options = $this->_trigger_options();
 		$response_options = $this->_response_options();

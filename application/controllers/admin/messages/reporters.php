@@ -217,11 +217,11 @@ class Reporters_Controller extends Admin_Controller
 		
 		// Javascript Header
         $this->template->map_enabled = TRUE;
-        $this->template->js = new View('admin/reporters/reporters_js');
-		$this->template->js->default_map = Kohana::config('settings.default_map');
-		$this->template->js->default_zoom = Kohana::config('settings.default_zoom');
-		$this->template->js->latitude = Kohana::config('settings.default_lat');
-		$this->template->js->longitude = Kohana::config('settings.default_lon');
-		$this->template->js->form_error = $form_error;
+        $this->template->header->js = new View('admin/reporters/reporters_js');
+		$this->template->header->js->default_map = Kohana::config('settings.default_map');
+		$this->template->header->js->default_zoom = Kohana::config('settings.default_zoom');
+		$this->template->header->js->latitude = Kohana::config('settings.default_lat');
+		$this->template->header->js->longitude = Kohana::config('settings.default_lon');
+		$this->template->header->js->form_error = $form_error;
 	}
 }
