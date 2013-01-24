@@ -21,7 +21,7 @@
 		<nav id="tools-menu">
 			<ul class="second-level-menu">
 				<li><a href="<?php echo url::base() . 'admin/addons' . '">' . Kohana::lang('ui_main.plugins') . '</a>' ?></li>
-				<li><?php echo Kohana::lang('ui_main.themes'); ?></li>
+				<li class="active"><a><?php echo Kohana::lang('ui_main.themes'); ?></a></li>
 			</ul>
 		</nav>
 	</div>
@@ -111,7 +111,8 @@
 							{
 								echo "checked = \"checked\"";
 							}
-							?> /><?php echo Kohana::lang('ui_main.select_theme');?>
+							?> />
+							<?php echo Kohana::lang('ui_main.select_theme');?>
 						</div>
 					</article>
 					<?php

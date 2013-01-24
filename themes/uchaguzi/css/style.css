@@ -4768,7 +4768,7 @@ border-radius: 0px;
 
 /* Content area */
 .ui-accordion .ui-accordion-content {
-   max-height: 250px;
+   max-height: 335px;
    overflow: scroll-y;
 	font-size: 12px;
 	padding: 1em;
