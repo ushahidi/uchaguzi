@@ -33,6 +33,7 @@ class Actions_Controller extends Tools_Controller
 	{
 		$this->template->content = new View('admin/manage/actions/main');
 		$this->template->content->title = Kohana::lang('ui_admin.actions');
+		$this->template->content->this_page = 'manage';
 
 		$this->template->map_enabled = TRUE;
 		$this->template->treeview_enabled = TRUE;

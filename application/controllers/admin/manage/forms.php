@@ -18,7 +18,6 @@ class Forms_Controller extends Tools_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->template->this_page = 'manage';
 		
 		// If user doesn't have access, redirect to dashboard
 		if ( ! $this->auth->has_permission("manage"))
@@ -34,6 +33,7 @@ class Forms_Controller extends Tools_Controller {
 	public function index()
 	{
 		$this->template->content = new View('admin/manage/forms/main');
+		$this->template->content->this_page = 'manage';
 		
 		// Setup and initialize form field names
 		$form = array

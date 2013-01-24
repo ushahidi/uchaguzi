@@ -35,7 +35,6 @@ class Manage_Controller extends Tools_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->template->this_page = 'manage';
 
 		// If user doesn't have access, redirect to dashboard
 		if ( ! $this->auth->has_permission("manage"))
@@ -475,7 +474,7 @@ class Manage_Controller extends Tools_Controller
 	public function publiclisting()
 	{
 		$this->template->content = new View('admin/manage/publiclisting');
-		
+		$this->template->content->this_page = 'manage';
 		$this->template->content->encoded_stat_id = base64_encode(Settings_Model::get_setting('stat_id'));
 		$this->template->content->encoded_stat_key = base64_encode(Settings_Model::get_setting('stat_key'));
 	}
@@ -487,6 +486,7 @@ class Manage_Controller extends Tools_Controller
 	public function pages()
 	{
 		$this->template->content = new View('admin/manage/pages/main');
+		$this->template->content->this_page = 'manage';
 
 		// setup and initialize form field names
 		$form = array
@@ -596,6 +596,7 @@ class Manage_Controller extends Tools_Controller
 	public function feeds()
 	{
 		$this->template->content = new View('admin/manage/feeds/main');
+		$this->template->content->this_page = 'manage';
 
 		// setup and initialize form field names
 		$form = array
@@ -699,6 +700,7 @@ class Manage_Controller extends Tools_Controller
 	public function feeds_items()
 	{
 		$this->template->content = new View('admin/manage/feeds/items');
+		$this->template->content->this_page = 'manage';
 		
 		// Check if the last segment of the URI is numeric and grab it
 		$feed_id = is_numeric($this->uri->last_segment())
@@ -767,6 +769,7 @@ class Manage_Controller extends Tools_Controller
 	{
 		$this->template->content = new View('admin/manage/layers/main');
 		$this->template->content->title = Kohana::lang('ui_admin.layers');
+		$this->template->content->this_page = 'manage';
 
 		// Setup and initialize form field names
 		$form = array(
@@ -979,6 +982,7 @@ class Manage_Controller extends Tools_Controller
 	{
 		$this->template->content = new View('admin/manage/levels');
 		$this->template->content->title = Kohana::lang('ui_admin.reporter_levels');
+		$this->template->content->this_page = 'manage';
 
 		// setup and initialize form field names
 		$form = array

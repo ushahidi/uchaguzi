@@ -13,23 +13,37 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 ?>
-<div class="centercontent">
-	<h2><?php echo $title; ?> <a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.visitor_summary');?></a> <a href="<?php print url::site() ?>admin/stats/country"><?php echo Kohana::lang('stats.country_breakdown');?></a> <a href="<?php print url::site() ?>admin/stats/reports"><?php echo Kohana::lang('stats.report_stats');?></a> <a href="<?php print url::site() ?>admin/stats/impact"><?php echo Kohana::lang('stats.category_impact');?></a> <a href="<?php print url::site() ?>admin/stats/punchcard"><?php echo Kohana::lang('stats.report_punchcard');?></a></h2>
-	
-	<div class="content-wrap clearfix">
-        <h3><?php echo Kohana::lang('stats.category_impact');?></h3>
-        
+<div id="tools-content">
+    <div class="pageheader">
+        <h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+        <ul class="hornav">
+            <?php echo admin::tools_nav($this_page);?>
+        </ul>
+        <nav id="tools-menu">
+            <ul class="second-level-menu">
+                <?php admin::stats_subtabs('impact'); ?>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="page-content">
         <div id="time-period-selector">
-			<p>
-				<?php echo form::open('admin/stats/impact/', array('method' => 'get', 'style' => "display: inline;")); ?>
-					<?php echo Kohana::lang('stats.choose_date_range');?>: <a href="<?php print url::site() ?>admin/stats/impact/?range=30"><?php echo Kohana::lang('stats.time_range_1');?></a> <a href="<?php print url::site() ?>admin/stats/impact/?range=90"><?php echo Kohana::lang('stats.time_range_2');?></a> <a href="<?php print url::site() ?>admin/stats/impact/?range=180"><?php echo Kohana::lang('stats.time_range_3');?></a> <a href="<?php print url::site() ?>admin/stats/impact/"><?php echo Kohana::lang('stats.time_range_all');?></a>
-					<input type="text" class="dp" name="dp1" id="dp1" value="<?php echo $dp1; ?>" />&nbsp;&nbsp;-&nbsp;&nbsp; 
-					<input type="text" class="dp" name="dp2" id="dp2" value="<?php echo $dp2; ?>" />
-					<input type="hidden" name="range" value="<?php echo $range; ?>" />
-					<input type="submit" value="Go &rarr;" class="button" />
-				<?php echo form::close(); ?>
-			</p>
-		</div>
+                <?php echo form::open('admin/stats/impact/', array('method' => 'get', 'style' => "display: inline;")); ?>
+                    <h3><?php echo Kohana::lang('stats.choose_date_range');?></h3>
+                    <div class="range-select">
+                        <a href="<?php print url::site() ?>admin/stats/impact/?range=30"><?php echo Kohana::lang('stats.time_range_1');?></a> 
+                        <a href="<?php print url::site() ?>admin/stats/impact/?range=90"><?php echo Kohana::lang('stats.time_range_2');?></a> 
+                        <a href="<?php print url::site() ?>admin/stats/impact/?range=180"><?php echo Kohana::lang('stats.time_range_3');?></a> 
+                        <a href="<?php print url::site() ?>admin/stats/impact/"><?php echo Kohana::lang('stats.time_range_all');?></a>
+                    </div>
+                    <div class="range-input">
+                        <input type="text" class="dp" name="dp1" id="dp1" value="<?php echo $dp1; ?>" /><span class="transition">to</span> 
+                        <input type="text" class="dp" name="dp2" id="dp2" value="<?php echo $dp2; ?>" />
+                        <input type="hidden" name="range" value="<?php echo $range; ?>" />
+                        <input type="submit" value="Go &rarr;" class="button" />
+                    </div>
+                <?php echo form::close(); ?>
+        </div>
         
         <!-- Left Column -->
         <div class="two-col tc-left reports-charts">
@@ -45,7 +59,7 @@
         
         <!-- Right Column -->
         <div class="two-col tc-right stats-sidebar">
-        	<div class="stats-wrapper clearfix">
+            <div class="stats-wrapper clearfix">
                 <div class="statistic first">
                     <h4><?php echo Kohana::lang('stats.reports');?></h4>
                     <p><?php echo $num_reports; ?></p>
@@ -55,7 +69,6 @@
                     <p><?php echo $num_categories; ?></p>
                 </div>
             </div>
-            <div style="clear:both;"></div>
-		</div>
+        </div>
+    </div>
 </div>
-

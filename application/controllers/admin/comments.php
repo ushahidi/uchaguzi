@@ -19,8 +19,6 @@ class Comments_Controller extends Tools_Controller {
 	public function __construct()
     {
         parent::__construct();
-    
-        $this->template->this_page = 'reports';
         
         // If user doesn't have access, redirect to dashboard
         if ( ! $this->auth->has_permission("reports_comments"))
@@ -38,7 +36,7 @@ class Comments_Controller extends Tools_Controller {
     {
         $this->template->content = new View('admin/comments/main');
         $this->template->content->title = Kohana::lang('ui_admin.comments');
-        
+        $this->template->content->this_page = 'comments';
         
         if (!empty($_GET['status']))
         {

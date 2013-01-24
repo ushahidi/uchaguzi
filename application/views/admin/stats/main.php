@@ -23,11 +23,7 @@
 		</ul>
 		<nav id="tools-menu">
 			<ul class="second-level-menu">
-				<li>Visitor summary</li>
-				<li><a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.hit_summary');?></a></li>
-				<li><a href="<?php print url::site() ?>admin/stats/country"><?php echo Kohana::lang('stats.country_breakdown');?></a></li>
-				<li><a href="<?php print url::site() ?>admin/stats/reports"><?php echo Kohana::lang('stats.report_stats');?></a></li>
-				<li><a href="<?php print url::site() ?>admin/stats/impact"><?php echo Kohana::lang('stats.category_impact');?></a></li>
+				<?php admin::stats_subtabs('stats'); ?>
 			</ul>
 		</nav>
 	</div>

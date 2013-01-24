@@ -41,9 +41,10 @@ class Settings_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/settings/site');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 		$this->template->header->js = new View('admin/settings/site_js');
 
-		$this->template->content->this_page = 'settings';
+		$this->template->content->this_page = 'settings/site';
 		// setup and initialize form field names
 		$form = array(
 			'site_name' => '',
@@ -349,6 +350,7 @@ class Settings_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/settings/main');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 
 		// setup and initialize form field names
 		$form = array(
@@ -609,6 +611,7 @@ class Settings_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/settings/sms');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 
 		// setup and initialize form field names
 		$form = array(
@@ -702,6 +705,7 @@ class Settings_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/settings/email');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 
 		// setup and initialize form field names
 		$form = array(
@@ -804,6 +808,7 @@ class Settings_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/settings/cleanurl');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 
 		// setup and initialize form field names
 		$form = array
@@ -896,6 +901,7 @@ class Settings_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/settings/https');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 
 		// setup and initialize form field names
 		$form = array

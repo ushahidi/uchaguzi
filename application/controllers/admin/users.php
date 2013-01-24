@@ -21,8 +21,6 @@ class Users_Controller extends Tools_Controller {
 	{
 		parent::__construct();
 
-		$this->template->this_page = 'users';
-
 		// If user doesn't have access, redirect to dashboard
 		if (!$this->auth->has_permission("users"))
 		{
@@ -86,6 +84,7 @@ class Users_Controller extends Tools_Controller {
 	public function edit($user_id = FALSE, $saved = FALSE)
 	{
 		$this->template->content = new View('admin/users/edit');
+		$this->template->content->this_page = 'users';
 
 		if ($user_id)
 		{
@@ -242,7 +241,7 @@ class Users_Controller extends Tools_Controller {
 	public function roles()
 	{
 		$this->template->content = new View('admin/users/roles');
-		
+		$this->template->content->this_page = 'users';
 		$permissions = ORM::factory('permission')->find_all()->select_list('id','name');
 
 		$form = array('role_id' => '', 'action' => '', 'name' => '', 'description' => '', 'access_level' => '', 'permissions' => '');

@@ -279,6 +279,24 @@ class admin_Core {
 		// Action::nav_admin_users - Add items to the admin manage navigation tabs
 		Event::run('ushahidi_action.nav_admin_users', $this_sub_page);
 	}
+
+	/**
+	 * Generate Stats Sub Tab Menus
+	 * @param string $this_sub_page
+	 */
+	public static function stats_subtabs($this_sub_page = FALSE) 
+	{
+		$menu = ($this_sub_page == "stats") ? '<li class="active"><a>Visitor summary</a></li>' : "<li><a href=\"".url::site()."admin/stats/\">Visitor summary</a></li>";
+		$menu .= ($this_sub_page == "hits") ? "<li class=\"active\"><a>".Kohana::lang('stats.hit_summary')."</a></li>" : "<li><a href=\"".url::site()."admin/stats/hits/\">".Kohana::lang('stats.hit_summary')."</a></li>";				
+		$menu .= ($this_sub_page == "country") ? "<li class=\"active\"><a>".Kohana::lang('stats.country_breakdown')."</a></li>":"<li><a href=\"".url::site()."admin/stats/country/\">".Kohana::lang('stats.country_breakdown')."</a></li>";
+		$menu .= ($this_sub_page == "reports") ? "<li class=\"active\"><a>".Kohana::lang('stats.report_stats')."</a></li>":"<li><a href=\"".url::site()."admin/stats/reports/\">".Kohana::lang('stats.report_stats')."</a></li>";
+		$menu .= ($this_sub_page == "impact" ) ? "<li class=\"active\"><a>".Kohana::lang('stats.category_impact')."</a></li>":"<li><a href=\"".url::site()."admin/stats/impact/\">".Kohana::lang('stats.category_impact')."</a></li>";
+		
+		echo $menu;
+
+		// Action::nav_admin_users - Add items to the admin manage navigation tabs
+		Event::run('ushahidi_action.nav_admin_stats', $this_sub_page);	
+	}
 	
 	/**
 	 * Legacy permissions check

@@ -32,6 +32,7 @@ class Themes_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/addons/themes');
 		$this->template->content->title = 'Addons';
+		$this->template->content->this_page = 'addons';
 
 		// setup and initialize form field names
 		$form = array

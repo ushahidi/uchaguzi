@@ -20,6 +20,7 @@ class Externalapps_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/settings/externalapps/main');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings';
 
 		// setup and initialize form field names
 		$form = array
