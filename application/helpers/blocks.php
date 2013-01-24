@@ -18,11 +18,11 @@ class blocks_Core {
 	{
 		if ($id)
 		{
-			echo "<li id=\"block-".$id."\"><div class=\"content-block\">";
+			echo "<div class=\"reports-".$id."\">";
 		}
 		else
 		{
-		  echo "<li><div class=\"content-block\">";
+		  echo "<div class=\"reports-block\">";
 		}
 		
 	}
@@ -34,7 +34,7 @@ class blocks_Core {
 	 */
 	public static function close()
 	{
-		echo "</div></li>";
+		echo "</div>";
 	}
 	
 	/**
@@ -46,7 +46,7 @@ class blocks_Core {
 	{
 		if ($title)
 		{
-			echo "<h5>$title</h5>";
+			echo "<h3 class=\"sub-category\">$title</h3>";
 		}
 	}
 	

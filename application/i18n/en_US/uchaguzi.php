@@ -29,6 +29,8 @@ $lang = array(
 'header_title' => 'Header Title', 
 'timeline' => 'Timeline',
 'all'=>'All',
-'browse_files'=>'Browse Files'
+'browse_files'=>'Browse Files',
+'highlights'=>'Highlights',
+'latest_news'=>'Latest News'
 );
 ?>
