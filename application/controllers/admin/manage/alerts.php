@@ -18,7 +18,6 @@ class Alerts_Controller extends Tools_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->template->this_page = 'manage';
 		
 		// If user doesn't have access, redirect to dashboard
 		if ( ! admin::permissions($this->user, "manage"))
@@ -35,6 +34,7 @@ class Alerts_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/manage/alerts/main');
 		$this->template->content->title = Kohana::lang('ui_admin.alerts');
+		$this->template->content->this_page = 'manage';
 
 		// Is this an SMS or Email Filter?
 		if (!empty($_GET['type']))

@@ -840,6 +840,7 @@ class Reports_Controller extends Tools_Controller {
 
 		$this->template->content = new View('admin/reports/download');
 		$this->template->content->title = Kohana::lang('ui_admin.download_reports');
+		$this->template->content->this_page = 'reports';
 
 		$form = array(
 			'data_active'   => '',
@@ -1151,6 +1152,7 @@ class Reports_Controller extends Tools_Controller {
 		if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 			$this->template->content = new View('admin/reports/upload');
 			$this->template->content->title = 'Upload Reports';
+			$this->template->content->this_page = 'reports';
 			$this->template->content->form_error = false;
 		}
 

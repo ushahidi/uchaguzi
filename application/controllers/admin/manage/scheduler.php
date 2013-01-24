@@ -31,6 +31,7 @@ class Scheduler_Controller extends Tools_Controller
 	function index()
 	{
 		$this->template->content = new View('admin/manage/scheduler/main');
+		$this->template->content->this_page = 'manage';
 
 		// Check if we should be running the scheduler and then do it
 		if (isset($_GET['run_scheduler'])){
@@ -196,6 +197,7 @@ class Scheduler_Controller extends Tools_Controller
 	public function log()
 	{
 		$this->template->content = new View('admin/manage/scheduler/log');
+		$this->template->content->this_page = 'manage';
 
 		// Pagination
 		$pagination = new Pagination(array(

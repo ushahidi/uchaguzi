@@ -26,7 +26,7 @@
 
 	<?php if ($media_type==4) { ?>
 		<article class="media news">
-			<a rel="lightbox-group1" href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
+			<a href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
 				<span class="icon-newspaper icon"></span>
 				<h1><?php echo uchaguzi::page_title($image->media_link); ?></h1>
 			</a>

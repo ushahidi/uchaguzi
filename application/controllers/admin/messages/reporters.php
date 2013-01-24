@@ -32,6 +32,7 @@ class Reporters_Controller extends Admin_Controller
 	{
 		$this->template->content = new View('admin/reporters/main');
 		$this->template->content->title = Kohana::lang('ui_admin.reporters');
+		$this->template->content->this_page = 'messages';
 		
 		// setup and initialize form field names
 		$form = array

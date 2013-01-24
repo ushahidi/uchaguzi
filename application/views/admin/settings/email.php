@@ -16,7 +16,9 @@
 <div id="tools-content">
    	<div class="pageheader">
 		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
-
+		<ul class="hornav">
+			<?php echo admin::tools_nav($this_page);?>
+		</ul>
 		<nav id="tools-menu">
 			<ul class="second-level-menu">
 				<?php admin::settings_subtabs("email"); ?>

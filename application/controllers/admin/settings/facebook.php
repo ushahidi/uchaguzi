@@ -23,6 +23,7 @@ class Facebook_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/settings/facebook/main');
 		$this->template->content->title = Kohana::lang('ui_admin.settings');
+		$this->template->content->this_page = 'settings/site';
 
 		// setup and initialize form field names
 		$form = array

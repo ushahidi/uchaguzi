@@ -33,6 +33,7 @@ class Api_Controller extends Tools_Controller {
     public function index()
     {
         $this->template->content = new View('admin/settings/api/main');
+        $this->template->content->this_page = 'settings/site';
 
         // Set up and initialize form field names
         $form = array

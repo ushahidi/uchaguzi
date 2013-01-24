@@ -21,7 +21,6 @@ class Blocks_Controller extends Tools_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->template->this_page = 'settings';
 		
 		// If user doesn't have access, redirect to dashboard
 		if ( ! $this->auth->has_permission("manage"))
@@ -36,6 +35,7 @@ class Blocks_Controller extends Tools_Controller
 	{
 		$this->template->content = new View('admin/manage/blocks/main');
 		$this->template->content->title = Kohana::lang('ui_admin.blocks');
+		$this->template->content->this_page = 'manage';
 		
 		// Get Registered Blocks 
 		if ( ! is_array($this->_registered_blocks) )

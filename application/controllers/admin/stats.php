@@ -54,12 +54,13 @@ class Stats_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/stats/reports');
 		$this->template->content->title = Kohana::lang('ui_admin.statistics');
-
+        $this->template->content->this_page = 'stats';
 		// Javascript Header
 		$this->template->protochart_enabled = TRUE;
 		$this->template->header->js = new View('admin/stats/stats_js');
 
 		$this->template->content->failure = '';
+
 
 		// Set the date range (how many days in the past from today?)
 		$range = 10000;
@@ -70,7 +71,15 @@ class Stats_Controller extends Tools_Controller {
 		}
 
 		$this->template->content->range = $range;
-      
+        
+        $this->template->content->active_tab = 'uniques';
+        
+        // Lazy tab switcher (not using javascript, just refreshing the page)
+        if (isset($_GET['active_tab']))
+        {
+            $this->template->content->active_tab = $_GET['active_tab'];
+        }
+        
 		// Get an arbitrary date range
 		$dp1 = (isset($_GET['dp1'])) ? $_GET['dp1'] : null;
 		$dp2 = (isset($_GET['dp2'])) ? $_GET['dp2'] : null;
@@ -191,12 +200,21 @@ class Stats_Controller extends Tools_Controller {
     {
         $this->template->content = new View('admin/stats/impact');
         $this->template->content->title = Kohana::lang('ui_admin.statistics');
+        $this->template->content->this_page = 'stats';
         
         // Javascript Header
         $this->template->raphael_enabled = TRUE;
         $this->template->header->js = new View('admin/stats/stats_js');
         
         $this->template->content->failure = '';
+
+        $this->template->content->active_tab = 'uniques';
+        
+        // Lazy tab switcher (not using javascript, just refreshing the page)
+        if (isset($_GET['active_tab']))
+        {
+            $this->template->content->active_tab = $_GET['active_tab'];
+        }
         
         // Set the date range (how many days in the past from today?)       
         $range = (isset($_GET['range']) AND is_int($_GET['range'])) 
@@ -297,6 +315,7 @@ class Stats_Controller extends Tools_Controller {
     {
         $this->template->content = new View('admin/stats/hits');
         $this->template->content->title = Kohana::lang('ui_admin.statistics');
+        $this->template->content->this_page = 'stats';
         
         // Javascript Header
         $this->template->protochart_enabled = TRUE;
@@ -371,7 +390,7 @@ class Stats_Controller extends Tools_Controller {
     {
         $this->template->content = new View('admin/stats/country');
         $this->template->content->title = Kohana::lang('ui_admin.statistics');
-        
+        $this->template->content->this_page = 'stats';
         // Javascript Header
         $this->template->header->js = new View('admin/stats/stats_js');
         
@@ -495,6 +514,8 @@ class Stats_Controller extends Tools_Controller {
 	{
 		$this->template->content = new View('admin/stats/punchcard');
 		$this->template->content->title = Kohana::lang('ui_admin.statistics');
+
+        $this->template->content->this_page = 'stats';
 
 		$incident_dates = Incident_Model::get_incident_dates();
 

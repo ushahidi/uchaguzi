@@ -46,6 +46,7 @@ class Upgrade_Controller extends Admin_Controller {
 	public function index()
 	{
 		$this->template->content = new View('admin/upgrade/upgrade');
+		$this->template->content->this_page = 'upgrade';
 
 		$form_action = "";
 		
@@ -315,6 +316,7 @@ class Upgrade_Controller extends Admin_Controller {
 	public function database()
 	{
 		$this->template->content = new View('admin/upgrade/upgrade_database');
+		$this->template->content->this_page = 'upgrade';
 		$this->template->content->errors = array();
 		$this->template->content->form_error = FALSE;
 		$this->template->content->form_saved = FALSE;

@@ -16,13 +16,12 @@
 <div id="tools-content">
    	<div class="pageheader">
 		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+		<ul class="hornav">
+			<?php echo admin::tools_nav($this_page);?>
+		</ul>
 		<nav id="tools-menu">
 			<ul class="second-level-menu">
-				<li><a>Visitor summary</a></li>
-				<li><a href="<?php print url::site() ?>admin/stats/hits"><?php echo Kohana::lang('stats.hit_summary');?></a></li>				
-				<li><a href="<?php print url::site() ?>admin/stats/country"><?php echo Kohana::lang('stats.country_breakdown');?></a></li>
-				<li><a href="<?php print url::site() ?>admin/stats/reports"><?php echo Kohana::lang('stats.report_stats');?></a></li>
-				<li><a href="<?php print url::site() ?>admin/stats/impact"><?php echo Kohana::lang('stats.category_impact');?></a></li>
+				<?php admin::stats_subtabs('reports'); ?>
 			</ul>
 		</nav>
 	</div>
