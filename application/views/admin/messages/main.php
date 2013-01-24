@@ -26,7 +26,7 @@
 		</nav>
 	</div><!--pageheader-->
 
-	<div class="page-content">              
+	<div class="page-content">
 
 <?php
 	Event::run('ushahidi_action.admin_messages_custom_layout');
