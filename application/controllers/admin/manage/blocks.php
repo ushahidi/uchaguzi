@@ -112,7 +112,7 @@ class Blocks_Controller extends Tools_Controller
 		
 		// Javascript Header
 		$this->template->tablerowsort_enabled = TRUE;
-		$this->template->js = new View('admin/manage/blocks/blocks_js');
+		$this->template->header->js = new View('admin/manage/blocks/blocks_js');
 	}
 	
 	public function sort()

@@ -163,8 +163,8 @@ class Forms_Controller extends Tools_Controller {
 		$this->template->content->errors = $errors;
 
         // Javascript Header
-        $this->template->js = new View('admin/manage/forms/forms_js');
-		$this->template->js->form_id = $form_id;
+        $this->template->header->js = new View('admin/manage/forms/forms_js');
+		$this->template->header->js->form_id = $form_id;
 		$this->template->form_error = $form_error;
 	}
 

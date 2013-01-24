@@ -226,6 +226,6 @@ class Badges_Controller extends Tools_Controller
 		$this->template->content->users = $users;
 
 		// Javascript Header
-		$this->template->js = new View('admin/manage/badges/badges_js');
+		$this->template->header->js = new View('admin/manage/badges/badges_js');
 	}
 }

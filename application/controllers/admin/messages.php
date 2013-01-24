@@ -247,7 +247,7 @@ class Messages_Controller extends Tools_Controller {
 		$this->template->content->level = $level;
 
 		// Javascript Header
-		$this->template->js = new View('admin/messages/messages_js');
+		$this->template->header->js = new View('admin/messages/messages_js');
 	}
 
 	/**
