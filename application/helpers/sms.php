@@ -153,6 +153,10 @@ class sms_Core {
 			{
 				$incident->incident_verified = 1;
 			}
+			if ($reporter->user_id > 0)
+			{
+				$incident->user_id = $reporter->user_id;
+			}
 			$incident->save();
 			
 			// Update Message with Incident ID
