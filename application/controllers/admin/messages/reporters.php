@@ -45,7 +45,8 @@ class Reporters_Controller extends Tools_Controller
 			'location_id' => '',
 			'location_name' => '',
 			'latitude' => '',
-			'longitude' => ''
+			'longitude' => '',
+			'user_id' => '',
 		);
 		//  copy the form as errors, so the errors will be stored with keys corresponding to the form field names
 		$errors = $form;
@@ -59,12 +60,13 @@ class Reporters_Controller extends Tools_Controller
 			// Instantiate Validation, use $post, so we don't overwrite $_POST fields with our own things
 			$post = Validation::factory($_POST);
 
-			    //  Add some filters
+			//  Add some filters
 			$post->pre_filter('trim', TRUE);
 
 			// Add some rules, the input field, followed by a list of checks, carried out in order
 			$post->add_rules('action','required', 'alpha', 'length[1,1]');
 			$post->add_rules('reporter_id.*','required','numeric');
+			$post->add_rules('user_id','numeric');
 			
 			if ($post->action == 'l')
 			{
@@ -142,6 +144,12 @@ class Reporters_Controller extends Tools_Controller
 								$reporter->location_id = $location->id;
 							}
 						
+							// Only save user_id if user exists
+							if (ORM::factory('user', $post->user_id)->loaded)
+							{
+								$reporter->user_id = $post->user_id;
+							}
+							
 							$reporter->save();
 
 							$form_saved = TRUE;
@@ -212,6 +220,10 @@ class Reporters_Controller extends Tools_Controller
 		
 		$levels = ORM::factory('level')->orderby('level_weight')->find_all();
 		$this->template->content->levels = $levels;
+		
+		$users = ORM::factory('user')->orderby('username')->find_all();
+		$this->template->content->users_array = $users->select_list('id', 'username');
+		array_unshift($this->template->content->users_array, '');
 
 		// Level and Service Arrays
 		$this->template->content->level_array = Level_Model::get_array();

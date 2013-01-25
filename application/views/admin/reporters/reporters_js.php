@@ -28,7 +28,7 @@ $().ready(function() {
 	}?>
 });
 
-function fillFields(id, level_id, service_name, service_account, location_id, location_name, latitude, longitude)
+function fillFields(id, level_id, service_name, service_account, location_id, location_name, latitude, longitude, user_id)
 {
 	show_addedit();
 	$('#add_edit_form').show();
@@ -42,6 +42,7 @@ function fillFields(id, level_id, service_name, service_account, location_id, lo
 	$("#location_name").attr("value", decodeURIComponent(location_name));
 	$("#latitude").attr("value", decodeURIComponent(latitude));
 	$("#longitude").attr("value", decodeURIComponent(longitude));
+	$("#user_id").attr("value", decodeURIComponent(user_id));
 	showMap();
 }
 
