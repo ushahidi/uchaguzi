@@ -14,7 +14,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 
-class Reporters_Controller extends Admin_Controller
+class Reporters_Controller extends Tools_Controller
 {
 	function __construct()
 	{
@@ -31,6 +31,7 @@ class Reporters_Controller extends Admin_Controller
 	public function index($service_id = 1)
 	{
 		$this->template->content = new View('admin/reporters/main');
+		$this->template->content->this_page = 'messages';
 		$this->template->content->title = Kohana::lang('ui_admin.reporters');
 		$this->template->content->this_page = 'messages';
 		
@@ -217,7 +218,7 @@ class Reporters_Controller extends Admin_Controller
 		$this->template->content->service_array = Service_Model::get_array();
 		
 		// Javascript Header
-        $this->template->map_enabled = TRUE;
+        $this->template->header->map_enabled = TRUE;
         $this->template->header->js = new View('admin/reporters/reporters_js');
 		$this->template->header->js->default_map = Kohana::config('settings.default_map');
 		$this->template->header->js->default_zoom = Kohana::config('settings.default_zoom');
