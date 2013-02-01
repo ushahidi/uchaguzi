@@ -1,7 +1,19 @@
-		<div class="bg">
-				<h2>
-					<?php admin::messages_subtabs($service_id); ?>
-				</h2>
+<div id="tools-content">
+	<div class="pageheader">
+		<h1 class="pagetitle"><?php echo Kohana::lang('uchaguzi.tools'); ?></h1>
+		<ul class="hornav">
+			<?php echo admin::tools_nav($this_page);?>
+		</ul>
+		<nav id="tools-menu">
+			<ul class="second-level-menu">
+				<?php admin::messages_subtabs($service_id); ?>
+			</ul>
+		</nav>
+	</div><!--pageheader-->
+
+	<div class="page-content">
+
+			<div class="table-tabs">
 				<!-- tabs -->
 				<div class="tabs">
 					<!-- tabset -->
@@ -243,5 +255,4 @@
 						</div>
 					<?php print form::close(); ?>
 				</div>
-				
 			</div>
