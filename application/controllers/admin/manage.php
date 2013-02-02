@@ -971,7 +971,7 @@ class Manage_Controller extends Tools_Controller
 		$this->template->content->layers = $layers;
 
 		// Javascript Header
-		$this->template->colorpicker_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
 		$this->template->header->js = new View('admin/manage/layers/layers_js');
 	}
 
