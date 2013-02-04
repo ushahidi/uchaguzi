@@ -134,12 +134,12 @@ class nav_Core {
 		 	$menu .= ">".Kohana::lang('uchaguzi.citizen_reports')."</a></li>";
 		
 		//IEBC
-			$menu .= "<li><a href=\"".url::site()."timeline\" ";
+			//$menu .= "<li><a href=\"".url::site()."timeline\" ";
 			//$menu .= ($this_page == 'timeline') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('uchaguzi.iebc')."</a></li>";
+		 	//$menu .= ">".Kohana::lang('uchaguzi.iebc')."</a></li>";
 
 		//ELOG
-			$menu .= "<li><a href=\"".url::site()."analysis\" ";
+			$menu .= "<li><a href=\"".url::site()."reports\" ";
 			//$menu .= ($this_page == 'analysis') ? " class=\"active\"" : "";
 		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
 	

@@ -62,6 +62,14 @@ class Reports_Controller extends Tools_Controller {
 			{
 				array_push($this->params, 'i.incident_verified = 0');
 			}
+			elseif (strtolower($status) == 'ap')
+			{
+				array_push($this->params, 'i.incident_active = 1');
+			}
+			elseif (strtolower($status) == 'vv')
+			{
+				array_push($this->params, 'i.incident_verified = 1');
+			}
 			elseif (strtolower($status) == 'o')
 			{
 				array_push($this->params, '(ic.category_id = 5 OR ic.category_id IS NULL)');
