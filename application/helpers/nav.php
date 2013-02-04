@@ -63,7 +63,7 @@ class nav_Core {
 			$menu .= ($this_page == 'timeline') ? " class=\"active\"" : "";
 		 	$menu .= ">".Kohana::lang('uchaguzi.timeline')."</a></li>";
 		 }
-		
+		*/
 		
 		// Alerts
 		if(! in_array('alerts',$dontshow))
@@ -86,7 +86,7 @@ class nav_Core {
 			 	$menu .= ">".Kohana::lang('ui_main.contact')."</a></li>";	
 			}
 		}
-		*/
+		
 		
 		// Media
 		if( ! in_array('gallery',$dontshow))
