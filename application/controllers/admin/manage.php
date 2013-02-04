@@ -405,8 +405,8 @@ class Manage_Controller extends Tools_Controller
 		$this->template->content->parents_array = $parents_array;
 
 		// Javascript Header
-		$this->template->colorpicker_enabled = TRUE;
-		$this->template->tablerowsort_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
+		$this->template->header->tablerowsort_enabled = TRUE;
 		$this->template->header->js = new View('admin/manage/categories/categories_js');
 		$this->template->form_error = $form_error;
 
@@ -971,7 +971,7 @@ class Manage_Controller extends Tools_Controller
 		$this->template->content->layers = $layers;
 
 		// Javascript Header
-		$this->template->colorpicker_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
 		$this->template->header->js = new View('admin/manage/layers/layers_js');
 	}
 
