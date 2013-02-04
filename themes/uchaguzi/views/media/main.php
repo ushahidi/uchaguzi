@@ -12,9 +12,4 @@
 	</div>
 </div>
 
-<div id="filters" class="col_4">            
-	<h3 class="sub-category"><?php echo Kohana::lang('uchaguzi.browse_files'); ?></h3>
-	<ul class="menuright">
-		<?php uchaguzi::gallery_reports_menu(); ?>
-	</ul>
-</div>
+
