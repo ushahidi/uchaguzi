@@ -3,7 +3,7 @@
     
         <div class="pageheader">
             <ul class="hornav">
-                <strong><?php uchaguzi::info_tabs(); ?></strong>
+                <strong><?php uchaguzi::info_tabs($this_page); ?></strong>
             </ul>
         </div><!--pageheader-->
         

@@ -75,6 +75,9 @@ class Info_Controller extends Main_Controller {
 
 		$this->template->header->header_block = $this->themes->header_block();
 		$this->template->footer->footer_block = $this->themes->footer_block();
+
+
+		$this->template->content->this_page = url::site().'info/index/'.$page_id;	
 	}
 
 }

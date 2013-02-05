@@ -13,7 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Profile_Controller extends Admin_Controller
+class Profile_Controller extends Tools_Controller
 {
     protected $user_id;
 
@@ -29,6 +29,7 @@ class Profile_Controller extends Admin_Controller
     {
         $this->template->content = new View('admin/profile');
 
+        $this->template->content->this_page = 'profile';
         // setup and initialize form field names
         $form = array
         (

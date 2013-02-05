@@ -16,7 +16,7 @@ class uchaguzi_Core {
 	 * @return string $menu
      */
 	
-	public function info_tabs($this_page = FALSE)
+	public function info_tabs($this_page)
 	{
 		$pages = ORM::factory('page')->where('page_active','1')->find_all();
 		$menu = "";
@@ -26,10 +26,10 @@ class uchaguzi_Core {
 			$page_id = $page->id;
 			$page_title = $page->page_title;
 			$page_tab = $page->page_tab;
-			
+		
 			//Page details
 			$menu .= "<li><a href=\"".url::site()."info/index/".$page_id."\" ";
-			$menu .= ($this_page == $page_title) ? " class=\"active\"" : "";
+			$menu .= ($this_page == url::site()."info/index/".$page_id) ? " class=\"active\"" : "";
 		 	$menu .= ">".$page_tab."</a></li>";
 
 		}

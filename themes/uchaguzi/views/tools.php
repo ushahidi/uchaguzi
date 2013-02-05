@@ -13,10 +13,10 @@
 		</div> <!--notification announcement-->
 				 
 		<ul class="shortcuts">
-			<li><a href="" class="reports"><span class="icon-pictures"></span><?php echo $reports_total .' '.Kohana::lang('ui_main.reports');?></a></li>
-			<li><a href="" class="messages"><span class="icon-mail"></span><?php echo $message_count .' '.Kohana::lang('ui_main.messages');?></a></li>
-			<li><a href="" class="published"><span class="icon-publish"></span><?php echo $reports_approved .' '.Kohana::lang('ui_main.approved');?></a></li>
-			<li><a href="" class="verified"><span class="icon-checkmark-circle"></span><?php echo $reports_verified .' '.Kohana::lang('ui_main.verified');?></a></li>
+			<li><a href=" <?php echo url::site() . 'admin/reports' ?>" class="reports"><span class="icon-pictures"></span><?php echo $reports_total .' '.Kohana::lang('ui_main.reports');?></a></li>
+			<li><a href="<?php echo url::site() . 'admin/messages' ?>" class="messages"><span class="icon-mail"></span><?php echo $message_count .' '.Kohana::lang('ui_main.messages');?></a></li>
+			<li><a href="<?php echo url::site() . 'admin/reports?status=ap' ?>" class="published"><span class="icon-publish"></span><?php echo $reports_approved .' '.Kohana::lang('ui_main.approved');?></a></li>
+			<li><a href="<?php echo url::site() . 'admin/reports?status=vv' ?>" class="verified"><span class="icon-checkmark-circle"></span><?php echo $reports_verified .' '.Kohana::lang('ui_main.verified');?></a></li>
 		</ul>
 				 
 		<div class="view-summary">
@@ -24,7 +24,8 @@
 
 			<article class="task cf">
 				<hgroup>
-					<h1><a href=""><?php echo Kohana::lang('ui_main.unverified');?></a></h1>
+					<h1><a href="<?php echo url::site() .
+					'admin/reports?status=v' ?>"><?php echo Kohana::lang('ui_main.unverified');?></a></h1>
 					<h2 class="desc"><?php echo Kohana::lang('ui_main.reports') .' '.Kohana::lang('ui_main.awaiting_verification');?></h2>
 				</hgroup>
 				<span class="total"><?php echo $reports_unverified;?></span>
@@ -32,7 +33,7 @@
 
 			<article class="task cf">
 				<hgroup>
-					<h1><a href=""><?php echo Kohana::lang('ui_main.not_approved');?></a></h1>
+					<h1><a href="<?php echo url::site() . 'admin/reports?status=a' ?>"><?php echo Kohana::lang('ui_main.not_approved');?></a></h1>
 					<h2 class="desc"><?php echo Kohana::lang('ui_main.reports') .' '.Kohana::lang('ui_main.awaiting_approval');?></h2>
 				</hgroup>
 				<span class="total"><?php echo $reports_unapproved;?></span>
