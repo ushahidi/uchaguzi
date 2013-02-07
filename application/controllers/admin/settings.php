@@ -593,8 +593,8 @@ class Settings_Controller extends Tools_Controller {
 			'0'=>utf8::strtoupper(Kohana::lang('ui_main.no')));
 
 		// Javascript Header
-		$this->template->map_enabled = TRUE;
-		$this->template->colorpicker_enabled = TRUE;
+		$this->template->header->map_enabled = TRUE;
+		$this->template->header->colorpicker_enabled = TRUE;
 		$this->template->header->js = new View('admin/settings/settings_js');
 		$this->template->header->js->default_map = $form['default_map'];
 		$this->template->header->js->default_zoom = $form['default_zoom'];
