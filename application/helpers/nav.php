@@ -139,9 +139,9 @@ class nav_Core {
 		 	//$menu .= ">".Kohana::lang('uchaguzi.iebc')."</a></li>";
 
 		//ELOG
-			$menu .= "<li><a href=\"".url::site()."reports\" ";
+			//$menu .= "<li><a href=\"".url::site()."reports\" ";
 			//$menu .= ($this_page == 'analysis') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
+		 	//$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
 	
 		//TOOLS
 			if(Auth::instance()->has_permission('tools', $user))
