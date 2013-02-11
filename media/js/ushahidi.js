@@ -803,8 +803,10 @@
 			infoWindow.appendChild(imageEl);
 		}
 
-		var infoWindowContent = this.createDOMElement('div', {class: 'infowindow_content'});		
-		infoWindowContent.appendChild(this.createDOMElement('div', {class: 'infowindow_list'}, feature.attributes.name));
+		var infoWindowContent = this.createDOMElement('div', {class: 'infowindow_content'});
+		var infoWindowList = this.createDOMElement('div', {class: 'infowindow_list'});
+		infoWindowList.innerHTML = feature.attributes.name;
+		infoWindowContent.appendChild(infoWindowList);
 
 		var infoWindowMeta = this.createDOMElement('div', {class: 'infowindow_meta'});
 
