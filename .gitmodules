@@ -1,3 +1,7 @@
 [submodule "plugins/iebc"]
 	path = plugins/iebc
 	url = git://github.com/dkobia/iebc.git
+[submodule "plugins/partners"]
+	path = plugins/partners
+	url = git://github.com/rjmackay/Ushahidi-plugin-partners.git
+
