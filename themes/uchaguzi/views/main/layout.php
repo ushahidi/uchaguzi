@@ -152,8 +152,8 @@
 		<section class="how-to">
 			<h1 class="sub-category"><?php echo Kohana::lang('ui_main.how_to_report'); ?></h1>
 			<div class="how-to-report-methods">
-				<!--<li><i class="icon-mobile"></i><strong>Text (SMS)
-				message</strong> <span>-->
+				<li><i class="icon-mobile"></i><strong>Text (SMS)
+				message</strong> <span>
 					<!-- Phone -->
 					<?php if ( ! empty($phone_array)): ?>
 						<div>
@@ -164,9 +164,9 @@
 						</div>
 						<?php endif; ?>
 
-				<!--</span>
+				</span>
 				</li>
-				<li> -->						
+				<li> 						
 					<!-- External Apps -->
 					<?php if (count($external_apps) > 0): ?>
 						<div>
@@ -177,8 +177,9 @@
 							<?php endforeach; ?>
 						</div>
 						<?php endif; ?>
-						
+				</li>	
 					<!-- Email -->
+				<li>
 					<?php if ( ! empty($report_email)): ?>
 						<div>
 							<br>
@@ -186,8 +187,9 @@
 							<a href="mailto:<?php echo $report_email?>"><?php echo $report_email?></a>
 						</div>
 						<?php endif; ?>
-
+				</li>
 					<!-- Twitter -->
+				<li>
 					<?php if ( ! empty($twitter_hashtag_array)): ?>
 						<div>
 							<br>
@@ -200,18 +202,15 @@
 							<?php endforeach; ?>
 						</div>
 						<?php endif; ?>
-
+				</li>
 					<!-- Web Form -->
-						<div>
-							<br>
+				<li><i class="icon-publish"></i>
 							<a href="<?php echo url::site().'reports/submit/'; ?>">
-								<?php echo Kohana::lang('ui_main.report_option_4'); ?>
+								<strong>Web</strong> <span><?php echo
+								Kohana::lang('ui_main.report_option_4');
+								?></span>
 							</a>
-						</div>
-
-				<!--<li><i class="icon-publish"></i><a
-				href="#"><strong>Web</strong> <span>Create a report using this
-				website.</span></a></li>-->
+				</li>
 			</div>
 		</section>	
 	</div>

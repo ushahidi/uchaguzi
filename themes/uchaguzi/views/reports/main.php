@@ -1,5 +1,5 @@
 <div id="primary-content" class="col_6">
-	<!--h1 class="heading">
+	<h1 class="heading">
 		<?php echo Kohana::lang('ui_main.showing_reports_from', array(date('M d, Y', $oldest_timestamp), date('M d, Y', $latest_timestamp))); ?> 
 		<a href="#" class="btn-change-time ic-time"><?php echo Kohana::lang('ui_main.change_date_range'); ?></a>
 	</h1>
@@ -46,7 +46,7 @@
 				</tr>
 			</table>              
 		<?php form::close(); ?>
-	</div-->
+	</div>
 
 	<!-- reports-box -->
 	<div id="reports-box">	
@@ -55,7 +55,7 @@
 	<!-- end #reports-box -->
 </div>
 	
-<div id="filters" class="col_4">
+<div id="filters-box" class="col_4">
 	<div class="widgetbox">
 		<div class="title">
 			<h3><?php echo Kohana::lang('ui_main.filter_reports_by'); ?></h3>
