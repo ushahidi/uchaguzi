@@ -1,3 +1,6 @@
 [submodule "plugins/iebc"]
 	path = plugins/iebc
 	url = git://github.com/dkobia/iebc.git
+[submodule "plugins/actionable"]
+	path = plugins/actionable
+	url = git://github.com/ushahidi/Ushahidi-plugin-actionable.git
