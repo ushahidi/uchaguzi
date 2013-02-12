@@ -22,7 +22,7 @@
 		</ul>
 		<nav id="tools-menu">
 			<ul class="second-level-menu">
-				<?php admin::reports_subtabs("view"); ?>
+				<?php admin::reports_subtabs(! empty($this_sub_page) ? $this_sub_page : 'view'); ?>
 			</ul>
 		</nav>
 	</div>
