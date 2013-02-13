@@ -105,6 +105,10 @@
 								<strong><?php echo Kohana::lang('ui_main.longitude');?>:</strong><br />
 								<?php print form::input('longitude', $form['longitude'], ' class="text"'); ?>
 							</div>
+							<div class="tab_form_item">
+								<strong><?php echo Kohana::lang('ui_main.user');?>:</strong><br />
+								<?php print form::dropdown('user_id', $users_array, $form['user_id'], ' class="text"'); ?>
+							</div>
 							<div style="clear:both;"></div>
 							<div class="tab_form_item">
 								<strong><?php echo Kohana::lang('ui_main.location');?>:</strong><br />
@@ -190,6 +194,7 @@
 								        $service = new Service_Model($service_id);
 								        $service_name = $service->service_name;
 									$service_account = $reporter->service_account;
+										$user_id = $reporter->user_id;
 											if ($keyword)
 											{
 												$service_account = str_ireplace($keyword,
@@ -242,7 +247,8 @@
 	'<?php echo(rawurlencode($location_id)); ?>',
 	'<?php echo(rawurlencode($location_name)); ?>',	
 	'<?php echo(rawurlencode($latitude)); ?>',
-	'<?php echo(rawurlencode($longitude)); ?>')"><?php echo Kohana::lang('ui_main.edit');?></a></li>
+	'<?php echo(rawurlencode($longitude)); ?>',
+	'<?php echo(rawurlencode($user_id)); ?>')"><?php echo Kohana::lang('ui_main.edit');?></a></li>
 													<li><a href="javascript:reportersAction('d','DELETE','<?php echo(rawurlencode($reporter_id)); ?>', '')" class="del"><?php echo Kohana::lang('ui_main.delete');?></a></li>
 												</ul>
 											</td>

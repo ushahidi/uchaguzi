@@ -4,3 +4,6 @@
 [submodule "plugins/actionable"]
 	path = plugins/actionable
 	url = git://github.com/ushahidi/Ushahidi-plugin-actionable.git
+[submodule "plugins/partners"]
+	path = plugins/partners
+	url = git://github.com/rjmackay/Ushahidi-plugin-partners.git
