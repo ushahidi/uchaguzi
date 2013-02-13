@@ -92,6 +92,14 @@ class Login_Controller extends Template_Controller {
 			$message = Kohana::lang('ui_main.must_confirm_email_address');
 		}
 
+		// Show send new confirm email form
+		if (isset($_GET["confirmation_failure"]))
+		{
+			$new_confirm_email_form = TRUE;
+			$message_class = 'login_error';
+			$message = Kohana::lang('ui_main.confirm_email_failed');
+		}
+
 		// Show that confirming the email address was a success
 		if (isset($_GET["confirmation_success"]))
 		{
@@ -118,7 +126,7 @@ class Login_Controller extends Template_Controller {
 			$post->add_rules('username', 'required');
 			$post->add_rules('password', 'required');
 
-			if ($post->validate())
+			if ($post->validate(FALSE))
 			{
 				// Sanitize $_POST data removing all inputs without rules
 				$postdata_array = $post->safe_array();
@@ -164,22 +172,19 @@ class Login_Controller extends Template_Controller {
 					}
 					else
 					{
+						// If user isn't confirmed, redirect to resend confirmation page
+						if (Kohana::config('settings.require_email_confirmation') AND ORM::factory('user', $user)->confirmed == 0)
+						{
+							url::redirect("login?new_confirm_email");
+						}
+						
 						// Generic Error if exception not passed
 						$post->add_error('password', 'login error');
 					}
-
 				}
 				catch (Exception $e)
 				{
 					$error_message = $e->getMessage();
-
-					// In a special case, we want to show a form to resend a confirmation email
-					//   "need_email_confirmation" can be found in modules/auth/libraries/drivers/Auth/ORM.php
-					if ( $error_message == 'need_email_confirmation')
-					{
-						//Redirect back to the login form and show the for to request a new confirmation email
-						url::redirect("login?new_confirm_email");
-					}
 
 					// We use a "custom" message because of RiverID.
 					$post->add_error('password', $error_message);
@@ -313,17 +318,10 @@ class Login_Controller extends Template_Controller {
 					else
 					{
 						// Reset locally
-
-						// Secret consists of email and the last_login field.
-						// So as soon as the user logs in again,
-						// the reset link expires automatically.
-						$secret = $auth->hash_password($user->email.$user->last_login);
-						$secret_link = url::site('login/index/'.$user->id.'/'.$secret.'?reset');
-						$this->_email_resetlink($post->resetemail,$user->name,$secret_link);
+						$secret = $user->forgot_password_token();
+						$secret_link = url::site('login/index/'.$user->id.'/'.urlencode($secret).'?reset');
+						$email_sent = $this->_email_resetlink($post->resetemail, $user->name, $secret_link);
 					}
-
-					// Send Confirmation email
-					$email_sent = $this->_send_email_confirmation($user);
 
 					if ($email_sent == TRUE)
 					{
@@ -655,7 +653,7 @@ class Login_Controller extends Template_Controller {
 		else
 		{
 			// Redirect to Login which will log themin if they are already logged in
-			url::redirect("login");
+			url::redirect("login?confirmation_failure");
 		}
 
 
@@ -866,8 +864,7 @@ class Login_Controller extends Template_Controller {
 			else
 			{
 				// Use Standard
-
-				if($auth->hash_password($user->email.$user->last_login, $auth->find_salt($token)) == $token)
+				if($user->check_forgot_password_token($token))
 				{
 					$user->password = $password;
 					$user->save();
@@ -904,7 +901,7 @@ class Login_Controller extends Template_Controller {
 		$user->code = $code;
 		$user->save();
 
-		$url = url::site()."login/verify/?c=$code&e=$email";
+		$url = url::site()."login/verify/?c=".urlencode($code)."&e=".urlencode($email);
 
 		$to = $email;
 		$from = array($settings['site_email'], $settings['site_name']);
@@ -929,20 +926,20 @@ class Login_Controller extends Template_Controller {
 	private function _email_resetlink( $email, $name, $secret_url )
 	{
 		$to = $email;
-		$from = Kohana::lang('ui_admin.password_reset_from');
+		$from = array(Kohana::config('settings.site_email'), Kohana::config('settings.site_name'));
 		$subject = Kohana::lang('ui_admin.password_reset_subject');
 		$message = $this->_email_resetlink_message($name, $secret_url);
 
-		//email details
-		if( email::send( $to, $from, $subject, $message, FALSE ) == 1 )
-		{
-			return TRUE;
+		try {
+			$recipients = email::send( $to, $from, $subject, $message, FALSE );
 		}
-		else
+		catch (Exception $e)
 		{
+			Kohana::log('warning', Swift_LogContainer::getLog()->dump(true));
 			return FALSE;
 		}
 
+		return TRUE;
 	}
 
 	/**
