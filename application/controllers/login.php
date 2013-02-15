@@ -13,14 +13,15 @@
  * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
-class Login_Controller extends Template_Controller {
+class Login_Controller extends Main_Controller {
 
 	public $auto_render = TRUE;
 	// Session Object
 	protected $session;
 
 	// Main template
-	public $template = 'login/main';
+	//public $template = 'login/main';
+	public $template = 'layout';
 
 
 	public function __construct()
@@ -31,7 +32,17 @@ class Login_Controller extends Template_Controller {
 	}
 
 	public function index($user_id = 0)
-	{
+	{		
+		// Cacheable Controller
+		$this->is_cachable = TRUE;
+
+		$this->template->content = new View('login/main');
+		//$this->themes->js = new View('login/login_js');
+		//$this->template->content = new View('login/login_js');
+		//$this->template->content->js->action = $action;
+
+		$this->template->content->this_page = 'login';
+
 		// Set messages to display on the login page for the user
 		$message = FALSE;
 		$message_class = 'login_error';
@@ -579,26 +590,26 @@ class Login_Controller extends Template_Controller {
 			$this->template->riverid_url = $riverid->url;
 		}
 
-		$this->template->errors = $errors;
-		$this->template->success = $success;
-		$this->template->change_pw_success = $change_pw_success;
-		$this->template->form = $form;
-		$this->template->form_error = $form_error;
-		$this->template->new_confirm_email_form = $new_confirm_email_form;
+		$this->template->content->errors = $errors;
+		$this->template->content->success = $success;
+		$this->template->content->change_pw_success = $change_pw_success;
+		$this->template->content->form = $form;
+		$this->template->content->form_error = $form_error;
+		$this->template->content->new_confirm_email_form = $new_confirm_email_form;
 
 		// Message to user
-		$this->template->message_class = $message_class;
-		$this->template->message = $message;
+		$this->template->content->message_class = $message_class;
+		$this->template->content->message = $message;
 
 		// This just means the user isn't a member or an admin, so they have nowhere to go, but they are logged in.
 		$this->template->insufficient_role = $insufficient_role;
 
-		$this->template->site_name = Kohana::config('settings.site_name');
-		$this->template->site_tagline = Kohana::config('settings.site_tagline');
+		$this->template->content->site_name = Kohana::config('settings.site_name');
+		$this->template->content->site_tagline = Kohana::config('settings.site_tagline');
 
 		// Javascript Header
-		$this->template->js = new View('login/login_js');
-		$this->template->js->action = $action;
+		$this->template->header->js= new View('login/login_js');
+		$this->template->header->js->action = $action;
 
 		// Header Nav
 		$header_nav = new View('header_nav');
