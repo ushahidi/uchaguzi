@@ -6,14 +6,16 @@
 
 * { margin: 0; padding: 0; }
 body {
-	background-color: #F0F0F0;
+	background-color: #FFF;
 }
 body, td {
 	font: 13px "Lucida Grande", "Lucida Sans Unicode", Tahoma, Verdana, sans-serif;
 }
 
 
-h1 { margin-bottom:18px; }
+h1 { margin-bottom:18px;
+font-family: 'RobotoCondensed',Helvetica Neue,Helvetica,Arial,sans-serif;
+    text-transform: uppercase; }
 h2 {
 	margin-bottom: 15px;
 	color: #FFF;
@@ -60,7 +62,6 @@ dl {}
 #ushahidi_site_name {
 	border: 3px solid #fff;
 	text-align: center;
-	background: none repeat scroll 0 0 #222222;
 	border: 3px solid #FFFFFF;
 	border-radius: 0 0 2px 2px;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
@@ -73,6 +74,11 @@ dl {}
 	padding-right: 5px;
 	padding-bottom: 15px;
 	padding-left: 5px;
+	background-attachment: scroll;
+	background-color: #799076;
+	background-image: none;
+	background-repeat: repeat;
+	background-position: 0 0;
 }
 
 #ushahidi_site_name h1 {
@@ -110,14 +116,18 @@ dl {}
 	width:750px;
 }
 #openid_login {
-	border:3px solid #fff;
-	text-align:left;
+	border: 3px solid #fff;
+	text-align: left;
 	padding: 20px;
-	background: none repeat scroll 0 0 #222222;
 	border-radius: 0 0 2px 2px;
 	box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
-	float:left;
-	width:340px;
+	float: left;
+	width: 340px;
+	background-attachment: scroll;
+	background-color: #7A9176;
+	background-image: none;
+	background-repeat: repeat;
+	background-position: 0 0;
 }
 #create_account {
 	background: none repeat scroll 0 0 #222222;

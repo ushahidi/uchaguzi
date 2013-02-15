@@ -223,11 +223,10 @@ ul.sub-nav  li a:hover{ text-decoration:underline;}
 
 /*-- content --*/
 #content{
-	background:url(../../img/admin/content-bg.gif) repeat-x;
 	width:940px;
 	padding:10px 10px 0;
 	overflow:hidden;
-	clear:both;
+	
 }
 .bg{
 	width:940px;

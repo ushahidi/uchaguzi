@@ -4474,7 +4474,7 @@ version: 1
 */
 
 /* Report Box Navigation Controls (pagination, view/map toggle...etc) */
-.rb_nav-controls { background:#404040; border:1px solid #ccc; height:35px; color:#dedede; }
+.rb_nav-controls { background:#F7F7F7; border:1px solid #eeeeee; height:35px; color:#7B9276; }
 .rb_nav-controls table { height:inherit; }
 .rb_nav-controls td { border-right:1px solid #ccc; vertical-align:middle; padding:0 6px; }
 .rb_nav-controls td.last { border:none; padding:0 0 0 18px; }
@@ -4487,7 +4487,7 @@ ul.link-toggle li a {
     display:inline-block; 
     padding:3px 5px; 
     color:#a2a8a5; 
-    border:1px solid #404040; 
+    border:1px solid #EEEEEE; 
     -webkit-border-radius: 3px; 
     -moz-border-radius: 3px; 
     border-radius: 3px;
@@ -4503,17 +4503,17 @@ ul.link-toggle li a:hover { color:#fff; border:1px solid #8a8a8a; text-decoratio
             
 ul.link-toggle li a.list { background:transparent url("../images/icon_sprite-2.png") 2px -29px no-repeat; ; }
 ul.link-toggle li.active a.list,
-ul.link-toggle li a:hover.list { background:#8a8a8a url("../images/icon_sprite-2.png") 2px -3px no-repeat}
+ul.link-toggle li a:hover.list { background:#7B9276 url("../images/icon_sprite-2.png") 2px -3px no-repeat}
             
-ul.link-toggle li a.map { background:transparent url("../images/icon_sprite-2.png") 2px -80px no-repeat; }
+ul.link-toggle li a.map { background:#FFFFFF url("../images/icon_sprite-2.png") 2px -80px no-repeat; }
 ul.link-toggle li.active a.map,
-ul.link-toggle li a:hover.map { background:#8a8a8a url("../images/icon_sprite-2.png") 2px -54px no-repeat; }
+ul.link-toggle li a:hover.map { background:#7B9276 url("../images/icon_sprite-2.png") 2px -54px no-repeat; }
             
 /* Icons only */    
 ul.link-toggle li a.prev,
 ul.link-toggle li a.next { border:1px solid #7d7d7d; }
-ul.link-toggle li a.prev { width:10px; background:#5f5f5f url("../images/icon_sprite-2.png") 0 -147px no-repeat; }
-ul.link-toggle li a.next { width:10px; background:#5f5f5f url("../images/icon_sprite-2.png") 0 -128px no-repeat; }
+ul.link-toggle li a.prev { width:10px; background:#7B9276 url("../images/icon_sprite-2.png") 0 -147px no-repeat; }
+ul.link-toggle li a.next { width:10px; background:#7B9276 url("../images/icon_sprite-2.png") 0 -128px no-repeat; }
 ul.link-toggle li a:hover.prev,
 ul.link-toggle li a:hover.next { background-color:#6e6e6e; } 
     
@@ -4536,7 +4536,14 @@ ul.link-toggle li a:hover.next { background-color:#6e6e6e; }
 
 
 /* Heading with tabs */
-.heading { border-bottom:3px solid #ebebeb; position:relative; }
+.heading { color: #444444;
+    font-family: 'RobotoBoldCondensed',Arial,Helvetica,sans-serif;
+    font-size: 1.4em;
+    font-weight: normal;
+    line-height: 2em;
+    text-transform: uppercase;
+	border-bottom:3px solid #ebebeb; 
+	position:relative; }
 a.ic-time {
     font-size:12px; 
     font-weight:normal; 
@@ -4587,13 +4594,13 @@ p.labeled-divider span { position:relative; top:-8px; display:inline-block; back
 #rb_list-view { padding:18px 0 0 0; overflow:auto; }
 #rb_list-view .rb_report { 
     position:relative; 
-    border:1px solid #c0c2b8; 
+    border:1px solid #eeeeee; 
     overflow:auto; 
     margin-bottom:10px; 
     padding:0; 
-    -webkit-border-radius: 5px; 
-    -moz-border-radius: 5px; 
-    border-radius: 5px; 
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+    border-radius: 3px; 
     border-left:6px solid #368C00;
 }
 #rb_list-view .verified { border-left:6px solid #368C00; }
@@ -4922,7 +4929,7 @@ a.filter-button:hover { text-decoration:none; background:#707070;  }
 /* Rounded Corners */
 .r-3 { -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
 .r-4 { -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; }
-.r-5 { -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.r-5 { -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; }
 .r-8 { -webkit-border-radius: 8px; -moz-border-radius: 8px; border-radius: 8px; }
 
 .top-cap { 
