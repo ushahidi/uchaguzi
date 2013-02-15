@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title><?php echo Kohana::lang('ui_main.login');?></title>
 <?php
+/*
 echo html::stylesheet(url::file_loc('css').'media/css/jquery-ui-themeroller', '', TRUE);
 echo html::stylesheet(url::file_loc('css').'media/css/login', '', TRUE);
 echo html::stylesheet(url::file_loc('css').'media/css/openid', '', TRUE);
@@ -12,15 +13,16 @@ echo html::script(url::file_loc('js').'media/js/jquery', TRUE);
 echo html::script(url::file_loc('js').'media/js/openid/openid-jquery', TRUE);
 echo html::script(url::file_loc('js').'media/js/openid/openid-jquery-en', TRUE);
 echo html::script(url::file_loc('js').'media/js/global', TRUE);
+*/
 ?>
 <script type="text/javascript">
-	<?php echo $js; ?>
+	<?php //echo $js; ?>
 </script>
 </head>
 
 <body>
 
-<?php echo $header_nav; ?>
+<?php //echo $header_nav; ?>
 
 <div id="openid_login_container">
 
