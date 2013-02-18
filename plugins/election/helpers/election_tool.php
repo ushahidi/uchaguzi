@@ -20,24 +20,24 @@ class election_tool_Core {
 		$menu = "";
 
 		$menu .= ($this_sub_page == "monitors") ?
-Kohana::lang('election.monitors') : "<a
-href=\"".url::site()."admin/election\">".Kohana::lang('election.monitors')."</a>";
+'<li class="active"><a>'.Kohana::lang('election.monitors').'</a></li>' : "<li><a
+href=\"".url::site()."admin/election\">".Kohana::lang('election.monitors')."</a></li>";
 
 		$menu .= ($this_sub_page == "boundaries") ?
-Kohana::lang('election.boundaries') : "<a
-href=\"".url::site()."admin/election/boundaries\">".Kohana::lang('election.boundaries')."</a>";
-
+'<li class="active"><a>'.Kohana::lang('election.boundaries').'</a></li>' : "<li><a
+href=\"".url::site()."admin/election/boundaries\">".Kohana::lang('election.boundaries')."</a></li>";
 		
 		$menu .= ($this_sub_page == "codes") ?
-Kohana::lang('election.codes') : "<a
-href=\"".url::site()."admin/election/codes\">".Kohana::lang('election.codes')."</a>";
+'<li class="active"><a>'.Kohana::lang('election.codes').'</a></li>' : "<li><a
+href=\"".url::site()."admin/election/codes\">".Kohana::lang('election.codes')."</a></li>";
 
 		$menu .= ($this_sub_page == "admin_sections") ?
-Kohana::lang('election.admin_sections') : "<a
-href=\"".url::site()."admin/election/admin_sections\">".Kohana::lang('election.admin_sections')."</a>";
+'<li class="active"><a>'.Kohana::lang('election.admin_sections').'</a></li>' : "<li><a
+href=\"".url::site()."admin/election/admin_sections\">".Kohana::lang('election.admin_sections')."</a></li>";
+
 		$menu .= ($this_sub_page == "report_sections") ?
-Kohana::lang('election.report_sections') : "<a
-href=\"".url::site()."admin/election/report_sections\">".Kohana::lang('election.report_sections')."</a>";
+'<li class="active"><a>'.Kohana::lang('election.report_sections').'</a></li>' : "<li><a
+href=\"".url::site()."admin/election/report_sections\">".Kohana::lang('election.report_sections')."</a></li>";
 
 		echo $menu;
 		

@@ -151,66 +151,15 @@
 		
 		<section class="how-to">
 			<h1 class="sub-category"><?php echo Kohana::lang('ui_main.how_to_report'); ?></h1>
-			<div class="how-to-report-methods">
-				<li><i class="icon-mobile"></i><strong>Text (SMS)
-				message</strong> <span>
-					<!-- Phone -->
-					<?php if ( ! empty($phone_array)): ?>
-						<div>
-							<?php echo Kohana::lang('ui_main.report_option_1'); ?>
-							<?php foreach ($phone_array as $phone): ?>
-								<?php echo $phone; ?><br />
-							<?php endforeach; ?>
-						</div>
-						<?php endif; ?>
-
-				</span>
-				</li>
-				<li> 						
-					<!-- External Apps -->
-					<?php if (count($external_apps) > 0): ?>
-						<div>
-							<br>
-							<strong><?php echo Kohana::lang('ui_main.report_option_external_apps'); ?>:</strong><br/>
-							<?php foreach ($external_apps as $app): ?>
-								<a href="<?php echo $app->url; ?>"><?php echo $app->name; ?></a><br/>
-							<?php endforeach; ?>
-						</div>
-						<?php endif; ?>
-				</li>	
-					<!-- Email -->
-				<li>
-					<?php if ( ! empty($report_email)): ?>
-						<div>
-							<br>
-							<strong><?php echo Kohana::lang('ui_main.report_option_2'); ?>:</strong><br/>
-							<a href="mailto:<?php echo $report_email?>"><?php echo $report_email?></a>
-						</div>
-						<?php endif; ?>
-				</li>
-					<!-- Twitter -->
-				<li>
-					<?php if ( ! empty($twitter_hashtag_array)): ?>
-						<div>
-							<br>
-							<strong><?php echo Kohana::lang('ui_main.report_option_3'); ?>:</strong><br/>
-							<?php foreach ($twitter_hashtag_array as $twitter_hashtag): ?>
-								<span>#<?php echo $twitter_hashtag; ?></span>
-								<?php if ($twitter_hashtag != end($twitter_hashtag_array)): ?>
-									<br />
-								<?php endif; ?>
-							<?php endforeach; ?>
-						</div>
-						<?php endif; ?>
-				</li>
-					<!-- Web Form -->
-				<li><i class="icon-publish"></i>
-							<a href="<?php echo url::site().'reports/submit/'; ?>">
-								<strong>Web</strong> <span><?php echo
-								Kohana::lang('ui_main.report_option_4');
-								?></span>
-							</a>
-				</li>
-			</div>
+			<ul>
+				<li><i class="icon-mobile"></i><strong>Text (SMS) message</strong> <span>Send a message to <em>555555</em></span></li>
+				<li><i class="icon-twitter"></i><strong>Tweet with #uchaguzi</strong> <span>Include the hashtag <em>#uchaguzi</em> in your tweets.</span></li>
+				<li><i class="icon-apple"></i><a href="http://download.ushahidi.com/track_download.php?download=ios"><strong>iOS</strong> <span>Install the free Uchaguzi app for iPhone and iPad.</span></a></li>
+				<li><i class="icon-android"></i><a href="http://download.ushahidi.com/track_download.php?download=android"><strong>Android</strong> <span>Install the free Uchaguzi app for Android-powered phones and tablets.</span></a></li>
+				<?php if ( ! empty($report_email)): ?>
+				<li><i class="icon-mail"></i><a href="mailto:<?php echo $report_email?>"><strong>Email</strong> <span>Send an email to <em><?php echo $report_email?></em>.</span></a></li>
+				<?php endif; ?>
+				<li><i class="icon-publish"></i><a href="<?php echo url::site().'reports/submit/'; ?>"><strong>Web</strong> <span>Create a report using this website.</span></a></li>
+			</ul>
 		</section>	
 	</div>

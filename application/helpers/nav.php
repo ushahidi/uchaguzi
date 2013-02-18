@@ -72,7 +72,7 @@ class nav_Core {
 			{
 				$menu .= "<li><a href=\"".url::site()."alerts\" ";
 				$menu .= ($this_page == 'alerts') ? " class=\"active\"" : "";
-				$menu .= ">".Kohana::lang('ui_main.alerts')."</a></li>";
+			 	$menu .= "><i class=\"icon-bell\"></i><span class=\"label\">".Kohana::lang('ui_main.alerts')."</span></a></li>";			
 			}
 		}
 		
@@ -83,7 +83,7 @@ class nav_Core {
 			{
 				$menu .= "<li><a href=\"".url::site()."contact\" ";
 				$menu .= ($this_page == 'contact') ? " class=\"active\"" : "";
-			 	$menu .= ">".Kohana::lang('ui_main.contact')."</a></li>";	
+			 	$menu .= "><i class=\"icon-switch\"></i><span class=\"label\">".Kohana::lang('ui_main.contact')."</span></a></li>";						 	
 			}
 		}
 		

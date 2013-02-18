@@ -55,7 +55,7 @@
 	<!-- end #reports-box -->
 </div>
 	
-<div id="filters-box" class="col_4">
+<div id="filters" class="col_4">
 	<div class="widgetbox">
 		<div class="title">
 			<h3><?php echo Kohana::lang('ui_main.filter_reports_by'); ?></h3>

@@ -12,6 +12,7 @@
 				<ul>
 					<li><a href="<?php echo url::site().$loggedin_role;?>/profile"><?php echo Kohana::lang('ui_main.manage_your_account'); ?></a></li>
 					<li><a href="<?php echo url::site().$loggedin_role;?>"><?php echo Kohana::lang('uchaguzi.tools'); ?></a></li>
+					<li><!--?php echo $languages;?--></li>
 					<li><a href="http://wiki.ushahidi.com/">Help</a></li>
 					<li><a href="<?php echo url::site();?>logout"><em><?php echo Kohana::lang('ui_admin.logout');?></em></a></li>
 				</ul>
