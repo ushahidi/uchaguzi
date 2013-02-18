@@ -13,12 +13,13 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 
-class Members_Controller extends Template_Controller
+class Members_Controller extends Main_Controller
 {
 	public $auto_render = TRUE;
 
 	// Main template
-	public $template = 'members/layout';
+	//public $template = 'members/layout';
+	public $template = 'layout';
 
 	// Cache instance
 	protected $cache;
@@ -68,21 +69,21 @@ class Members_Controller extends Template_Controller
 		$this->template->api_url = Kohana::config('settings.api_url');
 
 		// Javascript Header
-		$this->template->map_enabled = FALSE;
-		$this->template->flot_enabled = FALSE;
-		$this->template->treeview_enabled = FALSE;
-		$this->template->protochart_enabled = FALSE;
-		$this->template->colorpicker_enabled = FALSE;
-		$this->template->editor_enabled = FALSE;
-		$this->template->tablerowsort_enabled = FALSE;
-		$this->template->autocomplete_enabled = FALSE;
-		$this->template->json2_enabled = FALSE;
-		$this->template->js = '';
-		$this->template->form_error = FALSE;
+		$this->template->header->map_enabled = FALSE;
+		$this->template->header->flot_enabled = FALSE;
+		$this->template->header->treeview_enabled = FALSE;
+		$this->template->header->protochart_enabled = FALSE;
+		$this->template->header->colorpicker_enabled = FALSE;
+		$this->template->header->editor_enabled = FALSE;
+		$this->template->header->tablerowsort_enabled = FALSE;
+		$this->template->header->autocomplete_enabled = FALSE;
+		$this->template->header->json2_enabled = FALSE;
+		$this->template->header->js = '';
+		$this->template->header->form_error = FALSE;
 
 		// Initialize some variables for raphael impact charts
-		$this->template->raphael_enabled = FALSE;
-		$this->template->impact_json = '';
+		$this->template->header->raphael_enabled = FALSE;
+		$this->template->header->impact_json = '';
 
 		// Generate main tab navigation list.
 		$this->template->main_tabs = members::main_tabs();

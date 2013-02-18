@@ -1,5 +1,4 @@
-
-<div id="content">
+<div id="centercontent">
 	<div class="content-bg">
 		<div style="padding:25px;">
 
