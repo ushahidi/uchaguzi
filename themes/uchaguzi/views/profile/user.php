@@ -1,5 +1,4 @@
-<div id="content">
-	<div class="content-bg">
+	<div class="centercontent">
 		<div style="padding:25px;">
 
 			<div style="float:left;height:250px;width:160px;text-align:center;">
@@ -57,4 +56,3 @@
 
 		</div>
 	</div>
-</div>
