@@ -1491,8 +1491,9 @@ background: #272727; -moz-box-shadow: inset 0 1px 0 #333; -webkit-box-shadow: in
 }
 
 .widgetcontent li a.active {
-   color: #222;
-   font-weight: bold;
+	color: #FFF;
+	font-weight: bold;
+	background-color: #7A9176;
 }
 
 widgetcontent li a:hover {
