@@ -480,13 +480,16 @@ nav#second-level-menu {
 }
 
 nav#second-level-menu li a {
-   display: block;
-   color: #444;
-   font-size: 0.9em;
-   text-transform: uppercase;
-   border-right: 1px solid #eee;
-   border-bottom: 1px solid #eee;
-   padding: 1.3em 1em;
+	display: block;
+	color: #444;
+	font-size: 0.9em;
+	text-transform: uppercase;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	padding-top: 1.3em;
+	padding-right: 1em;
+	padding-bottom: 1.3em;
+	padding-left: 0.2em;
 }
 
 nav#second-level-menu li.submit a {
@@ -4476,7 +4479,15 @@ version: 1
 /* Report Box Navigation Controls (pagination, view/map toggle...etc) */
 .rb_nav-controls { background:#F7F7F7; border:1px solid #eeeeee; height:35px; color:#7B9276; }
 .rb_nav-controls table { height:inherit; }
-.rb_nav-controls td { border-right:1px solid #ccc; vertical-align:middle; padding:0 6px; }
+.rb_nav-controls td {
+	border-right: 1px solid #ccc;
+	vertical-align: middle;
+	height:10px;
+	padding-top: 0;
+	padding-right: 6px;
+	padding-bottom: 0;
+	padding-left: 6px;
+}
 .rb_nav-controls td.last { border:none; padding:0 0 0 18px; }
     
 /* Link Toggle */ 
