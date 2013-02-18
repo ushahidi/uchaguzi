@@ -13,8 +13,7 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 ?>
-<div
-	class="bg">
+<div class="centercontent">
 <h2><?php election_tool::election_subtabs("monitors"); ?></h2>
 <?php
 if ($form_error) {
