@@ -121,8 +121,8 @@ class Login_Controller extends Main_Controller {
 		// Is this a password reset request? We need to show the password reset form if it is
 		if (isset($_GET["reset"]))
 		{
-			$this->template->token = $this->uri->segment(4);
-			$this->template->changeid = $this->uri->segment(3);
+			$this->template->content->token = $this->uri->segment(4);
+			$this->template->content->changeid = $this->uri->segment(3);
 		}
 
 		// Regular Form Post for Signin
@@ -582,12 +582,12 @@ class Login_Controller extends Main_Controller {
 
 		// Set the little badge under the form informing users that their logins are being managed
 		//   by an external service.
-		$this->template->riverid_information = '';
+		$this->template->content->riverid_information = '';
 		if (kohana::config('riverid.enable') == TRUE)
 		{
 			$riverid = new RiverID;
-			$this->template->riverid_information = Kohana::lang('ui_main.riverid_information',$riverid->name);
-			$this->template->riverid_url = $riverid->url;
+			$this->template->content->riverid_information = Kohana::lang('ui_main.riverid_information',$riverid->name);
+			$this->template->content->riverid_url = $riverid->url;
 		}
 
 		$this->template->content->errors = $errors;
@@ -602,7 +602,7 @@ class Login_Controller extends Main_Controller {
 		$this->template->content->message = $message;
 
 		// This just means the user isn't a member or an admin, so they have nowhere to go, but they are logged in.
-		$this->template->insufficient_role = $insufficient_role;
+		$this->template->content->insufficient_role = $insufficient_role;
 
 		$this->template->content->site_name = Kohana::config('settings.site_name');
 		$this->template->content->site_tagline = Kohana::config('settings.site_tagline');
