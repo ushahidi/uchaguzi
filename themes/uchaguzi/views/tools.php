@@ -21,7 +21,6 @@
 				 
 		<div class="view-summary">
 			<h3 class="sub-category">UCHAGUZI TASKS</h3>
-
 			<article class="task cf">
 				<hgroup>
 					<h1><a href="<?php echo url::site() .
