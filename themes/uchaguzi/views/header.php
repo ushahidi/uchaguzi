@@ -272,7 +272,10 @@
 		<div class="search col_4">
 			<?php echo $search; ?>
 		</div>        
-
+		
+		<div>
+			<?php echo $languages;?>
+		</div>
 		<div class="user-tools col_4">
 			<?php echo $header_nav; ?>
     	</div>
