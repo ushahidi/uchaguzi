@@ -42,8 +42,8 @@ class nav_Core {
 			if (Kohana::config('settings.allow_reports'))
 			{
 				$menu .= "<li class=\"submit\"><a href=\"".url::site()."reports/submit\" ";
-				$menu .= ($this_page == 'reports_submit') ? " class=\"active\"":"";
-			 	$menu .= "><i class=\"icon-pencil\"></i><span class=\"label\">".Kohana::lang('ui_main.submit')."</span></a></li>";
+				$menu .= ($this_page == 'reports_submit') ? " class=\"active tooltip\" ":"";
+			 	$menu .= "title=\"".Kohana::lang("tooltips.submit_report")."\"><i class=\"icon-pencil\"></i><span class=\"label\">".Kohana::lang('ui_main.submit')."</span></a></li>";
 			}
 		}		 
 
@@ -51,8 +51,8 @@ class nav_Core {
 		if( ! in_array('reports',$dontshow))
 		{
 			$menu .= "<li><a href=\"".url::site()."reports\" ";
-			$menu .= ($this_page == 'reports') ? " class=\"active\"" : "";
-		 	$menu .= "><i class=\"icon-pictures\"></i><span class=\"label\">".Kohana::lang('ui_main.reports')."</span></a></li>";
+			$menu .= ($this_page == 'reports') ? " class=\"active tooltip\"" : "";
+		 	$menu .= "title=\"".Kohana::lang("tooltips.reports")."\"><i class=\"icon-pictures\"></i><span class=\"label\">".Kohana::lang('ui_main.reports')."</span></a></li>";
 		 }
 
 		// Timeline
@@ -71,8 +71,8 @@ class nav_Core {
 			if(Kohana::config('settings.allow_alerts'))
 			{
 				$menu .= "<li><a href=\"".url::site()."alerts\" ";
-				$menu .= ($this_page == 'alerts') ? " class=\"active\"" : "";
-			 	$menu .= "><i class=\"icon-bell\"></i><span class=\"label\">".Kohana::lang('ui_main.alerts')."</span></a></li>";			
+				$menu .= ($this_page == 'alerts') ? " class=\"active tooltip\"" : "";
+			 	$menu .= "title=\"".Kohana::lang("tooltips.alerts")."\"><i class=\"icon-bell\"></i><span class=\"label\">".Kohana::lang('ui_main.alerts')."</span></a></li>";			
 			}
 		}
 		
@@ -82,8 +82,8 @@ class nav_Core {
 			if (Kohana::config('settings.site_contact_page') AND Kohana::config('settings.site_email') != "")
 			{
 				$menu .= "<li><a href=\"".url::site()."contact\" ";
-				$menu .= ($this_page == 'contact') ? " class=\"active\"" : "";
-			 	$menu .= "><i class=\"icon-switch\"></i><span class=\"label\">".Kohana::lang('ui_main.contact')."</span></a></li>";						 	
+				$menu .= ($this_page == 'contact') ? " class=\"active tooltip\"" : "";
+			 	$menu .= "title=\"".Kohana::lang("tooltips.contacts")."\"><i class=\"icon-switch\"></i><span class=\"label\">".Kohana::lang('ui_main.contact')."</span></a></li>";						 	
 			}
 		}
 		
@@ -92,16 +92,16 @@ class nav_Core {
 		if( ! in_array('gallery',$dontshow))
 		{
 				$menu .= "<li><a href=\"".url::site()."gallery\" ";
-				$menu .= ($this_page == 'gallery') ? " class=\"active\"" : "";
-			 	$menu .= "><i class=\"icon-video\"></i><span class=\"label\">".Kohana::lang('uchaguzi.gallery')."</span></a></li>";	
+				$menu .= ($this_page == 'gallery') ? " class=\"active tooltip\"" : "";
+			 	$menu .= "title=\"".Kohana::lang("tooltips.gallery")."\"><i class=\"icon-video\"></i><span class=\"label\">".Kohana::lang('uchaguzi.gallery')."</span></a></li>";	
 		}		
 		
 		// Info
 		if( ! in_array('info',$dontshow))
 		{
 				$menu .= "<li><a href=\"".url::site()."info\" ";
-				$menu .= ($this_page == 'info') ? " class=\"active\"" : "";
-			 	$menu .= "><i class=\"icon-info\"></i><span class=\"label\">".Kohana::lang('uchaguzi.info')."</span></a></li>";	
+				$menu .= ($this_page == 'info') ? " class=\"active tooltip\"" : "";
+			 	$menu .= "title=\"".Kohana::lang("tooltips.info")."\"><i class=\"icon-info\"></i><span class=\"label\">".Kohana::lang('uchaguzi.info')."</span></a></li>";	
 		}
 		
 		echo $menu;

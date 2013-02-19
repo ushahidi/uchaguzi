@@ -85,5 +85,13 @@
 	'settings_site_tagline' => 'In a few words, explain what this site is about.',
 	'settings_site_timezone' => 'This is the timezone that your site will operate on. This has an impact on any actions you have set up that utilize time and date, as well as the default current time for reports on the front and back end of the site.',
 	'settings_twitter_configuration' => 'Set the twitter hashtag that will be used on a tweet',
+
+	//tooltips for side navigations
+	'submit_report' => 'Submit a report via the Web',
+	'reports' => 'A listing of all approved reports on Uchaguzi',
+	'alerts' => 'Sign up for SMS or Email alerts',
+	'contacts' => 'Have any questions? Get in touch with us',
+	'gallery' => 'Photos,Videos and Documents from the Uchaguzi platform',
+	'info' => 'Learn more about Uchaguzi',
 	);
 ?>
