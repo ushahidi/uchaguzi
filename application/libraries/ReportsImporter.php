@@ -53,16 +53,16 @@ class ReportsImporter {
 		}
 		
 		// So we can assign category id to incidents, based on category title
-		$this->category_ids = ORM::factory('category')->select_list('category_title','id'); 
+		$this->existing_categories = ORM::factory('category')->select_list('category_title','id'); 
 		//Since we capitalize the category names from the CSV file, we should also capitlize the 
 		//category titles here so we get case insensative behavior. For some reason users don't
 		//always captilize the cateogry names as they enter them in
 		$temp_cat = array();
-		foreach($this->category_ids as $key=>$value)
+		foreach($this->existing_categories as $title => $id)
 		{
-			$temp_cat[utf8::strtoupper($key)] = $value;
+			$temp_cat[utf8::strtoupper($title)] = $id;
 		}
-		$this->category_ids = $temp_cat;
+		$this->existing_categories = $temp_cat;
 		
 		// So we can check if incident already exists in database
 		$this->incident_ids = ORM::factory('incident')->select_list('id','id'); 
@@ -120,12 +120,12 @@ class ReportsImporter {
 			.($this->rownumber+1);
 		}
 		// If a value of Yes or No is NOT set for approval status for the imported row
-		if (isset($row["APPROVED"]) AND !in_array($row["APPROVED"],array('NO','YES')))
+		if (isset($row["APPROVED"]) AND !in_array(utf8::strtoupper($row["APPROVED"]),array('NO','YES')))
 		{
 			$this->errors[] = 'APPROVED must be either YES or NO on line '.($this->rownumber+1);
 		}
 		// If a value of Yes or No is NOT set for verified status for the imported row 
-		if (isset($row["VERIFIED"]) AND !in_array($row["VERIFIED"],array('NO','YES'))) 
+		if (isset($row["VERIFIED"]) AND !in_array(utf8::strtoupper($row["VERIFIED"]),array('NO','YES'))) 
 		{
 			$this->errors[] = 'VERIFIED must be either YES or NO on line '.($this->rownumber+1);
 		}
@@ -164,81 +164,168 @@ class ReportsImporter {
 		$incident->incident_description = isset($row['DESCRIPTION']) ? $row['DESCRIPTION'] : '';
 		$incident->incident_date = date("Y-m-d H:i:s",strtotime($row['INCIDENT DATE']));
 		$incident->incident_dateadd = $this->time;
-		$incident->incident_active = (isset($row['APPROVED']) AND $row['APPROVED'] == 'YES') ? 1 : 0;
-		$incident->incident_verified = (isset($row['VERIFIED']) AND $row['VERIFIED'] == 'YES') ? 1 :0;
+		$incident->incident_active = (isset($row['APPROVED']) AND utf8::strtoupper($row['APPROVED']) == 'YES') ? 1 : 0;
+		$incident->incident_verified = (isset($row['VERIFIED']) AND utf8::strtoupper($row['VERIFIED']) == 'YES') ? 1 :0;
 		$incident->save();
 		$this->incidents_added[] = $incident->id;
 		
-		// STEP 3: SAVE CATEGORIES
+		// STEP 3: Save Personal Information
+		if(isset($row['FIRST NAME']) OR isset($row['LAST NAME']) OR isset($row['EMAIL']))
+		{
+			$person = new Incident_Person_Model();
+			$person->incident_id = $incident->id;
+			$person->person_first = isset($row['FIRST NAME']) ? $row['FIRST NAME'] : '';
+			$person->person_last = isset($row['LAST NAME']) ? $row['LAST NAME'] : '';
+			$person->person_email = isset($row['EMAIL']) ? $row['EMAIL'] : '';
+			$person->person_date = date("Y-m-d H:i:s",time());
+			
+			// Make sure that you're not importing an empty record i.e at least one field has been recorded
+			// If all fields are empty i.e you have an empty record, don't save
+			if(!empty($person->person_first) OR !empty($person->person_last) OR !empty($person->person_email))
+			{
+				$person->save();
+			}
+			
+		}
+		// STEP 4: SAVE CATEGORIES
 		// If CATEGORY column exists
 		if (isset($row['CATEGORY']))
 		{
 			$categorynames = explode(',',trim($row['CATEGORY']));
+			
+			// Trim whitespace from array values
+			$categorynames = array_map('trim',$categorynames);
+			
+			// Get rid of duplicate category entries in a row
+			$categories = array_unique(array_map('strtolower', $categorynames));
+		
 			// Add categories to incident
-			foreach ($categorynames as $categoryname)
+			foreach ($categories as $categoryname)
 			{
-				// There seems to be an uppercase convention for categories... Don't know why
-				$categoryname = utf8::strtoupper(trim($categoryname));
+				// Convert the first string character of the category name to Uppercase
+				$categoryname = utf8::ucfirst($categoryname);
 				
 				// For purposes of adding an entry into the incident_category table
 				$incident_category = new Incident_Category_Model();
 				$incident_category->incident_id = $incident->id; 
 				
 				// If category name exists, add entry in incident_category table
-				if ($row['CATEGORY'] != '')
+				if($categoryname != '')
 				{
-					if($categoryname != '')
+					// Check if the category exists (made sure to convert to uppercase for comparison)
+					if (!isset($this->existing_categories[utf8::strtoupper($categoryname)]))
 					{
-						if (!isset($this->category_ids[$categoryname]))
-						{
-							$this->notices[] = 'There exists no category "'.htmlspecialchars($categoryname).'" in database yet.'
-							.' Added to database.';
-							$category = new Category_Model;
-							$category->category_title = $categoryname;
-							// We'll just use black for now. Maybe something random?
-							$category->category_color = '000000'; 
-							// because all current categories are of type '5'
-							$category->category_visible = 1;
-							$category->category_description = $categoryname;
-							$category->save();
-							$this->categories_added[] = $category->id;
-							// Now category_id is known: This time, and for the rest of the import.
-							$this->category_ids[$categoryname] = $category->id; 
-						}
-						$incident_category->category_id = $this->category_ids[$categoryname];
-						$incident_category->save();
-						$this->incident_categories_added[] = $incident_category->id;
+						$this->notices[] = 'There exists no category "'.htmlspecialchars($categoryname).'" in database yet.'
+						.' Added to database.';
+						$category = new Category_Model;
+						$category->category_title = $categoryname;
+	
+						// We'll just use black for now. Maybe something random?
+						$category->category_color = '000000'; 
+						
+						// because all current categories are of type '5'
+						$category->category_visible = 1;
+						$category->category_description = $categoryname;
+						$category->save();
+						$this->categories_added[] = $category->id;
+						// Now category_id is known: This time, and for the rest of the import.
+						$this->existing_categories[utf8::strtoupper($categoryname)] = $category->id; 
 					}
-				}
-				
-				else
-				{
-					// Unapprove the report
-					$incident_update = ORM::factory('incident',$incident->id);
-					$incident_update->incident_active = 0;
-					$incident_update->save();
-
-					// Assign reports to special category for uncategorized reports: NONE
-					$incident_category->category_id = '5';
+					$incident_category->category_id = $this->existing_categories[utf8::strtoupper($categoryname)];
 					$incident_category->save();
+					$this->incident_categories_added[] = $incident_category->id;
 				}	
 			} 
 		}
 		
-		// If CATEGORY column doesn't exist, 
-		else
+		// STEP 5: Save Custom form fields responses
+		$custom_titles = customforms::get_custom_form_fields('','',false);
+		
+		// Do custom form fields exist on this deployment?
+		if (!empty($custom_titles))
 		{
-			// Unapprove the report
-			$incident_update = ORM::factory('incident',$incident->id);
-			$incident_update->incident_active = 0;
-			$incident_update->save();
-			
-			// Assign reports to special category for uncategorized reports: NONE
-			$incident_category = new Incident_Category_Model();
-			$incident_category->incident_id = $incident->id;
-			$incident_category->category_id = '5';
-			$incident_category->save();
-		} 
+			foreach($custom_titles as $field_name)
+			{
+				// Check if the column exists in the CSV
+				$rowname = utf8::strtoupper($field_name['field_name']);
+				if(isset($row[$rowname]))
+				{		
+					$response = $row[$rowname];
+						
+					// Grab field_id and field_type
+					$field_id = $field_name['field_id'];
+					$field_type = $field_name['field_type'];
+					
+					// Initialize form response model
+					$form_response = new Form_Response_Model();
+					$form_response->incident_id = $incident->id;
+					$form_response->form_field_id = $field_id;
+						
+					// If form response exists
+					if($response != '')
+					{
+						/* Handling case sensitivity issues with custom form field upload */ 
+						// Check if the field is a radio button, checkbox OR dropdown field
+						if ($field_type == '5' OR $field_type == '6' OR $field_type =='7')
+						{
+							// Get field option values
+							$field_values = $field_name['field_default'];
+							
+							// Split field options into individual values
+							$options = explode(",", $field_values);
+							
+							// Since radio button and dropdown fields take single responses
+							if ($field_type == '5' OR $field_type == '7')
+							{
+								foreach ($options as $option)
+								{
+									// Carry out a case insensitive comparison between individual field options and csv response
+									// If there's a match, store field option value from the db
+									if(strcasecmp($option, $response) == 0)
+									{
+										$form_response->form_response = $option;
+									}
+								}	
+							}
+							
+							// For checkboxes, which accomodate multiple responses
+							if ($field_type == '6')
+							{
+								// Split user responses into single values
+								$csvresponses = explode(",", $response);
+								$values = array();
+								foreach ($options as $option)
+								{
+									foreach ($csvresponses as $csvresponse)
+									{
+										// Carry out a case insensitive comparison between individual field options and csv response
+										// If there's a match
+										if(strcasecmp($option, $csvresponse) == 0)
+										{
+											// Store field option value from the db
+											$values[] = $option;
+										}
+									}	
+								}
+								
+								// Concatenate checkbox values into a string, separated by a comma
+								$form_response->form_response = implode(",", $values);	
+							}	
+						}
+						
+						// For all other form fields apart from the three mentioned above
+						else
+						{
+							$form_response->form_response = $response;
+						}
+						
+						// Save the form response
+						$form_response->save();
+					}
+				}	
+			}	
+		}
+		 
 	return true;
 	}
 }
