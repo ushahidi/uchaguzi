@@ -343,7 +343,7 @@ class Settings_Controller extends Tools_Controller {
 	public function index($saved = false)
 	{
 		// Display all maps
-		$this->template->api_url = Kohana::config('settings.api_url_all');
+		$this->template->header->api_url = Kohana::config('settings.api_url_all');
 
 		// Current Default Country
 		$current_country = Kohana::config('settings.default_country');
