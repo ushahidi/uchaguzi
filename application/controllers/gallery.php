@@ -78,12 +78,12 @@ class Gallery_Controller extends Main_Controller {
         // Load media by type
         if ($media_type != NULL)
         {
-            $media = ORM::factory('media')->where(array('media_type' => $media_type))->find_all();
+            $media = ORM::factory('media')->with('incident')->where(array('media_type' => $media_type))->find_all();
         }
         else 
         { 
             // Fetch media
-            $media = ORM::factory('media')->find_all();
+            $media = ORM::factory('media')->with('incident')->find_all();
         }
 
         // Set the view content

@@ -294,9 +294,11 @@
 			});
 			
 			// Event on Latitude/Longitude Typing Change
-			$('#latitude, #longitude').bind("change keyup", function() {
+			$('#latitude, #longitude').bind("blur", function() {
 				var newlat = $("#latitude").val();
 				var newlon = $("#longitude").val();
+				// Do nothing if either field is empty.
+				if (newlat == '' || newlon == '') return;
 				if (!isNaN(newlat) && !isNaN(newlon))
 				{
 					// Clear the map first
@@ -318,7 +320,7 @@
 				}
 				else
 				{
-					alert('Invalid value!')
+					//alert('Invalid value!')
 				}
 			});
 			

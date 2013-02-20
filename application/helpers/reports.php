@@ -462,6 +462,7 @@ class reports_Core {
 					$video->incident_id = $incident->id;
 					$video->media_type = 2;		// Video
 					$video->media_link = $item;
+					$video->media_title = uchaguzi::page_title($item); // get page title
 					$video->media_date = date("Y-m-d H:i:s",time());
 					$video->save();
 				}

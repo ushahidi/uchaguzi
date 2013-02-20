@@ -7,3 +7,6 @@
 [submodule "plugins/partners"]
 	path = plugins/partners
 	url = git://github.com/rjmackay/Ushahidi-plugin-partners.git
+[submodule "modules/newrelic"]
+	path = modules/newrelic
+	url = git://github.com/rjmackay/kohana2-module-newrelic.git
