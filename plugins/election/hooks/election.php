@@ -65,20 +65,20 @@ class election {
 		elseif(strripos(Router::$current_uri, "admin/users") !== false) 
 		{
 			// Hook into users report form
-			Event::add('ushahidi_action.users_form_admin',array($this,'_users_form'));
+			//Event::add('ushahidi_action.users_form_admin',array($this,'_users_form'));
 			
 			//Hook into users submit form
-			Event::add('ushahidi_action.users_add_admin', array($this,'_users_form_submit_admin'));
+			//Event::add('ushahidi_action.users_add_admin', array($this,'_users_form_submit_admin'));
 			
 			//Hook into users edit action
-			Event::add('ushahidi_action.user_edit',array($this,'_update_users_admin_section'));
+			//Event::add('ushahidi_action.user_edit',array($this,'_update_users_admin_section'));
 
-			Event::add('ushahidi_action.users_listing_header',array($this,'_show_adminsection_header_title'));
+			//Event::add('ushahidi_action.users_listing_header',array($this,'_show_adminsection_header_title'));
 
-			Event::add('ushahidi_action.users_listing_item',array($this,'_show_adminsection_item'));
+			//Event::add('ushahidi_action.users_listing_item',array($this,'_show_adminsection_item'));
 
 			//Hook into users delete
-			Event::add('ushahidi_action.users_delete_admin',array($this,'_users_delete_admin')); 
+			//Event::add('ushahidi_action.users_delete_admin',array($this,'_users_delete_admin')); 
 		}
         else if ( strripos(Router::$current_uri, "admin/messages") !== false ) 
         {   
