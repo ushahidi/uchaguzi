@@ -28,6 +28,7 @@ class Election_Controller extends Tools_Controller
 		$this->template->content = new View('election/monitor');
 		$this->template->content->title = 'Manage Monitors';
 
+		$this->template->content->this_page = 'monitor';
 		// set up and initialize form fields
 		$form = array
 		(
@@ -149,6 +150,7 @@ class Election_Controller extends Tools_Controller
 	{
 		$this->template->content = new View('election/boundary');
 		$this->template->content->title = 'Administrative Boundaries';
+		$this->template->content->this_page = 'boundaries';
 
 		// setup and initialize form field names
 		$form = array
@@ -248,6 +250,7 @@ class Election_Controller extends Tools_Controller
 
 		$this->template->content = new View('election/code');
 		$this->template->content->title = 'Form Codes';
+		$this->template->content->this_page = 'codes';
 		
 		// setup and initialize form field names
 		$form = array
@@ -350,7 +353,8 @@ class Election_Controller extends Tools_Controller
 	function admin_sections(){
 
 		$this->template->content = new View('election/adminsection');
-		
+		$this->template->content->this_page = 'admin_sections';
+
 		// setup and initialize form field names
 		$form = array
 	    (
@@ -474,6 +478,8 @@ class Election_Controller extends Tools_Controller
 	{
 		$this->template->content = new View('election/reportsection');
 		$this->template->content->title = 'Reports Sections';
+		$this->template->content->this_page = 'report_sections';
+		
 
 		// setup and initialize form field names
 		$form = array
