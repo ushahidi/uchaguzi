@@ -17,7 +17,7 @@
 	echo html::stylesheet(url::file_loc('css').'media/css/login', '', TRUE);
 	echo html::stylesheet(url::file_loc('css').'media/css/openid', '', TRUE);
 	echo html::stylesheet(url::file_loc('css').'media/css/global', '', TRUE);
-	//echo html::script(url::file_loc('js').'media/js/jquery', TRUE);
+	echo html::script(url::file_loc('js').'media/js/jquery', TRUE);
 	echo html::script(url::file_loc('js').'media/js/openid/openid-jquery', TRUE);
 	echo html::script(url::file_loc('js').'media/js/openid/openid-jquery-en', TRUE);
 	echo html::script(url::file_loc('js').'media/js/global', TRUE);

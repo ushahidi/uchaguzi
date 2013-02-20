@@ -2,7 +2,16 @@
 	<?php foreach ($media as $image) { 
 
 		$media_type = $image->media_type;
+		
 		$media_name = $image->media_link;
+		if (!empty($image->media_title))
+		{
+			$media_name = $image->media_title;
+		}
+		elseif (!empty($image->incident->incident_title))
+		{
+			$media_name = $image->incident->incident_title;
+		}
 		
 		?>
 
@@ -28,7 +37,7 @@
 		<article class="media news">
 			<a href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
 				<span class="icon-newspaper icon"></span>
-				<h1><?php echo uchaguzi::page_title($image->media_link); ?></h1>
+				<h1><?php echo $media_name; ?></h1>
 			</a>
 		</article>
 	<?php } ?> <!--end else if-->
