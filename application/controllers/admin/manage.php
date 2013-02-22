@@ -585,7 +585,7 @@ class Manage_Controller extends Tools_Controller
 		$this->template->content->errors = $errors;
 
 		// Javascript Header
-		$this->template->editor_enabled = TRUE;
+		$this->template->header->editor_enabled = TRUE;
 		$this->template->header->js = new View('admin/manage/pages/pages_js');
 	}
 
