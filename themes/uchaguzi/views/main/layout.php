@@ -8,42 +8,6 @@
 		<div id="reports-summary" class="cf">
 			<?php blocks::render(); ?>
 
-			<!-- <div class="reports-latest">
-				<h3 class="sub-category">Latest news</h3>			
-				<article class="third-party-report">
-					<img src="/media/img/report-thumb-default.jpg" class="thumb" />
-					<h1><a href="#">Flank hamburger capicola, pork loin short ribs sirloin bacon</a></h1>
-					<p class="metadata">By John Doe, <span class="date">Jan. 21, 2013</span></p>
-				</article>
-			</div> -->
-
-			<!-- <div class="reports-highlights">
-				<h3 class="sub-category">Highlights</h3>
-			
-				<article class="highlight cf">
-					<img src="/media/img/report-thumb-default.jpg" class="highlight-thumb" />
-					<div class="highlight-summary">
-						<h1><a href="#">Flank hamburger capicola, pork loin short ribs sirloin bacon</a></h1>
-						<p class="metadata">By John Doe, <span class="date">Jan. 21, 2013</span></p>
-					</div>
-				</article>
-			
-				<article class="highlight cf">
-					<img src="/media/img/report-thumb-default.jpg" class="highlight-thumb" />
-					<div class="highlight-summary">
-						<h1><a href="#">Flank hamburger capicola, pork loin short ribs sirloin bacon</a></h1>
-						<p class="metadata">By John Doe, <span class="date">Jan. 21, 2013</span></p>
-					</div>
-				</article>
-
-				<article class="highlight cf">
-					<img src="/media/img/report-thumb-default.jpg" class="highlight-thumb" />
-					<div class="highlight-summary">
-						<h1><a href="#">Flank hamburger capicola, pork loin short ribs sirloin bacon</a></h1>
-						<p class="metadata">By John Doe, <span class="date">Jan. 21, 2013</span></p>
-					</div>
-				</article>
-			</div> -->
 		</div>
 	</div>
      
@@ -152,8 +116,32 @@
 		<section class="how-to">
 			<h1 class="sub-category"><?php echo Kohana::lang('ui_main.how_to_report'); ?></h1>
 			<ul>
-				<li><i class="icon-mobile"></i><strong>Text (SMS) message</strong> <span>Send a message to <em>555555</em></span></li>
-				<li><i class="icon-twitter"></i><strong>Tweet with #uchaguzi</strong> <span>Include the hashtag <em>#uchaguzi</em> in your tweets.</span></li>
+				<li><i class="icon-mobile"></i><strong>Text (SMS) message</strong> 
+				<span>
+						<?php if ( ! empty($phone_array)): ?>
+							<?php echo Kohana::lang('ui_main.report_option_1'); ?>
+							<?php foreach ($phone_array as $phone): ?>
+								<?php echo $phone; ?><br />
+							<?php endforeach; ?>
+						<?php endif; ?>
+
+				</span>
+				
+				</li>
+				<li><i class="icon-twitter"></i>
+				<span>
+					<?php if ( ! empty($twitter_hashtag_array)): ?>
+					<div>
+						<strong><?php echo Kohana::lang('ui_main.report_option_3'); ?>:</strong><br/>
+						<?php foreach ($twitter_hashtag_array as $twitter_hashtag): ?>
+							<span>#<?php echo $twitter_hashtag; ?></span>
+							<?php if ($twitter_hashtag != end($twitter_hashtag_array)): ?>
+								<br />
+							<?php endif; ?>
+						<?php endforeach; ?>
+					</div>
+					<?php endif; ?>
+				</span></li>
 				<li><i class="icon-apple"></i><a href="http://download.ushahidi.com/track_download.php?download=ios"><strong>iOS</strong> <span>Install the free Uchaguzi app for iPhone and iPad.</span></a></li>
 				<li><i class="icon-android"></i><a href="http://download.ushahidi.com/track_download.php?download=android"><strong>Android</strong> <span>Install the free Uchaguzi app for Android-powered phones and tablets.</span></a></li>
 				<?php if ( ! empty($report_email)): ?>
