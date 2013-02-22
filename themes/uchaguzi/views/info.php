@@ -1,39 +1,19 @@
-  <div class="bodywrapper">    
-    <div class="centercontent">
-    
-        <div class="pageheader">
-            <ul class="hornav">
-                <strong><?php uchaguzi::info_tabs($this_page); ?></strong>
-            </ul>
-        </div><!--pageheader-->
+<div id="tools-content">    
+	<div class="pageheader">
+		<h1 class="pagetitle">Info</h1>
+		<ul class="hornav">
+			<li><?php uchaguzi::info_tabs($this_page); ?></li>
+		</ul>
+	</div>
         
-        <div id="contentwrapper" class="contentwrapper">
-        
-            <div class="two_third last profile_wrapper">
-                <div id="profile" class="subcontent">
-                   
-                    <div class="contenttitle2">
-                        <h3><strong><?php echo $page_title; ?></strong></h3>
-                    </div><!--contenttitle-->
-                    
-                    <div class="profile_about">
-                        <?php 
-            echo htmlspecialchars_decode($page_description);
-            Event::run('ushahidi_action.page_extra', $page_id);
-            ?>
-                    </div><!--profile about-->
-          
-                    <br clear="all" />
-                    
-                </div<!--subcontent-->   
-                
-                <br /><br />
-            </div><!--two_third-->
-            
-            <br /><br />
-            
-        </div><!--contentwrapper-->
-                
-    </div><!-- centercontent -->
-    
-    </div><!--body wrapper-->
+<!--	<h1 class="sub-category"><?php echo $page_title; ?></h1>-->
+
+	<div class="page-content">
+		<div class="table-tabs">
+			<?php 
+			echo htmlspecialchars_decode($page_description);
+			Event::run('ushahidi_action.page_extra', $page_id);
+			?>
+		</div>
+	</div>
+</div>
