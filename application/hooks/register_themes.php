@@ -40,8 +40,8 @@ class register_themes {
 		Kohana::config_set('core.modules', array_merge(array(THEMEPATH."default"),
 			Kohana::config("core.modules")));
 
-		$css_url = (Kohana::config("cdn.cdn_css")) ?
-			Kohana::config("cdn.cdn_css") : url::base();
+		$css_url = url::file_loc('css');
+		$js_url = url::file_loc('js');
 		$theme_css[] = $css_url."themes/default/css/style.css";
 
 		// 2. Extend the default theme
@@ -57,7 +57,7 @@ class register_themes {
 				while (($css_file = $css->read()) !== FALSE)
 					if (preg_match('/\.css/i', $css_file))
 					{
-						$theme_css[] = url::base()."themes/".Kohana::config("settings.site_style")."/css/".$css_file;
+						$theme_css[] = $css_url."themes/".Kohana::config("settings.site_style")."/css/".$css_file;
 					}
 			}
 
@@ -67,7 +67,7 @@ class register_themes {
 				while (($js_file = $js->read()) !== FALSE)
 					if (preg_match('/\.js/i', $js_file))
 					{
-						$theme_js[] = url::base()."themes/".Kohana::config("settings.site_style")."/js/".$js_file;
+						$theme_js[] = $js_url."themes/".Kohana::config("settings.site_style")."/js/".$js_file;
 					}
 			}
 		}

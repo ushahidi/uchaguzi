@@ -13,7 +13,7 @@ if ($feeds->count() != 0)
 			$feed_source = text::limit_chars($feed->feed->feed_name, 15, "...");
 	?>
 	<article class="third-party-report">
-		<img src="/media/img/report-thumb-default.jpg" class="thumb" />
+		<img src="<?php echo url::file_loc('img'); ?>media/img/report-thumb-default.jpg" class="thumb" />
 		<h1><a href="<?php echo $feed_link; ?>"><?php echo $feed_title ?></a></h1>
 		<p class="metadata">from <?php echo $feed_source; ?>, <span class="date"><?php echo $feed_date; ?></p>
 	</article>

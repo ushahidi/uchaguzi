@@ -265,7 +265,7 @@
 <div class="bodywrapper">
     <header id="global-header" class="cf">
 		<hgroup class="col_4 cf">
-			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="<?php echo url::base();?>themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
+			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="<?php echo url::file_loc('img'); ?>themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
 			<h2 class="slogan"><?php echo $site_tagline; ?></h2>
 		</hgroup>
 

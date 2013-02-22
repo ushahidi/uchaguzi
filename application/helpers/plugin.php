@@ -110,7 +110,7 @@ class plugin_Core {
 						// Add the javascript suffix
 						$file .= '.css';
 					}
-					$html .= '<link rel="stylesheet" type="text/css" href="'.url::base()."plugins/".$file.'" />';
+					$html .= '<link rel="stylesheet" type="text/css" href="'.url::file_loc('css')."plugins/".$file.'" />';
 					break;
 				case 'javascript':
 					if (substr_compare($file, '.js', -3, 3, FALSE) !== 0)
@@ -118,7 +118,7 @@ class plugin_Core {
 						// Add the javascript suffix
 						$file .= '.js';
 					}
-					$html .= '<script type="text/javascript" src="'.url::base()."plugins/".$file.'"></script>';
+					$html .= '<script type="text/javascript" src="'.url::file_loc('js')."plugins/".$file.'"></script>';
 					break;
 			}
 		}

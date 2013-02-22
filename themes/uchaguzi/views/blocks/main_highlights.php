@@ -17,7 +17,7 @@ foreach ($incidents as $incident)
 	$incident_location = $incident->location->location_name;
 ?>
 <article class="highlight cf">
-	<img src="/media/img/report-thumb-default.jpg" class="highlight-thumb" />
+	<img src="<?php echo url::file_loc('img'); ?>media/img/report-thumb-default.jpg" class="highlight-thumb" />
 	<div class="highlight-summary">
 		<h1><a href="<?php echo url::site() . 'reports/view/' . $incident_id; ?>"> <?php echo html::specialchars($incident_title) ?></a></h1>
 		<p class="metadata">By John Doe, <span class="date"><?php echo $incident_date; ?></span></p>
