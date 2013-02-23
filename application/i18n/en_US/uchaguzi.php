@@ -31,6 +31,7 @@ $lang = array(
 'all'=>'All',
 'browse_files'=>'Browse Files',
 'highlights'=>'Highlights',
-'latest_news'=>'Latest News'
+'latest_news'=>'Latest News',
+'no_items' => 'No items to display.',
 );
 ?>
