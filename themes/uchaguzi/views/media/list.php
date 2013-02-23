@@ -20,7 +20,7 @@
 			<article class="media image">
 				<a rel="lightbox-group1" href="<?php echo url::convert_uploaded_to_abs($image->media_link); ?>">
 					<span class="icon-camera icon"></span>
-					<img src="<?php echo url::convert_uploaded_to_abs($image->media_thumb); ?>" alt="" />
+					<img src="<?php echo url::convert_uploaded_to_abs($image->media_medium); ?>" alt="" />
 					<span class="filename"><?php echo $media_name; ?></span>
 				</a>
 			</article>
