@@ -31,7 +31,7 @@ class alert_Core {
 		// Should be 8 distinct characters
 		$alert_code = text::random('distinct', 8);
 
-		$sms_from = $this->_sms_from();
+		$sms_from = self::_sms_from();
 
 		$message = Kohana::lang('ui_admin.confirmation_code').$alert_code
 			.'.'.Kohana::lang('ui_admin.not_case_sensitive');
@@ -53,7 +53,7 @@ class alert_Core {
 		}
 
 		return FALSE;
-    }
+	}
 
 	/**
 	 * Sends an email alert
@@ -77,14 +77,14 @@ class alert_Core {
 
 		$to = $alert_email;
 		$from = array();
-		
+
 		$from[] = ($settings['alerts_email']) 
 			? $settings['alerts_email']
 			: $settings['site_email'];
-		
+
 		$from[] = $settings['site_name'];
 		$subject = $settings['site_name']." ".Kohana::lang('alerts.verification_email_subject');
-		
+
 
 		$message = Kohana::lang('ui_admin.confirmation_code').$alert_code."<br><br>";
 		if(!empty($post->alert_category))
@@ -93,8 +93,8 @@ class alert_Core {
 			foreach ($post->alert_category as $item)
 			{
 				$category = ORM::factory('category')
-								->where('id',$item)
-								->find();
+					->where('id',$item)
+					->find();
 
 				if($category->loaded)
 				{
@@ -102,7 +102,7 @@ class alert_Core {
 					$message .= "<ul><li>".$category->category_title ."</li></ul>";
 				}
 			}
-			
+
 		}
 
 		$message .= Kohana::lang('alerts.confirm_request').url::site().'alerts/verify?c='.$alert_code."&e=".$alert_email;
@@ -141,7 +141,7 @@ class alert_Core {
 		{
 			// Log the error
 			Kohana::log('info', 'Insufficient data to proceed with subscription via mobile phone');
-			
+
 			// Return
 			return FALSE;
 		}
@@ -150,20 +150,20 @@ class alert_Core {
 		$message_details = explode(" ",$message_description);
 		$message = $message_details[1].",".Kohana::config('settings.default_country');
 		$geocoder = map::geocode($message);
-			
+
 		// Generate alert code
 		$alert_code = text::random('distinct', 8);
 
 		// POST variable with items to save
 		$post = array(
-			'alert_type'=> self::MOBILE_ALERT,
-			'alert_mobile'=>$message_from,
-			'alert_code'=>$alert_code,
-			'alert_lon'=> isset($geocoder['lon']) ? $geocoder['lon'] : FALSE,
-			'alert_lat'=> isset($geocoder['lat']) ? $geocoder['lat'] : FALSE,
-			'alert_radius'=>'20',
-			'alert_confirmed'=>'1'
-		);
+				'alert_type'=> self::MOBILE_ALERT,
+				'alert_mobile'=>$message_from,
+				'alert_code'=>$alert_code,
+				'alert_lon'=> isset($geocoder['lon']) ? $geocoder['lon'] : FALSE,
+				'alert_lat'=> isset($geocoder['lat']) ? $geocoder['lat'] : FALSE,
+				'alert_radius'=>'20',
+				'alert_confirmed'=>'1'
+				);
 
 		// Create ORM object for the alert and validate
 		$alert_orm = new Alert_Model();
@@ -186,17 +186,17 @@ class alert_Core {
 	public static function mobile_alerts_unsubscribe($message_from, $message_description)
 	{
 		// Validate parameters
-		
+
 		if (empty($message_from) OR empty($message_description))
 		{
 			// Log the error
 			Kohana::log('info', 'Cannot unsubscribe from alerts via the mobile phone - insufficient data');
-			
+
 			// Return
 			return FALSE;
 		}
 
-		$sms_from = $this->_sms_from();
+		$sms_from = self::_sms_from();
 
 		$site_name = $settings->site_name;
 		$message = Kohana::lang('ui_admin.unsubscribe_message').' ' .$site_name;
