@@ -77,7 +77,7 @@
 			$("#tooltip-box").css({
 				'left': ($(this).offset().left - 80),
 				'top': ($(this).offset().right)
-			}).show();
+			}).toggle();
 			
 	        return false;
 		});
@@ -141,7 +141,8 @@
 			}
 			else if ($(this).attr("id") == 'dateRangeMonth')
 			{
-				d1 = new Date(d.setDate(32));
+				d1 = new Date(d);
+				d1.setDate(32);
 				lastMonthDay = 32 - d1.getDay();
 				
 				$("#report_date_from").val(month + '/01/' + d.getFullYear());
@@ -159,6 +160,7 @@
 			
 			// Hide the box
 			$("#tooltip-box").hide();
+			$("#tooltip-box a.filter-button").click();
 			
 			return false;
 		});
@@ -177,13 +179,26 @@
 			report_date_from = $("#report_date_from").val();
 			report_date_to = $("#report_date_to").val();
 			
-			if ($(this).attr("id") == "applyDateFilter" && report_date_from != '' && report_date_to != '')
+			if ($(this).attr("id") == "applyDateFilter")
 			{
-				// Add the parameters
-				urlParameters["from"] = report_date_from;
-				urlParameters["to"] = report_date_to;
+				// Clear existing filters
 				delete urlParameters['s'];
 				delete urlParameters['e'];
+				delete urlParameters['from'];
+				delete urlParameters['to'];
+				// Add from filter if set
+				if (report_date_from != '')
+				{
+					// Add the parameters
+					urlParameters["from"] = report_date_from;
+					urlParameters["to"] = report_date_to;
+				}
+				// Add to filter if set
+				if (report_date_to != '')
+				{
+					// Add the parameters
+					urlParameters["to"] = report_date_to;
+				}
 				
 				// Fetch the reports
 				fetchReports();
@@ -390,7 +405,7 @@
 				if (deSelectedFilters.length > 0)
 				{
 					var temp = [];
-					for (var i = 0; i<deSelectedFilters.length; i++)
+					for (var i = 0; i < deSelectedFilters.length; i++)
 					{
 						if (deSelectedFilters[i] != $(this).attr("id"))
 						{
