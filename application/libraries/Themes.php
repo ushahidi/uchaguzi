@@ -197,7 +197,8 @@ class Themes_Core {
 			$core_js .= html::script($this->js_url."media/js/colorpicker");
 		}
 
-		$core_js .= html::script($this->js_url."media/js/global");
+		// Already included in header
+		//$core_js .= html::script($this->js_url."media/js/global");
 
 		if ($this->editor_enabled)
 		{
