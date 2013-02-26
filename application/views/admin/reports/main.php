@@ -43,6 +43,12 @@
 						<?php echo Kohana::lang('ui_main.uncategorized_reports'); ?>
 					</a>
 				</li>
+				<li>
+					<a href="?status=t" <?php if ($status == 't') echo "class=\"active\""; ?>>
+						<?php echo Kohana::lang('uchaguzi.not_translated'); ?>
+					</a>
+				</li>
+
 			</ul>
 			
 			<!-- tab -->

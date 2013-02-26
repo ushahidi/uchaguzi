@@ -33,5 +33,6 @@ $lang = array(
 'highlights'=>'Highlights',
 'latest_news'=>'Latest News',
 'no_items' => 'No items to display.',
+'not_translated' => 'To be translated',
 );
 ?>

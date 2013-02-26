@@ -74,6 +74,11 @@ class Reports_Controller extends Tools_Controller {
 			{
 				array_push($this->params, '(ic.category_id = 5 OR ic.category_id IS NULL)');
 			}
+			elseif (strtolower($status) == 't')
+			{
+				array_push($this->params, '(ic.category_id = 139)');
+			}
+
 			else
 			{
 				$status = "0";
