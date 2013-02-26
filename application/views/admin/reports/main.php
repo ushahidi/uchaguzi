@@ -48,6 +48,11 @@
 						<?php echo Kohana::lang('uchaguzi.not_translated'); ?>
 					</a>
 				</li>
+				<li>
+					<a href="?status=g" <?php if ($status == 'g') echo "class=\"active\""; ?>>
+						<?php echo Kohana::lang('uchaguzi.not_geolocated'); ?>
+					</a>
+				</li>
 
 			</ul>
 			
