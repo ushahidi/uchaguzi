@@ -176,7 +176,7 @@
 	<div class="col_4">
 		<div class="report-media-box-content">
 			<div id="report-map" class="report-map">
-				<div class="map-holder" id="map"></div>
+				<div class="map-holder" id="map" style="height:350px;"></div>
 				<ul class="map-toggles">
 				  <li><a href="#" class="smaller-map">Smaller map</a></li>
 				  <li style="display:block;"><a href="#" class="wider-map">Wider map</a></li>
