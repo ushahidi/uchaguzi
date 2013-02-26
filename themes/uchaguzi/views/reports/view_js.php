@@ -190,8 +190,10 @@ jQuery(window).load(function() {
 		switch(action)
 		{
 			case "wider-map":
-				$('.report-map').insertBefore($('.left-col'));
-				$('.map-holder').css({"height":"350px", "width": "900px"});
+				$('.report-map').insertBefore($('#primary-content'));
+				$('.report-map').addClass("report-map-wide");
+				$('.report-map').after('<div style="clear:both;"></div>');
+				$('.map-holder').css({"height":"350px", "width": "100%"});
 				$('a[href=#report-map]').parent().hide();
 				$('a.taller-map').parent().show();
 				$('a.smaller-map').parent().show();
@@ -208,6 +210,7 @@ jQuery(window).load(function() {
 				break;
 			case "smaller-map":
 				$('.report-map').hide().prependTo($('.report-media-box-content'));
+				$('.report-map').removeClass("report-map-wide");
 				$('.map-holder').css({"height":"350px", "width": "348px"});
 				$('a.wider-map').parent().show();
 				$('.report-map').show();
