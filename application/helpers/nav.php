@@ -140,9 +140,8 @@ class nav_Core {
 
 		//ELOG
 			
-			$menu .= "<li><a href=\"".url::site()."reports/partners/index/2001\" ";
-			//$menu .= ($this_page == 'analysis') ? " class=\"active\"" : "";
-		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";
+			/*$menu .= "<li><a href=\"".url::site()."reports/partners/index/2001\" ";
+		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";*/
 	
 		//TOOLS
 			if(Auth::instance()->has_permission('tools', $user))
