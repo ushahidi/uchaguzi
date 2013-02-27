@@ -16,10 +16,10 @@ class Sodnet_Core {
     *Api Key
     * @var integer
     */
-    //public $api_key;
+    public $api_key;
     	
     public function __construct() {
-    	//$this->api_key = "BG454";
+    	$this->api_key = 'Psksd!324'.date('ymd');
     }
 
     public function send($to=null, $from=null, $text=null){
@@ -30,11 +30,12 @@ class Sodnet_Core {
 
 	$new_to = $too;
 	
- 	//$key = $this->api_key;	
+ 	$key = $this->api_key;	
 
-	$sms_url = "http://41.215.5.182/remote/?user=huduma&pass=md5('Psksd!324'.date('ymd')&MESSAGE=".urlencode($text)."&MSISDN=".urlencode($new_to)."&messageID=0&source=3002";
+	$sms_url = "http://41.215.5.182/remote/?user=huduma&pass=".md5($key)."&MESSAGE=".urlencode("$text")."&MSISDN=".urlencode($new_to)."&messageID=0&source=3002";
 	
 	$buffer = fopen($sms_url, "r");
+
 
 	return $this->_parse_auth($buffer);
 
