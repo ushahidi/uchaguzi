@@ -142,6 +142,7 @@
 										<td class="col-1"><input name="message_id[]" id="message" value="<?php echo $message_id; ?>" type="checkbox" class="check-box"/></td>
 										<td class="col-2">
 											<div class="post">
+												<div class="incident-id"><a href="<?php echo url::site() . 'admin/reports/edit?mid=' . $message_id; ?>" class="more">#<?php echo $message_id; ?></a></div>
 												<p><?php echo $message_description; ?></p>
 												<?php
 												if ($message_detail OR $message->media != null)
