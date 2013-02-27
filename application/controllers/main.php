@@ -102,6 +102,7 @@ class Main_Controller extends Template_Controller {
 		$this->template->header->private_deployment = Kohana::config('settings.private_deployment');
 
 		$this->template->header->site_name = $site_name;
+		$this->template->footer->site_name = $site_name;		
 		$this->template->header->site_name_style = $site_name_style;
 		$this->template->header->site_tagline = Kohana::config('settings.site_tagline');
 
@@ -226,7 +227,8 @@ class Main_Controller extends Template_Controller {
 			//   so a theme can utilize it in either spot.
 			$this->template->content->site_message = $site_message;
 			$this->template->header->site_message = $site_message;
-		}
+			$this->template->footer->site_message = $site_message;
+		}	
 
 		// Get locale
 		$l = Kohana::config('locale.language.0');

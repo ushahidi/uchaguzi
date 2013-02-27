@@ -421,6 +421,22 @@ header#global-header .user-tools article.user-summary .user-links li a:hover {
    background-color: #369c36;
 }
 
+footer#global-footer {
+   border-top: 1px solid #dddddd;
+   padding: 1em;
+   background-color: #fcfcfc;
+}
+
+/*footer#global-footer hgroup {
+   float: left;
+   margin-right: 1em;
+}*/
+
+footer#global-footer p {
+   display: inline-block;
+   padding: 0.3em 0;
+}
+
 /* --------------------------- TOP-LEVEL NAVIGATION */
 
 nav#top-level-menu {

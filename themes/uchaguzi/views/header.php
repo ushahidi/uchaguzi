@@ -262,7 +262,6 @@
 
 <body id="page" class="withvernav">
 
-<div class="bodywrapper">
     <header id="global-header" class="cf">
 		<hgroup class="col_4 cf">
 			<h1 class="logo"><a href="<?php echo url::site();?>"><img src="<?php echo url::file_loc('img'); ?>themes/uchaguzi/images/logo-uchaguzi.png" /><span class="nodisplay"><?php echo $site_name; ?></span></a></h1>
@@ -288,7 +287,7 @@
         <div class="headerwidget"></div>  
     </nav>
     
-    <div class="body-content-area">
+    <div class="body-content-area cf">
     
 		<nav id="second-level-menu" class="col_2 cf">
 			<ul>

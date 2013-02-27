@@ -7,7 +7,6 @@
 		
 		<div id="reports-summary" class="cf">
 			<?php blocks::render(); ?>
-
 		</div>
 	</div>
      
