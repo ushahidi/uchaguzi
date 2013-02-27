@@ -34,6 +34,7 @@
 		'required' => 'The password field is required.',
 		'riverid server down' => 'The authentication server is down. Please try again later.',
 		'alpha_dash' => 'The password field must have alphabetical characters, the # and @ symbols, numbers, underscores and dashes only',
+		'alpha_numeric' => 'The password field must have alphabetic characters and number only.',
 	),
 	'password_confirm' => array(
 		'matches' => 'The password confirmation field must match the password field.',
