@@ -1,8 +1,10 @@
-<div id="content" class="centercontent">
-	<div class="content-bg">
+<div id="primary-content" style="margin:10px;overflow:hidden;position:relative">
+
+	<h1 class="heading" style="margin-left:10px;"><?php echo Kohana::lang('ui_main.alerts_get'); ?></h1>
+
+	<div class="content-bg" style="margin-left:10px;">
 		<!-- start block -->
-		<div class="big-block">
-			<h1><?php echo Kohana::lang('ui_main.alerts_get'); ?></h1>
+		<div class="big-block" style="width:860px;">
 			<?php if ($form_error): ?>
 			<!-- red-box -->
 			<div class="red-box">
