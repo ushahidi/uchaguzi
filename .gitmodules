@@ -10,3 +10,6 @@
 [submodule "plugins/soundcloud"]
 	path = plugins/soundcloud
 	url = git://github.com/ushahidi/ushahidi-soundcloud.git
+[submodule "plugins/revision"]
+	path = plugins/revision
+	url = git://github.com/rjmackay/Ushahidi-plugin-revision.git
