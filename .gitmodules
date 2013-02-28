@@ -7,3 +7,6 @@
 [submodule "modules/newrelic"]
 	path = modules/newrelic
 	url = git://github.com/rjmackay/kohana2-module-newrelic.git
+[submodule "plugins/soundcloud"]
+	path = plugins/soundcloud
+	url = git://github.com/ushahidi/ushahidi-soundcloud.git
