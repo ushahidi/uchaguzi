@@ -29,7 +29,7 @@ class S_Alerts_Controller extends Controller {
 		
 		// *************************************
 		// ** SAFEGUARD DUPLICATE SEND-OUTS **
-		// Create A 15 Minute SEND LOCK
+		// Create A 5 Minute SEND LOCK
 		// This lock is released at the end of execution
 		// Or expires automatically
 		$alerts_lock = $this->cache->get(Kohana::config('settings.subdomain')."_alerts_lock");
@@ -37,19 +37,14 @@ class S_Alerts_Controller extends Controller {
 		{
 			// Lock doesn't exist
 			$timestamp = time();
-			$this->cache->set(Kohana::config('settings.subdomain')."_alerts_lock", $timestamp, array("alerts"), 900);
+			$this->cache->set(Kohana::config('settings.subdomain')."_alerts_lock", $timestamp, array("alerts"), 300);
 		}
 		else
 		{
 			// Lock Exists - End
-			exit("Other process is running - waiting 15 minutes!");
+			exit("Other process is running - waiting 5 minutes!");
 		}
 		// *************************************
-	}
-	
-	function __destruct()
-	{
-		$this->cache->delete(Kohana::config('settings.subdomain')."_alerts_lock");
 	}
 	
 	public function index() 
