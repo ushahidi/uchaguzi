@@ -98,11 +98,33 @@
 					<td colspan="2">
 						<div class="date-box">
 							<h4><?php echo Kohana::lang('ui_admin.from_date');?>: <span><?php echo Kohana::lang('ui_main.date_format');?></span></h4>
-							<?php print form::input('from_date', $form['from_date'], ' class="text"'); ?>											    
+							<?php print form::input('from_date', $form['from_date'], ' class="text"'); ?>
+							<div class="time">
+								<h4><?php echo Kohana::lang('ui_main.time');?></h4>
+								<?php
+								print '<span class="sel-holder">' . form::dropdown('from_hour', $hour_array, $form['from_hour']) . '</span>';
+								
+								print '<span class="dots">:</span>';
+								
+								print '<span class="sel-holder">' . form::dropdown('from_minute', $minute_array, $form['from_minute']) .
+								'</span>';
+								?>
+							</div>
 						</div>
 						<div class="date-box">
 							<h4><?php echo Kohana::lang('ui_admin.to_date');?>: <span><?php echo Kohana::lang('ui_main.date_format');?></span></h4>
-							<?php print form::input('to_date', $form['to_date'], ' class="text"'); ?>											    
+							<?php print form::input('to_date', $form['to_date'], ' class="text"'); ?>
+							<div class="time">
+								<h4><?php echo Kohana::lang('ui_main.time');?></h4>
+								<?php
+								print '<span class="sel-holder">' . form::dropdown('to_hour', $hour_array, $form['to_hour']) . '</span>';
+								
+								print '<span class="dots">:</span>';
+								
+								print '<span class="sel-holder">' . form::dropdown('to_minute', $minute_array, $form['to_minute']) .
+								'</span>';
+								?>
+							</div>
 						</div>
 						<div id="form_error2"></div>
 					</td>
