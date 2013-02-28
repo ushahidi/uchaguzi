@@ -14,15 +14,14 @@
 * 
 */
 
-class Smssync_Settings_Controller extends Admin_Controller
+class Smssync_Settings_Controller extends Tools_Controller
 {
 	public function index()
 	{
-		$this->template->this_page = 'addons';
-		
 		// Standard Settings View
 		$this->template->content = new View("admin/addons/plugin_settings");
 		$this->template->content->title = "SMSSync Settings";
+		$this->template->content->this_page = 'addons';
 		
 		// Settings Form View
 		$this->template->content->settings_form = new View("smssync/admin/smssync_settings");
