@@ -5069,3 +5069,34 @@ div.ci_checkin {
    text-align: center;
 }
 
+/* admin report search */
+
+.search-tab .location label {
+    display:block;
+    padding:0 0 8px;
+    font:12px/15px Arial, Helvetica, sans-serif;
+}
+.search-tab .map {
+    overflow:hidden;
+    width:407px;
+    border: #999 1px solid;
+}
+
+.search-tab .location-row {
+   float: right;
+   clear: none;
+      
+}
+
+.search-tab .map p {
+    margin:0;                                                                                                                                                                                                                                                                                                                                         
+    font:12px/15px Arial, Helvetica, sans-serif;
+}
+.search-tab .map .map-holder {
+    overflow:hidden;
+    width:387px;
+    height:325px;
+}
+
+
+
