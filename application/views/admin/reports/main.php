@@ -34,7 +34,7 @@
 			<!-- tabset -->
 			<ul class="tabset">
 				<li>
-					<a href="?status=0" <?php if ($status != 'a' AND $status !='v' AND $status != 'o') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.show_all');?></a>
+					<a href="?status=0" <?php if ($status != 'a' AND $status !='v' AND $status != 'o' AND  $status != 'search') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.show_all');?></a>
 				</li>
 				<li><a href="?status=a" <?php if ($status == 'a') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.awaiting_approval');?></a></li>
 				<li><a href="?status=v" <?php if ($status == 'v') echo "class=\"active\""; ?>><?php echo Kohana::lang('ui_main.awaiting_verification');?></a></li>
@@ -53,11 +53,16 @@
 						<?php echo Kohana::lang('uchaguzi.not_geolocated'); ?>
 					</a>
 				</li>
+				<li class="right">
+					<a href="?status=search" class="search <?php if ($status == 'search') echo "active"; ?>">
+						<?php echo Kohana::lang('ui_main.search'); ?>
+					</a>
+				</li>
 
 			</ul>
 			
 			<!-- tab -->
-			<div class="tab cf">
+			<div class="tab cf action-tab active">
 				<ul class="toolbar">
 					<?php if (Auth::instance()->has_permission('reports_approve')): ?>
 					<li><a href="#" onclick="reportAction('a','<?php echo utf8::strtoupper(Kohana::lang('ui_main.approve')); ?>', '');">
@@ -98,6 +103,10 @@
 					echo form::hidden('status', $status);
 					echo form::close(); ?>
 				</div>
+			</div>
+				
+			<div class="content-tab search-tab">
+				<?php echo $search_form; ?>
 			</div>
 
 			<?php if ($form_error): ?>
