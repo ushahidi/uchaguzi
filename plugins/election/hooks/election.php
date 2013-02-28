@@ -34,6 +34,9 @@ class election {
 		$this->session = new Session;
 		
 		$this->session = Session::instance();
+		
+		// Input should always be available
+		$this->input = Input::instance();
 
 		//Get session information
 
