@@ -987,8 +987,9 @@ class Reports_Controller extends Tools_Controller {
 				// Report Date Filter
 				if ( ! empty($post->from_date) AND !empty($post->to_date))
 				{
-					$filter .= " AND ( incident_date >= '" . date("Y-m-d H:i:s",strtotime($post->from_date))
-							. "' AND incident_date <= '" . date("Y-m-d H:i:s",strtotime($post->to_date)) . "' ) ";
+					// Add fixed times to format to make sure we search from start of the day to end of the day
+					$filter .= " AND ( incident_date >= '" . date("Y-m-d 00:00:00",strtotime($post->from_date))
+							. "' AND incident_date <= '" . date("Y-m-d 23:59:59",strtotime($post->to_date)) . "' ) ";
 				}
 
 				// Retrieve reports
