@@ -934,6 +934,9 @@ a.calendar {
 	float:left;
 	padding:0 0 3px;
 }
+.download_container .time {
+	height:auto;
+}
 .date-box h4,
 .time h4{ padding-top:13px;} 
 span.dots {

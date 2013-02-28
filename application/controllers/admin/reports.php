@@ -863,7 +863,13 @@ class Reports_Controller extends Tools_Controller {
 			'data_verified'   => '',
 			'data_include' => '',
 			'from_date'	   => '',
+			'from_hour'	   => '',
+			'from_minute'	   => '',
+			'from_ampm'	   => '',
 			'to_date'	   => '',
+			'to_hour'	   => '',
+			'to_minute'	   => '',
+			'to_ampm'	   => '',
 			'form_auth_token'=> ''
 		);
 
@@ -886,6 +892,20 @@ class Reports_Controller extends Tools_Controller {
 			$post->add_rules('data_include.*','numeric','between[1,7]');
 			$post->add_rules('from_date','date_mmddyyyy');
 			$post->add_rules('to_date','date_mmddyyyy');
+			
+			if ($_POST['from_hour'] != '--' OR $_POST['from_minute'] != '--')
+			{
+			$post
+				->add_rules('from_hour','required','between[1,12]')
+				->add_rules('from_minute','required','between[0,59]');
+			}
+			
+			if ($_POST['to_hour'] != '--' OR $_POST['to_minute'] != '--')
+			{
+			$post
+				->add_rules('to_hour','required','between[0,23]')
+				->add_rules('to_minute','required','between[0,59]');
+			}
 
 			// Validate the report dates, if included in report filter
 			if (!empty($_POST['from_date']) OR !empty($_POST['to_date']))
@@ -987,9 +1007,23 @@ class Reports_Controller extends Tools_Controller {
 				// Report Date Filter
 				if ( ! empty($post->from_date) AND !empty($post->to_date))
 				{
+					$from = new DateTime($post->from_date);
+					$from->setTime(0,0,0);
+					if ($post->from_hour != '--' AND $post->from_minute != '--')
+					{
+						$from->setTime($post->from_hour,$post->from_minute,0);
+					}
+					
+					$to = new DateTime($post->to_date);
+					$to->setTime(23,59,59);
+					if ($post->to_hour != '--' AND $post->to_minute != '--')
+					{
+						$to->setTime($post->to_hour,$post->to_minute,59);
+					}
+					
 					// Add fixed times to format to make sure we search from start of the day to end of the day
-					$filter .= " AND ( incident_date >= '" . date("Y-m-d 00:00:00",strtotime($post->from_date))
-							. "' AND incident_date <= '" . date("Y-m-d 23:59:59",strtotime($post->to_date)) . "' ) ";
+					$filter .= " AND ( incident_date >= '" . $from->format('Y-m-d H:i:s')
+							. "' AND incident_date <= '" . $to->format('Y-m-d H:i:s') . "' ) ";
 				}
 
 				// Retrieve reports
@@ -1166,6 +1200,13 @@ class Reports_Controller extends Tools_Controller {
 				$form_error = TRUE;
 			}
 		}
+		
+		// Time formatting
+		$this->template->content->hour_array = array_merge(array('--'),$this->_hour_array(TRUE));
+		$this->template->content->minute_array = array_merge(array('--'),$this->_minute_array());
+		// Fix keys
+		$this->template->content->hour_array = array_combine($this->template->content->hour_array,$this->template->content->hour_array);
+		$this->template->content->minute_array = array_combine($this->template->content->minute_array,$this->template->content->minute_array);
 
 		$this->template->content->form = $form;
 		$this->template->content->errors = $errors;
@@ -1453,9 +1494,11 @@ class Reports_Controller extends Tools_Controller {
 	}
 
 	// Time functions
-	private function _hour_array()
+	private function _hour_array($twentyfourhr = FALSE)
 	{
-		for ($i=1; $i <= 12 ; $i++)
+		$max = $twentyfourhr ? 23 : 12;
+		$start = $twentyfourhr ? 0 : 1;
+		for ($i=$start; $i <= $max ; $i++)
 		{
 			// Add Leading Zero
 			$hour_array[sprintf("%02d", $i)] = sprintf("%02d", $i);
