@@ -550,13 +550,19 @@ ul.tabset li a:hover{
 	color:#636363;
 	background:#f5f5f5;
 }
+ul.tabset li.right {
+	float: right;
+}
 /*-- tabs --*/
-.tab {
+/* Adding content tabs for where we just want a tab, but not the tab button style lists */
+.tab, .content-tab {
    background:#eee;
 }
 
 .tab ul {
-   padding: 0 0.5em;
+	padding: 0 0.5em;
+	float:left;
+	clear:left;
 }
 
 .tab ul li {
@@ -2310,4 +2316,82 @@ div.dp-popup td.disabled {
 	width: 30px;
 	height: 30px;
 	display: inline-block;
+}
+/* Reports sort/order fields */
+.sort_by {
+	float: right;
+	margin: 0;
+	padding: 9px 10px 0;
+}
+.sort {
+	width: 18px;
+	height: 9px;
+	display: block;
+	float: right;
+	margin: 4px 0 0 6px;
+}
+	.sort-ASC {
+		background: url(../../img/admin/drag.gif) 0 0 no-repeat;
+	}
+	.sort-DESC {
+		background: url(../../img/admin/drag.gif) 0 -8px no-repeat;
+	}
+
+/* Report search form */
+.search-tab {
+	padding: 1.2em;
+	display: none;
+}
+	.search-tab .row {
+		margin-bottom: 1em;
+	}
+		.search-tab .category-row, .search-tab .location-row {
+			float: left;
+			clear: none;
+			padding-right: 0.5em;
+		}
+		.search-tab .category-row { width: 300px; }
+		.search-tab .location-row { width: 515px; }
+	.search-tab label.fixw {
+		width: 150px;
+		float: left;
+	}
+	.search-tab label.wrapped {
+		padding-right: 5px;
+	}
+	.search-tab .map {
+		overflow: hidden;
+		padding: 10px;
+		margin: 10px 0 0 0;
+	}
+	.search-tab .report-find-location {
+		padding: 9px 18px 18px 18px;
+		font-size: 80%;
+	}
+	.search-tab form input[type=text] {
+		width: auto;
+	}
+
+.report-find-location {
+	margin-right:1px;
+	padding:0 9px 9px 9px;
+	background-color:#eee;
+	font-size:90%;
+	color:#666;
+}
+.report-find-location input.findtext {
+	margin-top:9px;
+	padding:5px 3px 0 3px;
+	height:24px;
+	float:left;
+	font-size:14px;
+	font-weight:bold;
+	color:#666;
+	width:250px;
+	border:1px #ccc solid;
+}
+.report-find-loading {
+	float:left;
+	height:31px;
+	margin:9px 0 0 3px;
 }
