@@ -1723,6 +1723,44 @@ widgetcontent li a:hover {
 #chatmessageinner p.reply .msgblock { margin: 0 40px 0 0; }
 
 
+/***** XX. PAGE CONTENT STYLES *****/
+/********************************/
+
+#contentwrapper .profile_wrapper  h3,
+.page-content h3 {
+	font-size: 18px;
+	margin: 25px 0 6px;
+}
+#contentwrapper .profile_wrapper p,
+.page-content p {
+	margin-bottom: 8px;
+	line-height: 20px;
+	width: 80%;
+}
+
+#contentwrapper .profile_wrapper ul,
+.page-content ul,
+#contentwrapper .profile_wrapper ol,
+.page-content ol {
+	margin: 5px;
+}
+
+#contentwrapper .profile_wrapper li,
+.page-content li {
+	margin-left: 25px;
+	padding: 2px 0 2px 8px;
+}
+
+#contentwrapper .profile_wrapper ul li,
+.page-content ul li {
+	list-style-type: circle;
+}
+#contentwrapper .profile_wrapper ol li,
+.page-content ol li {
+	list-style-type: decimal;
+}
+
+
 /***** 32. NEWS FEED STYLES *****/
 /********************************/
 
