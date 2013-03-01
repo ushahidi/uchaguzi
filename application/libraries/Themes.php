@@ -202,7 +202,7 @@ class Themes_Core {
 
 		if ($this->editor_enabled)
 		{
-			$core_js .= html::script($this->js_url."media/js/jwysiwyg/jwysiwyg/jquery.wysiwyg.js");
+			$core_js .= html::script($this->js_url."media/js/jwysiwyg/jquery.wysiwyg.js");
 		}
 
 		// Javascript files from plugins

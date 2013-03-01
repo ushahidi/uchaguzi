@@ -166,9 +166,9 @@
 	if ($editor_enabled)
 	{
 		if (Kohana::config("cdn.cdn_ignore_jwysiwyg") == TRUE) {
-			echo html::script(url::file_loc('ignore').'media/js/jwysiwyg/jwysiwyg/jquery.wysiwyg.js', TRUE);
+			echo html::script(url::file_loc('ignore').'media/js/jwysiwyg/jquery.wysiwyg.js', TRUE);
 		} else {
-			echo html::script(url::file_loc('js').'media/js/jwysiwyg/jwysiwyg/jquery.wysiwyg.js', TRUE);
+			echo html::script(url::file_loc('js').'media/js/jwysiwyg/jquery.wysiwyg.js', TRUE);
 		}
 	}
 
@@ -189,7 +189,7 @@
 	echo html::stylesheet(url::file_loc('css').'media/css/picbox/picbox');
 
 	//Turn on jwysiwyg
-	echo html::stylesheet(url::file_loc('css').'media/js/jwysiwyg/jwysiwyg/jquery.wysiwyg.css');
+	echo html::stylesheet(url::file_loc('css').'media/js/jwysiwyg/jquery.wysiwyg.css');
 
 	// Header Nav
 	echo html::script(url::file_loc('js').'media/js/global', TRUE);

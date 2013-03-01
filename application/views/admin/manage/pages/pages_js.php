@@ -59,6 +59,7 @@ $(document).ready(function(){
 			justifyCenter: { visible: false },
 			justifyRight: { visible: false },
 			justifyFull: { visible: false },
+			html: {visible: true},
 		}
 	});
 });
