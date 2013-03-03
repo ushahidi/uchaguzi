@@ -626,16 +626,6 @@
 				}
 			});
 
-			// Is this location to be geolocated?
-			$('input[name="incident_category[]"]').bind( 'click', function() {
-				if (this.checked && this.value == '121') {
-					alert('To be geolocated! Setting location to Unknown.');
-					$("#latitude").val('0.00');
-					$("#longitude").val('0.00');
-					$("#location_name").val('Unknown');
-				}
-			});
-
 		});
 		
 		function addFormField(div, field, hidden_id, field_type) {
