@@ -145,7 +145,7 @@
 												<div class="incident-id"><a href="<?php echo url::site() . 'admin/reports/edit?mid=' . $message_id; ?>" class="more">#<?php echo $message_id; ?></a></div>
 												<p><?php echo $message_description; ?></p>
 												<?php
-												if ($message_detail OR $message->media != null)
+												if ($message_detail OR $message->media->count() > 0)
 												{
 													?>
 													<p><a href="javascript:preview('message_preview_<?php echo $message_id?>')"><?php echo Kohana::lang('ui_main.preview_message');?></a></p>
