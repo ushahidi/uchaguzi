@@ -372,6 +372,8 @@
 	'preview_message' => 'Preview Message',
 	'previous' => 'Previous',
 	'private' => 'Private',
+	'processed' => 'Processed',
+	'unprocessed' => 'Unprocessed',
 	'profile_color' => 'Profile Color',
 	'profile_saved' => 'Your Profile Has Been Saved',
 	'quick_stats' => 'Quick Stats',

@@ -99,6 +99,29 @@ class Messages_Controller extends Tools_Controller {
 				$filter .= " AND ( ".$table_prefix."message.message_level = '99' ) ";
 			}
 		}
+		
+		// Filter messages with / without reports
+		// Force default value for has_report
+		if (empty($_GET['has_report']))
+		{
+			$_GET['has_report'] = 'n';
+		}
+		// Set filters based on has_report
+		switch($_GET['has_report'])
+		{
+			case 'y':
+				$has_report = 'y';
+				$filter .= " AND ( {$table_prefix}message.incident_id IS NOT NULL AND {$table_prefix}message.incident_id <> 0 ) ";
+			break;
+			case 'both':
+				$has_report = 'both';
+			break;
+			case 'n':
+			case 'default':
+				$has_report = 'n';
+				$filter .= " AND ( {$table_prefix}message.incident_id = 0 ) ";
+			break;
+		}
 
 		// Check, has the form been submitted?
 		$form_error = FALSE;
@@ -206,6 +229,22 @@ class Messages_Controller extends Tools_Controller {
 		    ->where('service_id', $service_id)
 		    ->where('message_type', 1)
 		    ->count_all();
+				
+		// Processed
+		$this->template->content->count_processed = ORM::factory('message')
+		    ->join('reporter','message.reporter_id','reporter.id')
+		    ->where('service_id', $service_id)
+		    ->where('message_type', 1)
+				->where('incident_id <>', 0)
+		    ->count_all();
+				
+		// Unprocessed
+		$this->template->content->count_unprocessed = ORM::factory('message')
+		    ->join('reporter','message.reporter_id','reporter.id')
+		    ->where('service_id', $service_id)
+		    ->where('message_type', 1)
+				->where('incident_id', 0)
+		    ->count_all();
             
 		// Trusted
 		$this->template->content->count_trusted = ORM::factory('message')
@@ -245,6 +284,7 @@ class Messages_Controller extends Tools_Controller {
 		// Message Type Tab - Inbox/Outbox
 		$this->template->content->type = $type;
 		$this->template->content->level = $level;
+		$this->template->content->has_report = $has_report;
 
 		// Javascript Header
 		$this->template->header->js = new View('admin/messages/messages_js');

@@ -48,9 +48,11 @@
 						<?php if ($type == '1')
 						{ ?>
 							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-							<li><a href="?type=<?php echo $type ?>&level=0" <?php if ($level == '0') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.all');?> (<?php echo $count_all; ?>)</a></li>
-							<li><a href="?type=<?php echo $type ?>&level=4" <?php if ($level == '4') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.trusted'); ?> (<?php echo $count_trusted; ?>)</a></li>
-							<li><a href="?type=<?php echo $type ?>&level=2" <?php if ($level == '2') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.spam');?> (<?php echo $count_spam; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=0&has_report=n" <?php if ($level == '0' AND $has_report == 'n') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.unprocessed');?> (<?php echo $count_unprocessed; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=4&has_report=both" <?php if ($level == '4') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.trusted'); ?> (<?php echo $count_trusted; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=2&has_report=both" <?php if ($level == '2') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.spam');?> (<?php echo $count_spam; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=0&has_report=y" <?php if ($level == '0' AND $has_report == 'y') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.processed');?> (<?php echo $count_processed; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=0&has_report=both" <?php if ($level == '0' AND $has_report == 'both') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.all');?> (<?php echo $count_all; ?>)</a></li>
 						<?php } ?>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li><a href="<?php echo
