@@ -84,20 +84,30 @@ class Messages_Controller extends Tools_Controller {
 		}
         
 		// ALL / Trusted / Spam
+		// Set default
 		$level = '0';
-		if (isset($_GET['level']) AND !empty($_GET['level']))
+		if (!empty($_GET['level']))
 		{
 			$level = $_GET['level'];
-			if ($level == 4)
-			{
-				$filter .= " AND ( ".$table_prefix."reporter.level_id = '4' OR "
-				    . $table_prefix."reporter.level_id = '5' ) "
-				    . "AND ( ".$table_prefix."message.message_level != '99' ) ";
-			}
-			elseif ($level == 2)
-			{
-				$filter .= " AND ( ".$table_prefix."message.message_level = '99' ) ";
-			}
+		}
+		
+		// Filter on level
+		switch ($level)
+		{
+			// Trusted
+			case 4:
+				$filter .= " AND ( {$table_prefix}reporter.level_id = '4' OR "
+					. "{$table_prefix}reporter.level_id = '5' ) "
+					. "AND ( {$table_prefix}message.message_level != '99' ) ";
+			break;
+			// Spam
+			case 2:
+				$filter .= " AND ( {$table_prefix}message.message_level = '99' ) ";
+			break;
+			// Other views (hide spam)
+			default:
+				$filter .= " AND ( {$table_prefix}message.message_level != '99' ) ";
+			break;
 		}
 		
 		// Filter messages with / without reports
@@ -228,6 +238,7 @@ class Messages_Controller extends Tools_Controller {
 		    ->join('reporter','message.reporter_id','reporter.id')
 		    ->where('service_id', $service_id)
 		    ->where('message_type', 1)
+		    ->where("message.message_level != '99'")
 		    ->count_all();
 				
 		// Processed
@@ -236,6 +247,7 @@ class Messages_Controller extends Tools_Controller {
 		    ->where('service_id', $service_id)
 		    ->where('message_type', 1)
 				->where('incident_id <>', 0)
+		    ->where("message.message_level != '99'")
 		    ->count_all();
 				
 		// Unprocessed
@@ -244,6 +256,7 @@ class Messages_Controller extends Tools_Controller {
 		    ->where('service_id', $service_id)
 		    ->where('message_type', 1)
 				->where('incident_id', 0)
+		    ->where("message.message_level != '99'")
 		    ->count_all();
             
 		// Trusted
