@@ -303,7 +303,6 @@ class Reports_Controller extends Tools_Controller {
 
 		Event::run('ushahidi_filter.filter_incidents',$incidents);
 
-		$this->template->content->countries = Country_Model::get_countries_list();
 		$this->template->content->incidents = $incidents;
 		$this->template->content->pagination = reports::$pagination;
 		$this->template->content->form_error = $form_error;
