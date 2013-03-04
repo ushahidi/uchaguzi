@@ -19,7 +19,8 @@ class Instagramflickr_Controller extends Controller {
 		
 		$photos = $this->flickr->photos_search( array(
 			'tags' => $settings->flickr_tag,
-			'per_page' => $settings->block_no_photos) );
+			'per_page' => 50,
+			));
 
 		$this->_add_flickr($photos);
 	}
@@ -283,7 +284,7 @@ class Instagramflickr_Controller extends Controller {
 			$foto['thumb'] = $this->flickr->buildPhotoURL($photo,'Square');
 
 			// Location
-			if( ( $photo_info['location'] != NULL) AND 
+			if( ( array_key_exists('location',$photo_info)) AND 
 					(is_array($photo_info['location'])))
 			{
 				$foto['latitude'] = $photo_info['location']['latitude'];
