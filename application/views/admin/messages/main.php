@@ -212,7 +212,7 @@
 												<?php
 												if ($message_type == 2)
 												{
-													?><li class="none-separator"><?php echo Kohana::lang('ui_admin.to');?>: <strong><?php echo $message_to; ?></strong><?php
+													?><li class="none-separator"><?php echo Kohana::lang('ui_admin.to');?>: <strong><a href="<?php echo url::site()."admin/messages/reporters/index/".$service_id."?k=".urlencode($message_to);?>"><?php echo $message_to; ?></a></strong><?php
 												}
 												else
 												{
