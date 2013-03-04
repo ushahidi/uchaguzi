@@ -21,6 +21,8 @@ class election {
     protected $from_number = "";
     protected $monitors_location;
 	protected $user;
+	
+	private $from_monitors;
 
 
 	public function __construct()
