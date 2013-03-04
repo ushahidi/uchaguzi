@@ -21,4 +21,16 @@ class Monitor_Report_Model extends ORM
 	// Database table name
 	protected $table_name = 'monitor_report';
 	
+	/**
+	 * Createa monitor_report record given a monitor and an incident
+	 */
+	public static function create_from_incident($monitor, $incident)
+	{
+		$monitor_report = new Monitor_Report_Model();
+
+		$monitor_report->monitor_id = $monitor->id;
+		$monitor_report->incident_id = $incident->id;
+		$monitor_report->save();
+	}
+	
 }

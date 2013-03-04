@@ -15,11 +15,11 @@
  */ 
  
  // Monitors JS 
- function fillFields( id,phonenumber,location_id,polling_station) { 
+ function fillFields(id, phonenumber, boundary_id, polling_station) { 
  	$("#monitor_id").attr("value", unescape(id));
 	$("#phonenumber").attr("value", unescape(phonenumber));
 	$("#polling_station").attr("value",unescape(polling_station));
-	$("#location_id").attr("value", unescape(location_id)); 
+	$("#boundary_id").attr("value", unescape(boundary_id)); 
  } 
 
 // Form Submission 

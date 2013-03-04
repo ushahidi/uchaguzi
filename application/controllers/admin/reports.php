@@ -528,14 +528,13 @@ class Reports_Controller extends Tools_Controller {
 				}
 
 				// Events to manipulate an already known location
-				Event::run('ushahidi_action.location_from',$message_from = $message->message_from);
+				Event::run('ushahidi_action.location_from', $message_from = $message->message_from);
 				
 				// Filter location name
 				Event::run('ushahidi_filter.location_name',$form['location_name']);
 				
 				// Filter //location find
 				Event::run('ushahidi_filter.location_find',$form['location_find']);
-
 
 				// Retrieve Last 5 Messages From this account
 				$this->template->content->all_messages = ORM::factory('message')
