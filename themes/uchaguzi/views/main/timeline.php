@@ -1,4 +1,4 @@
-<div class="slider-holder">
+<div class="slider-holder" style="display:none;">
 	<?php echo form::open(NULL, array('method' => 'get')); ?>
 		<input type="hidden" value="0" name="currentCat" id="currentCat"/>
 		<fieldset>
@@ -9,4 +9,4 @@
 		</fieldset>
 	<?php echo form::close(); ?>
 </div>
-<div id="graph" class="graph-holder"></div>
+<div id="graph" class="graph-holder" style="display:none;"></div>
