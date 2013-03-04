@@ -184,6 +184,7 @@
 								$incident_person = ORM::factory('incident_person')->where('incident_id', $incident_id)->find();
 								
 								//XXX incident_Mode will be discontinued in favour of $service_id
+								$submit_by = Kohana::lang('ui_admin.unknown');
 								if ($incident_mode == 1)	// Submitted via WEB
 								{
 									$submit_mode = "WEB";
@@ -205,25 +206,27 @@
 										}
 									}
 								}
-								elseif(
+								else
+								{
+									if (
 										$incident_message = ORM::factory('message')->where('incident_id', $incident_id)->find()
 										AND $incident_message->loaded
 									)
-								{
+									{
+										$submit_by = $incident_message->message_from;
+									}
+									
 									if ($incident_mode == 2) 	// Submitted via SMS
 									{
 										$submit_mode = "SMS";
-										$submit_by = $incident_message->message_from;
 									}
 									elseif ($incident_mode == 3) 	// Submitted via Email
 									{
 										$submit_mode = "EMAIL";
-										$submit_by = $incident_message->message_from;
 									}
 									elseif ($incident_mode == 4) 	// Submitted via Twitter
 									{
 										$submit_mode = "TWITTER";
-										$submit_by = $incident_message->message_from;
 									}
 								}
 								
