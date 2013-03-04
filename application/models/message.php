@@ -22,7 +22,6 @@ class Message_Model extends ORM
 	// Database table name
 	protected $table_name = 'message';
 	
-	
 	/**
 	 * @return Message_Model
 	 */
@@ -34,4 +33,19 @@ class Message_Model extends ORM
 		
 		return $message_orm;
 	}
+
+	public function replies()
+	{
+		$replies = ORM::factory('message')
+			->where('reporter_id', $this->reporter_id)
+			->orderby('message_date', 'desc')
+			->limit(10)
+			->find_all();
+			
+		// Don't return anything if no replies
+		if ($replies->count() == 1 AND $replies->current()->id == $this->id) return array();
+		
+		return $replies;
+	}
+
 }
