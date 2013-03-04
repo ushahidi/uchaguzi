@@ -778,7 +778,7 @@
 		// Image to display within the popup
 		var imageEl = null;
 		if (feature.attributes.thumb !== undefined && feature.attributes.thumb != '') {
-			imageEl = this.createDOMElement('div', {class: 'infowindow_image'});
+			imageEl = this.createDOMElement('div', {'class': 'infowindow_image'});
 
 			var anchor = this.createDOMElement('a', {href: feature.attributes.link});
 			var thumb = this.createDOMElement('img', {src: feature.attributes.thumb});
@@ -786,7 +786,7 @@
 			anchor.appendChild(thumb);
 			imageEl.appendChild(anchor);
 		} else if (feature.attributes.image !== undefined && feature.attributes.image != '') {
-			imageEl = this.createDOMElement('div', {class: 'infowindow_image'});
+			imageEl = this.createDOMElement('div', {'class': 'infowindow_image'});
 
 			var anchor = this.createDOMElement('a', {
 				href: feature.attributes.link,
@@ -798,17 +798,17 @@
 			imageEl.appendChild(anchor);
 		}
 
-		var infoWindow = this.createDOMElement('div', {class: 'infowindow'});
+		var infoWindow = this.createDOMElement('div', {'class': 'infowindow'});
 		if (imageEl !== null) {
 			infoWindow.appendChild(imageEl);
 		}
 
-		var infoWindowContent = this.createDOMElement('div', {class: 'infowindow_content'});
-		var infoWindowList = this.createDOMElement('div', {class: 'infowindow_list'});
+		var infoWindowContent = this.createDOMElement('div', {'class': 'infowindow_content'});
+		var infoWindowList = this.createDOMElement('div', {'class': 'infowindow_list'});
 		infoWindowList.innerHTML = feature.attributes.name;
 		infoWindowContent.appendChild(infoWindowList);
 
-		var infoWindowMeta = this.createDOMElement('div', {class: 'infowindow_meta'});
+		var infoWindowMeta = this.createDOMElement('div', {'class': 'infowindow_meta'});
 
 		if (feature.attributes.link !== undefined && feature.attributes.link != '') {
 			var anchor = this.createDOMElement('a', {href: feature.attributes.link}, "More Information");
@@ -828,7 +828,7 @@
 		infoWindowContent.appendChild(infoWindowMeta);
 
 		infoWindow.appendChild(infoWindowContent);
-		infoWindow.appendChild(this.createDOMElement('div', {style: 'clear: both;'}));
+		infoWindow.appendChild(this.createDOMElement('div', {'style': 'clear: both;'}));
 
 		// Wrap the info window in a div so that we can access it's full HTML
 		// We perform a deep clone so that we access the node and all its descendants
