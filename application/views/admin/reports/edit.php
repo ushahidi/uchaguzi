@@ -87,14 +87,25 @@
 							<div class="row">
 								<h4 style="margin:0;padding:0;"><a href="#" id="messages_toggle" class="show-messages"><?php echo Kohana::lang('ui_main.show_messages');?></a>&nbsp;</h4>
 								<!--messages table goes here-->
-			                    <div id="show_messages">
+								<div id="show_messages">
+									<h4><?php echo Kohana::lang('ui_main.original_message'); ?></h4>
+									<?php echo "<div class=\"message\">";
+									echo "(#{$original_message->id}) ";
+									echo "<strong><u>" . $original_message->message_from . "</u></strong> - ";
+									echo $original_message->message;
+									echo $original_message->reporter->level_id >= 4 ? ' <strong>(Trusted)</strong>' : '';
+									echo "</div>"; ?>
+									<h4><?php echo Kohana::lang('ui_main.recent_messages'); ?></h4>
 									<?php
 									foreach ($all_messages as $message) {
 										echo "<div class=\"message\">";
+										echo "(#{$message->id}) ";
 										echo "<strong><u>" . $message->message_from . "</u></strong> - ";
 										echo $message->message;
 										echo "</div>";
 									}
+									
+									echo Kohana::lang('ui_main.view_all_messages_by_reporter')."<a href=\"".url::site("admin/messages/index/1?rid={$message->reporter->id}")."\">{$message->message_from}</a>"
 									?>
 								</div>
 							</div>
