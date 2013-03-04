@@ -7,8 +7,7 @@
 <?php
 	// Category
 	echo form::label('c', Kohana::lang('ui_main.category'));
-	//echo category::tree('c', $categories, 1, TRUE, TRUE);
-	echo category::tree($categories, FALSE, $selected_categories, 'c', 1, TRUE);
+	echo category::form_tree('c', $categories, 1, TRUE, TRUE);
 ?>
 </div>
 <div class="row location-row">
