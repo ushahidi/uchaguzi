@@ -6,10 +6,11 @@
  * LICENSE: This source file is subject to LGPL license
  * that is available through the world-wide-web at the following URI:
  * http://www.gnu.org/copyleft/lesser.html
- * @author	   Ushahidi Team <team@ushahidi.com>
- * @package	   Ushahidi - http://source.ushahididev.com
+ *
+ * @author     Ushahidi Team <team@ushahidi.com>
+ * @package    Uchaguzi - https://github.com/ushahidi/uchaguzi
  * @copyright  Ushahidi - http://www.ushahidi.com
- * @license	   http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
+ * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL)
  */
 
 class election {
@@ -18,7 +19,7 @@ class election {
 	 * Phone number of the election monitor
 	 * @var string
 	 */
-    private $monitor_phone_number;
+	private $monitor_phone_number;
 	
 	/**
 	 * Monitor who submitted the report
@@ -30,17 +31,13 @@ class election {
 	 * Location of the monitor
 	 * @var string
 	 */
-    protected $monitor_location;
+	protected $monitor_location;
 
 	protected $user;
-
 
 	public function __construct()
 	{
 		$this->db = Database::instance();
-        $this->monitors = "";
-        $this->from_monitors = " ";
-        $this->monitor_location = "";
 
 		// Load session
 		$this->session = new Session;
@@ -60,7 +57,6 @@ class election {
 
 		// Hook into routing
 		Event::add('system.pre_controller', array($this, 'add'));
-		
 	}
 
 	/**
@@ -105,8 +101,8 @@ class election {
 			//Hook into users delete
 			//Event::add('ushahidi_action.users_delete_admin',array($this,'_users_delete_admin')); 
 		}
-        elseif (strripos(Router::$current_uri, "admin/reports/edit") !== FALSE)
-        {
+		elseif (strripos(Router::$current_uri, "admin/reports/edit") !== FALSE)
+		{
 			Event::add('ushahidi_action.location_from',array($this, 'verify_reporter_is_monitor'));	
 			Event::add('ushahidi_filter.location_name',array($this, '_append_location'));
 			
@@ -119,14 +115,13 @@ class election {
 			Event::add('ushahidi_action.report_edit', array($this,'_delete_report_mode'));
 			Event::add('ushahidi_action.report_delete',array($this,'_monitor_report_delete_admin'));
 			Event::add('ushahidi_action.report_delete',array($this,'_crowd_report_delete_admin'));
-        }
-        elseif (strripos(Router::$current_uri, "admin/reports") !== FALSE) 
-        {   
+		}
+		elseif (strripos(Router::$current_uri, "admin/reports") !== FALSE) 
+		{   
 			//Filter incident
 			Event::add('ushahidi_filter.pagination',array($this, '_pagination'));
 			Event::add('ushahidi_filter.filter_incidents', array($this,'_manipulate_incident'));
-        }   
-
+		}
 	}
 
 	public function _election_link()
@@ -143,7 +138,7 @@ class election {
 	 */
 	public function verify_reporter_is_monitor()
 	{
-        $from = Event::$data;
+		$from = Event::$data;
 		if ($this->is_monitor($from))
 		{
 			// Se the monitor's phone number
@@ -160,21 +155,20 @@ class election {
 	 */	
 	public function modify_sms_message()
 	{
-        $message_description = Event::$data;
+		$message_description = Event::$data;
 
-        if (is_numeric($message_description ) AND ! empty($this->monitor_phone_number)) 
+		if (is_numeric($message_description ) AND ! empty($this->monitor_phone_number)) 
 		{
 			// Get the message that corresponds to the submitted form response code
-            $message = $this->_get_description((int)$message_description);
+			$message = $this->_get_description((int)$message_description);
 
-            if (empty($message))
+			if (empty($message))
 			{
-                $message = Kohana::lang('election.missing_matching_code');
-            }
+				$message = Kohana::lang('election.missing_matching_code');
+			}
 
 			$message_description = $message;
-        }
-
+		}
 		Event::$data = $message_description;
 	}
 
@@ -209,28 +203,28 @@ class election {
 	public function _users_form()
 	{
 		// Load the View
-	    $form = View::factory('admin/adminsection_users_form');
+		$form = View::factory('admin/adminsection_users_form');
 	        
-	    $id = Event::$data;
+		$id = Event::$data;
 
-	    // incase we are editing a user
-	    if ($id)
-	    {
+		// incase we are editing a user
+		if ($id)
+		{
 			// Do We have an Existing Actionable Item for this Report?
 			$adminsections = ORM::factory('adminsection')
 				->where('user_id', $id)
 				->select_list('id','adminsection_title');
 			
-	    }
+		}
 		else
 		{
 			$adminsections = ORM::factory('adminsection')
 				->where('adminsection_active', '1')
 				->select_list('id','adminsection_title');
-	    }   
+		}
+
 		$form->adminsections = $adminsections;
 		$form->render(TRUE);
-		
 	}
 
 	/**
@@ -261,12 +255,12 @@ class election {
 	 * Update a users admin section
 	 */
 	public function _update_users_admin_section() 
-    {
+	{
 		$user_data = Event::$data;
 		$user_id = $user_data[0];
-        $post = $user_data[1];
+		$post = $user_data[1];
 		if ($post) 
-        {
+		{
 			// Add new
 			$userid = $this->_get_user_id('adminsection_users',$user_id);
 			if (empty($userid))
@@ -290,56 +284,52 @@ class election {
 	 * Delete from adminsection table
 	 */
 	public function _users_delete_admin() 
-    {
+	{
 		$users = Event::$data;
-
-		$this->db->delete('adminsection_users', 
-                array('user_id' => $users->id));
+		$this->db->delete('adminsection_users', array('user_id' => $users->id));
 	}
-
-
-    /**
-     * Show the header title for the admisection at the users list page.
-     */
-    public function _show_adminsection_header_title()
-    {
-        $template = View::factory('admin/adminsection_header_title');
-        $template->header_title = "Adminsection";
-        $template->render(TRUE);
-    }
-
-    /**
-     * Show the adminsection the user is in at the users
-     * listing page.
-     */
+	
+	/**
+	 * Show the header title for the admisection at the users list page.
+	 */
+	public function _show_adminsection_header_title()
+	{
+		$template = View::factory('admin/adminsection_header_title');
+		$template->header_title = "Adminsection";
+		$template->render(TRUE);
+	}
+	
+	/**
+	 * Show the adminsection the user is in at the users
+	 * listing page.
+	 */
 	public function _show_adminsection_item() 
-    {
-        $user_id = Event::$data;
-        if ($user_id)
-        {    
-            $adminsection_title = $this->_get_admin_section($user_id);
-        }
+	{
+		$user_id = Event::$data;
+		if ($user_id)
+		{    
+			$adminsection_title = $this->_get_admin_section($user_id);
+		}
 
-        //Load the view
+		//Load the view
 		$template = View::factory('admin/adminsection_item');
-        if ( ! empty($adminsection_title))
-        {
-		    $template->adminsection_title = $adminsection_title;
-        }
-        else
-        {
-            $template->adminsection_title = "None";
-        }
+		if ( ! empty($adminsection_title))
+		{
+			$template->adminsection_title = $adminsection_title;
+		}
+		else
+		{
+			$template->adminsection_title = "None";
+		}
 
-        $template->render(TRUE);
-
+		$template->render(TRUE);
 	}
 
 	/**
 	 * Get admin section id.
 	 */
 	public function _get_admin_section_id($user_id)
-    {
+	{
 		$admin_section = ORM::factory('adminsection_user')
 			->where('user_id',$user_id)->orderby('adminsection_id')
 			->join('adminsection','adminsection_users.adminsection_id','adminsection.id','INNER')
@@ -367,41 +357,19 @@ class election {
 	 * Get admin section title.
 	 */
 	public function _get_admin_section($user_id)
-    {
+	{
 		$admin_section = ORM::factory('adminsection_user')
 			->where('user_id',$user_id)->orderby('adminsection_id')
 			->join('adminsection','adminsection_users.adminsection_id','adminsection.id','INNER')
 			->find();
-	
+
 		return $admin_section->adminsection->adminsection_title;
 	}
-
-	public function _message_sms_from_loc()
-	{
-        $from = Event::$data;
-			
-        //$_SESSION['from_location'] = $from;
-		
-		  $monitor_number = $this->_get_monitor_number($_SESSION['from_location']);
- 
-        $phonenumber = ORM::factory('monitor')
-			->where('phonenumber',$monitor_number)
-			->find();
-
-        if( ! empty($phonenumber->phonenumber))
-		{
-            $this->from_monitors = "m";
-        }
-		else
-		{
-            $this->from_monitors = ""; 
-        }   
-	}
-
-    /** 
-     * Append phone numbers to respective locations for reports that comes from monitors
-     */
-    public function _append_location()
+	
+	/** 
+	 * Append phone numbers to respective locations for reports that comes from monitors
+	 */
+	public function _append_location()
 	{
 		$location_name = Event::$data;
 		
@@ -416,7 +384,7 @@ class election {
 	 * Append phone numbers that comes from monitors to their location.
 	 * TODO rework this wack solution
 	 */
-    public function _append_location_find()
+	public function _append_location_find()
 	{
 		$location_find = Event::$data;
 		
@@ -433,58 +401,57 @@ class election {
 		}
 		unset($_SESSION['from_location']);
 		Event::$data = $location_find;
-    }
-
-    /** 
-     * Detect reports from monitors
-     */
-    public function _report_form_admin()
+	}
+	
+	/** 
+	 * Detect reports from monitors
+	 */
+	public function _report_form_admin()
 	{
-        //Load the view
-        $auth = new Auth(); 
-        $admin_section = $this->_get_admin_section($_SESSION['auth_user']->id);
+		//Load the view
+		$auth = new Auth(); 
+		$admin_section = $this->_get_admin_section($_SESSION['auth_user']->id);
 	 
-        //If user is a moderator, manipulate report query
-        if ($auth->has_permission("reports_view"))
+		//If user is a moderator, manipulate report query
+		if ($auth->has_permission("reports_view"))
 		{ 
-            if (strcasecmp($admin_section, "peacenet") == 0)
+			if (strcasecmp($admin_section, "peacenet") == 0)
 			{
-                $this->from_monitors = "p";
-            }   
-        }   
-        $form = View::factory('election/monitors_form');
-        $form->from_monitors = $this->from_monitors;
-    
-        $form->monitors = $this->monitors;
-        $form->render(TRUE);
-    }   
+				$this->from_monitors = "p";
+			}
+		}
+
+		$form = View::factory('election/monitors_form');
+		$form->from_monitors = $this->from_monitors;
+		$form->monitors = $this->monitors;
+		$form->render(TRUE);
+	}   
 
 
 	/**
 	 * Insert the mode of a report
 	 */
 	public function _update_report_mode() 
-    {
+	{
 		$incident_id = Event::$data;
 		
 		// If no entry in report_more - create one for the current user & incident
 		if ($this->_get_incident_id('report_mode', $incident_id) != $incident_id) 
-        {
+		{
 			$report_mode = ORM::factory('report_mode');
 			$report_mode->incident_id = $incident_id;
 			$report_mode->user_id = $_SESSION['auth_user']->id;		
 			$report_mode->save();
 		}
-		
 	}
 
 	/**
 	 * Submit a report.
 	 */
 	public function _report_submit_admin() 
-    {
+	{
 		$incident = Event::$data;
-		
+
 		// Get the message associated is with the incident
 		$message_orm = Message_Model::find_by_incident_id($incident->id);
 		
@@ -494,20 +461,20 @@ class election {
 			$is_monitor = $this->is_monitor($message_orm->message_from);
 	    
 			if ($_POST) 
-	        {
+			{
 				if ($is_monitor) 
-	            {
+				{
 					if ( $this->_get_incident_id('monitor_report', $incident->id) != $incident->id ) 
-	                {
+					{
 						$adminsection = ORM::factory('monitor_report');
 						$adminsection->incident_id = $incident->id;
 						$adminsection->save();
 					}
 				}
-	            else 
-	            {
+				else 
+				{
 					if ($this->_get_incident_id('crowd_report', $incident->id) !== $incident->id)
-	                {
+					{
 						$adminsection = ORM::factory('crowd_report');
 						$adminsection->incident_id = $incident->id;
 						$adminsection->save();
@@ -534,9 +501,7 @@ class election {
 			return $monitor_number->message_from;
 		}
 		return 0;
-		
 	}
-
 
 	/**
 	 * Delete the mode of a report
@@ -544,26 +509,25 @@ class election {
 	 * @param unknown_type incident_id
 	 */
 	public function _delete_report_mode() 
-    {
+	{
 		$incident = Event::$data;
 		$this->db->delete('report_mode', array('incident_id' => $incident));
 	}
-
 
 	/**
 	 * Delete report id from monitor_report
 	 */
 	public function _monitor_report_delete_admin() 
-    {
+	{
 		$incident = Event::$data;
 		$this->db->delete('monitor_report', array('incident_id' => $incident));
 	}
-	
-    /**
+
+	/**
 	 * Delete report id from crowd_report
 	 */
 	public function _crowd_report_delete_admin() 
-    {
+	{
 		$incident = Event::$data;
 		$this->db->delete('crowd_report', array('incident_id' => $incident));
 	}
@@ -572,22 +536,21 @@ class election {
 	 * Manipulate view 
 	 */
 	public function _manipulate_incident() 
-    {
+	{
 		$incidents = Event::$data;
 		$filter = $this->_filter();
 		$auth = new Auth();
-			
+
 		$admin_section_id = $this->_get_admin_section_id($_SESSION['auth_user']->id);
 		$reportsection_id = $this->_get_report_section_id($admin_section_id);
 
-	    $pagination = $this->_pagination();		
+		$pagination = $this->_pagination();		
 		//If user is a moderator, manipulate report query
 		if (admin::permissions($this->user, "reports_view"))
-        {
+		{
 			//1 is monitor
-			if($reportsection_id == 1 )
-            {
-				//echo $admin_section;exit;
+			if ($reportsection_id == 1)
+			{
 				if (strcasecmp($filter, "1=1"))
 				{
 					$filter = "incident.id = monitor_report.incident_id ";
@@ -610,10 +573,9 @@ class election {
 				$admin_section = "";
 				
 			}
-            //2 is crowd
+			//2 is crowd
 			elseif ($reportsection_id == 2)
-            {
-				
+			{
 				//echo $admin_section;exit;
 				if (strcasecmp($filter, "1=1"))
 				{
@@ -640,9 +602,7 @@ class election {
 			{
 				Event::$data = $incidents;
 			}
-	
 		} 
-		
 	}
 
 	public function _pagination()
@@ -652,19 +612,17 @@ class election {
 		$filter =$this->_filter(); 
 
 		$pagination = new Pagination(array(
-		'query_string'	 => 'page',
-		'items_per_page' => (int) Kohana::config('settings.items_per_page_admin'),
-		'total_items'	 => ORM::factory('incident')
-			->join('location', 'incident.location_id', 'location.id','INNER')
-			->where($filter)
-			->count_all()
+			'query_string'	 => 'page',
+			'items_per_page' => (int) Kohana::config('settings.items_per_page_admin'),
+			'total_items'	 => ORM::factory('incident')
+				->join('location', 'incident.location_id', 'location.id','INNER')
+				->where($filter)
+				->count_all()
 		));
 		
 		Event::$data = $pagination;
 		return $pagination;	
 	}
-
-
 
 	public function _filter()
 	{
@@ -756,7 +714,6 @@ class election {
 				}
 			}
 		}
-
 		return ! empty($where_string) ?  $where_string : "1 = 1";
 	}
 
@@ -766,7 +723,7 @@ class election {
      * @param  string phone_number
 	 * @return 
      */
-    public function get_monitor_location($phone_number)
+	public function get_monitor_location($phone_number)
 	{
 		$reporter_orm = Reporter_Model::find_by_service_account('SMS', $phone_number);
 		if ($reporter_orm AND ! empty($repoter_orm->location_id))
@@ -809,7 +766,7 @@ class election {
 		}
 		
 		return $location_orm;
-    }
+	}
 
 
 	public function _get_admin_sections()
@@ -820,9 +777,8 @@ class election {
 			$this_adminsection = $adminsection->adminsection_title;
 			$adminsections[$adminsection->id] = $this_adminsection;	
 		}
-				
+
 		return $adminsections;
-		
 	}
 
 	/**
@@ -838,36 +794,33 @@ class election {
 						->find();
 
 		$this->monitor = $monitor_orm;
-
 		return $monitor_orm->loaded;
 	}
 
 	/**
 	 * Match a code to a report description
 	 */
-    public function _get_description($report_code)
+	public function _get_description($report_code)
 	{
         $report_desc = ORM::factory('code')
 			->where('code_id', $report_code)
 			->find();
 
-        return $report_desc->code_description;
-    }
-
-
-    /**
-     * Get polling station
-     * 
-     * @param - monitor_number - the monitors number
-     */
-    public function _get_polling_station($monitor_number) {
-
-        $polling_station = ORM::factory('monitor')
+		return $report_desc->code_description;
+	}
+	
+	/**
+	 * Get polling station
+	 * 
+	 * @param - monitor_number - the monitors number
+	 */
+	public function _get_polling_station($monitor_number)
+	{
+		$polling_station = ORM::factory('monitor')
 			->where('phonenumber',$monitor_number)
 			->find();
-
-        return $polling_station->polling_station;
-    }
+		return $polling_station->polling_station;
+	}
 
 
 	/**
@@ -888,7 +841,7 @@ class election {
 	 * Get reports
 	 */
 	public function _get_report($table_name) 
-    {
+	{
 		$incident_id = ORM::factory($table_name)->find_all();
 		$incident_ids = array();
 
@@ -896,24 +849,27 @@ class election {
 		{
 			$incident_ids[] = $id->incident_id;
 		}
-        return $incident_ids;
+		return $incident_ids;
 	}
 
 	/**
 	 * Get user id
 	 */
 	public function _get_user_id($table_name, $user_id ) 
-    {
-		$user = $this->db->from($table_name)->select('user_id')->where('user_id',$user_id)->get();
-        
+	{
+		$user = $this->db->from($table_name)
+			->select('user_id')
+			->where('user_id', $user_id)
+			->get();
+
 		if ($user[0])
-        {
-            return $user[0]->user_id;
-        }
-        else
-        {
-            return "";
-        }
+		{
+			return $user[0]->user_id;
+		}
+		else
+		{
+			return "";
+		}
 	}
 
 }
