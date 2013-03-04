@@ -450,8 +450,6 @@ class Reports_Controller extends Tools_Controller {
 			$forms[$custom_forms->id] = $custom_forms->form_title;
 		}
 
-		//TODO 
-		Event::run('ushahidi_action.report_pre_submit_admin', $form);
 
 		$this->template->content->forms = $forms;
 
