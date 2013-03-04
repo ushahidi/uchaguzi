@@ -61,9 +61,9 @@
 			var autoreply;
 			$("#" + field).attr("value", "");
 			if (id == 1) {
-				autoreply = "Thank you for sending a message to Ushahidi. What is the closest town or city for your last message?";
+				autoreply = "Thank you for sending a message to Uchaguzi. What is the closest town or city for your last message?";
 			}else if (id == 2) {
-				autoreply = "Thank you for sending a message to Ushahidi. Can you send more information on the incident?"
+				autoreply = "Thank you for sending a message to Uchaguzi. Can you send more information on the incident?"
 			};
 			$("#" + field).attr("value", autoreply);		
 		}

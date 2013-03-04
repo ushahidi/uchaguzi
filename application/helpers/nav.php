@@ -144,7 +144,7 @@ class nav_Core {
 		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";*/
 	
 		//TOOLS
-			if(Auth::instance()->has_permission('tools', $user))
+			if(Auth::instance()->has_permission('admin_ui', $user))
 			{
 				$menu .="<li><a href=\"".url::site()."tools\" ";
 				//$menu .= ($this_page == 'tools') ? " class=\"active\"" : "";

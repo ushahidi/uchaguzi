@@ -869,8 +869,11 @@
 			// Centroid of location will constitute the Location
 			// if its not a point
 			centroid = geoCollection.getCentroid(true);
-			$("#latitude").val(centroid.y);
-			$("#longitude").val(centroid.x);
+			if (typeof(centroid.y) != 'undefined' && typeof(centroid.x) != 'undefined')
+			{
+				$("#latitude").val(centroid.y);
+				$("#longitude").val(centroid.x);
+			}
 		}
 		
 		function incidentZoom(event) {

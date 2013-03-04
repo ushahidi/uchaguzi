@@ -84,20 +84,57 @@ class Messages_Controller extends Tools_Controller {
 		}
         
 		// ALL / Trusted / Spam
+		// Set default
 		$level = '0';
-		if (isset($_GET['level']) AND !empty($_GET['level']))
+		if (!empty($_GET['level']))
 		{
 			$level = $_GET['level'];
-			if ($level == 4)
-			{
-				$filter .= " AND ( ".$table_prefix."reporter.level_id = '4' OR "
-				    . $table_prefix."reporter.level_id = '5' ) "
-				    . "AND ( ".$table_prefix."message.message_level != '99' ) ";
-			}
-			elseif ($level == 2)
-			{
-				$filter .= " AND ( ".$table_prefix."message.message_level = '99' ) ";
-			}
+		}
+		
+		// Filter on level
+		switch ($level)
+		{
+			// Trusted
+			case 4:
+				$filter .= " AND ( {$table_prefix}reporter.level_id = '4' OR "
+					. "{$table_prefix}reporter.level_id = '5' ) "
+					. "AND ( {$table_prefix}message.message_level != '99' ) ";
+			break;
+			// Spam
+			case 2:
+				$filter .= " AND ( {$table_prefix}message.message_level = '99' ) ";
+			break;
+			// Other views (hide spam)
+			default:
+				$filter .= " AND ( {$table_prefix}message.message_level != '99' ) ";
+			break;
+		}
+		
+		// Filter messages with / without reports
+		// Force default value for has_report
+		if (empty($_GET['has_report']))
+		{
+			$_GET['has_report'] = 'n';
+		}
+		// Set filters based on has_report
+		$has_report = 'both';
+		switch($_GET['has_report'])
+		{
+			case 'y':
+				$has_report = 'y';
+				$filter .= " AND ( {$table_prefix}message.incident_id IS NOT NULL AND {$table_prefix}message.incident_id <> 0 ) ";
+			break;
+			case 'both':
+				$has_report = 'both';
+			break;
+			case 'n':
+			case 'default':
+				// Skip this when listing message by reporter
+				if(!empty($_GET['rid'])) break;
+				
+				$has_report = 'n';
+				$filter .= " AND ( {$table_prefix}message.incident_id = 0 ) ";
+			break;
 		}
 
 		// Check, has the form been submitted?
@@ -205,6 +242,25 @@ class Messages_Controller extends Tools_Controller {
 		    ->join('reporter','message.reporter_id','reporter.id')
 		    ->where('service_id', $service_id)
 		    ->where('message_type', 1)
+		    ->where("message.message_level != '99'")
+		    ->count_all();
+				
+		// Processed
+		$this->template->content->count_processed = ORM::factory('message')
+		    ->join('reporter','message.reporter_id','reporter.id')
+		    ->where('service_id', $service_id)
+		    ->where('message_type', 1)
+				->where('incident_id <>', 0)
+		    ->where("message.message_level != '99'")
+		    ->count_all();
+				
+		// Unprocessed
+		$this->template->content->count_unprocessed = ORM::factory('message')
+		    ->join('reporter','message.reporter_id','reporter.id')
+		    ->where('service_id', $service_id)
+		    ->where('message_type', 1)
+				->where('incident_id', 0)
+		    ->where("message.message_level != '99'")
 		    ->count_all();
             
 		// Trusted
@@ -245,6 +301,7 @@ class Messages_Controller extends Tools_Controller {
 		// Message Type Tab - Inbox/Outbox
 		$this->template->content->type = $type;
 		$this->template->content->level = $level;
+		$this->template->content->has_report = $has_report;
 
 		// Javascript Header
 		$this->template->header->js = new View('admin/messages/messages_js');

@@ -441,7 +441,7 @@ station"*/;
         $admin_section = $this->_get_admin_section($_SESSION['auth_user']->id);
 	 
         //If user is a moderator, manipulate report query
-        if (admin::permissions($this->user, "reports_view") ) { 
+        if ( $auth->has_permission("reports_view") ) { 
             //if (strcasecmp($admin_section, "peacenet") == 0) {
             if (strcasecmp($admin_section, "peacenet") == 0) {
                 $this->from_monitors = "p";
@@ -458,22 +458,33 @@ station"*/;
 
 	public function _report_mode() 
     {
+    return;
+		// DISABLED since this breaks report editing for all non-admin roles.
+		// If re-enabling switch this to check a permission not a role
+		/*
 		$incident_id = Event::$data;
 		// get user login section
 		
 		$auth = new Auth();
 		
+		// Check if incident is in the report_mode table
 		$existing_id = $this->_get_incident_id('report_mode', $incident_id );
 		
+		// Get the user_id from the report_mode table
 		$user_id = $this->_get_user_id('report_mode',$_SESSION['auth_user']->id);
 		
+		// rjmackay - best guess as to what this does:
+		// If the incident is in report_mode
+		// and user_id doesn't match current user
+		// and current user isn't admin/superadmin
+		// Deny access - redirect to /admin/reports
 		if( ( $existing_id == $incident_id ) && 
 			!empty($incident_id) && 
 			$user_id != $_SESSION['auth_user']->id && 
 			( !$auth->logged_in('superadmin') || !$auth->logged_in('admin') ))
 		{
 				url::redirect('admin/reports/');
-		}
+		}*/
 	}
 
 
@@ -485,6 +496,7 @@ station"*/;
 		
 		$incident_id = Event::$data;
 		
+		// If no entry in report_more - create one for the current user & incident
 		if ($this->_get_incident_id('report_mode', $incident_id) != $incident_id) 
         {
 			$report_mode = ORM::factory('report_mode');

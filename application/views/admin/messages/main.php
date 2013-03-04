@@ -48,9 +48,11 @@
 						<?php if ($type == '1')
 						{ ?>
 							<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-							<li><a href="?type=<?php echo $type ?>&level=0" <?php if ($level == '0') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.all');?> (<?php echo $count_all; ?>)</a></li>
-							<li><a href="?type=<?php echo $type ?>&level=4" <?php if ($level == '4') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.trusted'); ?> (<?php echo $count_trusted; ?>)</a></li>
-							<li><a href="?type=<?php echo $type ?>&level=2" <?php if ($level == '2') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.spam');?> (<?php echo $count_spam; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=0&has_report=n" <?php if ($level == '0' AND $has_report == 'n') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.unprocessed');?> (<?php echo $count_unprocessed; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=4&has_report=both" <?php if ($level == '4') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.trusted'); ?> (<?php echo $count_trusted; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=2&has_report=both" <?php if ($level == '2') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.spam');?> (<?php echo $count_spam; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=0&has_report=y" <?php if ($level == '0' AND $has_report == 'y') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.processed');?> (<?php echo $count_processed; ?>)</a></li>
+							<li><a href="?type=<?php echo $type ?>&level=0&has_report=both" <?php if ($level == '0' AND $has_report == 'both') echo "class=\"active2\""; ?>><?php echo Kohana::lang('ui_main.all');?> (<?php echo $count_all; ?>)</a></li>
 						<?php } ?>
 						<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
 						<li><a href="<?php echo
@@ -145,7 +147,7 @@
 												<div class="incident-id"><a href="<?php echo url::site() . 'admin/reports/edit?mid=' . $message_id; ?>" class="more">#<?php echo $message_id; ?></a></div>
 												<p><?php echo $message_description; ?></p>
 												<?php
-												if ($message_detail OR $message->media != null)
+												if ($message_detail OR $message->media->count() > 0)
 												{
 													?>
 													<p><a href="javascript:preview('message_preview_<?php echo $message_id?>')"><?php echo Kohana::lang('ui_main.preview_message');?></a></p>
@@ -184,9 +186,6 @@
 												if ($service_id == 1 && $message_type == 1)
 												{
 													?>
-													<div id="replies">
-
-													</div>
 													<a href="javascript:showReply('reply_<?php echo $message_id; ?>')" class="more">+<?php echo Kohana::lang('ui_main.reply');?></a>
 													<div id="reply_<?php echo $message_id; ?>" class="reply">
 														<?php print form::open(url::site() . 'admin/messages/send/',array('id' => 'newreply_' . $message_id,
@@ -204,13 +203,38 @@
 												}
 												?>
 
+												<?php
+												if ($service_id == 1)
+												{
+													?>
+													<?php $replies = $message->replies();
+													if (count($replies) > 0) { ?>
+													<a href="javascript:showReply('thread_<?php echo $message_id; ?>')" class="more">+<?php echo Kohana::lang('ui_main.show_thread');?></a>
+													<div id="thread_<?php echo $message_id; ?>" class="reply">
+														<?php 
+															foreach ($message->replies() as $reply)
+															{
+																echo "<div class=\"message\">";
+																echo "<strong><u>" . $reply->message_from . "</u></strong> - ";
+																echo $reply->message;
+																echo $reply->incident_id ? ' - <a href="'.url::site('admin/reports/edit/'.$reply->incident_id).'">View Report</a>' : '';
+																echo "</div>";
+															} ?>
+													</div>
+													<?php
+														}
+														?>
+													<?php
+												}
+												?>
+
 											<?php } ?>
 											</div>
 											<ul class="info">
 												<?php
 												if ($message_type == 2)
 												{
-													?><li class="none-separator"><?php echo Kohana::lang('ui_admin.to');?>: <strong><?php echo $message_to; ?></strong><?php
+													?><li class="none-separator"><?php echo Kohana::lang('ui_admin.to');?>: <strong><a href="<?php echo url::site()."admin/messages/reporters/index/".$service_id."?k=".urlencode($message_to);?>"><?php echo $message_to; ?></a></strong><?php
 												}
 												else
 												{

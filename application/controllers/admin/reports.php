@@ -462,14 +462,32 @@ class Reports_Controller extends Tools_Controller {
 
 		$this->template->content->incident_media = $incident_media;
 
+		// Was this report created from a message?
+		if($id > 0)
+		{
+			$message = ORM::factory('message')->where('incident_id', $id)->find();
+		}
+		if (isset($message) AND $message->loaded)
+		{
+			$message_id = $message->id;
+			$this->template->content->show_messages = TRUE;
+			$this->template->content->original_message = $message;
+			
+			// Retrieve Last 5 Messages From this account
+			$this->template->content->all_messages = ORM::factory('message')
+				->where('reporter_id', $message->reporter_id)
+				->orderby('message_date', 'desc')
+				->limit(5)
+				->find_all();
+		}
 		// Are we creating this report from SMS/Email/Twitter?
 		// If so retrieve message
-		if (isset($_GET['mid']) AND intval($_GET['mid']) > 0)
+		elseif (isset($_GET['mid']) AND intval($_GET['mid']) > 0)
 		{
-			$message_id = intval($_GET['mid']);
 			$service_id = "";
+			$message_id = intval($_GET['mid']);
 			$message = ORM::factory('message', $message_id);
-
+			
 			if ($message->loaded AND $message->message_type == 1)
 			{
 				$service_id = $message->reporter->service_id;
@@ -480,8 +498,8 @@ class Reports_Controller extends Tools_Controller {
 					// Redirect to report
 					url::redirect('admin/reports/edit/'. $message->incident_id);
 				}
-
 				$this->template->content->show_messages = true;
+				$this->template->content->original_message = $message;
 				$incident_description = $message->message;
 				if ( ! empty($message->message_detail))
 				{

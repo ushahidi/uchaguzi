@@ -137,15 +137,35 @@ class admin_Core {
 	public static function messages_subtabs($service_id = FALSE)
 	{
 		$menu = "";
+		
+		$db = Database::instance();
+		$table_prefix = Kohana::config('database.default.table_prefix');
+		
+		// Count by service
+		$counts_query = $db->query("
+			SELECT r.`service_id`, COUNT(*) as message_count
+			FROM `{$table_prefix}message` m
+			JOIN `{$table_prefix}reporter` r ON (m.`reporter_id` = r.`id`)
+			WHERE m.`message_type` = 1 GROUP BY r.`service_id`
+		");
+		$counts_query->result(FALSE);
+		
+		$counts = array();
+		foreach($counts_query as $count)
+		{
+			$counts[$count['service_id']] = $count['message_count'];
+		}
+		
 		foreach (ORM::factory('service')->find_all() as $service)
 		{
+			$count = isset($counts[$service->id]) ? $counts[$service->id] : 0;
 			if ($service->id == $service_id)
 			{
-				$menu .= "<li class=\"active\"><a>".$service->service_name."</a></li>";
+				$menu .= "<li class=\"active\"><a>".$service->service_name." ($count)</a></li>";
 			}
 			else
 			{
-				$menu .= "<li><a href=\"" . url::site() . "admin/messages/index/".$service->id."\">".$service->service_name."</a></li>";
+				$menu .= "<li><a href=\"" . url::site() . "admin/messages/index/".$service->id."\">".$service->service_name." ($count)</a></li>";
 			}
 		}
 
