@@ -1,2 +1,0 @@
-ushahidi-plugin-instagram-flickr
-================================

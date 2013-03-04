@@ -14,3 +14,6 @@
 [submodule "plugins/ushahidi-plugin-instagram-flickr"]
 	path = plugins/ushahidi-plugin-instagram-flickr
 	url = git://github.com/eyedol/ushahidi-plugin-instagram-flickr.git
+[submodule "plugins/instagramflickr"]
+	path = plugins/instagramflickr
+	url = git://github.com/eyedol/ushahidi-plugin-instagram-flickr.git
