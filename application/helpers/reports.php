@@ -65,7 +65,7 @@ class reports_Core {
 		$post->add_rules('location_name','length[3,200]');
 		
 		// Only require location when approving a report
-		if ($post->incident_active == 1)
+		if (isset($post->incident_active) AND $post->incident_active == 1)
 		{
 			// Validate for maximum and minimum latitude values
 			$post->add_rules('latitude','required','between[-90,90]');
