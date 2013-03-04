@@ -117,6 +117,7 @@ class Messages_Controller extends Tools_Controller {
 			$_GET['has_report'] = 'n';
 		}
 		// Set filters based on has_report
+		$has_report = 'both';
 		switch($_GET['has_report'])
 		{
 			case 'y':
@@ -128,6 +129,9 @@ class Messages_Controller extends Tools_Controller {
 			break;
 			case 'n':
 			case 'default':
+				// Skip this when listing message by reporter
+				if(!empty($_GET['rid'])) break;
+				
 				$has_report = 'n';
 				$filter .= " AND ( {$table_prefix}message.incident_id = 0 ) ";
 			break;
