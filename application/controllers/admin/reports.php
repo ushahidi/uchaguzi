@@ -72,7 +72,7 @@ class Reports_Controller extends Tools_Controller {
 			}
 			elseif (strtolower($status) == 'o')
 			{
-				array_push($this->params, '(ic.category_id = 5 OR ic.category_id IS NULL)');
+				array_push($this->params, '(ic.category_id IS NULL)');
 			}
 			elseif (strtolower($status) == 't')
 			{
@@ -170,7 +170,7 @@ class Reports_Controller extends Tools_Controller {
 				$query = "SELECT i.* FROM ".$table_prefix."incident i "
 				    . "LEFT JOIN ".$table_prefix."incident_category ic ON i.id=ic.incident_id "
 				    . "LEFT JOIN ".$table_prefix."category c ON c.id = ic.category_id "
-				    . "WHERE (c.category_title =\"NONE\" OR c.id IS NULL) "
+				    . "WHERE (c.id IS NULL) "
 				    . "AND i.id IN (".implode(',',$post->incident_id).")";
 
 				$result = Database::instance()->query($query);
