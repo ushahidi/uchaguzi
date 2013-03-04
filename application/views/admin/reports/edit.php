@@ -105,7 +105,7 @@
 										echo "</div>";
 									}
 									
-									echo Kohana::lang('ui_main.view_all_messages_by_reporter')."<a href=\"".url::site("admin/messages/index/1?rid={$message->reporter->id}")."\">{$message->message_from}</a>"
+									echo Kohana::lang('ui_main.view_all_messages_by_reporter')."<a href=\"".url::site("admin/messages/index/1?rid={$original_message->reporter->id}")."\">{$original_message->message_from}</a>"
 									?>
 								</div>
 							</div>

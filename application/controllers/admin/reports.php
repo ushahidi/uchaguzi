@@ -459,8 +459,11 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->incident_media = $incident_media;
 
 		// Was this report created from a message?
-		$message = ORM::factory('message')->where('incident_id', $id)->find();
-		if ($message->loaded)
+		if($id > 0)
+		{
+			$message = ORM::factory('message')->where('incident_id', $id)->find();
+		}
+		if (isset($message) AND $message->loaded)
 		{
 			$message_id = $message->id;
 			$this->template->content->show_messages = TRUE;
