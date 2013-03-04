@@ -54,16 +54,22 @@ class Instagramflickr_Controller extends Controller {
 					$foto['name'] = $photo->user->full_name;
 
 					$foto['username'] = $photo->user->username; 
-
-					$foto['title'] = $photo->caption->text;
+					if( $photo->caption !=NULL) 
+					{ 
+						$foto['title'] = $photo->caption->text;
+						$foto['description'] = $photo->caption->text;
+					}
+					else 
+					{
+						$foto['title'] = "";
+						$foto['description'] = "";
+					}
 
 					$foto['photo_id'] = $photo->id;
 
 					$foto['service_id'] = $service->id; 
 
 					$foto['date'] = $photo->created_time;
-
-					$foto['description'] = $photo->caption->text;
 
 					$foto['link'] = $photo->images->standard_resolution->url;
 					
