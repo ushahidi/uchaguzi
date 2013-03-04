@@ -92,9 +92,9 @@ class sms_Core {
 		    ->where('service_account', $from)
 		    ->find();
 
-		if ( ! $reporter->loaded == TRUE)
+		if ( ! $reporter->loaded)
 		{
-			// get default reporter level (Untrusted)
+			// Get default reporter level (Untrusted)
 			$level = ORM::factory('level')
 			    ->where('level_weight', 0)
 			    ->find();

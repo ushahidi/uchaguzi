@@ -90,8 +90,8 @@
 					foreach ($monitors as $key => $monitor)
 					{
 						$monitor_id = $monitor->id;
-						$monitor_location_id = $monitor->location_id;
-						$monitor_location_name = $location_array[$monitor->location_id];
+						$monitor_boundary_id = $monitor->boundary_id;
+						$monitor_location_name = $location_array[$monitor->boundary_id];
 						$monitor_polling_station = $monitor->polling_station;
 						$monitor_phonenumber = $monitor->phonenumber;
 
@@ -109,7 +109,7 @@
 								<li class="none-separator"><a href="#add"
 									onClick="fillFields('<?php echo(rawurlencode($monitor_id)); ?>',
 									'<?php echo(rawurlencode($monitor_phonenumber)); ?>',
-									'<?php echo(rawurlencode($monitor_location_id)); ?>',
+									'<?php echo(rawurlencode($monitor_boundary_id)); ?>',
 									'<?php echo(rawurlencode($monitor_polling_station)); ?>')">Edit</a></li>		
 								<li><a
 									href="javascript:userAction('d','DELETE','<?php echo(rawurlencode($monitor_id)); ?>')"
@@ -153,7 +153,7 @@
 
 					<div class="tab_form_item">
 						Location<br />
-						<span class="my-sel-holder"> <?php print form::dropdown('location_id',$location_array,'id'); ?></span>
+						<span class="my-sel-holder"> <?php print form::dropdown('boundary_id',$location_array,'id'); ?></span>
 					</div>
 
 					<div class="tab_form_item">

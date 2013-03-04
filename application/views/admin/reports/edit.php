@@ -132,23 +132,15 @@
 							Event::run('ushahidi_action.report_form_admin', $id);
 							?>
 
-							<?php
-							if (!($id))
-							{ // Use default date for new report
-								?>
+							<?php if (!($id)): ?>
 								<div class="row" id="datetime_default">
 									<h4><a href="#" id="date_toggle" class="new-cat"><?php echo Kohana::lang('ui_main.modify_date');?></a><?php echo Kohana::lang('ui_main.modify_date');?>: 
 									<?php echo Kohana::lang('ui_main.today_at').' '.$form['incident_hour']
 										.":".$form['incident_minute']." ".$form['incident_ampm']; ?></h4>
 								</div>
-								<?php
-							}
-							?>
-							<div class="row <?php
-								if (!($id))
-								{ // Hide date editor for new report
-									echo "hide";
-								}?> " id="datetime_edit">
+							<?php endif; ?>
+
+							<div class="row <?php if (!($id)) echo "hide"; ?>" id="datetime_edit">
 								<div class="date-box">
 									<h4><?php echo Kohana::lang('ui_main.date');?> <span><?php echo Kohana::lang('ui_main.date_format');?></span></h4>
 									<?php print form::input('incident_date', $form['incident_date'], ' class="text"'); ?>								
@@ -239,7 +231,8 @@
 								else
 								{
 									$i = 0;
-									foreach ($form[$this_field] as $value) {									
+									foreach ($form[$this_field] as $value)
+									{
 										print "<div ";
 										if ($i != 0) {
 											print "class=\"row link-row second\" id=\"" . $this_field . "_" . $i . "\">\n";
@@ -285,7 +278,8 @@
 								else
 								{
 									$i = 0;
-									foreach ($form[$this_field] as $value) {									
+									foreach ($form[$this_field] as $value)
+									{
 										print "<div ";
 										if ($i != 0) {
 											print "class=\"row link-row second\" id=\"" . $this_field . "_" . $i . "\">\n";
@@ -313,7 +307,7 @@
 							<!-- Photo Fields -->
 							<div class="row link-row">
 								<h4><?php echo Kohana::lang('ui_main.reports_photos');?></h4>
-								<?php								
+								<?php 
     								if ($incident_media)
                         			{
                         				// Retrieve Media

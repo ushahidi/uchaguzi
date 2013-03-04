@@ -23,7 +23,7 @@ class Reporter_Model extends ORM
 	protected $table_name = 'reporter';
 	
 	// Create a Reporter if they do not already exist
-	function add($reporter_attrs)
+	public function add($reporter_attrs)
 	{
 		if (count($this->where('service_id', $reporter_attrs['service_id'])->
 		                 where('service_account', $reporter_attrs['service_account'])->
@@ -31,5 +31,23 @@ class Reporter_Model extends ORM
 		{
 			$this->db->insert('reporter', $reporter_attrs);
 		}
+	}
+	
+	/**
+	 * Finds and returns a report record using the service name and service account
+	 *
+	 * @param  string service_name
+	 * @param  string service_account
+	 * @return Reporter_Model
+	 */
+	public static function find_by_service_account($service_name, $service_account)
+	{
+		$reporter_orm = ORM::factory('reporter')
+			->join('service', 'service.id', 'reporter.service_id', 'INNER')
+			->where('service.service_name', $service_name)
+			->where('reporter.service_account', $service_account)
+			->find();
+		
+		return $reporter_orm->loaded ? $reporter_orm : NULL;
 	}
 }

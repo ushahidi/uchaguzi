@@ -628,5 +628,57 @@ class Incident_Model extends ORM {
 
 		parent::delete();
 	}
+	
+	/**
+	 * Creates an incident from an SMS record
+	 *
+	 * @param Message_Model  sms_orm
+	 * @param Reporter_Model reporter_orm
+	 * @param bool approved When TRUE, creates the report as approved
+	 * @param bool verified When TRUE, creates the report as verified
+	 * @param bool verified When TRUE, assigns the report to the trusted reports category
+	 */
+	public static function create_incident_from_sms($sms_orm, $reporter_orm, $approved = FALSE, $verified = FALSE, $trusted = FALSE)
+	{
+		$incident_title = text::limit_chars($sms_orm->message, 50, "...", FALSE);
+
+		// Create Incident
+		$incident = new Incident_Model();
+		$incident->location_id = $reporter_orm->location_id;
+		$incident->incident_title = $incident_title;
+		$incident->incident_description = $sms_orm->message;
+		$incident->incident_date = $sms_orm->message_date;
+		$incident->incident_dateadd = date("Y-m-d H:i:s",time());
+		$incident->incident_dateadd_gmt = gmdate('Y-m-d H:i:s', time());
+		$incident->incident_zoom = Settings_Model::get_setting('default_zoom');
+		$incident->incident_mode = 2;
+		$incident->incident_active = $approved ? 1 : 0;
+		$incident->incident_verified = $verified ? 1 : 0;
+
+		$incident->save();
+			
+		// Update Message with Incident ID
+		$sms_orm->incident_id = $incident->id;
+		$sms_orm->save();
+		
+		if ($trusted)
+		{
+			// Save Incident Category
+			$trusted_categories = ORM::factory("category")
+				->where("category_trusted", 1)
+				->find();
+
+			if ($trusted_categories->loaded)
+			{
+				$incident_category = new Incident_Category_Model();
+				$incident_category->incident_id = $incident->id;
+				$incident_category->category_id = $trusted_categories->id;
+				$incident_category->save();
+			}
+		}
+
+		return $incident;
+
+	}
 
 }
