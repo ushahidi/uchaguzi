@@ -934,7 +934,7 @@ class Reports_Controller extends Tools_Controller {
 			if ($_POST['from_hour'] != '--' OR $_POST['from_minute'] != '--')
 			{
 			$post
-				->add_rules('from_hour','required','between[1,12]')
+				->add_rules('from_hour','required','between[0,23]')
 				->add_rules('from_minute','required','between[0,59]');
 			}
 			

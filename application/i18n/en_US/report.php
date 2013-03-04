@@ -30,6 +30,12 @@
 		'date_mmddyyyy' => 'The FROM date field does not appear to contain a valid date.',
 		'range' => 'Please enter a valid FROM date. It cannot be greater than today.',
 	),
+	'from_hour' => array(
+		'between' => 'The FROM hour field must be between 0 and 23.',
+	),
+	'from_minute' => array(
+		'between' => 'The FROM minute field must be between 0 and 59.',
+	),
 	'incident_active' => array(
 		'between' => 'Please enter a valid value for Approve This Report',
 		'required' => 'Please enter a valid value for Approve This Report',
@@ -118,5 +124,11 @@
 		'date_mmddyyyy' => 'The TO date field does not appear to contain a valid date.',
 		'range' => 'Please enter a valid TO date. It cannot be greater than today.',
 		'range_greater' => 'Your FROM date cannot be greater than your TO date.',
+	),
+	'to_hour' => array(
+		'between' => 'The FROM hour field must be between 0 and 23.',
+	),
+	'to_minute' => array(
+		'between' => 'The FROM minute field must be between 0 and 59.',
 	));
 ?>
