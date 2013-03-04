@@ -45,4 +45,41 @@ class Location_Model extends ORM
 			? ORM::factory('location', intval($location_id))->loaded
 			: FALSE;
 	}
+	
+	/**
+	 * Get and return a location record using the latitude and longitude
+	 *
+	 * @param float latitude
+	 * @param float longitude
+	 * @return Location_Model when found, NULL otherwise
+	 */
+	public static function find_by_lat_lon($latitude, $longitude)
+	{
+		$location_orm = ORM::factory('location')
+			->where('latitude', $latitude)
+			->where('longitude', $longitude)
+			->find();
+		
+		return $location_orm->loaded ? $location_orm : NULL;
+	}
+
+	/**
+	 * Creates and returns a location entry in the database
+	 *
+	 * @param  array location_data
+	 * @return Location_Model
+	 */
+	public static function create_from_array($location_data)
+	{
+		$location_orm = new Location_Model();
+
+		$location_orm->location_name = $location_data['location_name'];
+		$location_orm->country_id = Settings_Model::get_setting('default_country');
+		$location_orm->latitude = $location_data['latitude'];
+		$location_orm->longitude = $location_data['longitude'];
+		$location_orm->location_visible = 1;
+		$location_orm->location_date = date('Y-m-d H:i:s');
+		
+		return $location_orm->save();
+	}
 }
