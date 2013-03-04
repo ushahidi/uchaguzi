@@ -22,6 +22,18 @@ class Message_Model extends ORM
 	// Database table name
 	protected $table_name = 'message';
 	
+	/**
+	 * @return Message_Model
+	 */
+	public static function find_by_incident_id($incident_id)
+	{
+		$message_orm = ORM::factory('message')
+				->where('incident_id', $incident_id)
+				->find();
+		
+		return $message_orm;
+	}
+
 	public function replies()
 	{
 		$replies = ORM::factory('message')
@@ -35,4 +47,5 @@ class Message_Model extends ORM
 		
 		return $replies;
 	}
+
 }
