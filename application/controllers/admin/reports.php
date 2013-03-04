@@ -449,6 +449,8 @@ class Reports_Controller extends Tools_Controller {
 		{
 			$forms[$custom_forms->id] = $custom_forms->form_title;
 		}
+
+
 		$this->template->content->forms = $forms;
 
 		// Get the incident media
@@ -552,6 +554,60 @@ class Reports_Controller extends Tools_Controller {
 		else
 		{
 			$this->template->content->show_messages = FALSE;
+		}
+
+		// Are we creating a report from instagram flickr
+		// Added by Henry Addo to support creating report via instagramflickr plugin
+		// FIXME: figure out a better way of doing this
+		if (isset($_GET['ifid']) AND intval($_GET['ifid']) > 0)
+		{
+			$photo_id = intval($_GET['ifid']);
+			$service_id = "";
+			$photo = ORM::factory('instagramflickr', $photo_id);
+
+			if ($photo->loaded AND $photo->photo_type == 1)
+			{
+				$service_id = $photo->reporter->service_id;
+
+				// Has a report already been created for this Message?
+				if ($photo->incident_id != 0) {
+
+					// Redirect to report
+					url::redirect('admin/reports/edit/'. $photo->incident_id);
+				}
+
+				
+				$incident_description = $photo->photo_description;
+				if ( ! empty($photo->photo_title))
+				{
+					$form['incident_title'] = $photo->photo_title;
+					$incident_description = $photo->photo_description;
+				}
+
+				$form['incident_description'] = $incident_description;
+				$form['incident_date'] = date('m/d/Y', strtotime($photo->photo_date));
+				$form['incident_hour'] = date('h', strtotime($photo->photo_date));
+				$form['incident_minute'] = date('i', strtotime($photo->photo_date));
+				$form['incident_ampm'] = date('a', strtotime($photo->photo_date));
+				$form['person_first'] = $photo->reporter->reporter_first;
+				$form['person_last'] = $photo->reporter->reporter_last;
+
+				// Does the message itself have a location?
+				if ($photo->latitude != NULL AND $photo->longitude != NULL)
+				{
+					$form['latitude'] = $photo->latitude;
+					$form['longitude'] = $photo->longitude;
+				}
+				
+				// As a fallback, does the sender of this message have a location?
+				elseif ($photo->reporter->location->loaded)
+				{
+					$form['location_id'] = $photo->reporter->location->id;
+					$form['latitude'] = $photo->reporter->location->latitude;
+					$form['longitude'] = $photo->reporter->location->longitude;
+					$form['location_name'] = $photo->reporter->location->location_name;
+				}
+			}
 		}
 
 		// Are we creating this report from a Newsfeed?
@@ -667,6 +723,29 @@ class Reports_Controller extends Tools_Controller {
 						// Add Attachments
 						$attachments = ORM::factory("media")
 							->where("message_id", $savemessage->id)
+							->find_all();
+						foreach ($attachments AS $attachment)
+						{
+							$attachment->incident_id = $incident->id;
+							$attachment->save();
+						}
+					}
+				}
+
+				// Added ability to save media sent in via instagramflickr photos
+				// This was added by Henry Addo. Save images.
+				if (isset($photo_id) AND intval($photo_id) > 0)
+				{
+					$savemedia = ORM::factory('instagramflickr', $photo_id);
+					if ($savemedia->loaded)
+					{
+						$savemedia->incident_id = $incident->id;
+						$savemedia->save();
+
+						// Does Message Have Attachments?
+						// Add Attachments
+						$attachments = ORM::factory("media")
+							->where("message_id", $savemedia->id)
 							->find_all();
 						foreach ($attachments AS $attachment)
 						{

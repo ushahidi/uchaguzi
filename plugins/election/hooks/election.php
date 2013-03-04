@@ -36,6 +36,8 @@ class election {
 	protected $user;
 	
 	private $from_monitors;
+	
+	private $monitors;
 
 	public function __construct()
 	{
