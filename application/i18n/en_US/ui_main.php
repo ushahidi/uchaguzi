@@ -487,6 +487,7 @@
 	'sharing' => 'Sharing',
 	'show' => 'Show',
 	'show_all' => 'Show all',
+	'show_thread' => 'Show thread',
 	'show_messages' => 'Show Messages',
 	'showing_reports_from' => 'Showing Reports From <span class="time-period">%s to %s</span>',
 	'site' => 'Website',

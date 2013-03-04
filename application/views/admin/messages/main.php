@@ -186,9 +186,6 @@
 												if ($service_id == 1 && $message_type == 1)
 												{
 													?>
-													<div id="replies">
-
-													</div>
 													<a href="javascript:showReply('reply_<?php echo $message_id; ?>')" class="more">+<?php echo Kohana::lang('ui_main.reply');?></a>
 													<div id="reply_<?php echo $message_id; ?>" class="reply">
 														<?php print form::open(url::site() . 'admin/messages/send/',array('id' => 'newreply_' . $message_id,
@@ -202,6 +199,31 @@
 														<?php print form::close(); ?>
 														<div id="replyleft_<?php echo $message_id; ?>" class="replychars"></div>
 													</div>
+													<?php
+												}
+												?>
+
+												<?php
+												if ($service_id == 1)
+												{
+													?>
+													<?php $replies = $message->replies();
+													if (count($replies) > 0) { ?>
+													<a href="javascript:showReply('thread_<?php echo $message_id; ?>')" class="more">+<?php echo Kohana::lang('ui_main.show_thread');?></a>
+													<div id="thread_<?php echo $message_id; ?>" class="reply">
+														<?php 
+															foreach ($message->replies() as $reply)
+															{
+																echo "<div class=\"message\">";
+																echo "<strong><u>" . $reply->message_from . "</u></strong> - ";
+																echo $reply->message;
+																echo $reply->incident_id ? ' - <a href="'.url::site('admin/reports/edit/'.$reply->incident_id).'">View Report</a>' : '';
+																echo "</div>";
+															} ?>
+													</div>
+													<?php
+														}
+														?>
 													<?php
 												}
 												?>
