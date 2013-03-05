@@ -191,14 +191,23 @@ class reports_Core {
 		// Fetch the country id
 		$country_id = ( ! empty($country) AND $country->loaded)? $country->id : 0;
 		
-		// Assign country_id retrieved
-		$post->country_id = $country_id;
-		$location->location_name = $post->location_name;
-		$location->latitude = $post->latitude;
-		$location->longitude = $post->longitude;
-		$location->country_id = $country_id;
-		$location->location_date = date("Y-m-d H:i:s",time());
-		$location->save();
+		// Does the location exist?
+		$location_orm = Location_Model::find_by_lat_lon($post->latitude, $post->longitude);
+		if ( ! $location_orm OR ! $location_orm->loaded)
+		{
+			// Assign country_id retrieved
+			$post->country_id = $country_id;
+			$location->location_name = $post->location_name;
+			$location->latitude = $post->latitude;
+			$location->longitude = $post->longitude;
+			$location->country_id = $country_id;
+			$location->location_date = date("Y-m-d H:i:s",time());
+			$location->save();
+		}
+		else
+		{
+			$location = $location_orm;
+		}
 		
 		// Garbage collection
 		unset ($country, $country_id);
