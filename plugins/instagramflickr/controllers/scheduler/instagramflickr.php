@@ -19,7 +19,8 @@ class Instagramflickr_Controller extends Controller {
 		
 		$photos = $this->flickr->photos_search( array(
 			'tags' => $settings->flickr_tag,
-			'per_page' => $settings->block_no_photos) );
+			'per_page' => 50,
+			));
 
 		$this->_add_flickr($photos);
 	}
@@ -54,16 +55,22 @@ class Instagramflickr_Controller extends Controller {
 					$foto['name'] = $photo->user->full_name;
 
 					$foto['username'] = $photo->user->username; 
-
-					$foto['title'] = $photo->caption->text;
+					if( $photo->caption !=NULL) 
+					{ 
+						$foto['title'] = $photo->caption->text;
+						$foto['description'] = $photo->caption->text;
+					}
+					else 
+					{
+						$foto['title'] = "";
+						$foto['description'] = "";
+					}
 
 					$foto['photo_id'] = $photo->id;
 
 					$foto['service_id'] = $service->id; 
 
 					$foto['date'] = $photo->created_time;
-
-					$foto['description'] = $photo->caption->text;
 
 					$foto['link'] = $photo->images->standard_resolution->url;
 					
@@ -277,7 +284,7 @@ class Instagramflickr_Controller extends Controller {
 			$foto['thumb'] = $this->flickr->buildPhotoURL($photo,'Square');
 
 			// Location
-			if( ( $photo_info['location'] != NULL) AND 
+			if( ( array_key_exists('location',$photo_info)) AND 
 					(is_array($photo_info['location'])))
 			{
 				$foto['latitude'] = $photo_info['location']['latitude'];

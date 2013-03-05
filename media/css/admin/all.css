@@ -851,6 +851,10 @@ ul.pager li.first {
    padding: 0.5em 0;
 }
 
+.report-form .category-column label {
+  padding: 0;
+}
+
 .report-form label span {
    display: inline-block;
    width: 30%;

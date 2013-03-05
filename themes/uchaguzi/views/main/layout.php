@@ -1,10 +1,10 @@
     <div id="primary-content" class="col_6">     
         <?php echo $div_map;?>                         
 
-		<!--<div id="slider">
-			<?php //echo $div_timeline;?>
+		<div id="slider">
+			<?php echo $div_timeline;?>
 		</div>
-		-->
+		
 		<div id="reports-summary" class="cf">
 			<?php blocks::render(); ?>
 		</div>
