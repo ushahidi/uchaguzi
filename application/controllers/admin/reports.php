@@ -690,7 +690,10 @@ class Reports_Controller extends Tools_Controller {
 
 				// STEP 1: SAVE LOCATION
 				$location = new Location_Model($location_id);
-				reports::save_location($post, $location);
+				if ( ! $location->loaded)
+				{
+					reports::save_location($post, $location);
+				}
 
 				// STEP 2: SAVE INCIDENT
 				$incident = new Incident_Model($id);
