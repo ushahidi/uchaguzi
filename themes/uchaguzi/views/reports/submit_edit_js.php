@@ -414,7 +414,7 @@
 			<?php endif; ?>
 		
 			// Category treeview
-			$("#category-column-1,#category-column-2").treeview({
+			$("#category-column-1,#category-column-2,.category-column").treeview({
 			  persist: "location",
 			  collapsed: true,
 			  unique: false

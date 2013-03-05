@@ -363,7 +363,7 @@ class Incident_Model extends ORM {
 		if (! $count)
 		{
 			$sql = 'SELECT DISTINCT i.id incident_id, i.incident_title, i.incident_description, i.incident_date, i.incident_mode, i.incident_active, '
-				. 'i.incident_verified, i.location_id, l.country_id, l.location_name, l.latitude, l.longitude ';
+				. 'i.incident_verified, i.location_id, l.country_id, l.location_name, l.latitude, l.longitude, i.user_id ';
 		}
 		// Count query
 		else
