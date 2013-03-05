@@ -83,7 +83,7 @@ class Gallery_Controller extends Main_Controller {
         else 
         { 
             // Fetch media
-            $media = ORM::factory('media')->with('incident')->find_all();
+            $media = ORM::factory('media')->with('incident')->where('media_type',1)->find_all();
         }
 
         // Set the view content
