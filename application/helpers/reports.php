@@ -197,12 +197,14 @@ class reports_Core {
 		{
 			// Assign country_id retrieved
 			$post->country_id = $country_id;
-			$location->location_name = $post->location_name;
-			$location->latitude = $post->latitude;
-			$location->longitude = $post->longitude;
-			$location->country_id = $country_id;
-			$location->location_date = date("Y-m-d H:i:s",time());
-			$location->save();
+			$location_orm= new Location_Model();
+			$location_orm->location_name = $post->location_name;
+			$location_orm->latitude = $post->latitude;
+			$location_orm->longitude = $post->longitude;
+			$location_orm->country_id = $country_id;
+			$location_orm->location_date = date("Y-m-d H:i:s",time());
+			$location_orm->save();
+			$location = $location_orm;
 		}
 		
 		// Garbage collection
