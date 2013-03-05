@@ -678,7 +678,41 @@ class Incident_Model extends ORM {
 		}
 
 		return $incident;
-
 	}
 
+	/**
+	 * Checks whether the incident specified in incident_id has the category
+	 * specified in category_id
+	 *
+	 * @param  int incident_id
+	 * @param  int category_id
+	 * @return bool
+	 */
+	public static function has_category($incident_id, $category_id)
+	{
+		return ORM::factory('incident_category')
+			->where('incident_id', $incident_id)
+			->where('category_id', $category_id)
+			->find()
+			->loaded;
+	}
+
+	/**
+	 * Adds the current incident to the category with the specified
+	 * category_id
+	 *
+	 * @param  int category_id
+	 */
+	public function add_category($category_id)
+	{
+		if ( ! self::has_category($this->id, $category_id))
+		{
+			$incident_category = new Incident_Category_Model();
+
+			$incident_category->incident_id = $this->id;
+			$incident_category->category_id = $category_id;
+			$incident_category->save();
+		}
+
+	}
 }

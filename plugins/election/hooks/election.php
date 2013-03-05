@@ -38,6 +38,12 @@ class election {
 	private $from_monitors;
 	
 	private $monitors;
+	
+	/**
+	 * Code for the incoming message
+	 * @var Code_Model
+	 */
+	private $form_code;
 
 	public function __construct()
 	{
@@ -122,9 +128,9 @@ class election {
 		}
 		elseif (strripos(Router::$current_uri, "admin/reports") !== FALSE) 
 		{   
-			//Filter incident
-			Event::add('ushahidi_filter.pagination',array($this, '_pagination'));
-			Event::add('ushahidi_filter.filter_incidents', array($this,'_manipulate_incident'));
+			// Filter incident
+			// Event::add('ushahidi_filter.pagination',array($this, '_pagination'));
+			// Event::add('ushahidi_filter.filter_incidents', array($this,'_manipulate_incident'));
 		}
 	}
 
@@ -159,21 +165,22 @@ class election {
 	 */	
 	public function modify_sms_message()
 	{
-		$message_description = Event::$data;
+		$message_body = intval(Event::$data);
 
-		if (is_numeric($message_description ) AND ! empty($this->monitor_phone_number)) 
+		if (is_numeric($message_body) AND ! empty($this->monitor_phone_number)) 
 		{
-			// Get the message that corresponds to the submitted form response code
-			$message = $this->_get_description((int)$message_description);
+			// Get the form code associated with the submitted code
+			$this->form_code = Code_Model::get_by_code_id($message_body);
 
-			if (empty($message))
-			{
-				$message = Kohana::lang('election.missing_matching_code');
-			}
+			// Get the description
+			$message = ( ! $this->form_code) 
+				? Kohana::lang('election.missing_matching_code')
+				: $this->form_code->code_description;
 
-			$message_description = $message;
+			$message_body = $message;
 		}
-		Event::$data = $message_description;
+
+		Event::$data = $message_body;
 	}
 
 
@@ -195,6 +202,10 @@ class election {
 			
 			// Create incident/report that is approved, verified and trusted from the SMS
 			$incident_orm = Incident_Model::create_incident_from_sms($sms, $reporter_orm, TRUE, TRUE, TRUE);
+			$incident_orm = $sms->incident;
+			
+			// Add the category to the newly created incident
+			$incident_orm->add_category($this->form_code->category_id);
 			
 			// Associate the report with the monitor
 			Monitor_Report_Model::create_from_incident($this->monitor, $incident_orm);
@@ -801,18 +812,6 @@ class election {
 		return $monitor_orm->loaded;
 	}
 
-	/**
-	 * Match a code to a report description
-	 */
-	public function _get_description($report_code)
-	{
-        $report_desc = ORM::factory('code')
-			->where('code_id', $report_code)
-			->find();
-
-		return $report_desc->code_description;
-	}
-	
 	/**
 	 * Get polling station
 	 * 
