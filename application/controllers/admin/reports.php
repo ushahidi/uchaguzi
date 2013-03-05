@@ -1141,7 +1141,7 @@ class Reports_Controller extends Tools_Controller {
 				}
 
 				// Retrieve reports
-				$incidents = ORM::factory('incident')->where($filter)->orderby('incident_dateadd', 'desc')->find_all();
+				$incidents = ORM::factory('incident')->where($filter)->orderby('incident_date', 'desc')->find_all();
 
 				// Column Titles
 				ob_start();
