@@ -53,6 +53,11 @@
 						<?php echo Kohana::lang('uchaguzi.not_geolocated'); ?>
 					</a>
 				</li>
+				<li>
+					<a href="?status=tr" <?php if ($status == 'tr') echo "class=\"active\""; ?>>
+						<?php echo Kohana::lang('uchaguzi.trusted'); ?>
+					</a>
+				</li>
 				<li class="right">
 					<a href="?status=search" class="search <?php if ($status == 'search') echo "active"; ?>">
 						<?php echo Kohana::lang('ui_main.search'); ?>
