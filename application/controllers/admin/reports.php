@@ -82,6 +82,10 @@ class Reports_Controller extends Tools_Controller {
 			{
 				array_push($this->params, '(ic.category_id = 121)');
 			}
+			elseif (strtolower($status) == 'tr')
+			{
+				array_push($this->params, '(ic.category_id = 81)');
+			}
 			elseif (strtolower($status) != 'search')
 			{
 				$status = "0";
