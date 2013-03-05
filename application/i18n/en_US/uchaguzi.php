@@ -28,6 +28,7 @@ $lang = array(
 'loading_media' => 'Loading Media',
 'header_title' => 'Header Title', 
 'timeline' => 'Timeline',
+'trusted' => 'Trusted Reports',
 'all'=>'All',
 'browse_files'=>'Browse Files',
 'highlights'=>'Highlights',

@@ -53,6 +53,11 @@
 						<?php echo Kohana::lang('uchaguzi.not_geolocated'); ?>
 					</a>
 				</li>
+				<li>
+					<a href="?status=tr" <?php if ($status == 'tr') echo "class=\"active\""; ?>>
+						<?php echo Kohana::lang('uchaguzi.trusted'); ?>
+					</a>
+				</li>
 				<li class="right">
 					<a href="?status=search" class="search <?php if ($status == 'search') echo "active"; ?>">
 						<?php echo Kohana::lang('ui_main.search'); ?>
@@ -180,13 +185,11 @@
 								// Mode of submission... WEB/SMS/EMAIL?
 								$incident_mode = $incident->incident_mode;
 								
-								// Get the incident ORM
-								$incident_orm = ORM::factory('incident', $incident_id);
-								
 								// Get the person submitting the report
-								$incident_person = $incident_orm->incident_person;
+								$incident_person = ORM::factory('incident_person')->where('incident_id', $incident_id)->find();
 								
 								//XXX incident_Mode will be discontinued in favour of $service_id
+								$submit_by = Kohana::lang('ui_admin.unknown');
 								if ($incident_mode == 1)	// Submitted via WEB
 								{
 									$submit_mode = "WEB";
@@ -198,9 +201,9 @@
 									}
 									else
 									{
-										if ($incident_orm->user_id)					// Report Was Submitted By Administrator
+										if ($incident->user_id AND $incident_user = ORM::factory('user', $incident->user_id)) // Report Was Submitted By Administrator
 										{
-											$submit_by = $incident_orm->user->name;
+											$submit_by = $incident_user->name;
 										}
 										else
 										{
@@ -208,35 +211,39 @@
 										}
 									}
 								}
-								elseif ($incident_mode == 2) 	// Submitted via SMS
+								else
 								{
-									$submit_mode = "SMS";
-									$submit_by = $incident_orm->message->message_from;
+									if (
+										$incident_message = ORM::factory('message')->where('incident_id', $incident_id)->find()
+										AND $incident_message->loaded
+									)
+									{
+										$submit_by = $incident_message->message_from;
+									}
+									
+									if ($incident_mode == 2) 	// Submitted via SMS
+									{
+										$submit_mode = "SMS";
+									}
+									elseif ($incident_mode == 3) 	// Submitted via Email
+									{
+										$submit_mode = "EMAIL";
+									}
+									elseif ($incident_mode == 4) 	// Submitted via Twitter
+									{
+										$submit_mode = "TWITTER";
+									}
 								}
-								elseif ($incident_mode == 3) 	// Submitted via Email
-								{
-									$submit_mode = "EMAIL";
-									$submit_by = $incident_orm->message->message_from;
-								}
-								elseif ($incident_mode == 4) 	// Submitted via Twitter
-								{
-									$submit_mode = "TWITTER";
-									$submit_by = $incident_orm->message->message_from;
-								}
-								
-								// Get the country name
-								$country_name = ($incident->country_id != 0)
-									? $countries[$incident->country_id] 
-									: $countries[Kohana::config('settings.default_country')]; 
 								
 								// Incident location
-								$incident_location = $incident->location_id ? $incident->location_name.', '.$country_name : Kohana::lang('ui_main.none');
+								$incident_location = $incident->location_id ? $incident->location_name : Kohana::lang('ui_main.none');
 						
 								// Retrieve Incident Categories
 								$incident_category = "";
-								if ($incident_orm->incident_category->count() > 0)
+								$incident_category_models = ORM::factory('incident_category')->where('incident_id', $incident_id)->find_all();
+								if ($incident_category_models->count() > 0)
 								{
-									foreach ($incident_orm->incident_category as $category)
+									foreach ($incident_category_models as $category)
 									{
 										$incident_category .= Category_Lang_Model::category_title($category->category_id) ."&nbsp;&nbsp;";
 									}
@@ -251,34 +258,20 @@
 								$incident_verified = $incident->incident_verified;
 								
 								// Get Edit Log
-								$edit_count = $incident_orm->verify->count();
+								$verify_logs = ORM::factory('verify')->where('incident_id', $incident_id)->with('user')->find_all();
+								$edit_count = $verify_logs->count();
 								$edit_css = ($edit_count == 0) ? "post-edit-log-gray" : "post-edit-log-blue";
 								
 								$edit_log  = "<div class=\"".$edit_css."\">"
 									. "<a href=\"javascript:showLog('edit_log_".$incident_id."')\">".Kohana::lang('ui_admin.edit_log').":</a> (".$edit_count.")</div>"
 									. "<div id=\"edit_log_".$incident_id."\" class=\"post-edit-log\"><ul>";
 								
-								foreach ($incident_orm->verify as $verify)
+								foreach ($verify_logs as $verify)
 								{
 									$edit_log .= "<li>".Kohana::lang('ui_admin.edited_by')." ".html::specialchars($verify->user->name)." : ".$verify->verified_date."</li>";
 								}
 								$edit_log .= "</ul></div>";
 
-								// Get Any Translations
-								$i = 1;
-								$incident_translation  = "<div class=\"post-trans-new\">"
-										. "<a href=\"" . url::base() . 'admin/reports/translate/?iid='.$incident_id."\">"
-										. utf8::strtoupper(Kohana::lang('ui_main.add_translation')).":</a></div>";
-										
-								foreach ($incident_orm->incident_lang as $translation)
-								{
-									$incident_translation .= "<div class=\"post-trans\">"
-										. Kohana::lang('ui_main.translation'). $i . ": "
-										. "<a href=\"" . url::base() . 'admin/reports/translate/'. $translation->id .'/?iid=' . $incident_id . "\">"
-										. text::limit_chars($translation->incident_title, 150, "...", TRUE)
-										. "</a>"
-										. "</div>";
-								}
 								?>
 								<tr>
 									<td class="col-1">

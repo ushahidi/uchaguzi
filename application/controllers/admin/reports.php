@@ -72,7 +72,7 @@ class Reports_Controller extends Tools_Controller {
 			}
 			elseif (strtolower($status) == 'o')
 			{
-				array_push($this->params, '(ic.category_id = 5 OR ic.category_id IS NULL)');
+				array_push($this->params, '(ic.category_id IS NULL)');
 			}
 			elseif (strtolower($status) == 't')
 			{
@@ -81,6 +81,10 @@ class Reports_Controller extends Tools_Controller {
 			elseif (strtolower($status) == 'g')
 			{
 				array_push($this->params, '(ic.category_id = 121)');
+			}
+			elseif (strtolower($status) == 'tr')
+			{
+				array_push($this->params, '(ic.category_id = 81)');
 			}
 			elseif (strtolower($status) != 'search')
 			{
@@ -170,7 +174,7 @@ class Reports_Controller extends Tools_Controller {
 				$query = "SELECT i.* FROM ".$table_prefix."incident i "
 				    . "LEFT JOIN ".$table_prefix."incident_category ic ON i.id=ic.incident_id "
 				    . "LEFT JOIN ".$table_prefix."category c ON c.id = ic.category_id "
-				    . "WHERE (c.category_title =\"NONE\" OR c.id IS NULL) "
+				    . "WHERE (c.id IS NULL) "
 				    . "AND i.id IN (".implode(',',$post->incident_id).")";
 
 				$result = Database::instance()->query($query);
@@ -303,7 +307,6 @@ class Reports_Controller extends Tools_Controller {
 
 		Event::run('ushahidi_filter.filter_incidents',$incidents);
 
-		$this->template->content->countries = Country_Model::get_countries_list();
 		$this->template->content->incidents = $incidents;
 		$this->template->content->pagination = reports::$pagination;
 		$this->template->content->form_error = $form_error;
@@ -415,7 +418,6 @@ class Reports_Controller extends Tools_Controller {
 		$this->template->content->locale_array = Kohana::config('locale.all_languages');
 
 		// Create Categories
-		$this->template->content->categories = Category_Model::get_categories(0, FALSE, FALSE);
 		$this->template->content->new_categories_form = $this->_new_categories_form_arr();
 
 		// Time formatting
@@ -1035,7 +1037,7 @@ class Reports_Controller extends Tools_Controller {
 			if ($_POST['from_hour'] != '--' OR $_POST['from_minute'] != '--')
 			{
 			$post
-				->add_rules('from_hour','required','between[1,12]')
+				->add_rules('from_hour','required','between[0,23]')
 				->add_rules('from_minute','required','between[0,59]');
 			}
 			
@@ -1166,7 +1168,7 @@ class Reports_Controller extends Tools_Controller {
 				}
 
 				// Retrieve reports
-				$incidents = ORM::factory('incident')->where($filter)->orderby('incident_dateadd', 'desc')->find_all();
+				$incidents = ORM::factory('incident')->where($filter)->orderby('incident_date', 'desc')->find_all();
 
 				// Column Titles
 				ob_start();
@@ -1880,12 +1882,11 @@ class Reports_Controller extends Tools_Controller {
 		$search_form->date_to = $date_to;
 		
 		// Categories
-		$search_form->categories = Category_Model::get_categories(0, FALSE, FALSE);
 		if (! isset($_GET['c']) OR ! is_array($_GET['c']))
 		{
 			$_GET['c'] = isset($_GET['c']) ? array($_GET['c']) : array();
 		}
-		$search_form->selected_categories = $_GET['c'];
+		$search_form->categories = $_GET['c'];
 		
 		// Media
 		if (! isset($_GET['m']) OR ! is_array($_GET['m']))

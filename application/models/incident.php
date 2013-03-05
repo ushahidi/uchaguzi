@@ -363,7 +363,7 @@ class Incident_Model extends ORM {
 		if (! $count)
 		{
 			$sql = 'SELECT DISTINCT i.id incident_id, i.incident_title, i.incident_description, i.incident_date, i.incident_mode, i.incident_active, '
-				. 'i.incident_verified, i.location_id, l.country_id, l.location_name, l.latitude, l.longitude ';
+				. 'i.incident_verified, i.location_id, l.country_id, l.location_name, l.latitude, l.longitude, i.user_id ';
 		}
 		// Count query
 		else
@@ -678,7 +678,41 @@ class Incident_Model extends ORM {
 		}
 
 		return $incident;
-
 	}
 
+	/**
+	 * Checks whether the incident specified in incident_id has the category
+	 * specified in category_id
+	 *
+	 * @param  int incident_id
+	 * @param  int category_id
+	 * @return bool
+	 */
+	public static function has_category($incident_id, $category_id)
+	{
+		return ORM::factory('incident_category')
+			->where('incident_id', $incident_id)
+			->where('category_id', $category_id)
+			->find()
+			->loaded;
+	}
+
+	/**
+	 * Adds the current incident to the category with the specified
+	 * category_id
+	 *
+	 * @param  int category_id
+	 */
+	public function add_category($category_id)
+	{
+		if ( ! self::has_category($this->id, $category_id))
+		{
+			$incident_category = new Incident_Category_Model();
+
+			$incident_category->incident_id = $this->id;
+			$incident_category->category_id = $category_id;
+			$incident_category->save();
+		}
+
+	}
 }

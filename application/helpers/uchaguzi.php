@@ -46,10 +46,10 @@ class uchaguzi_Core {
 		$menu = "";
 
 		//All
-		$menu .= "<li class=\"active\"><a href='#' id='filter_link_media_0'>".Kohana::lang('uchaguzi.all')."</a></li>";
+		$menu .= "<li><a href='#' id='filter_link_media_0'>".Kohana::lang('uchaguzi.all')."</a></li>";
 
 		//Images
-		$menu .= "<li><a href='#' id='filter_link_media_1'>".Kohana::lang('uchaguzi.image')."</a></li>";
+		$menu .= "<li class=\"active\"><a href='#' id='filter_link_media_1'>".Kohana::lang('uchaguzi.image')."</a></li>";
 		
 		//Videos
 		$menu .= "<li><a href='#' id='filter_link_media_2'>".Kohana::lang('uchaguzi.video')."</a></li>";

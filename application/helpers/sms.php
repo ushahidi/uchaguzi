@@ -138,7 +138,7 @@ class sms_Core {
 		// Auto-Create A Report if Reporter is Trusted
 		$reporter_weight = $reporter->level->level_weight;
 		$reporter_location = $reporter->location;
-		if ($reporter_weight > 0 AND $reporter_location)
+		if ($reporter_weight > 0 AND $reporter_location AND  empty($sms->incident_id))
 		{
 			$incident_title = text::limit_chars($message, 50, "...", false);
 			// Create Incident
@@ -149,6 +149,8 @@ class sms_Core {
 			$incident->incident_date = $sms->message_date;
 			$incident->incident_dateadd = date("Y-m-d H:i:s",time());
 			$incident->incident_active = 1;
+			$incident->incident_mode = 2;
+
 			if ($reporter_weight == 2)
 			{
 				$incident->incident_verified = 1;

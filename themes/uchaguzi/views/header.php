@@ -6,7 +6,7 @@
 	<?php if (!Kohana::config('settings.enable_timeline')) { ?>
 		<style>
 			#graph{display:none;}
-			#map{height:680px;}
+			#map{height:480px;}
 		</style>
 	<?php } ?>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

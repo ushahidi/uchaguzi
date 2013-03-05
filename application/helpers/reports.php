@@ -181,7 +181,7 @@ class reports_Core {
 	 * @param Validation $post
 	 * @param Location_Model $location Instance of the location model
 	 */
-	public static function save_location($post, $location)
+	public static function save_location($post, Location_Model & $location)
 	{
 		// Load the country
 		$country = isset($post->country_name)
@@ -191,14 +191,21 @@ class reports_Core {
 		// Fetch the country id
 		$country_id = ( ! empty($country) AND $country->loaded)? $country->id : 0;
 		
-		// Assign country_id retrieved
-		$post->country_id = $country_id;
-		$location->location_name = $post->location_name;
-		$location->latitude = $post->latitude;
-		$location->longitude = $post->longitude;
-		$location->country_id = $country_id;
-		$location->location_date = date("Y-m-d H:i:s",time());
-		$location->save();
+		// Does the location exist?
+		$location = Location_Model::find_by_lat_lon($post->latitude, $post->longitude);
+		if ( ! $location OR ! $location->loaded)
+		{
+			// Assign country_id retrieved
+			$post->country_id = $country_id;
+			$location_orm= new Location_Model();
+			$location_orm->location_name = $post->location_name;
+			$location_orm->latitude = $post->latitude;
+			$location_orm->longitude = $post->longitude;
+			$location_orm->country_id = $country_id;
+			$location_orm->location_date = date("Y-m-d H:i:s",time());
+			$location_orm->save();
+			$location = $location_orm;
+		}
 		
 		// Garbage collection
 		unset ($country, $country_id);
@@ -222,6 +229,7 @@ class reports_Core {
 			throw new Kohana_Exception('Invalid parameter types');
 		}
 		
+		Kohana::log('debug', 'Find location by id: '.$location_id);
 		// Verify that the location id exists
 		if ( ! Location_Model::is_valid_location($location_id))
 		{
