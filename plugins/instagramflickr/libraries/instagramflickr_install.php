@@ -19,7 +19,8 @@ class Instagramflickr_Install {
 
 		// Create the database tables.
 		// Also include table_prefix in name
-		$this->db->query('CREATE TABLE IF NOT EXISTS `'.Kohana::config('database.default.table_prefix'). 'instagramflickr` (
+		$table_prefix = Kohana::config('database.default.table_prefix');
+		$this->db->query("CREATE TABLE IF NOT EXISTS `{$table_prefix}". 'instagramflickr` (
 		  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
 		  `parent_id` bigint(20) DEFAULT \'0\',
 		  `incident_id` bigint(20) unsigned DEFAULT \'0\',
@@ -28,6 +29,9 @@ class Instagramflickr_Install {
 		  `service_photoid` varchar(100) DEFAULT NULL,
 		  `photo_from` varchar(100) DEFAULT NULL,
 		  `photo_to` varchar(100) DEFAULT NULL,
+		  `link` varchar(255) DEFAULT NULL,
+		  `medium` varchar(255) DEFAULT NULL,
+		  `thumbnail` varchar(255) DEFAULT NULL,
 		  `photo_title` text,
 		  `photo_description` text,
 		  `photo_type` tinyint(4) DEFAULT \'1\' COMMENT \'1 - INBOX, 2 - OUTBOX (From Admin), 3 - DELETED\',
@@ -43,7 +47,7 @@ class Instagramflickr_Install {
 
 		// Create the settings tables.
 		// Also include table_prefix in name
-		$this->db->query('CREATE TABLE IF NOT EXISTS `'.Kohana::config('database.default.table_prefix').'instagramflickr_settings` (
+		$this->db->query("CREATE TABLE IF NOT EXISTS `{$table_prefix}".'instagramflickr_settings` (
 			`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   			`flickr_tag` varchar(255) DEFAULT NULL,
   			`flickr_id` varchar(15) DEFAULT NULL,
@@ -57,30 +61,29 @@ class Instagramflickr_Install {
 		) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1');
 
 		// Check for flickr service
-		$flickr = $this->db->query('SELECT service_name FROM `'.Kohana::config('database.default.table_prefix').'service` WHERE service_name=\'Flickr\'');
+		$flickr = $this->db->query("SELECT service_name FROM `{$table_prefix}".'service` WHERE service_name=\'Flickr\'');
 		
 		if($flickr->count() == 0)
 		{ 	
 			// Insert flickr service
-			$this->db->query('INSERT INTO `'.Kohana::config('database.default.table_prefix')
-				.'service` ( 
+			$this->db->query("INSERT INTO `{$table_prefix}".
+				'service` ( 
 					`service_name`, `service_description`, `service_url`, 
 					`service_api`) VALUES 
 			(\'Flickr\', \'Flick Photos\', \'http://flickr.com\', NULL)');
 		}
 
-		$instagram = $this->db->query('SELECT service_name FROM `'.Kohana::config('database.default.table_prefix').'service` WHERE service_name=\'Instagram\'');
+		$instagram = $this->db->query("SELECT service_name FROM `{$table_prefix}".'service` WHERE service_name=\'Instagram\'');
 
 		if($instagram->count() == 0)
 		{
 			// Insert instagram service
-			$this->db->query('INSERT INTO `'.Kohana::config('database.default.table_prefix')
+			$this->db->query("INSERT INTO `{$table_prefix}"
 				.'service` ( 
 				`service_name`, `service_description`, `service_url`, 
 				`service_api`) VALUES 
 			(\'Instagram\', \'Instagram Photos\', \'http://instagram.com/\', NULL)');
 		}
-
 	}
 
 	/**
@@ -88,8 +91,8 @@ class Instagramflickr_Install {
 	 */
 	public function uninstall()
 	{
-		$this->db->query('DROP TABLE `'.Kohana::config('database.default.table_prefix').'instagramflickr');
-
-		$this->db->query('DROP TABLE `'.Kohana::config('database.default.table_prefix').'instagramflickr_settings');
+		$this->db->query("DROP TABLE `${table_prefix}".'instagramflickr`');
+		$this->db->query("DROP TABLE `${table_prefix}".'instagramflickr_gallery`');
+		$this->db->query("DROP TABLE `{$table_prefix}".'instagramflickr_settings`');
 	}
 }

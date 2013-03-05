@@ -37,6 +37,11 @@ class instagramflickr {
 			}
 		}
 
+		// Hook into gallery controller
+		if(Router::$controller == 'gallery') 
+		{
+			Event::add('ushahidi_action.gallery_list', array($this,'_display_gallery_images'));
+		}
 
 		Event::add('ushahidi_action.nav_admin_settings', array($this,
 			'_settings_link'));
@@ -208,6 +213,15 @@ class instagramflickr {
 		$f = new phpFlickr(Kohana::config('instagramflickr.flick_api_key'));
 		//enable caching
 		return $f;
+	}
+
+	public function _display_gallery_images()
+	{
+		$photos = ORM::factory('instagramflickr_gallery')->orderby('photo_date','desc');
+		// Load the View
+		$view = View::factory('gallery/gallery_list');
+		$view->photos = $photos;
+		$view->render();
 	}
 }
 new instagramflickr;

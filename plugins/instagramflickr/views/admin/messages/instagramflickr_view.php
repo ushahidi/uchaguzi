@@ -63,19 +63,22 @@
 					<?php 
 					foreach ($photos as $photo)
 					{
-						$photo_id = $photo->id;
-						$photo_from = $photo->reporter->service_account;
-						$photo_to = strip_tags($photo->photo_to);
-						$incident_id = $photo->incident_id;
-						$photo_title = text::auto_link(strip_tags($photo->photo_title));
-						$photo_description = nl2br(text::auto_link(strip_tags($photo->photo_description)));
-						$photo_date = date('Y-m-d  H:i', strtotime($photo->photo_date));
-						$photo_type = $photo->photo_type;
-						$photo_level = $photo->photo_level;
-						$latitude = $photo->latitude;
-						$longitude = $photo->longitude;
+						// Only show geo tagged photos
+						if ( ! empty($photo->latitude) AND ! empty($photo->longitude) )
+						{ 
+							$photo_id = $photo->id;
+							$photo_from = $photo->reporter->service_account;
+							$photo_to = strip_tags($photo->photo_to);
+							$incident_id = $photo->incident_id;
+							$photo_title = text::auto_link(strip_tags($photo->photo_title));
+							$photo_description = nl2br(text::auto_link(strip_tags($photo->photo_description)));
+							$photo_date = date('Y-m-d  H:i', strtotime($photo->photo_date));
+							$photo_type = $photo->photo_type;
+							$photo_level = $photo->photo_level;
+							$latitude = $photo->latitude;
+							$longitude = $photo->longitude;
 
-						$level_id = $photo->reporter->level_id;
+							$level_id = $photo->reporter->level_id;
 					?>
 					<tr>
 						<td class="col-1">
@@ -146,7 +149,7 @@
 							</ul>
 						</td>
 					</tr>
-					<?php } ?>
+					<?php } }?>
 				</tbody>
 			</table>
 		</div>
