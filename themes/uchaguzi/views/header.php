@@ -284,6 +284,15 @@
     	<ul>
     		<?php nav::header_tabs($this_page); ?>
 		</ul>
+		<?php if ($allow_feed == 1) { ?>
+			<div class="feedicon" align="right" style="margin-top: 10px;
+			margin-bottom: 10px;"><a href="<?php echo
+			url::site(); ?>feed/"><img alt="<?php echo
+			htmlentities(Kohana::lang('ui_main.rss'), ENT_QUOTES); ?>"
+			src="<?php echo url::file_loc('img'); ?>media/img/icon-feed.png"
+			style="vertical-align: middle; margin-right:10px;" border="0" /></a></div>
+		<?php } ?>
+
         <div class="headerwidget"></div>  
     </nav>
     
