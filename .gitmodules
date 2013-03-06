@@ -10,3 +10,6 @@
 [submodule "plugins/soundcloud"]
 	path = plugins/soundcloud
 	url = git://github.com/ushahidi/ushahidi-soundcloud.git
+[submodule "plugins/enhancedmap"]
+	path = plugins/enhancedmap
+	url = git://github.com/jetherton/enhancedmap.git

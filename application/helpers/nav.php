@@ -107,7 +107,7 @@ class nav_Core {
 		echo $menu;
 		
 		// Action::nav_admin_reports - Add items to the admin reports navigation tabs
-		Event::run('ushahidi_action.nav_main_top', $this_page);
+		//Event::run('ushahidi_action.nav_main_top', $this_page);
 	}
 
 
@@ -158,7 +158,7 @@ class nav_Core {
 		echo $menu;
 
 		// Action::nav_main_top - Add items to main nav bar
-		Event::run('ushahidi_action.nav_main_top', $this_page);
+		//Event::run('ushahidi_action.nav_main_top', $this_page);
 	}
 	
 	
