@@ -13,9 +13,15 @@
  * @license    http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License (LGPL) 
  */
 
-class Code_Model extends ORM
-{	
+class Code_Model extends ORM {	
 	
 	// Database table name
 	protected $table_name = 'code';
+	
+	public static function get_by_code_id($code_id)
+	{
+		return ORM::factory('code')
+			->where('code_id', $code_id)
+			->find();
+	}
 }

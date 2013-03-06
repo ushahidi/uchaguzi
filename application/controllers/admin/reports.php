@@ -736,8 +736,10 @@ class Reports_Controller extends Tools_Controller {
 
 				// Added ability to save media sent in via instagramflickr photos
 				// This was added by Henry Addo. Save images.
-				if (isset($photo_id) AND intval($photo_id) > 0)
+				if (isset($photo) AND isset($photo_id))
 				{
+					//update
+
 					$savemedia = ORM::factory('instagramflickr', $photo_id);
 					if ($savemedia->loaded)
 					{
@@ -752,8 +754,29 @@ class Reports_Controller extends Tools_Controller {
 						foreach ($attachments AS $attachment)
 						{
 							$attachment->incident_id = $incident->id;
+							$attachment->location_id = $incident->location_id;
+							$attachment->incident_id = $incident->id;
+							$attachment->message_id = $photo->id;
+							$attachment->media_type = 1; // Images
+							$attachment->media_link = $photo->link;
+							$attachment->media_medium = $photo->medium;
+							$attachment->media_title = $photo->photo_title;
+							$attachment->media_thumb = $photo->thumbnail;
 							$attachment->save();
 						}
+					} else {
+						//Add media 
+						$media = new Media_Model();
+						$media->location_id = $incident->location_id;
+						$media->incident_id = $incident->id;
+						$media->message_id = $photo->id;
+						$media->media_type = 1; // Images
+						$media->media_link = $photo->link;
+						$media->media_medium = $photo->medium;
+						$media->media_thumb = $photo->thumbnail;
+						$media->media_title = $photo->photo_title;
+						$media->media_date = date("Y-m-d H:i:s",time());
+						$media->save();
 					}
 				}
 

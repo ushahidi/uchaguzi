@@ -58,7 +58,7 @@ class Instagramflickr_Controller extends Controller {
 					if( $photo->caption !=NULL) 
 					{ 
 						$foto['title'] = $photo->caption->text;
-						$foto['description'] = $photo->caption->text;
+						$foto['description'] = "";
 					}
 					else 
 					{
@@ -92,9 +92,8 @@ class Instagramflickr_Controller extends Controller {
 						$foto['longitude'] = "";
 					}
 					
-					
-					// Add to database
-					$this->_add_to_database($foto);
+					// Add to the gallery table
+					$this->_add_to_instgramflickr($foto);
 				}
 			}
 		}
@@ -104,7 +103,7 @@ class Instagramflickr_Controller extends Controller {
 	 * Add photo details to database
 	 * @param [type] $photo [description]
 	 */
-	private function _add_to_database($photo) 
+	private function _add_to_instgramflickr($photo) 
 	{
 
 		$p = ORM::factory('instagramflickr')->where('service_photoid',
@@ -166,19 +165,27 @@ class Instagramflickr_Controller extends Controller {
 				$instagramflickr->service_photoid = $photo['photo_id'];
 				$instagramflickr->latitude = $photo['latitude'];
 				$instagramflickr->longitude = $photo['longitude'];
+				$instagramflickr->link = $photo['link'];
+				$instagramflickr->medium = $photo['medium'];
+				$instagramflickr->thumbnail = $photo['thumb'];
 				$instagramflickr->save();
 
-				//Add media
-				$media = new Media_Model();
-				$media->location_id = 0;
-				$media->incident_id = 0;
-				$media->message_id = $instagramflickr->id;
-				$media->media_type = 1; // Images
-				$media->media_link = $photo['link'];
-				$media->media_medium = $photo['medium'];
-				$media->media_thumb = $photo['thumb'];
-				$media->media_date = date("Y-m-d H:i:s",time());
-				$media->save();
+				//Add media to media if there is no location info
+				// Add to instagramflickr table
+				if (empty($foto['latitude']) AND empty($foto['longitude']))
+				{
+					$media = new Media_Model();
+					$media->location_id = 0;
+					$media->incident_id = 0;
+					$media->message_id = $instagramflickr->id;
+					$media->media_type = 1; // Images
+					$media->media_title = $photo['title'];
+					$media->media_link = $photo['link'];
+					$media->media_medium = $photo['medium'];
+					$media->media_thumb = $photo['thumb'];
+					$media->media_date = date("Y-m-d H:i:s",time());
+					$media->save();
+				}
 
 				// Auto-Create A Report if Reporter is Trusted
 				$reporter_weight = $reporter->level->level_weight;
@@ -298,8 +305,8 @@ class Instagramflickr_Controller extends Controller {
 				$foto['longitude'] = "";
 			}
 
-			// Add to database
-			$this->_add_to_database($foto);
+			$this->_add_to_instgramflickr($foto);
+			
 		}
 	}
 } 
