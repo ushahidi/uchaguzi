@@ -276,25 +276,30 @@ jQuery(function() {
 
 		return false;
 	});
-		
-	// Timeslider and date change actions
-	$("select#startDate, select#endDate").selectToUISlider({
-		labels: 4,
-		labelSrc: 'text',
-		sliderOptions: {
-			change: function(e, ui) {
-				var from = $("#startDate").val();
-				var to = $("#endDate").val();
 
-				if (to > from && (from != startTime || to != endTime)) {
-					// Update the report filters
-					startTime = from;
-					endTime = to;
-					map.updateReportFilters({s: from, e: to});
-				}
+	$("#start_date").datepicker({ 
+		defaultDate: "-1w",
+		showOn: "both", 
+		buttonImage: "<?php echo url::file_loc('img'); ?>media/img/icon-calendar.gif", 
+		buttonImageOnly: true,
+		dateFormat: 'yy-mm-dd'
+	});
+	$("#end_date").datepicker({
+		defaultDate: "+1d",
+		showOn: "both", 
+		buttonImage: "<?php echo url::file_loc('img'); ?>media/img/icon-calendar.gif", 
+		buttonImageOnly: true,
+		dateFormat: 'yy-mm-dd'
+	});
 
-				e.stopPropagation();
-			}
+	$("#update-date").click(function() {
+		var from = new Date($("#start_date").val()).getTime() / 1000;
+		var to = new Date($("#end_date").val()).getTime() / 1000;
+
+		if(!isNaN(from) && !isNaN(to)){
+			map.updateReportFilters({s: from, e: to});
+		} else {
+			alert('Please select valid dates');
 		}
 	});
 	
