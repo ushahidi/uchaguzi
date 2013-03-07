@@ -107,7 +107,7 @@ class nav_Core {
 		echo $menu;
 		
 		// Action::nav_admin_reports - Add items to the admin reports navigation tabs
-		Event::run('ushahidi_action.nav_main_top', $this_page);
+		//Event::run('ushahidi_action.nav_main_top', $this_page);
 	}
 
 
@@ -133,16 +133,22 @@ class nav_Core {
 			//$menu .= ($this_page == 'reports') ? " class=\"active\"" : "";
 		 	$menu .= ">".Kohana::lang('uchaguzi.citizen_reports')."</a></li>";
 		
-		//IEBC
-			//$menu .= "<li><a href=\"".url::site()."timeline\" ";
-			//$menu .= ($this_page == 'timeline') ? " class=\"active\"" : "";
-		 	//$menu .= ">".Kohana::lang('uchaguzi.iebc')."</a></li>";
-
-		//ELOG
+		// Situation Room
 			
-			/*$menu .= "<li><a href=\"".url::site()."reports/partners/index/2001\" ";
-		 	$menu .= ">".Kohana::lang('uchaguzi.elog')."</a></li>";*/
+			$menu .= "<li><a href='http://sitroom.uchaguzi.co.ke/'>Situation
+			Room</a></li>";	
+
+		// Visuals
+			
+			$menu .= "<li><a
+			href='http://visuals.uchaguzi.co.ke/'>Visuals</a></li>";	
 	
+		// Results
+			
+			$menu .= "<li><a
+			href='http://results.uchaguzi.co.ke/'>Results</a></li>";	
+
+
 		//TOOLS
 			if(Auth::instance()->has_permission('admin_ui', $user))
 			{
@@ -158,7 +164,7 @@ class nav_Core {
 		echo $menu;
 
 		// Action::nav_main_top - Add items to main nav bar
-		Event::run('ushahidi_action.nav_main_top', $this_page);
+		//Event::run('ushahidi_action.nav_main_top', $this_page);
 	}
 	
 	
