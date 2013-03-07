@@ -165,12 +165,12 @@ class election {
 	 */	
 	public function modify_sms_message()
 	{
-		$message_body = intval(Event::$data);
+		$message_body = Event::$data;
 
 		if (is_numeric($message_body) AND ! empty($this->monitor_phone_number)) 
 		{
 			// Get the form code associated with the submitted code
-			$this->form_code = Code_Model::get_by_code_id($message_body);
+			$this->form_code = Code_Model::get_by_code_id(intval($message_body));
 
 			// Get the description
 			$message = ( ! $this->form_code) 
@@ -178,9 +178,9 @@ class election {
 				: $this->form_code->code_description;
 
 			$message_body = $message;
+			
+			Event::$data = $message_body;
 		}
-
-		Event::$data = $message_body;
 	}
 
 
@@ -209,6 +209,8 @@ class election {
 			
 			// Associate the report with the monitor
 			Monitor_Report_Model::create_from_incident($this->monitor, $incident_orm);
+			
+			Event::$data = $sms;
 		}
 	}
 
