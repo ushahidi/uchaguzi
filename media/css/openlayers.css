@@ -59,6 +59,7 @@ div.olMap {
 
 div.olMapViewport {
     text-align: left;
+    z-index: 0;
 }
 
 div.olLayerDiv {
