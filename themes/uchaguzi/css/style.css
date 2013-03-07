@@ -3013,6 +3013,15 @@ div.slider-holder label{
 	margin-left: 90px;
 }
 
+div.date-holder{
+   width:100%;
+   padding:10px;
+}
+   div.date-holder div{
+      float:left;
+      margin-right:10px;
+   }
+
 /* category filters */
 div.cat-filters{
     font-size: 85%;
