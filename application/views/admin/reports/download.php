@@ -93,6 +93,7 @@
 					<td><?php print form::checkbox('data_include[]','7',FALSE); ?><?php echo Kohana::lang('ui_main.include_personal_info');?></td>
                 </tr>
 
+<?php Event::run('ushahidi_action.reports_download_form_data'); ?>
 
 				<tr>
 					<td colspan="2">
